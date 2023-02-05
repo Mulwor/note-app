@@ -9,7 +9,7 @@ import { Notfoundpage } from './pages/Notfoundpage';
 import { Layout } from "./components/Layout";
 
 
-export function Collection_2() {
+export function Collection_3() {
     return (
         <>
             {/* note.md => Lesson #1*/}
