@@ -12,7 +12,6 @@ import { Layout } from "./components/Layout";
 export function Collection_2() {
     return (
         <>
-            
             {/* note.md => Lesson #1*/}
             <Routes>
                 <Route path="/" element={<Layout />}>
