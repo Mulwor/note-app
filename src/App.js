@@ -1,8 +1,11 @@
-import './App.css';
+import React from 'react';
+import { Collection_1 } from './RRD/Lesson_1/Collection_1';
 
 function App() {
   return (
-    <div>React-Router-Dom</div>
+    <>
+      <Collection_1 />
+    </>
   );
 }
 
