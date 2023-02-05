@@ -52,7 +52,7 @@ main {
   padding-bottom: 1.5rem;
 }
 
-.active {
+.active-link {
   color: var(--color-active);
   cursor: default;
 }

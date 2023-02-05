@@ -4,9 +4,14 @@ const Layout = () => {
   return (
     <>
       <header>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/posts">Blog</NavLink>
-        <NavLink to="/about">About</NavLink>
+        <NavLink to="/"
+                 className={({isActive}) => isActive ? "active-link" : ""}>Home</NavLink>
+        
+        <NavLink to="/posts"
+                 className={({isActive}) => isActive ? "active-link" : ""}>Blog</NavLink>
+        
+        <NavLink to="/about"
+                 className={({isActive}) => isActive ? "active-link" : ""}>About</NavLink>
       </header>
 
       <div className="container"> 
