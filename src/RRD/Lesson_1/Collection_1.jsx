@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { Homepage } from './pages/Homepage';
 import { About } from './pages/Aboutpage';
 import { Blogpage } from './pages/Blogpage';
@@ -11,9 +11,9 @@ export function Collection_1() {
     return (
         <>
             <header>
-                <a href="/">Home</a>
-                <a href="/posts">Blog</a>
-                <a href="/about">About</a>
+                <Link to="/">Home</Link>
+                <Link to="/posts">Blog</Link>
+                <Link to="/about">About</Link>
             </header>
             
             {/* note.md => Lesson #1*/}
