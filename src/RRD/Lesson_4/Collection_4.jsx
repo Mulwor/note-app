@@ -6,7 +6,10 @@ import { Blogpage } from './pages/Blogpage';
 import { Notfoundpage } from './pages/Notfoundpage';
 import { Layout } from "./components/Layout";
 
-import { SinglePage } from "./pages/Singlepage";
+import { SinglePage } from "./pages/data-transfer/Singlepage";
+
+import { Editpost } from "./pages/EditPost";
+import { Createpost } from "./pages/CreatePost";
 
 export function Collection_4() {
     return (
@@ -18,6 +21,8 @@ export function Collection_4() {
                     <Route path="about" element={ <About />}/>
                     <Route path="posts" element={ <Blogpage />}/>
                     <Route path="posts/:id" element={ <SinglePage />}/>
+                    <Route path="posts/:id/edit" element={<Editpost />} />
+                    <Route path="posts/new" element={<Createpost />} />
                     <Route path="*" element={ <Notfoundpage />}/>
                 </Route>
             </Routes>

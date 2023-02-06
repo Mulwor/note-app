@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { useState, useEffect } from 'react';
 
 export const SinglePage = () => {
@@ -17,6 +17,7 @@ export const SinglePage = () => {
             <>
                 <h1>{post.title}</h1>
                 <p>{post.body}</p>
+                <Link to={`/posts/${id}/edit`}>Edit this post</Link>
             </>
         )}</div>
     )
