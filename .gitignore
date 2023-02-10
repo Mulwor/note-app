@@ -25,3 +25,5 @@ yarn-error.log*
 .idea
 ./idea
 ./vs-code
+/.idea
+/.vs-code

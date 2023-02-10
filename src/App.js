@@ -1,11 +1,9 @@
 import React from 'react';
-import { Collection_1 } from './RRD/Lesson_1/Collection_1';
+import './App.scss'
 
 function App() {
   return (
-    <>
-      <Collection_1 />
-    </>
+    <div>Установка</div>
   );
 }
 
