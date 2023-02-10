@@ -8,8 +8,8 @@ import { Layout } from "./components/Layout";
 
 import { SinglePage } from "./pages/data-transfer/Singlepage";
 
-import { Editpost } from "./pages/EditPost";
-import { Createpost } from "./pages/CreatePost";
+import { Editpost } from "./pages/another/EditPost";
+import { Createpost } from "./pages/another/CreatePost";
 
 export function Collection_4() {
     return (
