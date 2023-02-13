@@ -2,7 +2,6 @@ import React from "react";
 import { createEffect, forward } from 'effector';
 import { createGate, useGate, useStore } from "effector-react";
 
-
 // ! 1. Создаем эффектор
 const myVerySideEffectFx = createEffect();
 
@@ -22,7 +21,7 @@ const SampleCompGate = createGate();
 
 // ! Отправка обновления с одного набора устройсв (места) на другой
 forward({
-  // ! Событие, которое будет вызвано во время установки "ворот"
+  // ! open - cобытие, которое будет вызвано во время установки "ворот"
   from: SampleCompGate.open,       
   to: myVerySideEffectFx,
 });
