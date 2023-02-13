@@ -30,7 +30,7 @@ const postGroups = createStore([])
         ...result,
     ]);
 
-    
+
 export function Sequence() {
   return useList(postGroups, ({ id, posts }) =>
     posts.map(({ title, body }) => (

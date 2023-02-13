@@ -3,7 +3,7 @@ import React from 'react';
 import { SampleComp } from './2. documentation/example/Loader';
 // Пример №2
 import { Sequence } from './2. documentation/example/Sequence';
-
+// Пример №3
 
 function App() {
   return (
