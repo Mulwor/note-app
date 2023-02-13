@@ -7,6 +7,7 @@ import { $todos, getDataFx, $dataLoading } from './effector';
 export function Path() {
   const isVisible = useStore($modalVisibility);
   const isLoading = useStore($dataLoading)
+  //  Еще один варик const isLoading = useStore(getDataFx.pending);
   const data = useStore($todos)
 
   return (

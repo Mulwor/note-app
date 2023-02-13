@@ -1,12 +1,11 @@
 import React from 'react';
-import { Collection_1 } from './RRD/Lesson_1/Collection_1';
+import { SampleComp } from './2. documentation/example/Loader';
+
 
 function App() {
   return (
-    <>
-      <Collection_1 />
-    </>
-  );
-}
+      <SampleComp /> 
+  )
+};
 
 export default App;
