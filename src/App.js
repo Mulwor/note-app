@@ -1,8 +1,12 @@
 import React from 'react';
-import { Counter } from './5. mine/counter/counter';
+
 
 function App() {
-  <Counter />
+  return (
+    <div ckassName="projects">
+
+    </div>
+  )
 }
 
 export default App;
