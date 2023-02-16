@@ -2,6 +2,7 @@ import React from 'react';
 import { Counter } from './projects/counter';
 import { FirstForms } from './projects/forms/first_example';
 import { SecondForms } from './projects/forms/second_example';
+import { Gate } from './projects/gate';
 import { Fetch } from './projects/request';
 
 
@@ -14,7 +15,8 @@ function App() {
         <Fetch /> <hr/>
         <p>Примеры с формами, примеров будет: 2</p>
         <FirstForms />
-        <SecondForms />
+        <SecondForms /> <hr />
+        <Gate /> <hr />
     </div>
   )
 }
