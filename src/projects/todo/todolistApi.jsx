@@ -2,21 +2,21 @@ import { createEvent } from "effector";
 import { createStore } from "effector";
 import { sample } from "effector";
 
-export function createTodoListApi(initial: string[] = []) {
-    const insert = createEvent<string>();
-    const remove = createEvent<number>();
-    const change = createEvent<string>();
-    const reset = createEvent<void>();
+export function createTodoListApi(initial) {
+    const insert = createEvent();
+    const remove = createEvent();
+    const change = createEvent();
+    const reset = createEvent();
   
-    const $input = createStore<string>('')
+    const $input = createStore('')
       .on(change, (_, value) => value)
       .reset(reset, insert);
   
-    const $todos = createStore<string[]>(initial)
+    const $todos = createStore(initial)
       .on(insert, (todos, newTodo) => [...todos, newTodo])
       .on(remove, (todos, index) => todos.filter((_, i) => i !== index));
   
-    const submit = createEvent<React.SyntheticEvent>();
+    const submit = createEvent();
     submit.watch((event) => event.preventDefault());
   
     sample({

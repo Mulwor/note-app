@@ -20,7 +20,7 @@ export function TodoList({ label, model }) {
 
   return (
     <>
-      <h1>{label}</h1>
+      <h4>{label}</h4>
       <ul>{todos}</ul>
       <form>
         <label>Insert todo: </label>

@@ -1,5 +1,5 @@
-import { TodoList } from './effector';
-import { firstTodoList, secondTodoList } from './effector';
+import { TodoList } from './effector.jsx';
+import { firstTodoList, secondTodoList } from './effector.jsx';
 
 export function Todo() {
   return (
