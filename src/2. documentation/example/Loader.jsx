@@ -3,7 +3,7 @@ import { createEffect, forward } from 'effector';
 import { createGate, useGate, useStore } from "effector-react";
 
 // ! 1. Создаем эффектор
-const myVerySideEffectFx = createEffect();
+const myVerySideEffectFx = createEffect()
 
 // ! use - функцию, которая будет вызвана при срабатывании
 myVerySideEffectFx.use(async () => {
