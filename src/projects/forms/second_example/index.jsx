@@ -4,10 +4,8 @@ import { Loader } from './loader'
 import { SubmitButton } from './submit'
 import { sendFormFx } from "./effector";
 
-
+// ! transforming upcoming data, from DOM Event to FormData
 const onSubmit = sendFormFx.prepend(e => new FormData(e.target))
-
-//transforming upcoming data, from DOM Event to FormData
 
 
 onSubmit.watch(e => {
@@ -16,10 +14,10 @@ onSubmit.watch(e => {
 
 export const SecondForms = () => (
   <form onSubmit={onSubmit}>
-    Login: <input name="name" />
-    <br />
-    Password: <input name="password" type="password" />
-    <br />
+    <br /> 
+    
+    Login: <input name="name" /> <br /> 
+    Password: <input name="password" type="password" /> <br />
     <Loader />
     <SubmitButton />
   </form>

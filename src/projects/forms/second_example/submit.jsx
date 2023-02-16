@@ -8,4 +8,3 @@ export const SubmitButton = createComponent(sendFormFx.pending, (props, loading)
   <button disabled={loading} type="submit"> Submit </button>
 ));
 
-
