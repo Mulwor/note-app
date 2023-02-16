@@ -4,6 +4,7 @@ import { FirstForms } from './projects/forms/first_example';
 import { SecondForms } from './projects/forms/second_example';
 import { Gate } from './projects/gate';
 import { Fetch } from './projects/request';
+import { Todo } from './projects/todo';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <FirstForms />
         <SecondForms /> <hr />
         <Gate /> <hr />
+        <Todo /> <hr />
     </div>
   )
 }
