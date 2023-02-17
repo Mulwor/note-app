@@ -6,15 +6,14 @@ import { createTodoListApi } from './todolistApi';
 export const firstTodoList = createTodoListApi(['hello, world!']);
 export const secondTodoList = createTodoListApi(['hello, world!']);
 
-export function TodoList({ label, model }) {
+
+export function TodoList({label, model}) {
   const input = useStore(model.$input);
 
   const todos = useList(model.$todos, (value, index) => (
     <li>
-      {value}{' '}
-      <button type="button" onClick={() => model.remove(index)}>
-        Remove
-      </button>
+      {value}
+      <button type="button" onClick={() => model.remove(index)}> Remove </button>
     </li>
   ));
 
