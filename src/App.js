@@ -19,10 +19,9 @@ function App() {
         <FirstForms />
         <SecondForms /> <hr />
         <Gate /> <hr />
-        <Todo /> <hr />
+        <SampleComp /> <hr />
 
         {/* ! РАЗОБРАТЬ */}
-        <SampleComp />
         <Todo /> <hr />
     </div>
   )
