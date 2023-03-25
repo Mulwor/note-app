@@ -1,8 +1,9 @@
-import React from 'react';
-import Counter from './chapter №1_intro/Counter';
+import React from "react";
+import PostsList from "./chapter №2/PostsList";
+import Counter from "./chapter №1/Counter";
 
 function App() {
-  return <Counter />
+  return <PostsList />;
 }
 
 export default App;
