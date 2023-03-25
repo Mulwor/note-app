@@ -1,12 +1,8 @@
 import React from 'react';
-import { Collection_1 } from './RRD/Lesson_1/Collection_1';
+import Counter from './chapter №1_intro/Counter';
 
 function App() {
-  return (
-    <>
-      <Collection_1 />
-    </>
-  );
+  return <Counter />
 }
 
 export default App;
