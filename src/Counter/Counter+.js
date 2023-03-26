@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement, reset, incrementByAmount } from "./store/slice/counterSlice";
+import { increment, decrement, reset, incrementByAmount } from "./store/counterSlice";
 
-function Counter() {
-  // * useSelector - Позволяет извлекать состояния хранилища (store) Redux, а затем
-  // * идет в slice
+function CounterPlus() {
   const count = useSelector((state) => state.counter.count);
   const dispatch = useDispatch();
 
-  // ? - работает с `() => dispatch(incrementByAmount(addValue))`
   const [incrementAmount, setIncrementAmount] = useState(0);
   const addValue = Number(incrementAmount) || 0;
 
@@ -40,4 +37,4 @@ function Counter() {
   );
 }
 
-export default Counter;
+export default CounterPlus;

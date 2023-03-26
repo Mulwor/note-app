@@ -1,9 +1,14 @@
 import React from "react";
-import PostsList from "./chapter №2/PostsList";
-import Counter from "./chapter №1/Counter";
+import Post from "./Posts/Post";
+// import Counter from "./Counter/Counter";
+// import CounterPlus from "./Counter/Counter+";
 
 function App() {
-  return <PostsList />;
+  return (
+    <div>
+      <Post />
+    </div>
+  )
 }
 
 export default App;
