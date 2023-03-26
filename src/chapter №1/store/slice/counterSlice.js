@@ -7,7 +7,6 @@ const initialState = {
 export const counterSlice = createSlice({
   name: "counter",
   initialState,
-  // * Когда функция вызовется она получит свое состояние (state) и действие (action)
   reducers: {
     increment: (state) => {
       state.count +=1

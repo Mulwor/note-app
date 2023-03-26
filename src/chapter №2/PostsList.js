@@ -4,7 +4,6 @@ import { selectAllPosts } from "./store/slice/postsSlice";
 
 const PostsList = () => {
   const posts = useSelector(selectAllPosts);
-  console.log(posts)
   // * Замена: const posts = useSelector((state) => state.posts);
 
   const renderedPosts = posts.map((post) => (
