@@ -1,12 +1,7 @@
-import React from 'react';
-import { Collection_1 } from './RRD/Lesson_1/Collection_1';
+import React from "react";
 
 function App() {
-  return (
-    <>
-      <Collection_1 />
-    </>
-  );
+  return <div></div>;
 }
 
 export default App;
