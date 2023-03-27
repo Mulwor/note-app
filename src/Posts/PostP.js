@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectAllPosts } from "./slices/postsSlice";
 
-const Post = () => {
+const PostP = () => {
     const posts = useSelector(selectAllPosts);
     // * Замена: const posts = useSelector((state) => state.posts);
   
@@ -15,11 +15,11 @@ const Post = () => {
   
     return (
       <section>
-        <div>Первый файл поста</div>
+        <div>Второй файл поста</div>
         <h2>Posts</h2>
         {renderedPosts}
       </section>
     );
 };
 
-export default Post;
+export default PostP;
