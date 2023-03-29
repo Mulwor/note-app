@@ -11,7 +11,7 @@ import { SinglePage } from "./pages/data-transfer/Singlepage";
 import { Editpost } from "./pages/another/EditPost";
 import { Createpost } from "./pages/another/CreatePost";
 
-export function Collection_4() {
+export function Collection_5() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
