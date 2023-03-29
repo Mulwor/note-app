@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Homepage } from "./pages/Homepage";
 import { About } from "./pages/Aboutpage";
 import { Blogpage } from "./pages/Blogpage";
@@ -17,6 +17,8 @@ export function Collection_5() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Homepage />} />
         <Route path="about" element={<About />} />
+        {/* Если мы хотим переадресировать на страницу about, то можно заюзать это */}
+        <Route path="about-us" element={<Navigate to="/about" replace />} />
         <Route path="posts" element={<Blogpage />} />
         <Route path="posts/:id" element={<SinglePage />} />
         <Route path="posts/:id/edit" element={<Editpost />} />
