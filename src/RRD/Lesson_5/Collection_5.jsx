@@ -12,27 +12,33 @@ import { Editpost } from "./pages/another/EditPost";
 import { Createpost } from "./pages/another/CreatePost";
 
 import { LoginPage } from "./autorization/Loginpage";
-import  RequireAuth  from "./autorization/hoc/RequireAuth";
+import RequireAuth from "./autorization/hoc/RequireAuth";
+import { AuthProvider } from "./autorization/hoc/AuthProvider";
 
 export function Collection_5() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Homepage />} />
-        <Route path="about" element={<About />} />
-        {/* Если мы хотим переадресировать на страницу about, то можно заюзать это */}
-        <Route path="about-us" element={<Navigate to="/about" replace />} />
-        <Route path="posts" element={<Blogpage />} />
-        <Route path="posts/:id" element={<SinglePage />} />
-        <Route path="posts/:id/edit" element={<Editpost />} />
-        <Route path="posts/new" element={
-          <RequireAuth>
-            <Createpost />
-          </RequireAuth>
-        } />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="*" element={<Notfoundpage />} />
-      </Route>
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Homepage />} />
+          <Route path="about" element={<About />} />
+          {/* Если мы хотим переадресировать на страницу about, то можно заюзать это */}
+          <Route path="about-us" element={<Navigate to="/about" replace />} />
+          <Route path="posts" element={<Blogpage />} />
+          <Route path="posts/:id" element={<SinglePage />} />
+          <Route path="posts/:id/edit" element={<Editpost />} />
+          <Route
+            path="posts/new"
+            element={
+              <RequireAuth>
+                <Createpost />
+              </RequireAuth>
+            }
+          />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="*" element={<Notfoundpage />} />
+        </Route>
+      </Routes>
+    </AuthProvider>
   );
 }

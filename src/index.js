@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { Collection_4 } from './RRD/Lesson_4/Collection_4';
 import { Collection_5 } from './RRD/Lesson_5/Collection_5';
 
 
