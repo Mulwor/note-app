@@ -13,7 +13,7 @@ function RequireAuth( {children} ) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
 
-  return <div>RequireAuth</div>;
+  return children
 }
 
 export default RequireAuth;
