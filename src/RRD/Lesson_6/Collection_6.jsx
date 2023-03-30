@@ -2,7 +2,6 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Homepage } from "./pages/Homepage";
 import { About } from "./pages/Aboutpage";
-import { Blogpage } from "./pages/Blogpage";
 import { Notfoundpage } from "./pages/Notfoundpage";
 import { Layout } from "./components/Layout";
 
@@ -15,6 +14,7 @@ import { LoginPage } from "./autorization/Loginpage";
 import RequireAuth from "./autorization/hoc/RequireAuth";
 import { AuthProvider } from "./autorization/hoc/AuthProvider";
 
+
 export function Collection_6() {
   return (
     <AuthProvider>
@@ -24,7 +24,7 @@ export function Collection_6() {
           <Route path="about" element={<About />} />
           {/* Если мы хотим переадресировать на страницу about, то можно заюзать это */}
           <Route path="about-us" element={<Navigate to="/about" replace />} />
-          <Route path="posts" element={<Blogpage />} />
+          <Route path="posts" element={<LoginPage />} />
           <Route path="posts/:id" element={<SinglePage />} />
           <Route path="posts/:id/edit" element={<Editpost />} />
           <Route
