@@ -11,6 +11,9 @@ import { SinglePage } from "./pages/data-transfer/Singlepage";
 import { Editpost } from "./pages/another/EditPost";
 import { Createpost } from "./pages/another/CreatePost";
 
+import { LoginPage } from "./autorization/Loginpage";
+import  RequireAuth  from "./autorization/hoc/RequireAuth";
+
 export function Collection_5() {
   return (
     <Routes>
@@ -22,7 +25,12 @@ export function Collection_5() {
         <Route path="posts" element={<Blogpage />} />
         <Route path="posts/:id" element={<SinglePage />} />
         <Route path="posts/:id/edit" element={<Editpost />} />
-        <Route path="posts/new" element={<Createpost />} />
+        <Route path="posts/new" element={
+          <RequireAuth>
+            <Createpost />
+          </RequireAuth>
+        } />
+        <Route path="login" element={<LoginPage />} />
         <Route path="*" element={<Notfoundpage />} />
       </Route>
     </Routes>
