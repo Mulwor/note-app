@@ -1,32 +1,33 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
-// Урок №1
-import { FirstLesson } from "./#1 - components/1. controlled-component/Simple";
+// * Заметка №1
+import { FirstLesson } from "./components/1. controlled-component/Simple";
 
-// Урок №2
-import OnOff from "./#2 - hooks/useState/onOff";
+// * Заметка №2
+import OnOff from "./hooks/useState/onOff";
 
-// Урок №3
-import { Uncontrolled_Rating } from "./#1 - components/2. uncontrolled-component/rating/Rating";
+// * Заметка №3
+import { Uncontrolled_Rating } from "./components/2. uncontrolled-component/rating/Rating";
 
-// Урок №4
-import { Rating_Callback } from "./#1 - components/3. callback/rating/Rating";
-import Accordion_Callback from "./#1 - components/3. callback/accordion/Accordion";
+// * Заметка №4
+import { Rating_Callback } from "./components/3. callback/rating/Rating";
+import Accordion_Callback from "./components/3. callback/accordion/Accordion";
 
-// Урок №5 (uncontrolled и controlled input)
-import { WatchValueUncontrolledInput } from "./#3 - input/uncontrolled-input/WatchValuInput";
-import { GetValueUncontrolledByButton } from "./#3 - input/uncontrolled-input/GetValueByButton";
-import { UncontrolledInput } from "./#3 - input/uncontrolled-input/UncontrolledInput";
+// * Заметка №5 (uncontrolled и controlled input)
+import { WatchValueUncontrolledInput } from "./input/uncontrolled-input/WatchValuInput";
+import { GetValueUncontrolledByButton } from "./input/uncontrolled-input/GetValueByButton";
+import { UncontrolledInput } from "./input/uncontrolled-input/UncontrolledInput";
 
-import { ControlledSelect } from "./#3 - input/controlled-input/ControlledSelect";
-import { ControlledInput } from "./#3 - input/controlled-input/ControlledInput";
-import { ControlledCheckbox } from "./#3 - input/controlled-input/ControlledCheckbox";
+import { ControlledInput } from "./input/controlled-input/ControlledInput";
+import { ControlledSelect } from "./input/controlled-input/ControlledSelect";
+import { ControlledCheckbox } from "./input/controlled-input/ControlledCheckbox";
 
-import { MenuCollapsedMode } from "./#4 - array/Menu";
-import { MadeChanging, UserUncollapsedMode } from "./#4 - array/UserCollapse";
-import { Accordion } from "./#4 - array/Accordion";
+import { Accordion } from "./array/Accordion";
+import { MenuCollapsedMode } from "./array/Menu";
+import { MadeChanging } from "./array/UserCollapse";
+import { UserUncollapsedMode } from "./array/UserCollapse";
+
 
 function App() {
   return (
