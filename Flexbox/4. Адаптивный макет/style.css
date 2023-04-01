@@ -1,0 +1,139 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+}
+h2 {
+  align-self: center;
+}
+
+/*1. Адаптив*/
+#main {
+  display: flex;
+  flex: 1;
+}
+#main > article {
+  flex: 1;
+}
+#main > nav,
+#main > aside {
+  flex: 0 0 20vw;
+  background: beige;
+}
+#main > nav {
+  order: -1;
+}
+header,
+footer {
+  background: yellowgreen;
+  height: 20vh;
+}
+header,
+footer,
+article,
+nav,
+aside {
+  padding: 1em;
+}
+@media screen and (max-width: 575px) {
+  /*Мы изменили display: flex на display: block для элемента #main, 
+      чтобы его дочерние элементы перестали быть флекс-элементами. Это 
+      приводит к тому, что они накладываются друг на друга в исходном порядке.*/
+  #main {
+    display: block;
+  }
+}
+
+/*2. Адаптив*/
+#main1 {
+  display: flex;
+  flex: 1;
+}
+#main1 > article {
+  flex: 1;
+}
+#main1 > nav,            /*Нав и aside при маленьком экране имеют большую ширину чем статья*/
+  #main1 > aside {
+  flex: 0 0 20vw;
+  background: beige;
+}
+#main1 > nav {
+  order: -1;
+}
+header,
+footer {
+  background: yellowgreen;
+  height: 20vh;
+}
+header,
+footer,
+article,
+nav,
+aside {
+  padding: 1em;
+}
+@media screen and (max-width: 575px) {
+  /*Во втором случае мы заменили на column, теперь у нас идёт 
+      навигационная панель, статья, затем боковая панель. Но заметьте, 
+      что навигация и боковая панель располагаются выше, чем в предыдущем
+      примере. Это происходит из за фрагмента: #main1 > nav, #main1 > aside {
+      flex: 0 0 20vw; background: beige; } */
+
+  /*В частности, код flex: 0 0 20vw устанавливает для flex-base значение
+      20vw, что составляет 20% от ширины области просмотра. Ранее мы применял
+      это значение для ширины элементов, но теперь, когда значение 
+      flex-direction задано как column, оно используется для высоты.*/
+
+  /*Если мы хотим, чтобы высота была основана на содержимом, то можем 
+      изменить это значение на auto или вообще удалить строку: 
+      #main1 > nav, #main1 > aside {  background: beige; }*/
+  #main1 {
+    flex-direction: column;
+  }
+}
+
+/*Мобилка*/
+#main2 {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+#main2 > article {
+  flex: 1;
+}
+#main2 > nav,
+#main2 > aside {
+  background: beige;
+}
+#main2 > nav {
+  order: -1;
+}
+header,
+footer {
+  background: yellowgreen;
+  height: 20vh;
+}
+header,
+footer,
+article,
+nav,
+aside {
+  padding: 1em;
+}
+@media screen and (min-width: 576px) {
+  /*Обратите внимание, что медиа-запрос на этот раз использует min-width, 
+      чтобы соответствовать всем устройствам указанной ширины и больше. В 
+      предыдущем примере мы использовали max-width, чтобы соответствовать 
+      только устройствам, которые были указанной ширины или меньше. */
+  #main2 {
+    flex-direction: row;
+  }
+  #main2 > nav,
+  #main2 > aside {
+    flex: 0 0 20vw;
+  }
+}

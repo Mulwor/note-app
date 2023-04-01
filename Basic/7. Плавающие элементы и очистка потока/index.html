@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS/CSS3 Basics</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!--Плавающие элементы и их особенности-->
+    <!--Плавающий элемент - это любой элемент со свойством float отличным от none. -->
+    <!--float - вырывает элемент из нормального потока документа и формирует для него новый, что значит, что другие элементы перестают
+    его видеть. В html разметке первым должен идти элемент, который находится слева; вторым, который находится справа и только в конца
+    средний-->
+    <!--MDN: float - cвойство float CSS указывает, что элемент должен быть взят из нормального потока и помещён вдоль левой или правой 
+    стороны его контейнера, где текст и встроенные элементы будут обтекать его.-->
+    <!--Если плавающие элементы не влазят в одну строку, то будут автоматически пересены на следующий-->
+    <h1>CSS Examples: float</h1>
+
+    <h2>Examples</h2>
+    <div>
+    <p class="rside">This is some text. This is some text. This is some text.
+        This is some text. This is some text. This is some text.</p>
+    <p class="lside">This is some text. This is some text. This is some text.
+        This is some text. This is some text. This is some text.</p>
+    <p> This is some text. This is some text. This is some text.
+        This is some text. This is some text. This is some text.
+        This is some text. This is some text. This is some text.
+        This is some text. This is some text. This is some text.
+        This is some text. This is some text. This is some text.
+        This is some text. This is some text. This is some text.
+        This is some text. This is some text. This is some text.</p>
+    </div>
+
+    <div class="wrapper">
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
+      <div class="item item3">3</div>
+    </div>
+    <div class="wrapper2"></div>
+  </body>
+</html>
