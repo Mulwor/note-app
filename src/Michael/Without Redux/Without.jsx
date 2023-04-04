@@ -1,14 +1,9 @@
 import React from "react";
 
 function WithoutRedux() {
-  // * 1. Для работы с тудулистом, где изначально будет хранится пустой массив
   const [todos, setTodos] = React.useState([]);
-  // * 2. Для работы с формой, будет принимать строку, а затем все что мы печатаем
   const [text, setText] = React.useState("");
 
-  // * 3. Метод, который отвечает за добавления тудушек при этом оставляя все старые
-  // * элементы. При этом проверив, что текст не пустой, а после добавления сбрасываем
-  // * тескст
   const addTodo = () => {
     if (text.trim().length) {
       setTodos([
@@ -23,6 +18,21 @@ function WithoutRedux() {
     }
   };
 
+  // * 1. Функция, которая удаляет тудушки
+  const removeTodo = (todoId) => {
+    setTodos(todos.filter((todo) => todo.id !== todoId));
+  };
+
+  //* 2. Логика для изменения внешнего вида когда у нас отрабатывает чекбокс (делаем) его управляемой
+  const toggleTodoComplete = (todoId) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id !== todoId) return todo;
+        return { ...todo, completed: !todo.completed };
+      }),
+    );
+  };
+
   return (
     <div className="App">
       <label>
@@ -33,9 +43,15 @@ function WithoutRedux() {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              checked={todo.completed}
+              onChange={() => toggleTodoComplete(todo.id)}
+            />
             <span>{todo.text}</span>
-            <span className="delete"> &times; </span>
+            <span className="delete" onClick={() => removeTodo(todo.id)}>
+              &times;
+            </span>
           </li>
         ))}
       </ul>
