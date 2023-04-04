@@ -1,4 +1,6 @@
 import React from "react";
+import TodoList from "./components/TodoList";
+import InputField from "./components/InputField";
 
 function WithoutRedux() {
   const [todos, setTodos] = React.useState([]);
@@ -35,26 +37,9 @@ function WithoutRedux() {
 
   return (
     <div className="App">
-      <label>
-        <input value={text} onChange={(e) => setText(e.target.value)} />
-        <button onClick={addTodo}>Add todo</button>
-      </label>
+      <InputField text={text} handleInput={setText} handleSubmit={addTodo} />
 
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={() => toggleTodoComplete(todo.id)}
-            />
-            <span>{todo.text}</span>
-            <span className="delete" onClick={() => removeTodo(todo.id)}>
-              &times;
-            </span>
-          </li>
-        ))}
-      </ul>
+      <TodoList todos={todos} toggleTodoComplete={toggleTodoComplete} removeTodo={removeTodo}/>
     </div>
   );
 }
