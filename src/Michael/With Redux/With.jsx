@@ -20,12 +20,10 @@ function WithoutRedux() {
     }
   };
 
-  // * 1. Функция, которая удаляет тудушки
   const removeTodo = (todoId) => {
     setTodos(todos.filter((todo) => todo.id !== todoId));
   };
 
-  //* 2. Логика для изменения внешнего вида когда у нас отрабатывает чекбокс (делаем) его управляемой
   const toggleTodoComplete = (todoId) => {
     setTodos(
       todos.map((todo) => {
