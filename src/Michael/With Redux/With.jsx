@@ -1,9 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "./store/todoSlice";
 import TodoList from "./components/TodoList";
 import InputField from "./components/InputField";
 
 function WithRedux() {
   const [text, setText] = React.useState("");
+  const dispatch = useDispatch();
+
+  const addTask = () => {
+    dispatch(addTodo({ text }));
+    setText('');
+  };
 
   const removeTodo = (todoId) => {
     // setTodos(todos.filter((todo) => todo.id !== todoId));
@@ -20,8 +28,8 @@ function WithRedux() {
 
   return (
     <div className="App">
-      <InputField text={text} handleInput={setText} handleSubmit={addTodo} />
-      <TodoList  />
+      <InputField text={text} handleInput={setText} handleSubmit={addTask} />
+      <TodoList />
     </div>
   );
 }

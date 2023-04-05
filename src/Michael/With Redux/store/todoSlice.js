@@ -7,6 +7,8 @@ const todoSlice = createSlice({
   },
   reducers: {
     addTodo(state, action) {
+      console.log('Состояние: ', state, ' Действие: ', action);
+
       state.todos.push({
         id: new Date().toISOString(),
         text: action.payload.text,

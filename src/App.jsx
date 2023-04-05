@@ -5,7 +5,9 @@ import WithRedux from "./Michael/With Redux/With";
 function App() {
   return (
     <>
+      <div align="center">Без редакса</div>
       <WithoutRedux />
+      <div align="center">С использованием редакса</div>
       <WithRedux />
     </>
   );
