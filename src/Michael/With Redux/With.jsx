@@ -13,10 +13,6 @@ function WithRedux() {
     setText('');
   };
 
-  const removeTodo = (todoId) => {
-    // setTodos(todos.filter((todo) => todo.id !== todoId));
-  };
-
   const toggleTodoComplete = (todoId) => {
     // setTodos(
     //   todos.map((todo) => {
