@@ -6,8 +6,18 @@ const todoSlice = createSlice({
     todos: [],
   },
   reducers: {
-    addTodo(state, action) {},
+    addTodo(state, action) {
+      state.todos.push({
+        id: new Date().toISOString(),
+        text: action.payload.text,
+        completed: false,
+      });
+    },
     removeTodo(state, action) {},
-    toggleTodoComplete(state, action) {}
+    toggleTodoComplete(state, action) {},
   },
 });
+
+export const {addTodo, removeTodo, toggleTodoComplete} = todoSlice.actions
+
+export default todoSlice.reducer;

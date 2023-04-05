@@ -2,7 +2,7 @@ import React from "react";
 import TodoList from "./components/TodoList";
 import InputField from "./components/InputField";
 
-function WithoutRedux() {
+function WithRedux() {
   const [todos, setTodos] = React.useState([]);
   const [text, setText] = React.useState("");
 
@@ -41,4 +41,4 @@ function WithoutRedux() {
   );
 }
 
-export default WithoutRedux;
+export default WithRedux;
