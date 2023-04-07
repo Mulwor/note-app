@@ -31,6 +31,34 @@ export const deleteTodos = createAsyncThunk(
   }
 })
 
+export const toggleStatus = createAsyncThunk(
+  "todos/toggleStatus", async function(id, {rejectWithValue, dispatch, getState}) {
+   
+  const todo = getState().todos.todos.find(todo => todo.id === id)
+
+  try {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+      method: "PATCH", 
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        completed: !todo.completed
+      })
+    });
+
+    if(!response.ok) {
+      throw new Error('Can\'t toggle task, Sever error')
+    }
+
+    dispatch(toggleTodoComplete({id}))
+
+  } catch (error) {
+    return rejectWithValue(error.message)
+  }
+})
+
+
 const setError = (state, action) => {
   state.status = 'rejected';
   state.error = action.payload;
@@ -72,6 +100,7 @@ const todoSlice = createSlice({
     },
     [fetchTodos.rejected]: setError,
     [deleteTodos.rejected] : setError,
+    [toggleStatus.rejected] : setError,
   },
 });
 
