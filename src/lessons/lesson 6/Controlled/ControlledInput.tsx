@@ -1,10 +1,6 @@
-import React, {ChangeEvent, useState} from "react";
+import {ChangeEvent, useState} from "react";
 
-export default {
-    title: "input"
-}
-
-export const ControlledInput = () => {
+export function ControlledInput() {
     const [parentValue, setParentValue] = useState("")
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {

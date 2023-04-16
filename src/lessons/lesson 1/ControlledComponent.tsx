@@ -2,7 +2,7 @@ import React from "react";
 import Accordion from "./Accordion/Accordion";
 import { Rating } from "./Rating/Rating";
 
-export function FirstLesson() {
+export function ControlledComponent() {
     return (
         <div>
             <Accordion titleValue={"Menu"} collapsed={true}/>

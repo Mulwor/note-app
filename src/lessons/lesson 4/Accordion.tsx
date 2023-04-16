@@ -1,12 +1,12 @@
 import React, {useState} from "react";
-import { AccordionBody } from "./AccordionBody";
 import { AccordionTitle } from "./AccordionTitle";
+import { AccordionBody } from "./AccordionBody";
 
 type AccordionPropsType = {
     title: string
 }
 
-function Accordion_Callback(props: AccordionPropsType) {
+export function Accordion_Callback(props: AccordionPropsType) {
     let [collapsed, setCollapsed] = useState(false)
 
     return <div>
@@ -19,7 +19,3 @@ function Accordion_Callback(props: AccordionPropsType) {
     </div>
 }
 
-
-
-
-export default Accordion_Callback;

@@ -1,10 +1,10 @@
-import React, {ChangeEvent, useRef, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 
 export const ControlledSelect = () => {
-    const [parentValue, setParentValue] = useState <string>("2")
+    const [parentValue, setParentValue] = useState<string>("2")
 
     const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        setParentValue (e.currentTarget.value)
+      setParentValue (e.currentTarget.value)
     }
 
     return <select value = {parentValue}

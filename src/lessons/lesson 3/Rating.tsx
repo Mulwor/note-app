@@ -5,7 +5,7 @@ type RatingPropsType = {
     //value: 0 | 1 | 2 | 3 | 4 | 5
 }
 
-export function Uncontrolled_Rating(props: RatingPropsType) {
+export function UncontrolledRating(props: RatingPropsType) {
     let [value, setValue] = useState(0)
 
     return (
