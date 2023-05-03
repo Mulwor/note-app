@@ -2,14 +2,11 @@
 
 #### Basic
 
-- HTML
-- CSS
-- Git
-- JavaScript 
-- TypeScript
-
-#### React
-
+- HTML, Git
+- CSS, Flexbox, Tailwind
+- JavaScript, TypeScript
+- React 
+- React JEST
 - React-router-dom V6 
 - Redux-toolkit
 - Effector
