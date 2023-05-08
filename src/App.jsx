@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Cookies from "universal-cookie";
 import { Auth } from "./PedroTech/components/Auth";
+import { Chat } from "./PedroTech/components/Chat";
 
 const cookies = new Cookies();
 
@@ -22,7 +23,7 @@ function App() {
   return (
     <div>
       {room ? (
-        <div>Chat</div>
+        <Chat />
       ) : (
         <div className="room">
           <label>Enter room: </label>
