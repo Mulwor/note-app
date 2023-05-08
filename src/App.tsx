@@ -1,8 +1,7 @@
 import React from "react";
 import "./App.css";
 
-import FirstToSix from "./lessons/FirstToSix";
-import SevenToTwelve from "./lessons/SecondToSix";
+import SevenToTwelve from "./lessons - second part/SecondToSix";
 
 
 function App() {
