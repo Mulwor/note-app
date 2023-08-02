@@ -25,6 +25,8 @@ export const BasicUseEffect = () => {
     document.title = counter.toString();
   }, [counter])
 
+
+  
   return (
     <div>
       <h4>1. Знакомство с useEffect, а именно его основы</h4>
