@@ -1,5 +1,10 @@
+import './index.css';
+import { Countries } from './rest-countries-api/Countries';
+
 function App() {
-  return <div>Hello world</div>;
+  return (
+    <Countries />
+  )
 }
 
 export default App;

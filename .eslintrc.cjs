@@ -12,8 +12,6 @@ module.exports = {
   plugins: ['react-refresh', '@stylistic/eslint-plugin-ts'],
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-
-    // For TypeScript
     '@stylistic/ts/block-spacing': 'error',
     '@stylistic/ts/semi': 'error',
     '@stylistic/ts/brace-style': 'error',
