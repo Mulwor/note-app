@@ -1,6 +1,7 @@
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 import './Countries.module.scss'
-import { Header } from "./components/Header"
+import { Header } from "./components/Header/Header"
+import { Main } from './components/Main/Main'
 import { useTheme } from './hooks/useTheme'
 
 export const Countries = () => {
@@ -14,6 +15,7 @@ export const Countries = () => {
   return (
     <div ref={divRef}>
       <Header changeThemeByClick={changeThemeByClick} theme={theme}/>
+      <Main /> 
     </div>
   )
 }

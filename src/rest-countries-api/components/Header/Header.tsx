@@ -1,5 +1,5 @@
-import iconSun from '../assets/sun.svg';
-import iconMoon from '../assets/moon.svg';
+import IconSun from '../../assets/sun.svg';
+import IconMoon from '../../assets/moon.svg';
 import style from './Header.module.scss';
 
 interface HeaderProps {
@@ -7,9 +7,7 @@ interface HeaderProps {
   theme: string;
 }
 
-export const Header = ({ changeThemeByClick, theme }: HeaderProps) => {
-  console.log(theme)
-
+export const Header = ({ changeThemeByClick, theme } : HeaderProps) => {
   return (
     <header className={style.header}>
       <div className={style.wrapper}>
@@ -17,10 +15,10 @@ export const Header = ({ changeThemeByClick, theme }: HeaderProps) => {
           <h1 className={style.title}>Where is the world?</h1>
 
           <div className={style.theme} onClick={changeThemeByClick}>
-            {theme === 'dark' ? <img src={iconMoon} alt="sun" /> : <img src={iconSun} alt="sun" />}
+            {theme === 'dark' ? <IconSun /> : <IconMoon /> }
             <p>{theme} mode</p>
           </div>
-          </div>
+        </div>
         </div>
     </header>
   )

@@ -11,6 +11,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', '@stylistic/eslint-plugin-ts'],
   rules: {
+    'react/react-in-jsx-scope': 0,
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     '@stylistic/ts/block-spacing': 'error',
     '@stylistic/ts/semi': 'error',
@@ -58,7 +59,6 @@ module.exports = {
       { blankLine: 'any', prev: 'directive', next: 'directive' },
       { blankLine: 'always', prev: ['case', 'default'], next: '*' },
     ],
-    '@stylistic/ts/semi': ['error', 'always'],
     '@stylistic/ts/space-before-blocks': 'error',
     '@stylistic/ts/space-before-function-paren': "error",
     '@stylistic/ts/space-infix-ops': 'error',
