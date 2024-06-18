@@ -1,5 +1,5 @@
-import IconSun from '../../assets/sun.svg';
-import IconMoon from '../../assets/moon.svg';
+import IconSun from '../../assets/sun.svg?react';
+import IconMoon from '../../assets/moon.svg?react';
 import style from './Header.module.scss';
 
 interface HeaderProps {

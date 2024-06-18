@@ -1,8 +1,7 @@
-import React from 'react';
 import { ChangeEvent, useState } from 'react';
 import style from './Main.module.scss';
 import { Card } from '../Card';
-import { IconSearch } from '*/assets/search.svg';
+import IconSearch  from './search.svg?react';
 
 export const Main = () => {
   const [searchField, setSearchField] = useState("");
