@@ -1,13 +1,13 @@
 import { useEffect, useState, RefObject } from 'react'
 
-export const useTheme = (ref: RefObject<HTMLElement>) => {
-  const [theme, setTheme] = useState('dark')
+export const useTheme = () => {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
   useEffect(() => {
-    if (ref.current) {
-      ref.current.setAttribute('data-theme', theme)
-    }
-  }, [theme, ref])
+    document.body.setAttribute('data-theme', theme);
+  }, [theme]);
 
-  return { theme, setTheme }
+  return { theme, toggleTheme }
 }

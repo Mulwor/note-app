@@ -7,12 +7,12 @@
   --fw-bold: 800;
 }
 
-div[data-theme="light"] {
+body[data-theme="light"] {
   color: black;
   background: white;
 }
 
-div[data-theme="dark"] {
+body[data-theme="dark"] {
   color: white;
   background: #202c37;;
 }

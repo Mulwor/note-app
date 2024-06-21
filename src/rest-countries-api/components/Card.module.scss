@@ -3,6 +3,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 4rem;
+  width: 1440px;
 
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
@@ -21,12 +22,25 @@
     box-shadow: rgba(149,157,165,0.2) 0px 8px 24px;
     border-radius: 4px;
     width: 246px;
+    cursor: pointer;
 
     @media (max-width: 626px) {
       width: auto;
     }
 
-    img {
+    .countries {
+      padding: 1rem;
+
+      h2 {
+        font-weight: 800;
+      }
+
+      .information {
+        padding-top: 10px;
+      }
+    }
+
+    .image {
       width: 246px;
       height: 150px;
 
