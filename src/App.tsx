@@ -1,10 +1,8 @@
+import { Countries } from './projects/rest-countries-api/Countries';
 import './index.css';
-import { Countries } from './rest-countries-api/Countries';
 
 function App() {
-  return (
-    <Countries />
-  )
+  return <Countries />;
 }
 
 export default App;

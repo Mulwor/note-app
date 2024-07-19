@@ -6,7 +6,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
-    'plugin:react/jsx-runtime'
+    'plugin:react/jsx-runtime',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
@@ -25,21 +25,21 @@ module.exports = {
       },
     ],
     '@stylistic/ts/function-call-spacing': ['error', 'never'],
-    "@stylistic/ts/key-spacing": [
-      "error",
+    '@stylistic/ts/key-spacing': [
+      'error',
       {
         beforeColon: false,
         afterColon: true,
-        mode: "strict",
+        mode: 'strict',
         align: {
           beforeColon: true,
           afterColon: true,
-          on: "colon",
+          on: 'colon',
         },
       },
     ],
-    "@stylistic/ts/keyword-spacing": [
-      "error",
+    '@stylistic/ts/keyword-spacing': [
+      'error',
       {
         before: true,
         after: true,
@@ -47,7 +47,7 @@ module.exports = {
     ],
     '@stylistic/ts/member-delimiter-style': 'error',
     '@stylistic/ts/no-extra-semi': 'error',
-    "@stylistic/ts/object-curly-spacing": ["error", "never"],
+    '@stylistic/ts/object-curly-spacing': ['error', 'never'],
     '@stylistic/ts/padding-line-between-statements': [
       'error',
       { blankLine: 'always', prev: '*', next: 'return' },
@@ -60,7 +60,7 @@ module.exports = {
       { blankLine: 'always', prev: ['case', 'default'], next: '*' },
     ],
     '@stylistic/ts/space-before-blocks': 'error',
-    '@stylistic/ts/space-before-function-paren': "error",
+    '@stylistic/ts/space-before-function-paren': 'error',
     '@stylistic/ts/space-infix-ops': 'error',
     '@stylistic/ts/type-annotation-spacing': 'error',
   },
