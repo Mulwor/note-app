@@ -1,22 +1,22 @@
-import { ChangeEvent, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import style from './Main.module.scss';
 import IconSearch from './search.svg?react';
 import { CardProps } from '../../utils/types';
 import { apiURL } from '../../utils/api';
+import FormInput from './FormInput';
+import { RegionSelect } from './Select';
 
 export const Main = () => {
-  const [searchField, setSearchField] = useState('');
-  const [allCountries, setAllCountries] = useState([]);
-  const [filterCountryBySearch, setFilterCountryBySearch] = useState<CardProps[]>(allCountries);
+  const [countries, setCountries] = useState<CardProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const getAllCountries = async () => {
     try {
       const response = await fetch(`${apiURL}/all?fields=name,capital,flags,population,region`);
       if (!response.ok) throw new Error('Что-то пошло не так');
       const data = await response.json();
-      setAllCountries(data);
+      setCountries(data);
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
@@ -25,14 +25,14 @@ export const Main = () => {
   };
 
   useEffect(() => {
-    let mounted = true;
-    
-    if (mounted) {
+    let cancelled = true;
+
+    if (cancelled) {
       getAllCountries();
     }
-  
+
     return () => {
-      mounted = false; 
+      cancelled = false;
     };
   }, []);
 
@@ -41,29 +41,25 @@ export const Main = () => {
       const response = await fetch(`${apiURL}/name/${countryName}`);
       if (!response.ok) throw new Error('Что-то пошло не так');
       const data = await response.json();
-      setFilterCountryBySearch(data);
+      setCountries(data);
       setIsLoading(false);
-      setError(""); 
+      setError('');
     } catch (error) {
-      setFilterCountryBySearch([])
+      setCountries([]);
       setError((error as Error).message);
     }
   };
 
-  const submitHandler = (e: ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (searchField.trim()) {
-      getCountryByName(searchField);
-    }
-  };
-
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchField(e.target.value);
-
-    if (e.target.value === "") {
-      setError(""); 
-      setFilterCountryBySearch(allCountries);
+  const filterByRegion = async (region: string) => {
+    try {
+      const response = await fetch(`${apiURL}/region/${region}`);
+      if (!response.ok) throw new Error('Что-то пошло не так');
+      const data = await response.json();
+      setCountries(data);
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      setError((error as Error).message);
     }
   };
 
@@ -71,27 +67,20 @@ export const Main = () => {
     <main className={style.main}>
       <div className={style.wrapper}>
         <div className={style.blocks}>
-          <label>
-            <IconSearch />
+          <FormInput     
+            setError={setError}
+            getAllCountries={getAllCountries}
+            getCountryByName={getCountryByName}
+          />
 
-            <form onSubmit={submitHandler}>
-              <input
-                type='search'
-                placeholder='Search country'
-                value={searchField}
-                onChange={handleSearchChange}
-              />
-            </form>
-          </label>
-
-          <div>Container</div>
+          <RegionSelect filterByRegion={filterByRegion} />
         </div>
 
-        <div className={style.arrraa}>
+        <div className={style.filter}>
           {isLoading && <h4>Необходимо немного подождать...</h4>}
           {error && <h4>Возможно некоторые данные не погрузились</h4>}
 
-          {filterCountryBySearch?.map((country) => (
+          {countries?.map((country) => (
             <div
               key={country.name}
               className={style.block}
@@ -104,6 +93,7 @@ export const Main = () => {
 
               <div className={style.countries}>
                 <h2>{country.name}</h2>
+
                 <ul className={style.information}>
                   <li>
                     <b>Population:</b> {country.population.toLocaleString()}
