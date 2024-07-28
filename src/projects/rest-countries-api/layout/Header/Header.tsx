@@ -1,7 +1,7 @@
 import IconSun from '../../assets/sun.svg?react';
 import IconMoon from '../../assets/moon.svg?react';
 import style from './Header.module.scss';
-import { Button } from 'antd';
+import { Link } from 'react-router-dom';
 
 interface HeaderProps {
   changeThemeByClick: () => void;
@@ -13,7 +13,9 @@ export const Header = ({ changeThemeByClick, theme }: HeaderProps) => {
     <header className={style.header}>
       <div className={style.wrapper}>
         <div className={style.block}>
-          <h1 className={style.title}>Where is the world?</h1>
+          <h1 className={style.title}>
+            <Link to='/country'>Where is the world?</Link>
+          </h1>
 
           <div
             className={style.theme}

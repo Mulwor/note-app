@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import style from './Main.module.scss';
-import IconSearch from './search.svg?react';
 import { CardProps } from '../../utils/types';
 import { apiURL } from '../../utils/api';
-import FormInput from './FormInput';
-import { RegionSelect } from './Select';
+import FormInput from '../../components/FormInput';
+import { RegionSelect } from '../../components/Select';
+import { CardList } from '../../components/CardList';
+import { useParams } from 'react-router-dom';
 
 export const Main = () => {
+  const { name } = useParams();
   const [countries, setCountries] = useState<CardProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
@@ -24,7 +26,7 @@ export const Main = () => {
     }
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let cancelled = true;
 
     if (cancelled) {
@@ -65,51 +67,25 @@ export const Main = () => {
 
   return (
     <main className={style.main}>
-      <div className={style.wrapper}>
-        <div className={style.blocks}>
-          <FormInput     
-            setError={setError}
-            getAllCountries={getAllCountries}
-            getCountryByName={getCountryByName}
+      {!name && (
+        <>
+          <section className={style.blocks}>
+            <FormInput
+              setError={setError}
+              getAllCountries={getAllCountries}
+              getCountryByName={getCountryByName}
+            />
+
+            <RegionSelect filterByRegion={filterByRegion} />
+          </section>
+
+          <CardList
+            countries={countries}
+            isLoading={isLoading}
+            error={error}
           />
-
-          <RegionSelect filterByRegion={filterByRegion} />
-        </div>
-
-        <div className={style.filter}>
-          {isLoading && <h4>Необходимо немного подождать...</h4>}
-          {error && <h4>Возможно некоторые данные не погрузились</h4>}
-
-          {countries?.map((country) => (
-            <div
-              key={country.name}
-              className={style.block}
-            >
-              <img
-                className={style.image}
-                src={country.flags.png}
-                alt={`${country.name} flag`}
-              />
-
-              <div className={style.countries}>
-                <h2>{country.name}</h2>
-
-                <ul className={style.information}>
-                  <li>
-                    <b>Population:</b> {country.population.toLocaleString()}
-                  </li>
-                  <li>
-                    <b>Region:</b> {country.region}
-                  </li>
-                  <li>
-                    <b>Capital:</b> {country.capital}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+        </>
+      )}
     </main>
   );
 };

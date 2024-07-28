@@ -91,6 +91,12 @@ video {
   vertical-align: baseline;
 }
 
+li,
+a {
+  color: var(--color);
+  text-decoration: none;
+}
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,

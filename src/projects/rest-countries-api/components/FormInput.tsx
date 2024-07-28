@@ -1,5 +1,5 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
-import style from './Main.module.scss'
+import style from './FormInput.module.scss';
 import { Input } from 'antd';
 
 interface FormInputProps {
@@ -8,7 +8,7 @@ interface FormInputProps {
   getAllCountries: () => void;
 }
 
-const FormInput = ({ setError, getCountryByName, getAllCountries} : FormInputProps) => {
+const FormInput = ({ setError, getCountryByName, getAllCountries }: FormInputProps) => {
   const [searchField, setSearchField] = useState('');
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +19,7 @@ const FormInput = ({ setError, getCountryByName, getAllCountries} : FormInputPro
       getAllCountries();
     }
   };
-  
+
   const handleSearchSubmit = () => {
     if (searchField.trim()) {
       getCountryByName(searchField);
@@ -37,8 +37,8 @@ const FormInput = ({ setError, getCountryByName, getAllCountries} : FormInputPro
   return (
     <form onSubmit={submitHandler}>
       <Input.Search
-        placeholder="Search country"
-        onChange={handleSearchChange} 
+        placeholder='Search country'
+        onChange={handleSearchChange}
         onSearch={handleSearchSubmit}
         className={style.search}
       />

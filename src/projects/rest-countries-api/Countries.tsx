@@ -1,7 +1,8 @@
 import './Countries.module.scss';
-import { Header } from './components/Header/Header';
-import { Main } from './components/Main/Main';
+import { Header } from './layout/Header/Header';
+import { Main } from './layout/Main/Main';
 import { useTheme } from './hooks/useTheme';
+import { Outlet } from 'react-router-dom';
 
 export const Countries = () => {
   const { theme, toggleTheme } = useTheme();
@@ -13,6 +14,7 @@ export const Countries = () => {
         theme={theme}
       />
       <Main />
+      <Outlet />
     </div>
   );
 };

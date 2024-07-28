@@ -1,23 +1,23 @@
 import { Select } from 'antd';
-import style from './Main.module.scss';
+import style from './Select.module.scss';
 
 interface SelectProps {
-  filterByRegion: (region: string) => void
+  filterByRegion: (region: string) => void;
 }
 
-interface Option {
-  value: string,
-  label: string,
+interface SelectOption {
+  value: string;
+  label: string;
 }
 
 export const RegionSelect = ({ filterByRegion }: SelectProps) => {
-  const options: Option[] = [
+  const options: SelectOption[] = [
     { value: 'Africa', label: 'Chocolate' },
     { value: 'Americas', label: 'Strawberry' },
     { value: 'Asia', label: 'Vanilla' },
     { value: 'Europe', label: 'Europe' },
-    { value: 'Oceania', label: 'Oceania' }
-  ]
+    { value: 'Oceania', label: 'Oceania' },
+  ];
 
   const handleChange = (value: string) => {
     filterByRegion(value);
@@ -25,7 +25,7 @@ export const RegionSelect = ({ filterByRegion }: SelectProps) => {
 
   return (
     <Select
-      defaultValue="Choose region" 
+      defaultValue='Choose region'
       id='select'
       className={style.select}
       onChange={handleChange}
