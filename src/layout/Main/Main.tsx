@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import style from './Main.module.scss';
 import { CardProps } from '../../utils/types';
 import { apiURL } from '../../utils/api';

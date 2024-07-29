@@ -1,3 +1,4 @@
+import React from 'react';
 import { Select } from 'antd';
 import style from './Select.module.scss';
 
