@@ -16,7 +16,13 @@ git commit --amend -m 'fix: typing photo'
 git push --force
 ```
 
-4. Командная работа
+4. Переименовать ветку через гит:
+```
+git branch --move html-with-git HTML-and-git           
+git push --set-upstream origin HTML-and-git
+```
+
+5. Командная работа
 ```
 - Подтягивания изменений новых
 Основная ветка (development), которую надо обновлять: git pull
