@@ -1,3 +1,4 @@
+import React from 'react';
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 import style from './FormInput.module.scss';
 import { Input } from 'antd';

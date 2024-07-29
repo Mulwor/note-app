@@ -1,25 +1,19 @@
+import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
-import Layout from './projects/Layout';
-import { Countries } from './projects/rest-countries-api/Countries';
-import { ErrorBoundary } from './projects/ErrorBoundary';
-import { Card } from './projects/rest-countries-api/components/Card';
+import { Countries } from './Countries';
+import { ErrorBoundary } from './ErrorBoundary';
+import { Card } from './components/Card';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: <Countries />,
     errorElement: <ErrorBoundary />,
     children: [
       {
-        path: 'country',
-        element: <Countries />,
-        children: [
-          {
-            path: ':name',
-            element: <Card />,
-          },
-        ],
+        path: ':name',
+        element: <Card />,
       },
     ],
   },

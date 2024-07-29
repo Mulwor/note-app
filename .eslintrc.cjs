@@ -3,15 +3,16 @@ module.exports = {
   env: { browser: true, es2021: true },
   extends: [
     'eslint:recommended',
+    'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
     'plugin:react/jsx-runtime',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', '@stylistic/eslint-plugin-ts'],
+  plugins: ['react-refresh', '@stylistic/eslint-plugin-ts', '@stylistic/jsx'],
   rules: {
+    'react/react-in-jsx-scope': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     '@stylistic/ts/block-spacing': 'error',
     '@stylistic/ts/semi': 'error',
@@ -63,5 +64,8 @@ module.exports = {
     '@stylistic/ts/space-before-function-paren': 'error',
     '@stylistic/ts/space-infix-ops': 'error',
     '@stylistic/ts/type-annotation-spacing': 'error',
+    '@stylistic/jsx/jsx-indent': ['error', 2],
+    '@stylistic/jsx/jsx-closing-bracket-location': 1,
+    '@stylistic/jsx/jsx-closing-tag-location': true,
   },
 };

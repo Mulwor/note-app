@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { apiURL } from '../utils/api';
 import { CardProps } from '../utils/types';
 import style from './Card.module.scss';
-import IconLeft from '../assets/arrow-left.svg?react'
+import IconLeft from '../assets/arrow-left.svg?react';
 
 export const Card = () => {
   const [country, setCountry] = useState<CardProps | null>(null);
@@ -27,9 +27,12 @@ export const Card = () => {
   return (
     <>
       <div className={style.link}>
-        <Link to="/country" className={style.button}> 
-          <IconLeft /> <span>Back</span> 
-        </Link>      
+        <Link
+          to='/country'
+          className={style.button}
+        >
+          <IconLeft /> <span>Back</span>
+        </Link>
       </div>
 
       <div className='country__info__wrapper'>
@@ -37,7 +40,11 @@ export const Card = () => {
           <div className={style.card}>
             <div className={style.wrapper}>
               <div className={style.wrapperImg}>
-                <img className={style.image} src={country.flags.svg} alt={`${country.name} flag`}/>
+                <img
+                  className={style.image}
+                  src={country.flags.svg}
+                  alt={`${country.name} flag`}
+                />
               </div>
 
               <div className={style.information}>
@@ -54,10 +61,15 @@ export const Card = () => {
 
                   <div>
                     <div className={style.item}>
-                      Top-level-domain: {country.topLevelDomain.map((country) => country).join(', ')}
+                      Top-level-domain:{' '}
+                      {country.topLevelDomain.map((country) => country).join(', ')}
                     </div>
-                    <div className={style.item}>Currencies: {country.currencies.map((country) => country.name).join(', ')}</div>
-                    <div className={style.item}>Languages: {country.languages.map((country) => country.name).join(', ')}</div>               
+                    <div className={style.item}>
+                      Currencies: {country.currencies.map((country) => country.name).join(', ')}
+                    </div>
+                    <div className={style.item}>
+                      Languages: {country.languages.map((country) => country.name).join(', ')}
+                    </div>
                   </div>
                 </div>
 
@@ -65,8 +77,8 @@ export const Card = () => {
                   Border countries:{' '}
                   {country.borders ? country.borders.map((border) => border).join(', ') : 'none'}
                 </div>
-                </div>
               </div>
+            </div>
           </div>
         ) : (
           <p>Loading...</p>
