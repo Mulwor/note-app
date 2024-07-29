@@ -1,28 +1,35 @@
 * {
     box-sizing: border-box; 
 }
+
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 }
+
 h2 {
     text-align: center;
 }
+
 .container1  { 
     display: flex;
 }
+
 .red {
     background: orangered;
     flex-grow: 1;                   /*Определяет как много свободного пространства во flex-контейнере должно быть назначено текущему элементу. 
 По умолчанию: 0*/
 }
+
 .green {
     background: yellowgreen;
 }
+
 .blue {
     background: steelblue;
 }
+
 .blue1{
     background: steelblue;
     width: 40vw;                    /*Относительная единица измерения от окна браузера: 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <h1>Свойство grid-column</h1>
+  <hr />
+
+  <p>
+    Свойство grid-column-start задает начальную позицию элемента в гриде или сетке по столбцам. Значением свойства может быть положительное или отрицательное число. Если задаем положительное число, то начальная позиция элемента отсчитывается слева направо. При указании отрицательного числа элемент будет располагаться в обратном порядке, т.е. справа налево.
+  </p>
+
+  <div id="parent">
+    <div id="elem1">1</div>
+    <div id="elem2">2</div>
+    <div id="elem3">3</div>
+  </div>
+
+  <hr />
+  <p>А теперь давайте в свойстве grid-column-start укажем отрицательные числа:</p>
+  <div id="parent">
+    <div id="elemN1">1</div>
+    <div id="elemN2">2</div>
+    <div id="elemN3">3</div>
+  </div>
+
+  <hr />
+  <p>
+    А теперь с помощью свойства grid-column-end делаем так, чтобы первый, второй и третий элементы располагались в первом ряду. А четвертый элемент занимал весь второй ряд:
+  </p>
+  <div id="parent">
+    <div id="elemEn1">1</div>
+    <div id="elemEn2">2</div>
+    <div id="elemEn3">3</div>
+  </div>
+
+  <div id="parent">
+    <div id="elemE1">1</div>
+    <div id="elemE2">2</div>
+    <div id="elemE3">3</div>
+    <div id="elemE4">4</div>
+  </div>
+
+</body>
+</html>
