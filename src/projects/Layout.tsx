@@ -1,4 +1,5 @@
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
 const Layout = () => {
   return (
@@ -7,6 +8,7 @@ const Layout = () => {
       <br />
       <Link to='/country'>Компонент страны</Link>
       <Outlet />
+      <Link to='.'>asd</Link>
     </div>
   );
 };
