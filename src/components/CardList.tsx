@@ -1,12 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { CardProps } from '../utils/types';
-import style from './CardList.module.scss';
+import { Link } from 'react-router-dom'
+import { CardProps } from '../utils/types'
+import style from './CardList.module.scss'
 
 interface CardListProps {
-  countries: CardProps[];
-  isLoading: boolean;
-  error: string;
+  countries: CardProps[]
+  isLoading: boolean
+  error: string
 }
 
 export const CardList = ({ countries, isLoading, error }: CardListProps) => {
@@ -16,14 +15,8 @@ export const CardList = ({ countries, isLoading, error }: CardListProps) => {
       {error && <h4>Возможно некоторые данные не погрузились</h4>}
 
       {countries?.map((country) => (
-        <div
-          key={country.name}
-          className={style.block}
-        >
-          <Link
-            key={country.name}
-            to={country.name}
-          >
+        <div key={country.name} className={style.block}>
+          <Link key={country.name} to={country.name}>
             <img
               className={style.image}
               src={country.flags.png}
@@ -49,5 +42,5 @@ export const CardList = ({ countries, isLoading, error }: CardListProps) => {
         </div>
       ))}
     </section>
-  );
-};
+  )
+}
