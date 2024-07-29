@@ -22,7 +22,7 @@ export const CardList = ({ countries, isLoading, error }: CardListProps) => {
         >
           <Link
             key={country.name}
-            to={`/country/${country.name}`}
+            to={country.name}
           >
             <img
               className={style.image}

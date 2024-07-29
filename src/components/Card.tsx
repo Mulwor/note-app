@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { apiURL } from '../utils/api';
 import { CardProps } from '../utils/types';
@@ -28,7 +28,7 @@ export const Card = () => {
     <>
       <div className={style.link}>
         <Link
-          to='/country'
+          to='/'
           className={style.button}
         >
           <IconLeft /> <span>Back</span>

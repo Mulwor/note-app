@@ -1,4 +1,3 @@
-import React from 'react';
 import './Countries.module.scss';
 import { Header } from './layout/Header/Header';
 import { Main } from './layout/Main/Main';

@@ -10,7 +10,21 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh', '@stylistic/eslint-plugin-ts', '@stylistic/jsx'],
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+    sourceType: 'module',
+  },
+  plugins: [
+    'react',
+    'react-hooks',
+    'react-refresh', 
+    '@stylistic/eslint-plugin-ts', 
+    '@stylistic/jsx',
+    'plugins'
+  ],
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
@@ -67,5 +81,12 @@ module.exports = {
     '@stylistic/jsx/jsx-indent': ['error', 2],
     '@stylistic/jsx/jsx-closing-bracket-location': 1,
     '@stylistic/jsx/jsx-closing-tag-location': true,
+    "react/jsx-uses-react": "warn",
+    "react/jsx-uses-vars": "warn",
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 };

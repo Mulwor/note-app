@@ -15,7 +15,7 @@ export const Header = ({ changeThemeByClick, theme }: HeaderProps) => {
       <div className={style.wrapper}>
         <div className={style.block}>
           <h1 className={style.title}>
-            <Link to='/country'>Where is the world?</Link>
+            <Link to='/'>Where is the world?</Link>
           </h1>
 
           <div
