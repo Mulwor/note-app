@@ -1,0 +1,2 @@
+- Стек технологий: React, scss, antd-design
+- Хуки, которые были использованы: useState, useEffect, useTheme() - хук по изменению цвета

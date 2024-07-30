@@ -9,6 +9,7 @@
   padding: 4px;
   gap: 10px;
   color: var(--color);
+  margin-left: 2rem;
 }
 
 .card {
@@ -67,8 +68,9 @@
 }
 
 .link {
-  margin-top: 2rem;
-  margin-left: 2rem;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
 .information {
@@ -79,4 +81,8 @@
 
 .border {
   margin-top: 1rem;
+}
+
+.borderCountry {
+  margin-left: 10px;
 }
