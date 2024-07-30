@@ -1,30 +1,18 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import './index.css';
-import { Countries } from './Countries';
-import { ErrorBoundary } from './ErrorBoundary';
-import { Card } from './components/Card';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import './index.css'
+import { ErrorBoundary } from './ErrorBoundary'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Countries />,
-    errorElement: <ErrorBoundary />,
-    children: [
-      {
-        path: ':name',
-        element: <Card />,
-      },
-    ],
-  },
-]);
+    errorElement: <ErrorBoundary />
+  }
+])
 
 function App() {
   return (
-    <RouterProvider
-      router={router}
-      fallbackElement={<p>Initial Load...</p>}
-    />
-  );
+    <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
+  )
 }
 
-export default App;
+export default App
