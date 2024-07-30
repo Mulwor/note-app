@@ -1,14 +1,13 @@
-import React from 'react';
-import { Select } from 'antd';
-import style from './Select.module.scss';
+import { Select } from 'antd'
+import style from './Select.module.scss'
 
 interface SelectProps {
-  filterByRegion: (region: string) => void;
+  filterByRegion: (region: string) => void
 }
 
 interface SelectOption {
-  value: string;
-  label: string;
+  value: string
+  label: string
 }
 
 export const RegionSelect = ({ filterByRegion }: SelectProps) => {
@@ -17,20 +16,20 @@ export const RegionSelect = ({ filterByRegion }: SelectProps) => {
     { value: 'Americas', label: 'Strawberry' },
     { value: 'Asia', label: 'Vanilla' },
     { value: 'Europe', label: 'Europe' },
-    { value: 'Oceania', label: 'Oceania' },
-  ];
+    { value: 'Oceania', label: 'Oceania' }
+  ]
 
   const handleChange = (value: string) => {
-    filterByRegion(value);
-  };
+    filterByRegion(value)
+  }
 
   return (
     <Select
-      defaultValue='Choose region'
-      id='select'
+      defaultValue="Choose region"
+      id="select"
       className={style.select}
       onChange={handleChange}
       options={options}
     />
-  );
-};
+  )
+}

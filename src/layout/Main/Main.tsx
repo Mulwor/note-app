@@ -2,10 +2,10 @@ import React, { useState, useLayoutEffect } from 'react';
 import style from './Main.module.scss';
 import { CardProps } from '../../utils/types';
 import { apiURL } from '../../utils/api';
-import FormInput from '../../components/FormInput';
 import { RegionSelect } from '../../components/Select';
 import { CardList } from '../../components/CardList';
 import { useParams } from 'react-router-dom';
+import FormInput from '../../components/FormInput';
 
 export const Main = () => {
   const { name } = useParams();

@@ -1,5 +1,5 @@
 import './Countries.module.scss';
-import { Header } from './layout/Header/Header';
+import { Header } from './components/Header';
 import { Main } from './layout/Main/Main';
 import { useTheme } from './hooks/useTheme';
 import { Outlet } from 'react-router-dom';
