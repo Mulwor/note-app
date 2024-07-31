@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef } from "react";
 
 // * В этом примере используется комбинация состояния и ссылок. Оба
 // * startTime являются now переменными состояния, поскольку они используются
@@ -8,8 +8,8 @@ import { useState, useRef } from 'react';
 // * обновлять вручную.
 
 export default function Stopwatch() {
-  const [startTime, setStartTime] = useState<number | null>(null);
-  const [now, setNow] = useState<number | null>(null);
+  const [startTime, setStartTime] = useState(null);
+  const [now, setNow] = useState(null);
   const intervalRef = useRef(null);
 
   function handleStart() {

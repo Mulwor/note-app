@@ -32,7 +32,6 @@ export const ExampleThreeWithoutUseRef = () => {
       </ul>
       <button onClick={addNumber}>✅ Добавить число</button>
       <button onClick={removeScroll}>▶️ Не следить</button>
-      <button onClick={stop}>⏹ Стоп</button>
     </div>
   );
 };
