@@ -1,7 +1,5 @@
 import React from "react";
 import { useDispatch } from 'react-redux'
-import { removeTodo } from "../store/todoSlice";
-import { toggleTodoComplete } from "../store/todoSlice";
 import { deleteTodos } from "../store/todoSlice";
 import { toggleStatus } from "../store/todoSlice";
 
