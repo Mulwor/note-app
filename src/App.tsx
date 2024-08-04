@@ -1,12 +1,13 @@
-import React from "react";
 import "./App.css";
-import { LessonTwo } from "./youtube/Lesson №2";
+import { Counters } from "./youtube/Lesson №7/counters/counters";
+import { UsersList } from "./youtube/Lesson №7/users/users-list";
 
 function App() {
 
   return (
     <>
-      <LessonTwo />
+      <Counters />
+      <UsersList />
     </>
   );
 }
