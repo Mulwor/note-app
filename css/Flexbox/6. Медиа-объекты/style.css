@@ -1,0 +1,103 @@
+h2,
+h3 {
+  text-align: center;
+}
+
+.media {
+  display: flex;
+  align-items: flex-start; /*элемент выравнивается по верхнему краю контейнера*/
+  background: #f6f3eb;
+  padding: 1em;
+  border-radius: 10px; /*Делаем круглыми серые углы*/
+  max-width: 24em;
+}
+.media-object {
+  margin-right: 1em; /*Чтобы текст не приближался слишком близко к изображению*/
+}
+.media-body {
+  flex: 1; /*Устанавливаем: 1, чтобы он рос и занимал оставшееся пространство*/
+  /*Мы не делаем этого для media-object, поскольку хотим, чтобы он соответствовал своему содержимому, и не более. */
+}
+.media-heading {
+  margin: 0 0 0.5em;
+}
+
+.media1 {
+  display: flex;
+  align-items: flex-start;
+  background: #f6f3eb;
+  padding: 1em;
+  border-radius: 10px;
+  max-width: 24em;
+}
+.media-object1 {
+  margin-left: 1em;
+  order: 1; /*Порядок меняется на противоположный*/
+  /*Любое положительное число помещает элемент после любых элементов, для кото-
+рых это свойство не задано. Любое отрицательное. Число помещает элемент до 
+других элементов. Другими словами, чем ниже число у order, тем дальше оно уходит
+назад.*/
+}
+.media-body1 {
+  flex: 1;
+}
+.media-heading1 {
+  margin: 0 0 0.5em;
+}
+
+.media2 {
+  display: flex;
+  align-items: flex-start;
+  background: #f6f3eb;
+  padding: 1em;
+  border-radius: 3px;
+  max-width: 24em;
+}
+.media-object2 {
+  margin-right: 1em;
+}
+.media-body2 {
+  flex: 1;
+  /*В данном случае мы просто вставили один медиа-объект внутрь media-body другого медиа-объекта.*/
+}
+.media-heading2 {
+  margin: 0 0 0.5em;
+}
+
+.media3 {
+  display: flex;
+  align-items: flex-start;
+  background: #f6f3eb;
+  padding: 1em;
+  border-radius: 3px;
+  max-width: 24em;
+}
+.media-object3 {
+  margin-right: 0.4em;
+  font-size: 3em; /*Увеличиваем размер шрифта, чтобы иконка отображалась подходящего размера*/
+}
+.media-body3 {
+  flex: 1;
+}
+.media-heading3 {
+  margin: 0 0 0.5em;
+}
+
+.media4 {
+  display: flex;
+  align-items: flex-start;
+  background: #f6f3eb;
+  padding: 1em;
+  border-radius: 3px;
+  max-width: 24em;
+}
+.media-object4 {
+  margin-right: 0.4em;
+  font-size: 4em;
+}
+.media-body4 {
+  flex: 1;
+}
+.media-heading4 {
+  margin: 0 0 0.5em;
+}

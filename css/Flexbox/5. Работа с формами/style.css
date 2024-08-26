@@ -1,0 +1,136 @@
+/* Без флекса */
+.Odder {
+  text-align: center;
+}
+.wrapper {
+  background-color: whitesmoke;
+  list-style-type: none;
+  padding: 0;
+  border-radius: 20px; /*Скругления со всех сторон*/
+}
+.form-row {
+  padding: 0.5em;
+}
+.form-row > label {
+  padding: 0.5em 1em 0.5em 0;
+}
+.form-row > input,
+.form-row > button {
+  padding: 0.5em;
+}
+.form-row > button {
+  background: gray;
+  color: white;
+  border: 0;
+}
+
+/* С флексбоксом*/
+.wrapper1 {
+  background-color: whitesmoke;
+  list-style-type: none;
+  padding: 0;
+  border-radius: 20px;
+}
+.form-row1 {
+  display: flex; /*Добавляем элемент флекс*/
+  justify-content: flex-end; /*Элементы выравниваются справа*/
+  padding: 0.5em;
+}
+.form-row1 > label {
+  padding: 0.5em 1em 0.5em 0;
+}
+.form-row1 > input {
+  flex: 1; /* когда каждая строка формы является флекс-контейнером, мы применяем следующий код к полям ввод*/
+}
+/*Таким образом, применяя flex: 1 к полям ввода, мы заставляем эти поля 
+использовать всё доступное свободное пространство после меток <label>. 
+При этом метки сохраняют свою обычную ширину с учётом padding. Поля ввода 
+начинаются сразу после них и растягиваются до самого конца.*/
+.form-row1 > input,
+.form-row1 > button {
+  padding: 0.5em;
+}
+.form-row1 > button {
+  background: gray;
+  color: white;
+  border: 0;
+}
+
+/* Поля ввода одинаковой ширины */
+.wrapper2 {
+  background-color: whitesmoke;
+  list-style-type: none;
+  padding: 0;
+  border-radius: 3px;
+}
+.form-row2 {
+  display: flex;
+  justify-content: flex-end; /*Элементы выравниваются справа*/
+  padding: 0.5em;
+}
+
+.form-row2 > label {
+  padding: 0.5em 1em 0.5em 0;
+  flex: 1;
+}
+.form-row2 > input {
+  flex: 2;
+}
+/*задаёт ширину полей формы как удвоенная ширина меток. Вы можете настроить
+это соотношение в зависимости от ширины формы или ожидаемой ширины. К 
+примеру, можно использовать соотношение 1 к 3 или 1 к 4 для широких форм.*/
+
+.form-row2 > input,
+.form-row2 > button {
+  padding: 0.5em;
+}
+.form-row2 > button {
+  background: gray;
+  color: white;
+  border: 0;
+}
+
+/*Адаптивные поля ввода одинаковой ширины*/
+.wrapper3 {
+  background-color: whitesmoke;
+  list-style-type: none;
+  padding: 0;
+  border-radius: 3px;
+}
+.form-row3 {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5em;
+}
+.form-row3 > label {
+  padding: 0.5em 1em 0.5em 0;
+  flex: 1;
+}
+.form-row3 > input {
+  flex: 2;
+}
+.form-row3 > input,
+.form-row3 > button {
+  padding: 0.5em;
+}
+.form-row3 > button {
+  background: gray;
+  color: white;
+  border: 0;
+}
+@media screen and (min-width: 768px) {
+  /*Экран монтиора и минимальное высота: 768*/
+  .form-row3 > input {
+    flex: 3;
+  }
+}
+@media screen and (min-width: 992px) {
+  .form-row3 > input {
+    flex: 4;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .form-row3 > input {
+    flex: 5;
+  }
+}

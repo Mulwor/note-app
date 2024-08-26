@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Выравнивание элементов форм</h2>
+    <p>До появления флексбоксов выравнивание элементов формы порой вызывало множество труднойстей. Но флексбоксы существенно упрощают этот процесс. Давайте начнём с простого примера.</p>
+    <p class="Odder"><b>(Без флексбокса)</b></p>
+    <form>
+        <ul class="wrapper">
+          <li class="form-row">
+            <label for="name">Имя</label>
+            <input type="text" id="name">
+          </li>
+          <li class="form-row">
+            <label for="townborn">Место рождения</label>
+            <input type="text" id="townborn">
+          </li>
+          <li class="form-row">
+            <label for="email">Адрес электронной почты</label>
+            <input type="email" id="email">
+          </li>
+          <li class="form-row">
+            <button type="submit">Отправить</button>
+          </li>
+        </ul>
+      </form>
+      
+      <p class="Odder"><b>(С флексбоксом)</b></p>
+      <form>
+        <ul class="wrapper1">
+          <li class="form-row1">
+            <label for="name">Имя</label>
+            <input type="text" id="name">
+          </li>
+          <li class="form-row1">
+            <label for="townborn">Место рождения</label>
+            <input type="text" id="townborn">
+          </li>
+          <li class="form-row1">
+            <label for="email">Адрес электронной почты</label>
+            <input type="email" id="email">
+          </li>
+          <li class="form-row1">
+            <button type="submit">Отправить</button>
+          </li>
+        </ul>
+      </form>
+      
+      <p class="Odder"><b>Поля ввода одинаковой ширины</b></p>
+      <p>Можно изменить так, чтобы левый край полей формы также был в линию (как и 
+        правый край)</p>
+      <form>
+        <ul class="wrapper2">
+          <li class="form-row2">
+            <label for="name">Имя</label>
+            <input type="text" id="name">
+          </li>
+          <li class="form-row2">
+            <label for="townborn">Место рождения</label>
+            <input type="text" id="townborn">
+          </li>
+          <li class="form-row2">
+            <label for="email">Адрес электронной почты</label>
+            <input type="email" id="email">
+          </li>
+          <li class="form-row2">
+            <button type="submit">Отправить</button>
+          </li>
+        </ul>
+      </form>
+
+      <p class="Odder"><b>Адаптивные поля ввода одинаковые ширины</b></Бp>
+      <p>Вот пример с медиа-запросами, которые меняют соотношение при изменении размера области просмотра.</p>
+      <form>
+        <ul class="wrapper3">
+          <li class="form-row3">
+            <label for="name">Имя</label>
+            <input type="text" id="name">
+          </li>
+          <li class="form-row3">
+            <label for="townborn">Место рождения</label>
+            <input type="text" id="townborn">
+          </li>
+          <li class="form-row3">
+            <label for="email">Адрес электронной почты</label>
+            <input type="email" id="email">
+          </li>
+          <li class="form-row3">
+            <button type="submit">Отправить</button>
+          </li>
+        </ul>
+      </form>
+
+<p>Посмотрите эту форму на большом экране, затем уменьшите размер браузера. Вы должны увидеть как регулируется ширина полей ввода, когда вы уменьшаете окно браузера.</p>
+
+    </body>
+</html>

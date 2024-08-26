@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../public/styles.css" />
+    <title>Tailwind CSS</title>
+  </head>
+  <body>
+    <h1 class="text-center font-bold">Урок №1 - установка</h1>
+    <h4 class="text-1xl font-bold underline text-indigo-500">Hello world!</h4>
+
+    <h1 class="text-center font-bold mt-10">Урок №2 - работа с шрифтом и цветом</h1>
+    <header>
+      <a class="uppercase font-bold text-purple-800" href="#">webDev</a>
+      <nav>
+        <ul class="text-gray-500 font-semibold">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <h1 class="text-center font-bold mt-10">Урок №3 - работа с отступами</h1>
+    <div class="m-5">Отступ margin со всех сторон</div>
+    <div class="mx-5">Отступ margin по горизонтале</div>
+    <div class="p-2">Padding со всех сторон</div>
+    <div class="py-2">Отступ padding по вертикале</div>
+    <div class="m-2 py-1">Тестируем со всех четырех сторон</div>
+
+    <div class="mt-2">Отступ сверху</div>
+    <div class="mr-2">Отступ справа</div>
+    <div class="mb-2">Отступ снизу</div>
+    <div class="ml-2">Отступ cлева</div>
+
+    <h1 class="text-center font-bold mt-10">Урок №3 - работа с border (границами)</h1>
+    <div class="mt-2">
+      <div class="border-b-8 border-b-red-900 border-dashed">Точки снизу</div>
+      <div class="border-r-4 border-r-purple-500 border-dashed">Точка сверху вниз cправа</div>
+      <div class="border-l-4 border-l-purple-500 border-dashed">Точка сверху вниз слева</div>
+      <div class="border-t-8 border-t-red-800 border-dashed">Точка сверху вниз слева</div>
+    </div>
+
+    <!-- Объединения всех 3 уроков -->
+    <h1 class="text-center font-bold mt-10">Объединения всех 3 уроков</h1>
+    <header class="px-2 border-b">
+      <a class="uppercase font-bold text-purple-800" href="#">webDev</a>
+      <nav>
+        <ul class="text-gray-500 font-semibold">
+          <li><a class="inline-block py-3 px-2" href="#">Home</a></li>
+          <li><a class="inline-block py-3 px-2" href="#">About</a></li>
+          <li><a class="inline-block py-3 px-2" href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="px-2">
+        <div class="py-4 overflow-y-auto whitespace-nowrap">
+          <a class="text-gray-600" href="#">Home</a>
+          <span class="mx-2 text-gray-500">&gt;</span>
+          <a class="text-gray-600" href="#">News</a>
+          <span class="mx-2 text-gray-500">&gt;</span>
+          <a class="text-gray-600" href="#">Tech</a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

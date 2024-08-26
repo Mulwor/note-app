@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTML Basics</title>
+  </head>
+  <body>
+    <!--input позволяет создавать много динамичных элементов (сообщение, кнобкой, календарем и т.д.) для взаимодействие с пользователем-->
+    <!-- Теги: 1. text - позволяет вводить любые символы -->
+    <input type="text" />
+    <hr />
+
+    <!-- 2. Number - позволяет вводить только числовые значения 
+  min(max) - минимальное (максимальное) числовое значение, step - это шаг -->
+    <input type="number" /><br />
+    <input type="number" min="1" max="10" /><br />
+    <input type="number" step="5" /><br />
+    <hr />
+
+    <!-- 3. Password - предназначенная для введения паролей -->
+    <input type="password" />
+    <hr />
+
+    <!-- 4. Range - элемент предназначенный для задания ранжирования-->
+    <input type="range" />
+    <hr />
+
+    <!-- 5. Date - просит ввест дату (не работает в IE)-->
+    <input type="date" />
+    <hr />
+
+    <!-- 6. Color - поле для выбора цвета (не работает в IE)-->
+    <input type="color" />
+    <hr />
+
+    <!-- 7. Submit (кнопка) & reset buttons (не отправляет, а очищает все поля сохраненные)-->
+    <input type="submit" /><br />
+    <input type="reset" /><br />
+    <hr />
+
+    <!-- 8. Submit & reset buttons with custom labels -->
+    <input type="submit" value="Submit form" /><br />
+    <input type="reset" value="Reset form" /><br />
+    <hr />
+
+    <!-- 9. С выпадающим списков -->
+    <input type="text" list="list" />
+    <datalist id="list">
+      <option value="Front-end"></option>
+      <option value="Back-end"></option>
+      <option value="Full-stack"></option>
+    </datalist>
+
+    <hr />
+
+    <!-- 10. E-mail - предназначен для введения почты  -->
+    <input type="email" />
+    <hr />
+
+    <!-- 11. URL - предназначен для введения url-адреса -->
+    <input type="url" />
+    <hr />
+
+    <!-- 12. Input image - кнопка отправки в виде изображения -->
+    <input type="image" src="https://picsum.photos/300/300" alt="Just image" />
+    <hr />
+
+    <!-- 13. Telephone предназначен для введения телефонного номера-->
+    <input type="tel" />
+    <hr />
+
+    <!-- 14. Search предназначена для введения поисковых запросов -->
+    <input type="search" />
+    <hr />
+
+    <!-- 15. Local date & time - можно вводить локальные данные компьютера + можно добавить время-->
+    <input type="datetime-local" />
+    <hr />
+
+    <!-- 16. Month предназначен для выбора только месяц-->
+    <input type="month" />
+    <hr />
+
+    <!-- 17. Time предназначен только для введение времени-->
+    <input type="time" />
+    <hr />
+
+    <!-- 18. Week предназначен для хранения информации о выбранной недели -->
+    <input type="week" />
+    <hr />
+
+    <!-- 19. Hidden для передачи в форме промежуточных или доп.данных (value), который пользователь не должен изменять-->
+    <input type="hidden" value="webDev" />
+    <hr />
+
+    <!-- 20. File предназначен для хранения и передачи каких-то пользовательских файлов; multiple (для выбора от 2 файлов)-->
+    <input type="file" /><br />
+    <input type="file" multiple /><br />
+    <hr />
+
+    <!-- 21. Checkbox (квадрат) для выбора каких-либо (нескольких) опций-->
+    <input type="checkbox" value="option1" /><br />
+    <input type="checkbox" value="option2" /><br />
+    <input type="checkbox" value="option3" /><br />
+    <hr />
+
+    <!-- Radio (круг) для выбора каких-либо опций, чтобы выбрать именно 1 значение необходимо чтобы у всех было в наме одинаковое название-->
+    <input type="radio" name="value" value="option1" /><br />
+    <input type="radio" name="value" value="option2" /><br />
+    <input type="radio" name="value" value="option3" /><br />
+    <hr />
+
+    <!-- Checkbox with checked element (дефолтный выбор определенного варианта сразу на странице)-->
+    <input type="checkbox" value="option1" checked /><br />
+    <input type="checkbox" value="option2" /><br />
+    <input type="checkbox" value="option3" /><br />
+    <hr />
+
+    <!-- Radio with checked element -->
+    <input type="radio" name="value" value="option1" /><br />
+    <input type="radio" name="value" value="option2" checked /><br />
+    <input type="radio" name="value" value="option3" /><br />
+    <hr />
+
+    <!-- Checkbox with label -->
+    <label>
+      <input type="checkbox" value="option1" checked />
+      Front-end dev </label
+    ><br />
+    <label>
+      <input type="checkbox" value="option2" />
+      Back-end dev </label
+    ><br />
+    <label>
+      <input type="checkbox" value="option3" />
+      Full-stack dev
+    </label>
+    <hr />
+
+    <!-- Radio with label -->
+    <label>
+      <input type="radio" name="value" value="option1" />
+      Front-end dev </label
+    ><br />
+    <label>
+      <input type="radio" name="value" value="option2" checked />
+      Back-end dev </label
+    ><br />
+    <label>
+      <input type="radio" name="value" value="option3" />
+      Back-end dev
+    </label>
+    <hr />
+  </body>
+</html>

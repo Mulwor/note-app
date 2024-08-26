@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Basics</title>
+  <style>
+    html {
+      padding: 0;
+    }
+    * {
+      border: 1px dashed #000;
+      padding: 10px;
+    }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-rows: 200px 1fr 200px;
+      grid-template-columns: 200px 1fr 200px;
+      font-size: 30px;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 1px 1px 2px #000;
+    }
+    header,
+    footer {
+      background-color: red;
+      grid-column: 1 / 4;
+    }
+    main {
+      grid-column: 1 / 3;
+    }
+    section,
+    article,
+    nav {
+      margin: 20px;
+    }
+    header { background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%); }
+    footer { background-image: linear-gradient(to right, #ff8177 0%, #cf556c 100%); }
+    main { background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); }
+    section { background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%); }
+    nav { background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%); }
+    article { background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%); }
+    aside { background-image: linear-gradient(to right, #d4fc79 0%, #f68084 100%); }
+  </style>
+</head>
+<body>
+<!--Все глобальные теги можно разделить на две большие группы: 
+1. Расположения = отвечают за то, где находится тот или иной элемент страницы (header, footer, main,aside)
+2. Содержания = то что находится в содержании (article, figure, audio и video теги)
+-->
+
+  <!-- Header - задает шапку сайта или раздел на котором обычно распологается загаловок,
+отображается первой при загрузке страницы-->
+  <header> HEADER
+    <!-- Nav - задаёт навигацию по сайту, если на странице есть несколько блоков ссылок, то
+    в него помещаются приоритетные ссылки, а также можно использовать несколько нав в одном документе -->
+    <nav>NAVIGATION</nav>
+  </header>
+
+  <!-- Main - тег предназначенный для основного содержимого документа.
+  Это содержимое должно быть уникальным и не включать типовые блоки: heater, footer, nav -->
+  <main>
+  MAIN
+    <!-- Section - Задаёт раздел документа который может применяться для блока новостей, контектной
+    информации, глав текста, различных описаний-->
+    <section>
+    SECTION
+      <!-- Задаёт содержания сайта вроде новости, статьи, записи блока и т.д. (семантический блок выделенной информации) -->
+      <article>ARTICLE 1</article>
+      <article>ARTICLE 2</article>
+      <article>ARTICLE 3</article>
+    </section>
+
+    <section>
+      SECTION
+      <article>ARTICLE 4</article>
+    </section>
+
+  </main>
+
+  <!-- Определяет блок с боку от основного контента, в ней хранятся не самая важная, а дополнительная информация-->
+  <aside>ASIDE</aside>
+  <!-- Footer - задаёт подвал сайта или раздела (распологается: имя автора, дата документа, ссылки на соц.сети)-->
+  <footer>FOOTER</footer>
+
+</body>
+</html>
