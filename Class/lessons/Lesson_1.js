@@ -7,7 +7,7 @@ class Car {
   color;
   fuel;
 
-  // ? Методы
+  // ? Метод класса - функция внутри класса
   show() {
     return '+++';
   }
@@ -17,7 +17,7 @@ class Car {
   }
 }
 
-// ? Создаем объект 
+// ? Инициализация класса - создаем его копию
 let myCar = new Car();
 let anotherCar = new Car();
 console.log(myCar === anotherCar);         // ? false

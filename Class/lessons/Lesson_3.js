@@ -18,7 +18,7 @@ class User {
   }
 
   // ? Специальный метод, который позволяют прочитать приватные свойства - гетеры
-  getPrivateMethods() {
+  get privateMethods() {
     return this.#cape(this.#privateName) + " " + this.#cape(this.#privateSurname);
   }
 
@@ -29,12 +29,13 @@ class User {
 	}
 
   // ? Необходим для записи значение из экземпляра класса
-  setSalary(wage) {
+  set salary(wage) {
 		this.#salary = wage;
+    console.log("меняем")
 	}
 
   // ? Необходим для чтения сеттера
-  getSalary() {
+  get salary() {
 		return this.#salary;
 	}
 }
