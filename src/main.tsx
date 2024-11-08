@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { Provider } from 'react-redux'
-import { fetchUsers } from './youtube/Lesson №9/users/model/fetch-users.ts'
-import { store } from './youtube/Lesson №9/store.ts'
 import { RouterProvider } from 'react-router-dom'
-import { router } from './youtube/Lesson №9/routes.tsx'
+import { router } from './Lesson №9 - thunk/routes'
+import { fetchUsers } from './Lesson №9 - thunk/users/model/fetch-users'
+import { store } from './Lesson №9 - thunk/store'
 
 store.dispatch(fetchUsers())
 

@@ -1,7 +1,8 @@
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { combineReducers, configureStore, createSelector } from "@reduxjs/toolkit";
-import { initialUsersList, usersReducer, UsersStoredAction } from "./users/users.slice";
+import { initialUsersList, usersReducer } from "./users/users.slice";
 import { countersReducer } from "./counters/counters.slice";
+import { UsersStoredAction } from "./users/types";
 
 const reducer = combineReducers({
   users: usersReducer,

@@ -1,27 +1,5 @@
 import { AppState } from "../store";
-
-type CounterState = {
-  counter: number;
-};
-export type CounterId = string;
-
-type CountersState = Record<CounterId, CounterState | undefined>;
-
-export type IncrementAction = {
-  type: "increment";
-  payload: {
-    counterId: CounterId;
-  };
-};
-
-export type DecrementAction = {
-  type: "decrement";
-  payload: {
-    counterId: CounterId;
-  };
-};
-
-type Action = IncrementAction | DecrementAction;
+import { Action, CounterId, CountersState, CounterState } from "./types";
 
 const initialCounterState: CounterState = { counter: 0 };
 const intiialCountersState: CountersState = {};

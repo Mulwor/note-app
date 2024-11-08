@@ -1,17 +1,5 @@
 import { AppState, createAppSelector } from "../store";
-
-export type UserId = string;
-export type User = {
-  id: UserId;
-  name: string;
-  description: string;
-};
-
-type UsersState = {
-  entities: Record<UserId, User>;
-  ids: UserId[];
-  selectedUserId: UserId | undefined;
-};
+import { Action, User, UserId, UsersState } from "./types";
 
 export const initialUsersList: User[] = Array.from(
   { length: 3000 },
@@ -21,26 +9,6 @@ export const initialUsersList: User[] = Array.from(
     description: `Description for User ${index + 11}`,
   })
 );
-
-export type UserSelectedAction = {
-  type: "userSelected";
-  payload: {
-    userId: UserId;
-  };
-};
-
-export type UserRemoveSelectedAction = {
-  type: "userRemoveSelected";
-};
-
-export type UsersStoredAction = {
-  type: "usersStored";
-  payload: {
-    users: User[];
-  };
-};
-
-type Action = UserSelectedAction | UserRemoveSelectedAction | UsersStoredAction;
 
 const initialUsersState: UsersState = {
   entities: {},

@@ -1,16 +1,31 @@
-import { memo, useState } from "react";
-import { useAppSelector, useAppDispath } from "../store";
-import { selectSortedUsers, selectSelectedUserId } from "./users.slice";
-import { UserId, UserRemoveSelectedAction, UserSelectedAction } from "./types";
+import { memo, useEffect, useState } from "react";
+import { useAppSelector, useAppDispath, useAppStore } from "../store";
+import { usersSlice } from "./users.slice";
+import { useDispatch } from "react-redux";
+import { UserId } from "./types";
+import { fetchUsers } from "./model/fetch-users";
 
 export function UsersList() {
+  const dispatch = useDispatch();
+  // ? Позволяет обратится к стору напрямую, например внутри useEffect
+  const appStore = useAppStore();
   const [sortType, setSortType] = useState<"asc" | "desc">("asc");
 
+  const isPending = useAppSelector(usersSlice.selectors.selectIsFetchUsersPending);
+  
+  useEffect(() => {
+    fetchUsers(appStore.dispatch, appStore.getState)
+  }, [dispatch, appStore]);
+
   const sortedUsers = useAppSelector((state) =>
-    selectSortedUsers(state, sortType)
+    usersSlice.selectors.selectSortedUsers(state, sortType)
   );
 
-  const selectedUserId = useAppSelector(selectSelectedUserId);
+  const selectedUserId = useAppSelector(usersSlice.selectors.selectSelectedUserId );
+
+  if(isPending) {
+    return <div>Loading...</div>
+  }
 
   return (
     <div className="flex flex-col items-center">
@@ -51,10 +66,7 @@ const UserListItem = memo(function UserListItem({
   const user = useAppSelector((state) => state.users.entities[userId]);
   const dispatch = useAppDispath();
   const handleUserClick = () => {
-    dispatch({
-      type: "userSelected",
-      payload: { userId: user.id },
-    } satisfies UserSelectedAction);
+    dispatch(usersSlice.actions.selected({userId}));
   };
   return (
     <li key={user.id} className="py-2" onClick={handleUserClick}>
@@ -63,14 +75,10 @@ const UserListItem = memo(function UserListItem({
   );
 });
 
-function SelectedUser({ userId } : { userId: UserId }) {
+function SelectedUser({ userId }: { userId: UserId }) {
   const user = useAppSelector((state) => state.users.entities[userId]);
   const dispatch = useAppDispath();
-  const handleBackButtonClick = () => {
-    dispatch({
-      type: "userRemoveSelected",
-    } satisfies UserRemoveSelectedAction);
-  };
+  const handleBackButtonClick = () => { dispatch(usersSlice.actions.remove())};
 
   return (
     <div className="flex flex-col items-center">

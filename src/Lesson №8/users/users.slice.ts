@@ -14,6 +14,7 @@ const initialUsersState: UsersState = {
   entities: {},
   ids: [],
   selectedUserId: undefined,
+  fetchUsersStatus: "idle",
 };
 
 export const usersSlice = createSlice({
@@ -36,6 +37,8 @@ export const usersSlice = createSlice({
             }
           })
     ),
+    selectIsFetchUsersPending: (state) => state.fetchUsersStatus === "pending",
+    selectIsFetchUsersIdle: (state) => state.fetchUsersStatus === "idle",
   },
   reducers: {
     selected: (state, action) => {
@@ -44,13 +47,20 @@ export const usersSlice = createSlice({
     remove: (state) => {
       state.selectedUserId = undefined
     },
-    stored: (state, action: PayloadAction<{users: User[]}>) => {
+    fetchUsersPending: (state) => {
+      state.fetchUsersStatus = "pending";
+    },
+    fetchUsersSuccess: (state, action: PayloadAction<{users: User[]}>) => {
       const { users } = action.payload;
+      state.fetchUsersStatus = "success";
       state.entities = users.reduce((acc, user) => {
         acc[user.id] = user;
         return acc;
       }, {} as Record<UserId, User>);
       state.ids = users.map((user) => user.id);
-    }
+    },
+    fetchUsersFailed: (state) => {
+      state.fetchUsersStatus = "failed";
+    },
   }
 })
