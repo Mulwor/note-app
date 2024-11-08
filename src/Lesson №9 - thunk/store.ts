@@ -2,11 +2,7 @@ import { useDispatch, useSelector, useStore } from "react-redux";
 import { configureStore, createSelector, ThunkAction, UnknownAction } from "@reduxjs/toolkit";
 import { usersSlice } from "./users/users.slice";
 import { countersReducer } from "./counters/counters.slice";
-import { api } from "./shared/api";
-
-const extraArgument = {
-  api,
-}
+import { extraArgument } from "./extra-argument";
 
 export const store = configureStore({
   reducer: {

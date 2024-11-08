@@ -1,20 +1,13 @@
-import { memo, useEffect, useState } from "react";
-import { useAppSelector, useAppDispatch, useAppStore } from "../store";
+import { memo, useState } from "react";
+import { useAppSelector } from "../store";
 import { usersSlice } from "./users.slice";
-import { fetchUsers } from "./model/fetch-users";
 import { useNavigate } from "react-router-dom";
 import { UserId } from "./types";
 
 export function UsersList() {
-  const dispatch = useAppDispatch();
-  const appStore = useAppStore();
   const [sortType, setSortType] = useState<"asc" | "desc">("asc");
 
   const isPending = useAppSelector(usersSlice.selectors.selectIsFetchUsersPending);
-  
-  useEffect(() => {
-    dispatch(fetchUsers())
-  }, [dispatch, appStore]);
 
   const sortedUsers = useAppSelector((state) =>
     usersSlice.selectors.selectSortedUsers(state, sortType)
@@ -55,13 +48,13 @@ const UserListItem = memo(function UserListItem({ userId } : { userId: UserId })
   const navigate = useNavigate()
   const user = useAppSelector((state) => state.users.entities[userId]);
   const handleUserClick = () => {
-    navigate(userId, {relative: "path"});
+    navigate(userId, { relative: "path" });
   };
 
   if (!user) { 
     return null
   }
-  
+
   return (
     <li key={user.id} className="py-2" onClick={handleUserClick}>
       <span className="hover:underline cursor-pointer">{user.name}</span>

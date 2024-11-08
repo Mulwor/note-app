@@ -2,23 +2,23 @@ import { AppThunk } from "../../store";
 import { UserId } from "../types";
 import { usersSlice } from "../users.slice";
 
-export const fetchUser = (userId: UserId): AppThunk => (dispatch, getState, { api }) => {
-    const isPending = usersSlice.selectors.selectIsFetchUserPending(
-      getState()
-    );
+export const fetchUser = 
+  (userId: UserId): AppThunk => 
+  (dispatch, getState, { api }) => {
+    const isPending = usersSlice.selectors.selectIsFetchUserPending(getState());
     
-    if (isPending) {
+    if (!isPending) {
       return;
     }
 
-    dispatch(usersSlice.actions.fetchUsersPending());
+    dispatch(usersSlice.actions.fetchUserPending());
     
     api
       .getUser(userId)
       .then((user) => {
-        dispatch(usersSlice.actions.fetchUsersSuccess({ user }));
+        dispatch(usersSlice.actions.fetchUserSuccess({ user }));
       })
       .catch(() => {
-        dispatch(usersSlice.actions.fetchUsersFailed());
+        dispatch(usersSlice.actions.fetchUserFailed());
       })
 }

@@ -11,6 +11,7 @@ export type UsersState = {
   ids: UserId[];
   fetchUsersStatus: "idle" | "pending" | "success" | "failed";
   fetchUserStatus: "idle" | "pending" | "success" | "failed";
+  deleteUserStatus: "idle" | "pending" | "success" | "failed";
 };
 
 export type UserSelectedAction = {

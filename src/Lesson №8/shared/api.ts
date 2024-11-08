@@ -31,7 +31,7 @@ export const api = {
     });
   },
 
-  removeUser: (userId: string) => {
+  deleteUser: (userId: string) => {
     return fetch(`${baseUrl}/users/${userId}`, {
       method: "DELETE",
     }).then((response) => response.json());
