@@ -1,6 +1,6 @@
 
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../store";
+import { useAppSelector } from "../app/store";
 import { decrementAction,  incrementAction,  selectCounter } from "./counters.slice";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { CounterId } from "./types";

@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import { useAppSelector } from "../store";
+import { useAppSelector } from "../app/store";
 import { usersSlice } from "./users.slice";
 import { useNavigate } from "react-router-dom";
 import { UserId } from "./types";

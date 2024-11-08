@@ -1,12 +1,13 @@
 import { createBrowserRouter, Link, Outlet, redirect } from "react-router-dom";
 import { store } from "./store";
-import { UsersList } from "./users/users-list";
-import { fetchUsers } from "./users/model/fetch-users";
-import { fetchUser } from "./users/model/fetch-user";
-import { UserInfo } from "./users/user-info";
-import { Counters } from "./counters/counters";
+import { UsersList } from "../users/users-list";
+import { fetchUsers } from "../users/model/fetch-users";
+import { fetchUser } from "../users/model/fetch-user";
+import { UserInfo } from "../users/user-info";
+import { Counters } from "../counters/counters";
 
-
+// ? Избавляется от ошибки, что rout не должен вызываться
+// ? перед инициализацией 
 const loadStore = () =>
   new Promise((resolve) => {
     setTimeout(() => resolve(store), 0);
@@ -32,7 +33,9 @@ export const router = createBrowserRouter([
       {
         path: "users",
         element: <UsersList />,
-        loader: () => {
+        // ? Специальная функция, которая вызывается перед тем,
+        // ? как перейти на страницу
+        loader: () => { 
           loadStore().then(() => {
             store.dispatch(fetchUsers());
           });

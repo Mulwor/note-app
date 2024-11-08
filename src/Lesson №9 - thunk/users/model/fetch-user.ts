@@ -1,4 +1,4 @@
-import { AppThunk } from "../../store";
+import { AppThunk } from "../../app/store";
 import { UserId } from "../types";
 import { usersSlice } from "../users.slice";
 

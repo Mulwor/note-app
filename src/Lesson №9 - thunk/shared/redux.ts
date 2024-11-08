@@ -1,19 +1,6 @@
+import { createSelector, ThunkAction, UnknownAction } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, useStore } from "react-redux";
-import { configureStore, createSelector, ThunkAction, UnknownAction } from "@reduxjs/toolkit";
-import { usersSlice } from "./users/users.slice";
-import { countersReducer } from "./counters/counters.slice";
-import { extraArgument } from "./extra-argument";
-
-export const store = configureStore({
-  reducer: {
-    counters: countersReducer,
-    [usersSlice.name]: usersSlice.reducer,
-  },
-
-  // ? Нужен для добавления extra-argument в thunk
-  middleware: (getDefaultMiddleware) => 
-    getDefaultMiddleware({ thunk: { extraArgument }})
-});
+import type { extraArgument, store } from "../app/store";
 
 export type AppState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

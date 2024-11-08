@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../store";
+import { useAppDispatch, useAppSelector } from "../app/store";
 import { usersSlice } from "./users.slice";
 import { UserId } from "./types";
 import { deleteUser } from "./model/delete-user";

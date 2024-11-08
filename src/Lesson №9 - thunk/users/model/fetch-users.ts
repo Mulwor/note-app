@@ -1,4 +1,4 @@
-import { AppThunk } from "../../store";
+import { AppThunk } from "../../app/store";
 import { usersSlice } from "../users.slice";
 
 export const fetchUsers = 

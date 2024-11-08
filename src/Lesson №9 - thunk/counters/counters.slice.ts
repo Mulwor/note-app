@@ -1,5 +1,5 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import { AppState } from "../store";
+import { AppState } from "../app/store";
 import { CounterId, CountersState, CounterState } from "./types";
 
 export const incrementAction = createAction<{
