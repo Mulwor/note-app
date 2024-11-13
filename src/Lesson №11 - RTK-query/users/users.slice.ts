@@ -61,11 +61,7 @@ export const usersSlice = createSlice({
     selectIsDeleteUserPending: (state) => state.deleteUserStatus === "pending",
   },
   reducers: (creator) => ({
-    fetchUser: creator.asyncThunk<
-      User,
-      { userId: UserId },
-      { extra: ExtraArgument }
-    >(
+    fetchUser: creator.asyncThunk<User, { userId: UserId }, { extra: ExtraArgument }>(
       (params, thunkAPI) => {
         return thunkAPI.extra.api.getUser(params.userId);
       },
@@ -84,6 +80,7 @@ export const usersSlice = createSlice({
         },
       }
     ),
+
     deleteUserPending: creator.reducer((state) => {
       state.deleteUserStatus = "pending";
     }),
