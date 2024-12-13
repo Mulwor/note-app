@@ -21,3 +21,4 @@ git push --force
 git branch --move html-with-git HTML-and-git           
 git push --set-upstream origin HTML-and-git
 ```
+5. Для того чтобы удалить node-modules надо в терминале прописать команду: rm -rf node_modules
