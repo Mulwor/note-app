@@ -349,7 +349,3 @@ d) tfoot
 e) td
 f) tbody
 g) thead
-
----
-
-26

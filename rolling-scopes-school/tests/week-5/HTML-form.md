@@ -8,7 +8,6 @@ d) Only GET-requests are available for viewing at browsers' developer tools (ex.
 Ответ: с.
 
 ---
-
 2. Which of the following is not a valid HTML table tag?
 
 a) "td"
@@ -19,7 +18,6 @@ d) "tr"
 Ответ: b.
 
 ---
-
 3. What statement is correct?
 
 a) Tag <button> accepts 'type' attribute with values 'submit', 'reset' or 'button'
@@ -30,7 +28,6 @@ d) <form> defines path and way of sending data by 'enctype' and 'target' attribu
 Ответ: a.
 
 ---
-
 4. What statement is correct regarding the <datalist> tag?
 
 a) This tag is outdated and not used nowadays
@@ -41,7 +38,6 @@ d) It is linked with a text field by adding attribute 'value'
 Ответ: b
 
 ---
-
 5. Choose the relevant attributes of the <form> tag:
 
 a) enctype
@@ -56,7 +52,6 @@ h) stylesForm
 Ответ: a, b, d, f, g
 
 ---
-
 6. What statements are correct regarding the <select> tag?
 
 a) Closing tag is required
@@ -69,7 +64,6 @@ e) Tag <select> can have 'size' attribute
 Ответ: a, c, e
 
 ---
-
 7. What statement is correct about attribute 'novalidate' for the <form> tag?
 
 a) This attribute doesn't exist
@@ -80,7 +74,6 @@ d) It turns off built-in error messages and lets to add custom messages instead 
 Ответ: b
 
 ---
-
 8. Select the relevant attributes for the <input> tag:
 
 a) type
@@ -92,7 +85,6 @@ e) target
 Ответ: a, b, c
 
 ---
-
 9. What statements describe GET method of HTML-form incorrectly?
 
 a) Method GET sends request from server to browser
@@ -103,7 +95,6 @@ d) Method GET requests resource from server, form data to be added to the reques
 Ответ: a, b
 
 ---
-
 10. What statements are correct about <input> with attribute type='date'?
 
 a) It creates an input field where a user can put a date
@@ -115,7 +106,6 @@ e) This type of <input> has additional attribute 'step'
 Ответ: a, b, d, e
 
 ---
-
 11. Is it required to notice what type of data transfer protocol the website uses if you fill a form with personal data and passwords?
 
 a) No, it doesn't matter
@@ -125,7 +115,6 @@ c) Yes, it should be HTTPS
 Ответ: c
 
 ---
-
 12. What data transfer protocols are used in HTML-forms?
 
 a) TCP/IP
@@ -141,7 +130,6 @@ j) SSH
 
 
 ---
-
 13. Which 'type' attribute value should be set for an <input> tag to create an interactive element that allows selecting only one option from a list?
 
 a) checkbox
@@ -156,7 +144,6 @@ h) text
 Ответ: f
 
 ---
-
 14. What statement is correct?
 
 a) Client side form validation is safety enough
@@ -167,7 +154,6 @@ d) JavaScript validation isn't client side validation
 Ответ: c
 
 ---
-
 15. What additional attribute is required for an <input> field with type='email' to validate the email format?
 
 a) pattern
@@ -178,7 +164,6 @@ d) Additional attribute is not required
 Ответ: d
 
 ---
-
 16. What happens in a browser if a website using HTTPS includes an HTML form with an action URL set to HTTP protocol?
 
 a) Page will not run as it's invalid page
@@ -188,7 +173,6 @@ c) Page will run as usual
 Ответ: b
 
 ---
-
 17. What attributes from the list below relate to built-in HTML5 form validation?
 
 a) 'required' in tag <input>
@@ -199,7 +183,6 @@ d) 'type' defined a data type for the field
 Ответ: a, b, c, d
 
 ---
-
 18. What attribute defines a path to file or page where form data handler is located?
 
 a) src
@@ -210,7 +193,6 @@ d) route
 Ответ: c
 
 ---
-
 19. What statement is correct regarding the CSS pseudo-class :valid?
 
 a) It works with <table>
@@ -221,7 +203,6 @@ d) It's used with tags <form> and <input>
 Ответ: d
 
 ---
-
 20. What statements are correct about <input> with attribute type='password'?
 
 a) It's a one line text field where every character is replaced with another character, in general it's an asterisk or a dot
@@ -233,7 +214,6 @@ e) Attribute 'disabled' doesn't work for this type of <input>
 Ответ: a, b
 
 ---
-
 21. What is attribute 'enctype' in <form> used for?
 
 a) It defines a type of sent data for a serverb
@@ -243,7 +223,6 @@ c) This attribute doesn't exist
 Ответ: a
 
 ---
-
 22. What statements are correct about the <fieldset> tag?
 
 a) It's a single tag
@@ -254,7 +233,6 @@ d) Tag <legend> can be used inside tag <fieldset>
 Ответ: c, d
 
 ---
-
 23. What statement is correct?
 
 a) There is not possible to limit maximum number of characters for text field <input>
@@ -266,7 +244,6 @@ e) None of the above
 Ответ: d
 
 ---
-
 24. What statements are correct?
 
 a) Tag <textarea> doesn't accept attribute 'required'
@@ -277,7 +254,6 @@ d) If a browser doesn't support certain input type for <input> (ex., type='email
 Ответ: a, d
 
 ---
-
 25. Which values for the 'method' attribute of the <form> tag are valid?
 
 a) get
@@ -289,7 +265,6 @@ e) delete
 Ответ: a, b
 
 ---
-
 26. What statement is correct about attribute 'customValidate' for the <form> tag?
 
 a) This attribute doesn't exist
@@ -300,7 +275,6 @@ d) It turns off built-in error messages and lets to add custom messages instead 
 Ответ: a
 
 ---
-
 27. What statements describe POST method of HTML-form correctly?
 
 a) Data is sent in a request body when using POST method
