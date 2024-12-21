@@ -1,47 +1,52 @@
-1. What is a nesting selector?
+1. What is a nesting selector (вложенный селектор)?
 
 a) ::
 b) --
 c) &&
-d) &
+`d) &`
+
+Пояснения: https://developer.mozilla.org/en-US/docs/Web/CSS/Nesting_selector
 
 ---
-2. What functions are used for Anchor positioning? (мультивыбор)
+2. What functions are used for Anchor positioning?
 
-a) anchor()
+`a) anchor()`
 b) create-anchor()
 c) set-anchor-size()
-d) anchor-size()
+`d) anchor-size()`
+
+https://anchor-tool.com/
+https://codepen.io/jamessw/pen/ZENpWao
 
 ---
-3. What statements about composition in CSS modules are correct?  (мультивыбор)
+3. What statements about composition in CSS modules are correct?
 
-a) You can compose styles to new selector from existing one
+`a) You can compose (создать) styles to new selector from existing one (из существующих)`
 b) You can't compose styles from different files
-c) Composition is very important for the DRY principle
-d) You can use 'composes' property with styles in a current file or from another by passing the path to it
+`c) Composition is very important for the DRY principle`
+`d) You can use 'composes' property (св-в composes) with styles in a current file or from another by passing the path to it`
 
 ---
 4. How trigonometric functions can be used in CSS?
 
-a) For animation, blueprints, etc.
+`a) For animation, blueprints, etc.`
 b) To satisfy your maths teacher by using trigonometry in your everyday life
 c) For colors mixing
 d) There are no Trigonometric functions in CSS
 
 ---
-5. What statements about Container Queries are correct?  (мультивыбор)
+5. What statements about Container Queries are correct?
 
 a) Container Queries is the same as Media Queries with the same syntax
-b) @container rule lets style elements according to size of their parental container
+`b) @container rule lets style elements according to size of their parental (родительском) container`
 c) @container rule sets a certain element as container to other elements on the page
-d) Container Queries lets to create adaptive design without reference to viewport
+`d) Container Queries lets to create adaptive design without reference to viewport`
 
 ---
 6. How to switch to the global scope within a CSS Module?
 
 a) ::global
-b) :global
+`b) :global`
 c) --global
 d) :to-global
 
@@ -49,15 +54,17 @@ d) :to-global
 7. What HTML element can be a trigger for popover appearance?
 
 a) Any HTML element with 'popover' attribute
-b) <button> or <input type="button"> with 'popovertarget' attribute
+`b) <button> or <input type="button"> with 'popovertarget' attribute`
 c) <button> or <input type="button"> with 'popover' attribute
 d) Any HTML element with 'popovertarget' attribute
+
+Пояснения: https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_att_popover2
 
 ---
 8. What are CSS Modules?
 
 a) A JavaScript file in which there are scripts for styles management
-b) A CSS file in which all class names and animation names are scoped locally by default
+`b) A CSS file in which all class names and animation names are scoped locally by default`
 c) A CSS file in which all class names and animation names are scoped globally by default
 d) A block of styles in a CSS file
 
@@ -65,7 +72,7 @@ d) A block of styles in a CSS file
 9. How to compose styles in CSS modules?
 
 a) Import one CSS file to another
-b) Use 'composes' property to apply existing styles to the indicated selector in a new styles block
+`b) Use 'composes' property to apply existing styles to the indicated selector in a new styles block`
 c) Use compose() CSS function to apply existing styles to the indicated selector in a new styles block
 d) There is no styles composition in CSS modules
 
@@ -74,13 +81,13 @@ d) There is no styles composition in CSS modules
 
 a) A built-in method of Array object for checking if value is included in array
 b) A CSS pseudo-class which helps to check if selector has specific characters
-c) A CSS pseudo-class which allows to refine the main selector with an additional one
+`c) A CSS pseudo-class which allows to refine the main selector with an additional one`
 d) A CSS pseudo-class which manages styles for elements when the user interacts with it by hovering it
 
 ---
 11. What is Popover?
 
-a) A global attribute used to designate an element as a popover element
+`a) A global attribute used to designate an element as a popover element`
 b) A HTML tag to create popover element
 c) A HTML element which triggers popover appearance
 d) A global attribute which converts any HTML element into popover trigger
@@ -90,14 +97,14 @@ d) A global attribute which converts any HTML element into popover trigger
 
 a) Viewport unit which represents the viewport height when the address bar UI hasn't shrunk its size yet
 b) Viewport unit which represents the viewport height after the address bar UI shrunk its size
-c) Viewport unit which uses any of the small, in-between, and large units based on whether the address bar UI is shrunk or not
+`c) Viewport unit which uses any of the small, in-between, and large units based on whether the address bar UI is shrunk or not`
 d) Unit which is relative to the size of the initial containing block, which is the root element of a web page
 
 ---
-13. What statements about 'svh' are correct?  (мультивыбор)
+13. What statements about 'svh' are correct?
 
-a) It's a small viewport unit
-b) svh represents the viewport height when the address bar UI hasn't shrunk its size yet
+`a) It's a small viewport unit`
+`b) svh represents the viewport height when the address bar UI hasn't shrunk its size yet`
 c) svh represents the viewport height after the address bar UI shrunk its size
 d) It's dynamic viewport
 
@@ -105,7 +112,7 @@ d) It's dynamic viewport
 14. What is a CSS nesting?
 
 a) It's CSS function for styling nests
-b) It's a CSS feature which helps to get access to child elements to style them within parental style
+`b) It's a CSS feature which helps to get access to child elements to style them within parental style`
 c) It's a CSS feature which gives an ability to nest one element into another
 d) None of the above
 
@@ -114,7 +121,7 @@ d) None of the above
 
 a) vh, vw, vmin, vmax
 b) px, rem, em, %
-c) cqw, cqh, cqi, cqb, cqmin, cqmax
+`c) cqw, cqh, cqi, cqb, cqmin, cqmax`
 d) All of the above
 
 ---
@@ -122,40 +129,40 @@ d) All of the above
 
 a) cqw, cqh, cqi, cqb, cqmin, cqmax
 b) px, rem, em, %
-c) vh,vw, vmin, vmax, svh, lvh, dvh
+`c) vh,vw, vmin, vmax, svh, lvh, dvh`
 d) All of the above
 
 ---
 17. What is lvh?
 
 a) Viewport unit which represents the viewport height when the address bar UI hasn't shrunk its size yet
-b) Viewport unit which represents the viewport height after the address bar UI shrunk its size
+`b) Viewport unit which represents the viewport height after the address bar UI shrunk its size`
 c) Viewport unit which is dynamic
 d) It's CSS function
 
 ---
-18. How to style the third child within a parent element that has the "container" class, without concern for the impact on other elements' styles?  (мультивыбор)
+18. How to style the third child within a parent element that has the "container" class, without concern for the impact on other elements' styles?
 
-a) .container div:nth-child(3)
+`a) .container div:nth-child(3)`
 b) .container div::nth-child(3)
-c) .container div:nth-child(2n+1)
-d) .container div:nth-child(odd)
+`c) .container div:nth-child(2n+1)`
+`d) .container div:nth-child(odd)`
 
 ---
-19. What statements about Anchor positioning are correct?  (мультивыбор)
+19. What statements about Anchor positioning are correct?
 
-a) Anchor positioning helps to create tooltip or popover by anchoring it to target element using only HTML and CSS
+`a) Anchor positioning helps to create tooltip or popover by anchoring it to target element using only HTML and CSS`
 b) It lets to create anchor-links to certain part of the page to use the, for example, in menu
-c) Anchored element can be positioned relative to its target element using 'anchor()' function in CSS file
+`c) Anchored element can be positioned relative to its target element using 'anchor()' function in CSS file`
 d) None of the above
 
 ---
-20. What statements about Style Queries are correct?  (мультивыбор)
+20. What statements about Style Queries are correct?
 
 a) It's HTML tag for managing application's styles
-b) The computed style of a parent element can be queried using style queries
-c) It's syntax style(<computed_value>)
-d) It works together with Container Queries
+`b) The computed style of a parent element can be queried using style queries`
+`c) It's syntax style(<computed_value>)`
+`d) It works together with Container Queries`
 
 ---
 21. How does Anchor positioning work?
@@ -163,7 +170,7 @@ d) It works together with Container Queries
 a) It positions an element as fixed at certain place on the page
 b) It creates an anchor element in the corner of the page to be able to go to the top at any moment
 c) It positions popover trigger element on the page
-d) It anchors an absolutely-positioned element to one or more other elements on the page
+`d) It anchors an absolutely-positioned element to one or more other elements on the page`
 
 ---
 22. What effects of interpolation exist for color-mix() in CSS?
@@ -171,12 +178,12 @@ d) It anchors an absolutely-positioned element to one or more other elements on 
 a) rgb, hex, pms, cmyk
 b) completely, halfly, partly
 c) linear, radial, repeating, conic
-d) lch, oklch, hsl, hwb, etc.
+`d) lch, oklch, hsl, hwb, etc.`
 
 ---
 23. What are CSS viewport units?
 
-a) Units which help size elements against the viewport size
+`a) Units which help size elements against the viewport size`
 b) Units of viewport sizing used only in Media queries
 c) Units for images sizing
 d) Non of the above
@@ -186,7 +193,7 @@ d) Non of the above
 
 a) Not all of them, only :before and :after
 b) Not all of them, only ::before and ::after
-c) No
+`c) No`
 d) Yes
 
 ---
@@ -194,7 +201,7 @@ d) Yes
 
 a) calc, min, max, translate, rotate
 b) pow, sqrt, hypot, log, exp
-c) sin, cos, tan, asin, acos, atan, atan2
+`c) sin, cos, tan, asin, acos, atan, atan2`
 d) There are no Trigonometric functions in CSS
 
 ---
@@ -202,13 +209,13 @@ d) There are no Trigonometric functions in CSS
 
 a) Yes, by using pseudo-class :mix-colors()
 b) Yes, by using CSS function mix-color()
-c) Yes, by using CSS function color-mix()
+`c) Yes, by using CSS function color-mix()`
 d) No
 
 ---
-27. What statements about modern CSS are correct? (мультивыбор)
+27. What statements about modern CSS are correct?
 
-a) Trigonometric functions are available for use in CSS
-b) You can mix any colors using mix color function
+`a) Trigonometric functions are available for use in CSS`
+`b) You can mix any colors using mix color function`
 c) There are no new added features to CSS since releasing of Flexbox
 d) CSS is about to be replaced with SCSS

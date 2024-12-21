@@ -1,326 +1,267 @@
-1. What are the advantages of using the addEventListener() method? (мультивыбор)
+1. What are the advantages of using the addEventListener() method?
 
-Handler can be removed at any time
+`a) Handler can be removed at any time`
+b) One method call can set unlimited number of handlers to one event
+`c) Event handler's behavior can be configured (e.g. it can be called once)`
+`d) Adding an unlimited number of handlers to one event`
 
-One method call can set unlimited number of handlers to one event
-
-Event handler's behavior can be configured (e.g. it can be called once)
-
-Adding an unlimited number of handlers to one event
 2. What is the maximum number of arguments that the addEventListener() method can accept when used on an EventTarget?
 
-0
+a) 0
+b) 1
+c) 2
+`d) 3`
+e) 4
+f) 5
 
-1
+3. Identify the correct touch event types supported in JavaScript.
 
-2
+a) touchenter
+`b) touchstart`
+`c) touchmove`
+d) touchleave
+`e) touchend`
+`f) touchcancel`
 
-3
-
-4
-
-5
-3. Identify the correct touch event types supported in JavaScript. (мультивыбор)
-
-touchenter
-
-touchstart
-
-touchmove
-
-touchleave
-
-touchend
-
-touchcancel
+---
 4. What is an 'event' object in an event handler?
 
-Object where the event occurred
+a) Object where the event occurred
+b) Operational System Events
+`c) Global scope object which is passed as an argument to the event handler`
+d) There is no 'event' object in the event handler
 
-Operational System Events
-
-Global scope object which is passed as an argument to the event handler
-
-There is no 'event' object in the event handler
+---
 5. What is an event bubbling?
 
-Propagation of the event from a child element to its parent elements
+`a) Propagation of the event from a child element to its parent elements`
+b) Propagation of the event from a trigger element to its sibling elements
+c) Propagation of the event from a parent element to its child element
+d) No propagation
+e) A party for events where they all get to bubble
 
-Propagation of the event from a trigger element to its sibling elements
-
-Propagation of the event from a parent element to its child element
-
-No propagation
-
-A party for events where they all get to bubble
+---
 6. TouchEvent interface is a UIEvent which is dispatched when the state of contacts with a touch-sensitive surface changes. Is this statement correct?
 
-Yes
+a) Yes
+b) No
+c) Partly correct, it's not UIEvent
+d) Partly correct, it follows not the state of contacts
 
-No
+---
+7. What properties are specific to a KeyboardEvent object?
 
-Partly correct, it's not UIEvent
+`a) altKey`
+`b) shiftKey`
+c) keyLocale
+`d) key`
 
-Partly correct, it follows not the state of contacts
-7. What properties are specific to a KeyboardEvent object? (мультивыбор)
+---
+8. Which of the following are valid focus event types in JavaScript?
 
-altKey
+a) blur
+b) reblur
+c) unfocus
+d) focus
 
-shiftKey
-
-keyLocale
-
-key 
-8. Which of the following are valid focus event types in JavaScript? (мультивыбор)
-
-blur
-
-reblur
-
-unfocus
-
-focus
+---
 9. Which method is most recommended for adding an event handler in JavaScript?
 
-Use an HTML event handler attribute (inline)
+a) Use an HTML event handler attribute (inline)
+b) Use a DOM property
+c) Use a DOM node
+`d) Use a special DOM method addEventListener()`
 
-Use a DOM property
-
-Use a DOM node
-
-Use a special DOM method addEventListener()
+---
 10. What is an event delegation?
 
-Consistent list of invoked events
+a) Consistent list of invoked events
+`b) When an event handler is put only on a parent element and this element's child elements use this handler when the event happens`
+c) When an event handler is put only on a child element and this element's parent elements use this handler when the event happens
+d) When an event handler is put only on one element and this element's sibling elements use this handler when the event happens
+e) A formal meeting where events decide their leader
 
-When an event handler is put only on a parent element and this element's child elements use this handler when the event happens
-
-When an event handler is put only on a child element and this element's parent elements use this handler when the event happens
-
-When an event handler is put only on one element and this element's sibling elements use this handler when the event happens
-
-A formal meeting where events decide their leader
+---
 11. Which of the following is a property of the DragEvent object?
 
-drag
+a) drag
+`b) dataTransfer`
+c) dragend
+d) dragenter
 
-dataTransfer
-
-dragend
-
-dragenter
+---
 12. What does the 'target' property of an event object signify?
 
-It reference to the deepest element to which the event handler has been attached
+a) It reference to the deepest element to which the event handler has been attached
+`b) It reference to the deepest element onto which the event was dispatched`
+c) It stores this event handler
+d) None of above
 
-It reference to the deepest element onto which the event was dispatched
+---
+13. What properties does an event object have?
 
-It stores this event handler
+`a) target`
+`b) currentTarget`
+c) bubble
+`d) eventPhase`
+`e) type`
 
-None of above
-13. What properties does an event object have? (мультивыбор)
-
-target
-
-currentTarget
-
-bubble
-
-eventPhase
-
-type
+---
 14. What is an event capturing?
 
-Propagation of the event from a child element to its parent elements
+a) Propagation of the event from a child element to its parent elements
+b) Propagation of the event from a trigger element to its sibling elements
+`c) Propagation of the event from a parent element to its child element`
+d) No propagation
+e) When events go on a secret mission
 
-Propagation of the event from a trigger element to its sibling elements
-
-Propagation of the event from a parent element to its child element
-
-No propagation
-
-When events go on a secret mission
+---
 15. event.eventPhase property returns a number. What does it mean?
 
-If this event can bubble
+a) If this event can bubble
+b) How many phases this event has
+`c) Which phase of the event flow is currently being evaluated`
+d) Number of event handlers
 
-How many phases this event has
+---
+16. Which sets of arguments are valid for the addEventListener() method?
 
-Which phase of the event flow is currently being evaluated
+`a) type, listener, useCapture`
+b) only listener
+`c) type, listener`
+d) only options
+e) only type
+`f) type, listener, options`
 
-Number of event handlers
-16. Which sets of arguments are valid for the addEventListener() method? (мультивыбор)
-
-type, listener, useCapture
-
-only listener
-
-type, listener
-
-only options
-
-only type
-
-type, listener, options
+---
 17. What does the expression 'elem.target !== elem.currentTarget' typically evaluate to?
 
-true
+a) true
+b) false
+`c) It can be both - true or false`
+d) Always returns true because it's very confident
 
-false
+---
+18. What methods are available on a JavaScript event object?
 
-It can be both - true or false
+a) preventPropagation
+`b) preventDefault`
+`c) stopPropagation`
+d) stopDefault
 
-Always returns true because it's very confident
-18. What methods are available on a JavaScript event object? (мультивыбор)
-
-preventPropagation
-
-preventDefault
-
-stopPropagation
-
-stopDefault
+---
 19. What can be set as an event handler?
 
-Function
+a) Function
+b) Object
+`c) Function and object`
+d) None of the above
 
-Object
+---
+20. What methods can stop bubbling?
 
-Function and object
+a) elem.removeEventListener()
+`b) event.stopPropagation()`
+c) elem.clearEventListener()
+`d) event.stopImmediatePropagation()`
+e) event.eventPhase()
 
-None of the above
-20. What methods can stop bubbling? (мультивыбор)
-
-elem.removeEventListener()
-
-event.stopPropagation()
-
-elem.clearEventListener()
-
-event.stopImmediatePropagation()
-
-event.eventPhase()
+---
 21. What does preventDefault() method do?
 
-Creates new event
+a) Creates new event
+b) Stop element's bubbling / capturing
+`c) Prevent element's default behavior`
+d) Prevent element's bubbling
 
-Stop element's bubbling / capturing
-
-Prevent element's default behavior
-
-Prevent element's bubbling
+---
 22. What does a construсtor 'new Event' do?
 
-Creates an event object
+`a) Creates an event object`
+b) Creates an event handler
+c) Creates an element for the event passed as argument
 
-Creates an event handler
-
-Creates an element for the event passed as argument
+---
 23. Is it true that all events in JavaScript bubble by default?
 
-Yes
+a) Yes
+`b) No`
+c) Yes, they love to attend parties
 
-No
+---
+24. What events related to focus does FocusEvent interface represent?
 
-Yes, they love to attend parties
-24. What events related to focus does FocusEvent interface represent? (мультивыбор)
+`a) focus`
+b) reblur
+`c) focusin`
+d) unfocus
+`e) blur`
+`f) focusout`
 
-focus
-
-reblur
-
-focusin
-
-unfocus
-
-blur
-
-focusout
+---
 25. How to remove an event handler which is added by an addEventListener()?
 
-eventListener = null
+a) eventListener = null
+b) clearEventListener
+`c) removeEventListener`
+d) deleteEventListener
 
-clearEventListener
+---
+26. What Mouse Event Types exist?
 
-removeEventListener
+`a) click`
+`b) contextmenu`
+`c) dblclick`
+`d) mouseenter`
+e) rightClick
+`f) mouseup`
+h) mouseCenter
 
-deleteEventListener
-26. What Mouse Event Types exist? (мультивыбор)
+---
+27. What Drag Event Types exist?
 
-click
+`a) drag`
+`b) dragend`
+`c) dragenter`
+d) dragcenter
+`e) dragover`
+`f) dragleave`
+`h) dragstart`
+`j) drop`
 
-contextmenu
+---
+28. Which properties are part of the MouseEvent object?
 
-dblclick
+`a) altKey`
+b) enterKey
+`c) button`
+`d) clientX`
+e) clientZ
+`f) screenX`
+`g) screenY`
 
-mouseenter
+---
+29. What are the different ways to add an event handler in JavaScript?
 
-rightClick
+`a) HTML event handler attribute (inline)`
+`b) DOM property`
+c) DOM node
+`d) Special DOM method addEventListener()`
 
-mouseup
-
-mouseCenter
-27. What Drag Event Types exist? (мультивыбор)
-
-drag
-
-dragend
-
-dragenter
-
-dragcenter
-
-dragover
-
-dragleave
-
-dragstart
-
-drop
-28. Which properties are part of the MouseEvent object? (мультивыбор)
-
-altKey
-
-enterKey
-
-button
-
-clientX
-
-clientZ
-
-screenX
-
-screenY
-29. What are the different ways to add an event handler in JavaScript? (мультивыбор)
-
-HTML event handler attribute (inline)
-
-DOM property
-
-DOM node
-
-Special DOM method addEventListener()
+---
 30. Сan you differentiate between a real DOM event and a synthetic event created programmatically?
 
-Yes, by checking event.defaultEvent
+a) Yes, by checking event.defaultEvent
+b) Yes, by calling DOM method isDefaultEvent()
+`c) Yes, by checking event.isTrusted`
+d) No
 
-Yes, by calling DOM method isDefaultEvent()
-
-Yes, by checking event.isTrusted
-
-No
-
-31. What properties does TouchEvent have? (мультивыбор)
+---
+31. What properties does TouchEvent have?
  
-touch
-
-touches
-
-touchcancel
-
-targetTouches
-
-touchleave
-
-changedTouches
+a) touch
+`b) touches`
+c) touchcancel
+`d) targetTouches`
+e) touchleave
+`f) changedTouches`

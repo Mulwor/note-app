@@ -37,10 +37,10 @@ d) Linked List
 
 6. Which of the following is not a characteristic of a Max Heap?
 
-a) Parent node is smaller than children
+`a) Parent node is smaller than children`
 b) Complete binary tree
 c) Used in Heap Sort
-`d) Parent node is larger than children`
+d) Parent node is larger than children
 
 7. What is primarily described by Big-O Notation?
 
@@ -159,9 +159,9 @@ d) not related to
 22. You have an unsorted array with 100 elements and you want to find one of them using Binary Search. What is the maximum number of iterations it can take?
 
 a) 7 (если сортированный)
-`b) 99`
+b) 99
 c) 1
-d) it is not possible to say because the number will be different every time
+`d) it is not possible to say because the number will be different every time`
 
 ---
 23. What data structure processes (обрабатывает) elements in the sequence they were added (в которой они были добавлены), adhering (придерживаясь) to the FIFO (First In First Out) principle?
@@ -204,5 +204,9 @@ c) Comparison with other algorithms
 d) Memory usage over time
 
 ---
+28. In which usage scenarios do Linked List and Array show significantly different operation execution speeds? - мультивыбор
 
-Результат 92%
+`a) Accessing an arbitrary element by index`
+`b) Modifying an arbitrary element by index`
+c) Outputting all list / array elements to the console
+`d) Removing an element from the list / array`
