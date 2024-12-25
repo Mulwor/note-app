@@ -14,7 +14,7 @@ c) Directly in the 'rules' section
 d) In the '.eslintrc' file's header
 
 ---
-3. What is a linter used for? (мультивыбор)
+3. What is a linter used for?
 
 a) Fix programming errors
 `b) Code standardization`
@@ -22,7 +22,7 @@ c) Adapting legacy code for modern browsers
 `d) Identify bugs`
 
 ---
-4. What is Husky? (мультивыбор)
+4. What is Husky?
 
 a) JavaScript library 
 b) The most popular code formatter
@@ -38,7 +38,7 @@ c) A linter
 `d) A code formatter`
 
 ---
-6. What statements are correct about Prettier and ESLint integration? (мультивыбор)
+6. What statements are correct about Prettier and ESLint integration?
 
 `a) Integration of this tools gives opportunity to run them together as one job`
 `b) Prettier provides 'eslint-plugin-prettier' and 'eslint-config-prettier' rules to accomplish this`
@@ -55,7 +55,7 @@ d) ESLint identifies issues but cannot fix all, Prettier can
 e) There is no difference between ESLint and Prettier and it's not necessary to use them together
 
 ---
-8. What types of checks do a linter provide? (мультивыбор)
+8. What types of checks do a linter provide?
 
 `a) Syntax errors`
 `b) Potential problems`
@@ -87,7 +87,7 @@ b) Enables single quotes in JSX
 d) Disables quote conversion
 
 ---
-12. Which of the following Git hooks are not supported by Husky? (мультивыбор)
+12. Which of the following Git hooks are not supported by Husky?
 
 `a) pre-receive`
 `b) update`
@@ -119,7 +119,7 @@ c) It provides analytics with all warnings
 d) It does nothing
 
 ---
-16. Which of the following is true about the 'tabWidth' option in Prettier? (мультивыбор)
+16. Which of the following is true about the 'tabWidth' option in Prettier?
 
 `a) Specifies the number of characters per indentation-level`
 b) Defaults to 4 spaces
@@ -143,7 +143,7 @@ c) To simplify code writing by accumulation of typical code blocks
 d) Style guides are created for UI/UX designers
 
 ---
-19. What Git hooks from the list really exists? (мультивыбор)
+19. What Git hooks from the list really exists?
 
 `a) pre-commit`
 `b) pre-push`
@@ -151,7 +151,7 @@ c) pre-pull
 `d) pre-rebase`
 
 ---
-20. What does running "husky init" do? (мультивыбор)
+20. What does running "husky init" do?
 
 `a) Creates a .husky/ directory and a "pre-commit" script`
 b) Installs Husky globally and adds a "post-install" script to package.json
@@ -159,7 +159,7 @@ c) Creates .huskyrc and updates the "start" script in package.json
 `d) Adds a "prepare" script to package.json`
 
 ---
-21. How can ESLint be configured? (мультивыбор)
+21. How can ESLint be configured?
 
 `a) By enabling a rule as a warning or an error`
 `b) By creating custom rules`
@@ -191,7 +191,7 @@ c) Only formatters are mandatory
 `d) They're not mandatory but highly recommended to keep a good code quality`
 
 ---
-25. What are features of Husky? (мультивыбор)
+25. What are features of Husky?
 
 a) Zero dependencies and lightweight
 b) User-friendly messages
@@ -209,7 +209,7 @@ c) It shows only an error message
 d) It shows a number of errors in an app
 
 ---
-27. What are benefits of using ESLint? (мультивыбор)
+27. What are benefits of using ESLint?
 
 `a) Objective measurement of a code quality`
 `b) Readable, maintainable, and more consistent code`
@@ -217,7 +217,7 @@ d) It shows a number of errors in an app
 d) Education about code quality reaches more app users
 
 ---
-28. What can Husky do? (мультивыбор)
+28. What can Husky do?
 
 a) Run any command, for example from one of the installed packages (e.g. Prettier)
 b) Use 'pre-commit' script to run all tests
@@ -235,7 +235,7 @@ c) Configuration file used by ESLint
 d) File with this name doesn't exist
 
 ---
-30. Which coding style guides are most popular? (мультивыбор)
+30. Which coding style guides are most popular?
 
 `a) Airbnb`
 `b) Netflix`

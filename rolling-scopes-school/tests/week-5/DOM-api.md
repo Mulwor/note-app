@@ -315,4 +315,4 @@ c) th
 `d) tfoot`
 e) td
 `f) tbody`
-`g) thead`
+`g) thead`F

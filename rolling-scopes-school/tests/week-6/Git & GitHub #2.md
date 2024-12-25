@@ -148,12 +148,14 @@ c) git add .
 `d) git commit -m 'file.txt added'`
 
 ---
+Ответ точно не c
+
 18. What commands would you use to force an overwrite (принудительной перезаписи) of your local files with the master branch?
 
 a) git pull --all git reset --hard origin/master
 b) git pull -u origin master git reset --hard master
-`c) git pull origin master git reset --hard origin/myCurrentBranch`
-d) git fetch --all git reset --hard origin/master
+c) git pull origin master git reset --hard origin/myCurrentBranch
+`d) git fetch --all git reset --hard origin/master`
 e) None of these
 
 ---
