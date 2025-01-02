@@ -1,0 +1,1 @@
+Чтобы использовать в проекте TS необходимо написать - npx create-expo-app -t expo-template-blank-typescript
