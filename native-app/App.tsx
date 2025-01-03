@@ -1,20 +1,39 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, Image } from 'react-native';
+import { Input } from './shared/input/input';
+import { Colors, Gaps } from './shared/token';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <View style={styles.content}>
+        <Text>PurpleSchool</Text>
+        
+        <View style={styles.form}>
+          <Input placeholder='Email' />
+          <Input placeholder='Password' />
+          <Button title="Войти" />
+        </View>
+        
+        <Text>Восстановить пароль</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    justifyContent: "center",
     flex: 1,
-    backgroundColor: '#fff',
+    padding: 55,
+    backgroundColor: Colors.black,
+  },
+  content: {
     alignItems: 'center',
-    justifyContent: 'center',
+    gap: Gaps.g50,
+  },
+  form: {
+    alignItems: 'stretch',
+    gap: Gaps.g16,
   },
 });
