@@ -9,7 +9,7 @@ export const Colors = {
 
 export const Gaps = {
   g16: 16,
-  g50: 50
+  g50: 50,
 }
 
 export const Radius = {

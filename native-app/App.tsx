@@ -11,7 +11,7 @@ export default function App() {
         
         <View style={styles.form}>
           <Input placeholder='Email' />
-          <Input placeholder='Password' />
+          <Input isPassword placeholder='Password' />
           <Button title="Войти" />
         </View>
         
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     gap: Gaps.g50,
   },
   form: {
+    width: 200,
     alignItems: 'stretch',
     gap: Gaps.g16,
   },
