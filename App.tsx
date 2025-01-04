@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View, Image } from 'react-native';
-import { Input } from './shared/input/input';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import { Input } from './shared/Input/input';
 import { Colors, Gaps } from './shared/token';
+import { Button } from './shared/Button/button';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
           <Image 
             style={styles.logo}
             source={require('./assets/icon.png')}
+            resizeMode='contain'
           />
           <Text style={{color: 'white'}}>PurpleSchool</Text>
         </View>
@@ -18,7 +20,9 @@ export default function App() {
         <View style={styles.form}>
           <Input placeholder='Email' />
           <Input isPassword placeholder='Password' />
-          <Button title="Войти" />
+          <Button 
+            text="Войти"
+          />
         </View>
         
         <Text style={{color: 'white'}}>Восстановить пароль</Text>
@@ -47,7 +51,7 @@ const styles = StyleSheet.create({
     height: 24,
   },
   form: {
-    width: 200,
+    width: 300,
     alignItems: 'stretch',
     gap: Gaps.g16,
   },
