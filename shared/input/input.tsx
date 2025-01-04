@@ -1,3 +1,4 @@
+import React from "react";
 import { Pressable, StyleSheet, TextInput, TextInputProps, View } from "react-native";
 import { Colors, Radius } from "../token";
 import { useState } from "react";
