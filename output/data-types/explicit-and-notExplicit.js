@@ -1,33 +1,3 @@
-// ? Перечислите типы данных в js
-let string = "Иван";
-let number= 25;
-let bigInt = 1234567890123456789012345678901234567890n;
-let boolean = true;
-
-let undef;
-console.log(undef); // undefined
-
-let emptyValue = null;
-
-let id = Symbol("id");
-
-let user = { name: "Иван", age: 30 };
-
-// ! ===================================================================================================
-
-// ? Определить тип данных можно через typeOf
-console.log(typeof 0)                               // * number
-console.log(typeof true)                            // * boolean
-console.log(typeof 'Javascript')                    // * string
-console.log(typeof undefined)                       // * undefined
-console.log(typeof Math)                            // * object
-console.log(typeof Symbol('JS'))                    // * symbol
-console.log(typeof null)                            // * object
-console.log(typeof function() {})                   // * function
-console.log(typeof NaN)                             // * number
-console.log(typeof typeof 100)                      // * string
-
-// ! ===================================================================================================
 // ? Неявное преобразование типов
 console.log("5" + 2);                               // * "52"
 console.log(5 + "2");                               // * "52"

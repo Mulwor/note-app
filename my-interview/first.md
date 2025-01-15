@@ -116,12 +116,14 @@ async function process2(action1: action, action2: action, action3: action): Prom
 <details>
 <summary>Ответ</summary>
 
-Пока нет
+Выполните process2 так как метод promise.All - запускает promise параллельно и если у каждого из них будет по 10 секунд, то и выполнится он за 10 сек, так
+как они параллельный в то время как в process1 - этого нет в начале выполнится первый await, а потом через 10 секунд второй, а потом через еще 10 третий
 
 </details>
 
 ---
-7.  Разработчик отправил на ревью, но убрал resolve. Вопрос: когда начнется action3 и начнется ли он?
+
+7.  Разработчик отправил на ревью, но убрал resolve. Вопрос: когда начнется action2 и начнется ли он?
 
 ```
 const action2 = () => new Promise((res, rej) => {
@@ -140,7 +142,7 @@ async function process3(action1: action, action2: action, action3: action): Prom
 <details>
 <summary>Ответ</summary>
 
-Пока нет
+Промис никогда не завершится ни успехом, ни ошибкой, и будет находиться в состоянии pending бесконечно.
 
 </details>
 
@@ -162,6 +164,15 @@ async function process1(action1: action, action2: action, action3: action): Prom
 }
 ```
 
+<details>
+<summary>Ответ</summary>
+
+Нет, функция завершится с ошибкой. На этапе возврата массива [res1, res2, res3] произойдёт ошибка из-за отклонённого промиса res2.
+
+</details>
+
+---
+
 9.  Необходимо написать функцию для слипа (sleep), чтобы он выполнился через 300 миллисекнуж после process1
 
 ```
@@ -178,7 +189,7 @@ async function process1(action1: action, action2: action, action3: action): Prom
 }
 
 function sleep(time) {
- ...
+  ...
 }
 
 const superProcess = async () => {
@@ -188,7 +199,6 @@ const superProcess = async () => {
 }
 
 ```
-
 
 <details>
 <summary>Ответ</summary>
