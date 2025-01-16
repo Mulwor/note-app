@@ -68,9 +68,9 @@ func2(5, 6, 7, 8, 9)
 func(1, 2, 3, 4, 5)
 
 function func(a, b, ...rest) {
-  console.log(a) // выведет 1
-  console.log(b) // выведет 2
-  console.log(rest) // выведет [3, 4, 5]
+  console.log(a)      // выведет 1
+  console.log(b)      // выведет 2
+  console.log(rest)   // выведет [3, 4, 5]
 }
 
 let s1 = [22, 33, 44]

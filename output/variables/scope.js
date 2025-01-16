@@ -1,207 +1,201 @@
-// Todo 
-function easePlusSecond() {
-  return b;
+// ! ===========================================================================================
+function f1() {
+  return a;
 }
-easePlusSecond();
-const b = 1;
-easePlusSecond();
+f1();                         // ? Бросит ошибку: ReferenceError
+const a = 1;
+f1();                         // ? 1
 
 
-// Todo 
-let easePlusThird = f();
-const easePlusFourth = 2;
-function f() {
-  return c;
-}
+// ! ===========================================================================================
+let b = 'Alex';
 
-
-// Todo 
-let easePlusFive = 'Alex';
-const easeFunction = () => {
+const f2 = () => {
   return () => {
     return () => {
       return () => {
-        console.log(easePlusFive);
+        console.log(b);
       };
     };
   };
 };
-easeFunction()()()();                    // ?
+
+f2()()()();                    // ?
 
 
-// Todo 
-function easeFunctionSecond() {
+// ! ===========================================================================================
+function f3() {
   const name = 'Alex';
+
   return () => {
     console.log(name);
   };
 }
+
 let name = 'Hanna';
-const easeF1 = easeFunctionSecond();
-easeF1();                                 // ?
+const copyF3 = f3();
+copyF3();                                 // ?
 
 
-// Todo 
-function easeFunctionThird() {
+// ! ===========================================================================================
+function f4() {
   let num1 = 1;
   let num2 = 2;
-  return function () {
+
+  return function() {
     return num1 + num2;
   };
 }
-let easeF2 = easeFunctionThird();
-console.log(easeF2());
-console.log(easeFunctionFouth()());
+let copyF4 = f4();
+console.log(copyF4());
+console.log(f4()());
 
 
-// Todo 
-function easeFunctionFive() {
+// ! ===========================================================================================
+function f5() {
   let num1 = 1;
-  return function () {
-    return num1 + easeValueFive;
+
+  return function() {
+    return num1 + numF5;
   };
 }
-let easeValueFive = 2;
-let easeF3 = easeFunctionFive();
-console.log(easeF3());
+let numF5 = 2;
+let copyF5 = f5();
+console.log(copyF5());
 
-
-// TODO => ! IIFE
-(function() {
-  console.log("Hi there!")
-})();
-
-// TODO
+// ! ===========================================================================================
 var result = (function () {
   var name = "Barry";
   return name;
 })();
+
 result;                                         // * "Barry" 
 
-// TODO
-let normalLevelFirst = 10;
-(function normalFunctionFirst() {
-  if (normalLevelFirst === 10) {
-    let normalLevelFirst = 11;
-    console.log(normalLevelFirst);
+
+// ! ===========================================================================================
+let c = 10;
+(function f6() {
+  if (c === 10) {
+    let c = 11;
+    console.log(c);
   }
-  console.log(normalLevelFirst);
+  console.log(c);
 })();
 
 
-
-// TODO
-function normalTest1() {
+// ! ===========================================================================================
+function f7() {
   let num = 1;
+
   return function () {
     console.log(num);
     num++;
   };
 }
-let normalValue1 = normalTest1();
-normalValue1();
-normalValue1();
-let normalValue2 = normalTest1();
-normalValue2();
-normalValue2();
+
+let copyF7 = f7();
+copyF7();
+copyF7();
+
+let copyF7_2 = f7();
+copyF7_2();
+copyF7_2();
 
 
-// TODO
-function normalTest2() {
+// ! ===========================================================================================
+// * Он не работает, так как все время вызывает одну и ту же функцию по нескольку раз
+function f8() {
   let num = 0;
+
   return function () {
     console.log(num);
     num++;
   };
-}
-normalTest2()();
-normalTest2()();
-normalTest2()();
+};
+
+f8()();
+f8()();
+f8()();
 
 
-// TODO
-function normalTest3() {
+// ! ===========================================================================================
+function f9() {
   let num = 0;
+
   return function () {
     console.log(num);
     num++;
   };
 }
-let normalValue3 = normalTest3;
-normalValue3()();
-normalValue3()();
-normalValue3()();
+let copyF9 = f9;
+copyF9()();
+copyF9()();
+copyF9()();
 
 
-
-// TODO
-var specialHard = 5;
-function specialHardf1() {
-  if (specialHard) {
-    console.log(a);
-    var specialHard = 10;
+// ! ===========================================================================================
+var d = 5;
+function f10() {
+  if (d) {
+    console.log(d);
+    var d = 10;
   }
 }
-specialHardf1();
+f10();
 
 
-// TODO
-function specialHardf2() {
-    let counter = 0;
-    return function () {
-      return function () {
-        console.log(counter);
-        counter++;
-      };
-    };
-}
-  
-let hard = specialHardf2();
-let hardValueOne = hard();
-let hardValueSecond = hard();
-hardValueOne();
-hardValueSecond();
-hardValueOne();
-hardValueSecond();
-  
+// ! ===========================================================================================
+function f11() {
+  let counter = 0;
 
-// TODO
-let specialValueThree = 1;
-function specialHardf3() {
   return function () {
-    console.log(specialValueThree);
-    specialValueThree++;
+    return function () {
+      console.log(counter);
+      counter++;
+    };
   };
 }
-let hardValueThird = specialHardf3();
-hardValueThird();
-hardValueThird();
-let hardValueFouth = specialHardf3();
-hardValueFouth();
-hardValueFouth();
+  
+let copyF11 = f11();
+
+let hardCopyF11 = copyF11();
+let valueCopyF11 = copyF11();
+
+hardCopyF11();
+valueCopyF11();
+hardCopyF11();
+valueCopyF11();
+  
+
+// ! ===========================================================================================
+let e = 1;
+
+function f12() {
+  return function () {
+    console.log(e);
+    e++;
+  };
+}
+
+let copyF12 = f12();
+copyF12();
+copyF12();
+let valueCopyF12 = f12();
+valueCopyF12();
+valueCopyF12();
 
 
-// TODO
-function createCounter() {
-  let count = 0
-
-  const increment = () => count++
-  const decrement = () => count--
+// ! ===========================================================================================
+// ? Возвращает значение count по значению, а не по ссылке.
+function f13() {
+  let count = 0;
+  const increment = () => count++;
+  const decrement = () => count--;
+ 
   return { count, increment, decrement }
 }
-const result = createCounter()
-result.increment()
-result.increment()
-console.log(result.count)
 
-
-// TODO
-const createId = () => {
-  let id = 0
-  return () => id++
-}
-
-const getId = createId()
-console.log(getId())
-console.log(getId())
-console.log(getId())
+const result = f13();
+result.increment();
+result.increment();
+console.log(result.count);

@@ -1,41 +1,41 @@
-// TODO => Пример №1 => Замыкание
-let secondExample = 1;
-function secondFunction() {
-  console.log(secondExample);
+// ! ===========================================================================================
+let first = 1;
+function f1() {
+  console.log(first);
 }
-secondFunction();                           // * 1
+f1();                               // * 1
 
 
-// TODO => Пример №2 => Всплытие function и его назначение
-function thirdFunction() {
-  console.log(thirdExample);
+// ! ===========================================================================================
+function f2() {
+  console.log(second);
 }
-let thirdExample = 1;
-thirdFunction();                            // * 1
-  
+let second = 1;
+f2();                               // * 1
 
-// TODO => Пример №3 
-let fourthExample = 'Alex';
-function fourthFunction() {
-  console.log(`Hello ${fourthExample}`);
+
+// ! ===========================================================================================
+let third = 'Alex';
+function f3() {
+  console.log(`Hello ${third}`);
 }
-fourthExample = 'Hanna';
-fourthFunction();                           // * "Hello Hanna"
+third = 'Hanna';
+f3();                               // * "Hello Hanna"
 
 
-// TODO => Пример №4 с объектом const
-const fivethExample = {
+// ! ===========================================================================================
+const fourth = {
   name: 'Вася',
 };
-fivethExample.name = 'Петя';
-console.log(fivethExample);                 // * "Петя"
+fourth.name = 'Петя';
+console.log(fourth);                 // * "Петя"
 
 
-// TODO => Пример №5 => Необъявленная переменная и глобальная область видимости
-var sixthValue = 1;
-function sixthFuntion() {
-  sixthValue = 2;                           // * Сначала присваивается значение 1, а затем 2
+// ! ===========================================================================================
+var five = 1;
+function f4() {
+  five = 2;                          // * Сначала присваивается значение 1, а затем 2
 }
-sixthFuntion();
-console.log(sixthValue);                    // * 2
+f4();
+console.log(five);                   // * 2
 
