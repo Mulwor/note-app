@@ -59,6 +59,7 @@ function f5() {
     return num1 + numF5;
   };
 }
+
 let numF5 = 2;
 let copyF5 = f5();
 console.log(copyF5());
