@@ -1,3 +1,156 @@
+// ! https://www.youtube.com/watch?v=GlQDFYg33Bw&feature=youtu.be
+
+// ========= Задача 7 - написать class EventEmitter
+class EventEmitter {
+  constructor() {
+    this.events = {};
+  }
+
+  subscribe(event, cb) {
+    if (this.events[event]) {
+      this.events[event].push(cb);
+      return this;
+    }
+
+    this.events[event] = [cb];
+
+    return { release: () => this.events[event].pop() };
+  }
+
+  emit(event, ...args) {
+    this.events[event]?.forEach((cb) => cb(...args));
+  }
+}
+
+
+// Задача 8 - Найти ошибки в коде
+type SomeDTO = { id: number };
+
+export default function App() {
+  const [list, setList] = useState<SomeDTO[]>([{ id: 1 }, { id: 2 }]);
+
+  const handleReverseClick = () => {
+    setList((old) => old.reverse());
+  };
+
+  return (
+    <div className="App">
+      <h1>I have a bug, click on any item first and then reverse list</h1>
+      <ul>
+        {list.map((item) => {
+          <Item key={index} item={item} />;
+        })}
+      </ul>
+
+      <button onClick={handleReverseClick}>Click to reverse</button>
+    </div>
+  );
+}
+
+
+// ! =======================================================================================
+// ! =======================================================================================
+// ! =======================================================================================
+
+// ========================================== Задача 1
+// Нужно реализовать банкомат с функционалом пополнения и выдачи
+
+class ATM {
+  vault = {
+    5000: 0,
+    2000: 0,
+    1000: 0,
+    500: 0, 
+    100: 0,
+    50: 0
+  }
+  
+  deposit(bills) {
+    // реализуй метод
+  }
+  
+  whithdrow(amount) {
+    // реализуй метод
+  }
+  
+  // возвращает массив купюр который доступен на прием/выдачу
+  get accept() {
+    // реализуй геттер
+  }
+  
+  // возвращает сколько всего денег во внутреннем хранилище
+  get total() {
+    // реализуй геттер
+  }
+  
+  // возвращает касету с деньгами в виде объекта при инкассации
+  get collect() {
+    // реализуй геттер
+  }
+}
+
+const atm = new ATM();
+atm.accept; // [ 50, 100, 500, 1000, 2000, 5000 ]
+atm.whithdrow(3500); // Error: Не могу выдать нужную сумму, недостаточно средств
+atm.deposit([]); // Error: Положите деньги в купюроприемник
+atm.deposit([5000, 1000, 5000, 500, 100, 50, 50]); // Внесено 11700
+atm.deposit([500, 10, 5]); // Внесено 500, Заберите нераспознанные купюры [10, 5]
+atm.whithdrow(3500); // Error: Не могу выдать нужную сумму, недостаточно купюр
+atm.whithdrow(2100); // [1000, 500, 500, 100]
+atm.whithdrow(0); // Error: Укажите корректную сумму
+atm.total; //10100
+atm.collect; // { '50': 2, '100': 0, '500': 0, '1000': 0, '2000': 0, '5000': 2 }
+
+
+// ! =======================================================================================
+// ! =======================================================================================
+// ! =======================================================================================
+
+
+/** 
+Написать таймер который увеличивается каждую секунду
+При размонтировании должны отправляться метрики, с текущим значением currentDate
+
+Начальный код:
+
+    export const Counter = () => {
+        const [currentDate, setCurrentDate] = useState(() => new Date().toISOString());
+
+        return <h1>{currentDate}</h1>;
+    };
+
+*/
+
+export const Counter = () => {
+  const [currentDate, setCurrentDate] = useState(() => new Date().toISOString());
+  const dateRef = useRef(currentDate);
+
+  useEffect(() => {
+    let interval = setInterval(() => {
+      const curDate = new Date().toISOString();
+      setCurrentDate(curDate);
+      dateRef.current = curDate;
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      logMetric(dateRef.current);
+    };
+  }, []);
+
+  return <h1>{currentDate}</h1>;
+};
+
+// ! =======================================================================================
+// ! =======================================================================================
+// ! =======================================================================================
+
+
 /**
  Реализуйте функцию deepEqual на JavaScript, которая принимает два параметра и проверяет, являются ли они "глубоко" равными.
 
@@ -13,8 +166,7 @@
 export const deepEqual = (val1, val2) => {};
 
 export const recursive = (object, property) => {
-  object[property] = object;
-  return object;
+  // Answer
 };
 
 export const testData = [
@@ -88,21 +240,6 @@ export const testData = [
 ];
 
 
-// ! ========================================================================================
-
-// Написать функцию, которая принимает массив чисел и
-// возвращает массив, содержащий только те числа, которые встречаются в исходном массиве только один раз.
-// Например, для массива [1, 1, 2, 3, 3, 4, 5, 6, 7, 7, 5, 6] результат должен быть [2, 4].
-
-export const TEST_ARRAY = [1, 1, 2, 3, 3, 4, 5, 6, 7, 7, 5, 6];
-
-export const nonrep = (testArr) => {};
-
-nonrep(TEST_ARRAY);
-
-
-// ! ========================================================================================
-
 /**
  * 1. Необходимо реализовать компонент счетчика. При единичном клике на кнопку add значение counter должно увеличиваться на единицу, при клике на кнопку sub - уменьшаться на единицу.
  * 2. При зажатии кнопок (когда жмем и не отпускаем), значение должно изменяться автоматически (1 раз в 1 секунду). После того, как кнопка отпущена, изменение значения останавливается.
@@ -128,29 +265,3 @@ export const Test = ({}) => {
     </div>
   );
 };
-
-
-// ! ========================================================================================
-
-// Необходимо объяснить что делает данная функция и сделать рефакторинг кода
-
-export const attributesLookup = (matchingAttributes, filters) =>
-  matchingAttributes.map((item) => {
-    const resultChecked =
-      filters?.reduce((acc, curr) => {
-        if (curr.code === item.code) {
-          acc = { ...item, value: curr.value };
-        }
-        return acc;
-      }, {}) ?? {};
-
-    if (Object.keys(resultChecked)?.length === 0) {
-      return item;
-    } else {
-      return resultChecked;
-    }
-  });
-
-
-// Новую функцию пишем ниже
-export const attributesLookup_Refactor = (matchingAttributes, filters) => {};
