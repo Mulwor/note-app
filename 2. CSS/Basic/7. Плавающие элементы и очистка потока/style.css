@@ -1,0 +1,55 @@
+.wrapper,
+.wrapper2,
+.item {
+  padding: 20px;
+  color: white;
+}
+
+.wrapper {
+  background-color: grey;
+}
+
+.wrapper:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.wrapper2 {
+  background-color: green;
+}
+
+.item {
+  float: left;
+  width: 150px;
+}
+
+.item1 {
+  background-color: crimson;
+}
+
+.item2 {
+  background-color: cyan;
+}
+
+.item3 {
+  background-color: blueviolet;
+}
+
+p.rside {
+	border: 1px dotted black;
+	float: right;
+	width: 10em;
+	padding: 0.25em;
+	margin: 1em 1em 1em;
+}
+p.lside {
+	border: 1px dotted black;
+	float: left;
+	width: 10em;
+	padding: 0.25em;
+	margin: 0 1em 1em;
+}
+div {
+	width: 50%;
+}
