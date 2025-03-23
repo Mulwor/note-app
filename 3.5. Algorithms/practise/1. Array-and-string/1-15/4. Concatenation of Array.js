@@ -1,12 +1,10 @@
 // ! 1929. Concatenation of Array
-// ! Link: https://leetcode.com/problems/concatenation-of-array/
+// * Link: https://leetcode.com/problems/concatenation-of-array/
 
 // ? Given an integer array nums of length n, you want to create an array ans of
 // ? length 2n where ans[i] == nums[i] and ans[i + n] == nums[i] for 0 <= i < n (0-indexed).
 // ? Specifically, ans is the concatenation of two nums arrays. Return the array ans.
 
-// * Уровень сложности: O(n) - линейный, чем больше входных данных (s), тем 
-// * больше времени потребуется для выполнения алгоритма
 var getConcatenation = function(numbers) {
   return numbers.concat(numbers)
 };
@@ -15,7 +13,6 @@ var getConcatenation = function(nums) {
   return [...nums, ...nums]
 };
 
-// * Самый сложный и менее оптимальный по времени.
 var getConcatenation = function(nums) {
   let result = [];
 

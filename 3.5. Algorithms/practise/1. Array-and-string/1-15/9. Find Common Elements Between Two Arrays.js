@@ -1,16 +1,15 @@
 // ! 2956. Find Common Elements Between Two Arrays
-// ! Link: https://leetcode.com/problems/find-common-elements-between-two-arrays/
+// * Link: https://leetcode.com/problems/find-common-elements-between-two-arrays/
 
 // ? You are given two integer arrays nums1 and nums2 of sizes n and m, 
 // ? respectively. Calculate the following values:
-
 // ? answer1 : the number of indices i such that nums1[i] exists in nums2.
 // ? answer2 : the number of indices i such that nums2[i] exists in nums1.
 // ? Return [answer1,answer2].
 
-// Input: nums1 = [2,3,2], nums2 = [1,2]
-// Output: [2,1]
+// ? Input: nums1 = [2,3,2], nums2 = [1,2] ====> Output: [2,1]
 
+// ! Первое решение
 var findIntersectionValues = function(nums1, nums2) {
   let count1 = 0; 
   let count2 = 0; 
@@ -31,6 +30,8 @@ var findIntersectionValues = function(nums1, nums2) {
   return [count1, count2];
 };
 
+
+// ! Второе решение
 var findIntersectionValues = function(nums1, nums2) {
   let length1 = nums1.filter((num) => nums2.includes(num)).length
   let length2 = nums2.filter((num) => nums1.includes(num)).length
@@ -38,7 +39,8 @@ var findIntersectionValues = function(nums1, nums2) {
   return [length1, length2]
 };
 
-
+ 
+// ! Третье решение (оптимальней для больших массивов)
 var findIntersectionValues = function(nums1, nums2) {
   let set1 = new Set(nums1);
   let set2 = new Set(nums2);

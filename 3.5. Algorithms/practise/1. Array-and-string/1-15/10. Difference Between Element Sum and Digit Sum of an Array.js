@@ -8,7 +8,7 @@
 
 // ? Note that the absolute difference between two integers x and y is defined as |x - y|.
 
-
+// ! Первое решение
 var differenceOfSum = function(nums) {
   let elementSum = 0;
   let digitSum = 0;
@@ -25,7 +25,15 @@ var differenceOfSum = function(nums) {
   return elementSum - digitSum
 };
 
+// ! Первое с половиной решение
+var differenceOfSum = function(nums) {
+  let firstValue = nums.reduce((accum, next) => accum + next, 0);
+  let secondValue = nums.join("").split("").map((str) => parseInt(str, 10)).reduce((accum, next) => accum + next, 0)
 
+  return firstValue - secondValue  
+};
+
+// ! Второе решение
 var differenceOfSum = function(nums) {
   let elementSum = 0;
   let digitSum = 0;
@@ -42,6 +50,7 @@ var differenceOfSum = function(nums) {
   return elementSum - digitSum
 };
 
+// ! Третье решение
 var differenceOfSum = function(nums) {
   const getElementsSum = (elements) => elements.reduce((partialSum, num) => partialSum + num, 0);
   const getDigitSum = (digits) => digits.reduce((acc, num) => {

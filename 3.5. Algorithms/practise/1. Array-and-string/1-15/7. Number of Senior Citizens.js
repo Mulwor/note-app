@@ -18,7 +18,6 @@
 //    22 - место на борту
 // ]
 
-
 var countSeniors = function(details) {
   let result = 0;             // ? O(1)
 
