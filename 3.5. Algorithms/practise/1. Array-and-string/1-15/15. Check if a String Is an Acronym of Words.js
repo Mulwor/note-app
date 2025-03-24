@@ -1,5 +1,5 @@
 // ! 2828. Check if a String Is an Acronym of Words
-// ? https://leetcode.com/problems/check-if-a-string-is-an-acronym-of-words/description/
+// * https://leetcode.com/problems/check-if-a-string-is-an-acronym-of-words/description/
 
 // * Есть аккроним начинающаяся на abc необходимо проверить содержит ли первый
 // * элемент данный символ. 1 символ - 1 слово
@@ -25,7 +25,7 @@ var isAcronym = function(words, s) {
   let concatStr = "";
 
   for (let i = 0; i < words.length; i++) {
-    concatStr+=words[i][0];
+    concatStr += words[i][0];
   }
 
   return concatStr === s;

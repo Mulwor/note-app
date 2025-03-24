@@ -1,5 +1,5 @@
 // ! 2824. Count Pairs Whose Sum is Less than Target
-// ! Link: https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
+// * Link: https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
 
 // ? Given a 0-indexed integer array nums of length n and an integer target, return 
 // ? the number of pairs (i, j) where 0 <= i < j < n and nums[i] + nums[j] < target.

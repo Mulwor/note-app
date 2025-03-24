@@ -1,14 +1,13 @@
 // ! 3110. Score of a String
-// ! https://leetcode.com/problems/score-of-a-string/description/
+// * Link: https://leetcode.com/problems/score-of-a-string/description/
 
-// * You are given a string s. The score of a string is defined as the sum of 
-// * the absolute difference between the ASCII values of adjacent characters.
-// * Return the score of s.
+// ? You are given a string s. The score of a string is defined as the sum of 
+// ? the absolute difference between the ASCII values of adjacent characters.
+// ? Return the score of s.
 
-// ? Input: s = "hello";
-// ? Output: 13;
+// ? Input: s = "hello"; ===>  Output: 13;
+// ? Runtime: 62ms, memory: 50.13 MB
 
-// ? Runtine: 62ms, memory: 50.13 MB
 var scoreOfString = function(s) {
   let result = 0;
 

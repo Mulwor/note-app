@@ -1,11 +1,11 @@
 // ! 1550. Three Consecutive Odds
 // * https://leetcode.com/problems/three-consecutive-odds/description/?envType=daily-question&envId=2024-07-01
 
-// * Given an integer array arr, return true if there are three consecutive odd 
-// * numbers in the array. Otherwise, return false.
+// ? Given an integer array arr, return true if there are three consecutive odd 
+// ? numbers in the array. Otherwise, return false.
 
-// * arr = [2,6,4,1] ===> 1 ===> false
-// * arr = [1,2,34,3,4,5,7,23,12] ===> 5, 7, 23 ===> true
+// ? arr = [2,6,4,1] ===> 1 ===> false
+// ? arr = [1,2,34,3,4,5,7,23,12] ===> 5, 7, 23 ===> true
 
 
 var threeConsecutiveOdds = function(arr) {

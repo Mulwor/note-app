@@ -1,6 +1,9 @@
-// ? You are given two strings word1 and word2. Merge the strings by adding letters in alternating 
-// ? order, starting with word1. If a string is longer than the other, append the additional letters 
-// ? onto the end of the merged string. Return the merged string.
+// ! 1768. Merge-strings-alternately
+// * https://leetcode.com/problems/merge-strings-alternately/description/
+
+// ? You are given two strings word1 and word2. Merge the strings by adding letters 
+// ? in alternating order, starting with word1. If a string is longer than the other, 
+// ? append the additional letters onto the end of the merged string. Return the merged string.
 
 // ? First-example: Input: word1 = "abc", word2 = "pqr" ===> "apbqcr"
 // ? Second-example: Input: word1 = "ab", word2 = "pqrs" ===> "apbqrs"

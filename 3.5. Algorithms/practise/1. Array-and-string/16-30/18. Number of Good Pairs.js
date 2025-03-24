@@ -1,8 +1,8 @@
 // ! 1512. Number of good pairs
-// ! Link: https://leetcode.com/problems/number-of-good-pairs/
+// * Link: https://leetcode.com/problems/number-of-good-pairs/
 
-// * Given an array of integers nums, return the number of good pairs.
-// * A pair (i, j) is called good if nums[i] == nums[j] and i < j
+// ? Given an array of integers nums, return the number of good pairs.
+// ? A pair (i, j) is called good if nums[i] == nums[j] and i < j
 
 var numIdenticalPairs = function(nums) {
   let value = 0     // O(1)
@@ -22,8 +22,10 @@ var numIdenticalPairs = function(nums) {
 // ? работает следующим образом. Срабатывает первый цикл, а затем идет второй цикл
 // ? до конца и снова возвращает в начало и добавляет элемент
 // * Вот пример: 
-// * 1 (срабатывает первый цикл) 1, 2, 3 (срабатывает второй цикл), затем вернулся в начало
-// * 2 (срабатывает первый цикл) 1, 2, 3 (срабатывает второй цикл), затем вернулся в начало
+// * 1 (срабатывает первый цикл) 1, 2, 3 (срабатывает второй цикл), затем вернулся 
+// * в начало
+// * 2 (срабатывает первый цикл) 1, 2, 3 (срабатывает второй цикл), затем вернулся 
+// * в начало
 // * 3 (срабатывает первый цикл) 1, 2, 3 (срабатывает второй цикл), цикл закончился
 
 // * Затем идет сравнения внутри цикла: 
