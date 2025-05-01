@@ -1,6 +1,6 @@
 // import './assets/main.css'
 
 import { createApp } from 'vue'
-import HelloWorld from './Lessons_01/HelloWorld.vue'
+import App from './App.vue'
 
-createApp(HelloWorld).mount('#app')
+createApp(App).mount('#app')
