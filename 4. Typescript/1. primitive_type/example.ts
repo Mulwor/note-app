@@ -1,6 +1,10 @@
-let age: number = 10;
-let firstName: string = 'Ali';
-let isMentor: boolean = true;
+let value: number = 10;
+let value1: string = 'Ali';
+let value2: boolean = true;
+let value3: undefined = undefined;
+let value4: null = null;
+let value5: symbol = Symbol("id");
+let value6: bigint = 123456789012345678901234567890n;
 
 // ! ======================================================================
 
@@ -23,11 +27,3 @@ myName = 'John'
 meaningOfLife = 42
 isLoading = true
 album = 5150
-
-
-// ! ======================================================================
-const sum = (a: number, b: string) => {
-  return a + b
-}
-sum(2, 2)
-sum(2, '2');
