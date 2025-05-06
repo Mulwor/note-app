@@ -1,0 +1,27 @@
+body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.example {
+  border: 2px solid black;
+  width: 200px;
+  height: 200px;
+  background-color: aqua;
+
+  transition-duration: 500ms, 2s;
+  transition-property: transform, background-color;
+  transition-delay: 0, 10s;
+  transition-timing-function: linear;
+
+  transition: all 1s ease 0.5s;
+}
+
+.example:hover {
+  background-color: red;
+  transform: scale(1.2);
+}
