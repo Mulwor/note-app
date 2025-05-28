@@ -9,8 +9,6 @@ function commonFunction() {
 }
 commonFunction()
 
-
-
 // * Функция генератор
 function* generate() {
   console.log("first step")
