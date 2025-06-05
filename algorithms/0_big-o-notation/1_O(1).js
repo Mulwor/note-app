@@ -35,9 +35,36 @@ getFirstElement([1, 2, 3, 4, 5]);
 function isEven(number) { 
   return number % 2 === 0 
 }
+
 isEven(10);
+
+
+// !=============================== Пример №6 ================================
+
+const obj = {};
+obj['key'] = 123;
+const value = obj['key'];
+
+// !=============================== Пример №7 ================================
+
+const set = new Set();
+
+set.add(10);
+set.has(10);
 
 // !=========================== Дополнительная информация ====================
 // ? Также данную сложность имеют следующие методы в javascript:
 // ? 1. Array.prototype.pop()
 // ? 2. Array.prototype.push() 
+
+// ? Math.abs(x)
+// ? Math.floor(x)
+// ? Math.ceil(x)
+// ? Math.round(x)
+// ? Math.sqrt(x)
+// ? Math.pow(x, y)
+// ? Math.max(a, b, c...)
+// ? Math.min(a, b, c...)
+// ? Math.random()
+// ? Math.sign(x)
+
