@@ -1,3 +1,5 @@
+// ! https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/description/?envType=study-plan-v2&envId=leetcode-75
+
 // ? There are n kids with candies. You are given an integer array candies, where each candies[i] represents
 // ? the number of candies the ith kid has, and an integer extraCandies, denoting the number of extra candies
 // ? that you have. 
@@ -17,9 +19,11 @@
 // ? - Kid 4, they will have 1 + 3 = 4 candies, which is not the greatest among the kids.
 // ? - Kid 5, they will have 3 + 3 = 6 candies, which is the greatest among the kids.
 
+// ! ==================================== Первый способ ==========================================
+
 var kidsWithCandies = function(candies, extraCandies) {
-  let maxValue = Math.max(...candies)         // ? 5
   let result = []; 
+  let maxValue = Math.max(...candies);
  
   for (let i = 0; i < candies.length; i++) {
     let sum = candies[i] + extraCandies;      
