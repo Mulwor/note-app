@@ -1,19 +1,20 @@
 1. Node.js core modules may have following API types
 
-a) Synchronous API
-b) Callback API
+`a) Synchronous API`
+`b) Callback API`
 c) RESTful API
-d) Promises API
+`d) Promises API`
 e) None of them
 f) All of them
 
 ---
 
-2. Which Node.js server-side HTTP response methods may set request header?
+2. Which Node.js server-side HTTP response methods may set request header? - С помощью каких
+методов можно установить в node-js заголовок запроса?
 
-a) setHeader
+`a) setHeader`
 b) write
-c) writeHead
+`c) writeHead`
 d) getHeader
 e) end
 
@@ -24,7 +25,7 @@ e) end
 a) SpiderMonkey
 b) JavaScriptCore
 c) Chakra
-d) V8
+`d) V8`
 e) Node
 f) Node.js Nitro
 
@@ -32,30 +33,30 @@ f) Node.js Nitro
 
 4. Select all REPL special commands
 
-a) .break
-b) .load
-c) .save
+`a) .break`
+`b) .load`
+`c) .save`
 d) .continue
 e) .loop
-f) .exit
+`f) .exit`
 
 ---
 
 5. What can block Event Loop?
 
-a) JSON.parse and JSON.stringify operations
-b) synchronous APIs
+`a) JSON.parse and JSON.stringify operations`
+`b) synchronous APIs`
 
 ---
 
 6. Node.js streams that implement Readable API examples are
 
-a) Server's HTTP requests
+`a) Server's HTTP requests`
 b) Server's HTTP responses
 c) Client's HTTP requests
-d) Client's HTTP responses
+`d) Client's HTTP responses`
 e) process.stdout
-f) process.stdin
+`f) process.stdin`
 g) process.stderr
 
 ---
