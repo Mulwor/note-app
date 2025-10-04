@@ -82,20 +82,5 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 <summary>Урок 14 - Обработка post-запроса на стороне сервера</summary>
 
 Продолжить просмотр попозже
-
 </details>
 
----
-
-<details>
-<summary></summary>
-
-</details>
-
-
-<details>
-<summary></summary>
-
-</details>
-
-</details>
