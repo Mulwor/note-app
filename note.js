@@ -7,14 +7,14 @@
 5. Монолитная и микросервисная (DDD) архитектура
 6. JS (ES6-ES2023): Модули, debounce/throttle, генераторы, FP-паттерны (immutability,HOF).
 7. SSR/hydration basics.
-8. Routing/Data: TanStack Router/Query/Table - loaders, optimistic updates, pagination, virtualization.
+8. Routing/Data: TanStack Router/Query/Table - loaders, optimistic updates
 9. monorepo (workspaces)
 
 Работа с 2D и 3D графикой:
 
-1. Опыт работы с библиотеками WebGL: three.js/babylon/pixi.js/etc (любая из этих);
+Опыт работы с библиотеками WebGL: three.js/babylon/pixi.js/etc (любая из этих);
 
----
+--- Devops ----
 
 1. Docker
 
@@ -35,11 +35,10 @@
 
 --- Backend ----
 
-Опыт работы с Node.js, Nest.js и Prisma в этой же вакансии будет преимущестом знание Java и Spring Boot.
-Express = Node.js = Nest.js = TypeORM = Microservices, DDD = Swagger
-Опыт работы с backend, ci/cd, Docker.
-Опыт работы с REST API, WebSocket, базами данных (PostgreSQL, MongoDB)
-Опыт работы с БД: PostgreSQL, MySql, MongoDB. Redis.
-Глубокое знание серверной разработки: Bun (или Node.js с готовностью быстро освоить Bun)
-Опыт работы с PostgreSQL 16.8 (оптимизация запросов, проектирование схем).
-Опыт работы с системами кэширования и очередями (Redis)
+- Опыт работы с Node.js, Nest.js и Prisma;
+- Express = Node.js = Nest.js = TypeORM = Microservices, DDD = Swagger;
+- Опыт работы с backend, ci/cd, Docker.;
+- Опыт работы с REST API, WebSocket, базами данных (PostgreSQL, MongoDB)
+- Опыт работы с БД: PostgreSQL, MySql, MongoDB. Redis.;
+- Глубокое знание серверной разработки: Bun (или Node.js с готовностью быстро освоить Bun);
+- Опыт работы с PostgreSQL 16.8 (оптимизация запросов, проектирование схем). Опыт работы с системами кэширования и очередями (Redis);
