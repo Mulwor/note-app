@@ -212,3 +212,13 @@ myPromise(1000).then((res) => console.log("in Promise 3"))
 setTimeout(() => console.log("in setTimeout4"), 1000)
 myPromise(5000).then((res) => console.log("in Promise "))
 // * [in setTimeout2, in Promise 1, in Promise 3, in setTimeout1, in setTimeout4, in Promise 2, in setTimeout3, in Promise"]
+
+
+// Check
+console.log(1);
+setTimeout(() => console.log(2));
+Promise.resolve().then(() => console.log(3));
+Promise.resolve().then(() => setTimeout(() => console.log(4)));
+Promise.resolve(console.log(5)).then(() => console.log(6));
+setTimeout(() => console.log(7));
+console.log(8);

@@ -1,3 +1,15 @@
+Планы на изучения
+
+Frontend: 
+
+1. WebSocket (web workers, webRTC, socket.IO, streaming basics)
+
+2. Микрофронтент c webpack 5 ===> Module Federation ( host/remote, версии, shared deps, изоляция, деплой)
+
+3. JS (ES6-ES2023): Модули, debounce/throttle, генераторы, FP-паттерны (immutability, HOF).
+
+---
+
 1. Как с помощью нативного js сделать выполнение кода при клике на кнопку?
 3. Фазы жизненного цикла события.
 4. Что такое event target и event current target? 

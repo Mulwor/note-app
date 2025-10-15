@@ -1,0 +1,7 @@
+- Опыт работы с Node.js, Nest.js и Prisma;
+- Express = Node.js = Nest.js = TypeORM = Microservices, DDD = Swagger;
+- Опыт работы с backend, ci/cd, Docker.;
+- Опыт работы с REST API, WebSocket, базами данных (PostgreSQL, MongoDB)
+- Опыт работы с БД: PostgreSQL, MySql, MongoDB. Redis.;
+- Глубокое знание серверной разработки: Bun (или Node.js с готовностью быстро освоить Bun);
+- Опыт работы с PostgreSQL 16.8 (оптимизация запросов, проектирование схем). Опыт работы с системами кэширования и очередями (Redis);
