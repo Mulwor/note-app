@@ -1,6 +1,6 @@
 Тестирование
 
-1. Jest
+1. Jest;
 2. Babel
 3. WebSocket (web workers ??) … WebSocket/socket.io, WebRTC, socket.IO, streaming basics
 4. Микрофронтент (Module Federation (((host/remote, версии, shared deps, изоляция, деплой).)))
