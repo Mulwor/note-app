@@ -348,8 +348,13 @@ function camelToSnake(text) {
 </details>
 
 <details>
-<summary>Добавить описание</summary>
+<summary>Написать декоратор для функции, который ограничивает число вызовов</summary>
 
+- callLimit(fn, limit, callback), принимает следующие аргументы:
+- fn - функция, которую декодируем;
+- limit - максимально число вызывов
+- callback - вызывается, когда совершен последний вызов. Опционально
+У вызываемой функции должен быть метод для перезагрузки счетчика в начальном положении
 
 ```js
 function callLimit(fn, limit, callback) {
@@ -376,9 +381,56 @@ function callLimit(fn, limit, callback) {
 </details>
 
 
+<details>
+<summary>Необходимо написать функцию compose</summary>
+
+```js
+const square = (x) => x * x;
+const times2 = (x) => x * 2;
+const sum = (a, b) => a + b;
+
+console.log(compose(square, times2(2) === square(times(2))))
+console.log(compose(square, times2, num)(3, 4) === square(times(sum(3, 4))))
+```
+
+</details>
+
+<details>
+<summary>Необходимо написать функцию auth() и tryAuth()</summary>
+
+Функция `asyncAuth(callback)` принимает callback, в который может быть передана ошибка (первым аргументом) и данные с бекенда (вторым аргументом). 
+`asyncAuth((error, data) => {})`
+
+Вам нужно реализовать функцию `auth()`, которая вызывает `asyncAuth()`, но возвращает Promise
+
+```js
+function auth() {
+  // asyncAuth((error, data) => {})`
+}
+// auth().then(data => ).catch(err => )
+// await auth()
+```
+
+Функция tryAuth() использует auth() и в случае ошибки, совершает N дополнительных попыток. В случае, если все попытки провалились - вернуть последнюю ошибку
+
+```js
+async function tryAuth(n){
+  try {
+
+  } catch (err) {
+    n -= 1;
+    if (n === -1) err;
+    return tryAuth(n) 
+  }
+}
+
+```
+
+</details>
 
 
 --- 
 Источники: 
 1. [Даниил Лаптев](https://www.youtube.com/watch?v=CblVMItA3fM)
 2. [itrostic](https://www.youtube.com/watch?v=jNgOQjznh-E)
+3. [Misha - frontend dev](https://www.youtube.com/watch?v=0rZeskdTQRs)
