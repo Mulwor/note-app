@@ -5,5 +5,5 @@
 
 Ресурсы:
 
-[Даниил Лаптев](https://www.youtube.com/@the.real.daniil.23)
+[Даниил Лаптев](https://www.youtube.com/watch?v=CblVMItA3fM)
 [itrostic](https://www.youtube.com/watch?v=jNgOQjznh-E)
