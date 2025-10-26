@@ -63,7 +63,7 @@ console.log(d);
 </details>
 
 <details>
-<summary>Необходимо сверху вниз пройтись и рассказать максимально подробно объяснить, что происходит в каждой строчке кода, как она исполняется и куда она передается в управления, какие строчку может не попадать</summary>
+<summary>Необходимо пройтись по коду, рассказать максимально подробно объяснить, что происходит в каждой строчке кода</summary>
 
 ```js
 Promise.resolve(1)
@@ -102,8 +102,9 @@ console.log(strjoin('.'));
 </details>
 
 <details>
-<summary>Вам задана строка, состоящая из латинских букв, пробелов и знаков преминания. Строка называется панграммой, если она содержит каждую из 26 латинских букв хотя бы раз. Определите является ли строка панграммой
-</summary>
+<summary>Панаграмма</summary>
+
+Вам задана строка, состоящая из латинских букв, пробелов и знаков преминания. Строка называется панграммой, если она содержит каждую из 26 латинских букв хотя бы раз. Определите является ли строка панграммой
 
 ```js
 const LETTERS = [
@@ -122,11 +123,64 @@ function isPangram(text) {
 console.log(isPangram('A pangram or holoalphabetic sentence is a sentence using every letter of a gived alphabet at least once'))
 console.log(isPangram('Waltz, bad nymph, for quick jigs vex'))
 ```
+
+<details>
+<summary>Ответ</summary>
+
+```js
+function isPangram(text) {
+  const letters = new Set();
+  for (const c of text.toUpperCase()) {
+    if (c >= 'A' && c <= 'Z') {
+      letters.add(c);
+      if (letters.size === 26) return true;
+    }
+  }
+  return false;
+}
+```
+
+</details>
+</details>
+
+<details>
+<summary>Реализовать функцию разделения слов</summary>
+
+Необходимо написать функцию, которая разделит каждую строку в массиве `words` по строке `separator`. Необходимо вернуть массив получившихся после разделения строк,
+ исключая пустые строки
+ 
+
+```js
+const splitWordsBySeparator = (words, separator) => {
+
+  const res = []
+
+  words.forEach((word) => {
+    const splitted = word.split(separator).filter(Boolean);
+    res.push(...splitted);
+
+  })
+
+  return res
+};
+```
+
+</details>
+
+<details>
+<summary>Написать функцию sleep для создании задержки</summary>
+
+function sleep(time = 100) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, time);
+  })
+}
+
 </details>
 
 
 <details>
-<summary>Необходимо реализовать функцию carry</summary>
+<summary>Реализовать функцию carry (каррирование)</summary>
 
 ```js
 function sum(a,b,c) {
@@ -142,14 +196,37 @@ curry(sum)(1, 2)(3);
 curry(sum)(1)(2)(3);
 ```
 
+<details>
+<summary>Ответ</summary>
+
+```js
+function curry(fn) {
+  const arity = fn.length;
+
+  function curried(...args) {
+    if (args.length >= arity) {
+      return fn(...args);
+    } else {
+      return function (...newArgs) {
+        return curried(...args, ...newArgs);
+      };
+    }
+  }
+
+  return curried;
+}
+```
+
+</details>
+
+</details>
 </details>
 
 <details>
-<summary>Необходимо сложить все промисы</summary>
+<summary>Сложить все промисы</summary>
 
 
 ```js
-
 function sumPromises(...promises) {
   // TODO  
 }
@@ -174,8 +251,9 @@ function sumPromises(...promises) {
 </details>
 </details>
 <details>
-<summary>Дана асинхронная функция fn и время t в миллисекундах, нужно вернуть новую версию этой функции, выполнение которой ограничено заданным временем.
-</summary>
+
+<summary>Написать функцию timeLimited которая реджектит по истечению времени</summary>
+Дана асинхронная функция fn и время t в миллисекундах, нужно вернуть новую версию этой функции, выполнение которой ограничено заданным временем.
 
 Функция fn принимает аргументы, переданные в эту новую функцию.
   
@@ -206,6 +284,24 @@ const timeLimited = function (fn, t) {
     // Возвращаем результат того, кто быстрее завершится
     return Promise.race([fnPromise, timeoutPromise]);
   };
+};
+```
+
+```js
+const timeLimited = function (fn, t) {
+  return new Promise((res, rej) => {
+    const timeout = setTimeout(() => {
+      rej('Time limit exceeded')
+    }, t)
+
+    fn().then((value) => {
+      clearTimeout(timeout)
+      res(value)
+    }).catch(() => {
+      clearTimeout(timeout)
+      rej('rejected')
+    })
+  })
 };
 ```
 
@@ -259,11 +355,36 @@ console.log(array2.groupBy(Math.round));
 // }
 ```
 
+<details>
+<summary>Ответ</summary>
+
+```js
+Array.prototype.groupBy = function (fn) {
+  const result = {};
+
+  for (let item of this) {
+    const key = fn(item);
+    if (!result[key]) {
+      result[key] = [];
+    }
+    result[key].push(item);
+  }
+  return result;
+};
+
+const array1 = [{id: 1}, {id: 1}, {id: 2}];
+
+const fn = (item) => item.id
+```
+
+</details>
+
 </details>
 
 <details>
-<summary>Даны два отсортированных списка с интервалами присутствия пользователей в онлайне в течение дня. Начало интервала строго меньше конца. Нужно вычислить интервалы, когда оба пользователя были в онлайне.</summary>
+<summary>Вычислить интервалы пользователей в двух отсортированных списка</summary>
 
+Даны два отсортированных списка с интервалами присутствия пользователей в онлайне в течение дня. Начало интервала строго меньше конца. Нужно вычислить интервалы, когда оба пользователя были в онлайне.
 
 ```js
 intersection(
@@ -281,6 +402,67 @@ function intersection(user1, user2) {
 }
 ```
 
+
+<details>
+<summary>Ответ</summary>
+
+```js
+function intersection(user1, user2) {
+  const result = [];
+  let i = 0, j = 0;
+
+  while (i < user1.length && j < user2.length) {
+    const [start1, end1] = user1[i];
+    const [start2, end2] = user2[j];
+
+    const start = Math.max(start1, start2);
+    const end = Math.min(end1, end2);
+
+    if (start < end) {
+      result.push([start, end]);
+    }
+
+    if (end1 < end2) {
+      i++;
+    } else {
+      j++;
+    }
+  }
+
+  return result;
+}
+```
+
+```js
+function intersectionTimeline(user1, user2) {
+  const timeline1 = new Array(25).fill(0);
+  const timeline2 = new Array(25).fill(0);
+
+  for (const [start, end] of user1) {
+    for (let h = start; h < end; h++) timeline1[h] = 1;
+  }
+
+  for (const [start, end] of user2) {
+    for (let h = start; h < end; h++) timeline2[h] = 1;
+  }
+
+  const result = [];
+  let start = null;
+
+  for (let h = 0; h <= 24; h++) {
+    if (timeline1[h] && timeline2[h]) {
+      if (start === null) start = h;
+    } else if (start !== null) {
+      result.push([start, h]);
+      start = null;
+    }
+  }
+
+  return result;
+}
+```
+
+</details>
 </details>
 
 <details>
@@ -305,7 +487,7 @@ checkResult(url2, solution)
 </details>
 
 <details>
-<summary>Необходимо написать функцию, которая на вход принимает url, асинхронно ходит по этому URL - get запросом и возвращает json.</summary>
+<summary>Написать функцию, которая принимает url, асинхронно ходит по этому URL - get запросом и возвращает json.</summary>
 
 Для получение данных использовать fetch. Можно использовать только Promise API. Если во время запроса произошла ошибка, то пробовать запросить еще 5 раз. Если в итоге информацию получить не удалось, вернуть ошибку "Заданный url недоступен
 
@@ -319,10 +501,64 @@ get(url)
 .catch(err => console.error(err))
 ```
 
+<details>
+<summary>Ответы</summary>
+
+```js
+function get(url) {
+  let count = 0
+
+  return new Promise((resolve, reject) => {
+    function getRetried() {
+      fetch(url).then((res) => {
+        resolve(res.json())
+      }).catch(() => {
+        count += 1
+        if (count >= 5) {
+          reject('Заданный URL недоступен')
+        } else {
+          getRetried()
+        }
+      })
+    }
+    getRetried()
+  })
+}
+
+// async function get(url) {
+//   let count = 0;
+//
+//   while (count < 5) {
+//     try {
+//       const res = await fetch(url);
+//       const data = await res.json();
+//       return data;
+//     } catch {
+//       count++;
+//       if (count >= 5) {
+//         throw new Error('Заданный URL недоступен');
+//       }
+//     }
+//   }
+// }
+
+// (async ()=>{
+//   try {
+//     const data = await get('url')
+//     console.log(data)
+//   } catch(e){
+//     console.log(e);
+//   }
+// })()
+
+// get('url').then(console.log).catch(console.log)
+```
+</details>
+
 </details>
 
 <details>
-<summary>Добавить описание</summary>
+<summary>Необходимо написать функцию camelToSnake</summary>
 
 ```js
 function camelToSnake(text) {
