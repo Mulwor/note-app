@@ -184,7 +184,9 @@ console.log(strjoin('.'));               // ?
 function strJoin(separator, ...words) {
   return words.join(separator)
 }
+```
 
+```js
 // 2. C помощью ЕС5
 function strJoin(separator) {
   let result = '';
@@ -228,7 +230,6 @@ splitWordsBySeparator(["test..case", "split.", ".start"], '.')          // ["tes
 ### Ответы
 
 ```js
-// Решение №1. 
 var splitWordsBySeparator = function(words, separator) {
   let result = []
 
@@ -246,7 +247,6 @@ var splitWordsBySeparator = function(words, separator) {
 ```
 
 ```js
-// Решение №2
 var splitWordsBySeparator = function (words, separator) {
   let join = words.join(separator);         //  $easy$$$problem$
   let split = join.split(separator)         // [ '', 'easy', '', '', 'problem', '' ]
@@ -397,6 +397,7 @@ function isPangram(text) {
 
 Оборачиваемая функция может принимать аргументы и возвращать результат
 
+```js
 function runOnce(fn) {
   // your code
 }
@@ -406,9 +407,10 @@ const logHello = () => {
 }
 
 const logHelloOnce = runOnce(logHello);
-console.clear()
-logHelloOnce()
-logHelloOnce()
+console.clear();
+logHelloOnce();
+logHelloOnce();
+```
 </details>
 
 <details>
