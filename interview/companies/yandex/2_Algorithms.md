@@ -2933,3 +2933,896 @@ function parallelLimit(urls, limit, callback) {
 }
 ```
 </details>
+
+<details>
+<summary>Глубокое сравнение двух объектов</summary>
+
+Дано два объекта:
+
+```js
+{ a: 1, b: [2, 3], c: { d: 4 } }
+{ a: 1, b: [2, 3], c: { d: 5 } }
+```
+
+Нужно их сравнить и вывести результат: // false
+
+Ответы: 
+```js
+// 1 
+const deepEqual = (a, b) => {
+  if (
+    typeof a !== 'object' ||
+    a === undefined ||
+    a === null ||
+    typeof b !== 'object' ||
+    b === undefined ||
+    b === null
+  ) {
+    return a === b
+  }
+  
+  const aKeys = Object.keys(a)
+  const bKeys = Object.keys(b)
+
+  if (aKeys.length !== bKeys.length) {
+    return false
+  }
+
+  for (let i = 0; i < aKeys.length; i++) {
+    const aKey = aKeys[i]
+    const bKey = bKeys[i]
+    if (aKey !== bKey) {
+      return false
+    }
+
+    const isEqual = deepEqual(a[aKey], b[bKey])
+    if (!isEqual) {
+      return false
+    }
+  }
+  return true
+}
+```
+
+
+```js
+// 2. 
+function deepEqual(a, b) {
+    if (a === b) return true;
+    if (typeof a !== 'object' || typeof b !== 'object' || a === null || b === null) return false;
+    
+    const keysA = Object.keys(a), keysB = Object.keys(b);
+    if (keysA.length !== keysB.length) return false;
+    
+    return keysA.every(key => keysB.includes(key) && deepEqual(a[key], b[key]));
+}
+```
+
+
+```js
+// 3.
+const objectDeepEqual = (obj1, obj2) => {
+   if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+      return false;
+   }
+
+   let result = true;
+
+   const compare = (a, b) => {
+      if (!result) {
+         return;
+      }
+      
+      for (key in a) {
+         const valueA = a[key];
+         const valueB = b[key];
+
+         if (valueA === undefined && valueB !== valueA || valueA === null && valueB !== valueA) {
+            result = false;
+            break;
+         }
+
+         if (typeof valueA === 'string' | typeof valueA === 'number') {
+            if (valueA !== valueB) {
+               result = false;
+            }
+            break;
+         }
+
+         if (Array.isArray(valueA)) {
+            for (let i = 0; i < valueA.length; i++) {
+               if (typeof valueA[i] === 'string' | typeof valueA[i] === 'number') {
+                  if (valueA[i] !== valueB[i]) {
+                     result = false;
+                  }
+                  break;
+               }
+
+               if (valueA[i] === undefined && valueB[i] !== valueA[i] || valueA[i] === null && valueB[i] !== valueA[i]) {
+                  result = false;
+                  break;
+               }
+
+               compare(valueA[i], valueB[i]);
+            }
+         }
+
+         console.log(valueA, valueB)
+         compare(valueA, valueB);
+         
+      }
+   }
+
+   compare(obj1, obj2);
+
+   return result;
+}
+
+const obj1 = {
+   a: 'sdfsdf',
+   b: [2, 3],
+   c: { d: 4 },
+   d: {
+      k: {
+         f: [{ k: 1 }],
+         g: { kk: [1,2,3]}
+      },
+      g: 23
+   },
+   check: null, // or `undefined`
+}
+
+const obj2 = {
+   a: 'sdfsdf',
+   b: [2, 3],
+   c: { d: 4 },
+   d: {
+      k: {
+         f: [{ k : 1}],
+         g: { kk: [1,2,3]}
+      },
+      g: 23
+   },
+   check: null, // or `undefined`
+}
+
+
+console.log(objectDeepEqual(obj1, obj2));
+```
+</details>
+
+<details>
+<summary>Сжатие объектов</summary>
+
+Дан объект: 
+```js
+{
+  a: 1,
+  b: {
+    c: 2,
+    d: {
+      e: 3,
+      f: 4,
+    },
+  },
+  g: 5,
+}
+```
+Нужно его сжать, чтобы получилось так:
+```js
+{
+  'a': 1,
+  'b.c': 2,
+  'b.d.e': 3,
+  'b.d.f': 4,
+  'g': 5
+}
+```
+
+Ответы: 
+```js
+const res = {}
+
+const flatten = (obj, prevKey) => {
+    Object.entries(obj).forEach(e => {
+      if (typeof e[1] !== 'object') {
+        res[prevKey + e[0]] = e[1]
+      } else {
+        flatten(e[1], prevKey + e[0] + '.')
+      }
+    })
+}
+  
+flatten(obj, '')
+ 
+return res
+```
+
+```js
+function expand(r, parentKey, value) {
+
+    for (const key in value) {
+        const curValue = value[key]
+        const newKey = `${parentKey}.${key}`
+
+        if (typeof curValue === 'object' && curValue !== null) {
+            expand(r, newKey, curValue)
+        } else {
+            r[newKey] = curValue
+        }
+    }
+
+}
+
+function expandedObject(obj) {
+    const result = {}
+
+    for (const key in obj) {
+        const val = obj[key]
+
+        if (typeof val === 'object') {
+            expand(result, key,val)
+        } else {
+            result[key] = val
+        }
+
+    }
+    return result
+}
+```
+
+```js
+function flattenObject(obj) {
+  const result = {};
+  const stack = Object.entries(obj).map(([key, val]) => ({ path: key, val }));
+
+  while (stack.length) {
+    const { path, val } = stack.pop();
+
+    if (val && typeof val === 'object' && !Array.isArray(val)) {
+      for (const [k, v] of Object.entries(val)) {
+        stack.push({ path: `${path}.${k}`, val: v });
+      }
+    } else {
+      result[path] = val;
+    }
+  }
+
+  return result;
+}
+```
+
+```js
+const flattenObject = (obj, parentKey) => {
+  let newObj = {}
+  for (const key in obj) {
+    const newKey = parentKey ? `${parentKey}.${key}` : key
+    if (obj[key] && typeof obj[key] === 'object') {
+      newObj = { ...newObj, ...flattenObject(obj[key], newKey) }
+    } else {
+      newObj[newKey] = obj[key]
+    }
+  }
+  return newObj
+}
+```
+</details>
+
+<details>
+<summary>Задача: полиморфизм Promise.race</summary>
+
+Нужно реализовать идентичный метод, не используя другие методы класса.
+
+Вот некоторый особенности, которые помогут тебе начать:
+  - метод принимает массив промисов;
+  - метод возвращает промис;
+  - метод ждет фуфила одного из переданных промисов;
+  - и сразу возвращает его результат.
+
+На примере с кодом будет понятнее, 
+
+ответы:
+
+```js
+
+const promiseRace = (promises) => {
+  if (promises.length === 0) {
+    return Promise.resolve()
+  }
+  
+  return new Promise((resolve, reject) => {
+    promises.forEach(promise => Promise.resolve(promive).then(resolve, reject))
+  })
+};
+```
+
+```js
+const promiseRace = (promises) => {
+  if (promises.length === 0) {
+    return Promise.resolve()
+  }
+  return new Promise((res, rej) => {
+    promises.forEach(promise => {
+        Promise.resolve(promise)
+          .then(res)
+          .catch(rej)
+    })
+  })
+};
+```
+</details>
+
+<details>
+<summary>Задача: hasPathSum - сумма пути (бинарное дерево)</summary>
+
+Дано бинарное дерево:
+
+```js       
+         12
+         |
+  — — — — — — — — — — —
+ |                |  
+ 7                3
+ |                |
+ |             — — — — —
+ |            |        |         
+ 9            8        10
+```
+
+Нужно выяснить есть ли в нем такой путь, где сумма значений от корня до листа равна двадцати трем: true
+
+Ответы: 
+```js
+const hasPathSum = (root, targetSum) => {
+    if (root?.value) {
+        if (root.value - targetSum == 0) {
+            return true
+        } else {
+            return hasPathSum(root.left, targetSum - root?.value) || hasPathSum(root.right, targetSum - root?.value)
+        }
+    } else {
+        return false
+    }
+}
+```
+
+```js
+const hasPathSum = (root, targetSum) => {
+	if (!root) return false
+
+	const stack = [[root, targetSum]]
+
+	while (stack.length) {
+		const [node, target] = stack.pop()
+
+		if (!node.left && !node.right && node.value === target) return true
+
+		if (node.left) {
+			stack.push([node.left, target - node.value])
+		}
+		if (node.right) {
+			stack.push([node.right, target - node.value])
+		}
+	}
+
+	return false
+}
+
+class TreeNode {
+	constructor(value) {
+		this.value = value
+		this.left = null
+		this.right = null
+	}
+}
+
+const treeOne = new TreeNode(12)
+treeOne.left = new TreeNode(7)
+treeOne.left.left = new TreeNode(9)
+treeOne.right = new TreeNode(3)
+treeOne.right.left = new TreeNode(8)
+treeOne.right.right = new TreeNode(10)
+
+const treeTwo = new TreeNode(5)
+treeTwo.left = new TreeNode(4)
+treeTwo.left.left = new TreeNode(11)
+treeTwo.left.left.left = new TreeNode(7)
+treeTwo.left.left.right = new TreeNode(2)
+treeTwo.right = new TreeNode(8)
+treeTwo.right.left = new TreeNode(13)
+treeTwo.right.right = new TreeNode(4)
+treeTwo.right.right.right = new TreeNode(1)
+
+const treeThree = new TreeNode(1)
+treeThree.left = new TreeNode(2)
+treeThree.right = new TreeNode(3)
+
+console.log(hasPathSum(treeOne, 23)) // true
+console.log(hasPathSum(treeTwo, 22)) // true
+console.log(hasPathSum(treeThree, 5)) // false
+console.log(hasPathSum(null, 5)) // false
+```
+
+</details>
+
+<details>
+<summary>Задача: дан объект, который необходимо почистить</summary>
+
+Дан объект:
+
+```js
+{
+  a: 0,
+  j: 1,
+  b: null,
+  c: undefined,
+  d: '',
+  e: false,
+  f: {},
+  g: [],
+  h: [2, 3, null, 4, '', false, true],
+  i: { j: 0, k: { l: [] } },
+  m: { n: { o: [] } },
+  p: { q: '', r: { s: [{ t: 5 }] } },
+  u: 'jsgrill',
+}
+```
+
+Нужно его почистить чтобы получилось так:
+
+```js
+{
+  a: 0,
+  j: 1,
+  e: false,
+  h: [2, 3, 4, false, true],
+  i: { j: 0 },
+  p: { r: { s: [{ t: 5 }] } },
+  u: 'jsgrill',
+}
+```
+
+Ответы: 
+```js
+function cleanObject(obj) {
+  if (Array.isArray(obj)) {
+    return obj.map(cleanObject).filter(checkValue);
+  } else if (typeof obj === 'object' && obj !== null) {
+    return Object.entries(obj).reduce((acc, [key, value]) => {
+      const cleanedValue = cleanObject(value);
+      
+      if (checkValue(cleanedValue)) {
+        acc[key] = cleanedValue;
+      }
+      
+      return acc;
+    }, {});
+  }
+  return obj;
+}
+
+const checkValue = value => value !== null 
+    && value !== '' 
+    && value !== undefined 
+    && !(Array.isArray(value) && !value.length) 
+    && !(typeof value === 'object' && !Array.isArray(value) && !Object.keys(value).length);
+```
+
+```js
+const clearify = (data) => {
+  if (data === null || data === undefined || data === "") return undefined;
+
+  if (Array.isArray(data)) {
+    const arr = data.map(clearify).filter((item) => item !== undefined);
+    return arr.length ? arr : undefined;
+  }
+
+  if (typeof data === "object") {
+    const obj = Object.fromEntries(
+      Object.entries(data)
+        .map(([k, v]) => [k, clearify(v)])
+        .filter(([_, v]) => v !== undefined),
+    );
+    return Object.keys(obj).length ? obj : undefined;
+  }
+
+  return data;
+};
+```
+
+```js
+ javascript
+const isEmpty = value =>
+    value === null ||
+    value === undefined ||
+    value === '';
+
+const isArray = v => Array.isArray(v)
+const isEmptyArray = v => isArray(v) && v.length === 0;
+const isObj = v => typeof v === 'object';
+const isEmptyObj = v => isObj(v) && Object.keys(v).length === 0;
+
+const isEmptyValue = (value) =>
+    isEmpty(value) ||
+    isEmptyArray(value) ||
+    isEmptyObj(value);
+
+
+const getCleanedValue = (value) => {
+    if (isEmpty(value)) {
+        return value;
+    } else if (isArray(value)) {
+        return cleanArray(value);
+    } else if (isObj(value)) {
+        return cleanObject(value);
+    }
+    return value;
+}
+
+const cleanArray = (value) => {
+    const result = value.reduce((acc, itemValue) => {
+        const clonedItemValue = getCleanedValue(itemValue);
+
+        if (!isEmptyValue(clonedItemValue)) {
+            acc.push(clonedItemValue);
+        }
+
+        return acc;
+    }, [])
+
+    return result
+};
+
+
+const cleanObject = (obj) => {
+    return Object.entries(obj).reduce((acc, [key, value]) => {
+        const clonedValue = getCleanedValue(value);
+
+        if (!isEmptyValue(clonedValue)) {
+            acc[key] = clonedValue;
+        }
+
+        return acc;
+    }, {})
+}
+```
+
+```js
+function isEmpty(obj) {
+	return (
+		obj === '' ||
+		obj === null ||
+		obj === undefined ||
+		(typeof obj === 'object' && Object.keys(obj).length === 0)
+	)
+}
+
+function isObject(obj) {
+	return Object.prototype.toString.call(obj) === '[object Object]'
+}
+
+const cleanObj = (obj) => {
+	const stack = [[obj, null, null]]
+
+	while (stack.length) {
+		const [value, key, parentObj] = stack.pop()
+
+		if (Array.isArray(value)) {
+			for (let i = value.length - 1; i >= 0; i--) {
+				if (isEmpty(value[i])) {
+					value.splice(i, 1)
+				} else {
+					stack.push([value[i], i, value])
+				}
+			}
+		} else if (isObject(value)) {
+			for (const k in value) {
+				if (isEmpty(value[k])) {
+					delete value[k]
+				} else {
+					stack.push([value[k], k, value])
+				}
+			}
+
+			if (isEmpty(value)) delete parentObj[key]
+		}
+	}
+
+	for (const key in obj) {
+		if (isEmpty(obj[key])) delete obj[key]
+	}
+
+	return obj
+}
+
+console.log(
+	cleanObj({
+		a: 0,
+		j: 1,
+		b: null,
+		c: undefined,
+		d: '',
+		e: false,
+		f: {},
+		g: [],
+		h: [2, 3, null, 4, '', false, true],
+		i: { j: 0, k: { l: [] } },
+		m: { n: { o: [] } },
+		p: { q: '', r: { s: [{ t: 5 }] } },
+		u: 'jsgrill'
+	})
+)
+
+// {
+//   a: 0,
+//   j: 1,
+//   e: false,
+//   h: [2, 3, 4, false, true],
+//   i: { j: 0 },
+//   p: { r: { s: [{ t: 5 }] } },
+//   u: 'jsgrill',
+// }
+```
+</details>
+
+<details>
+<summary>Задача: printStructure (принтер)</summary>
+
+Дана структура:
+```js
+{
+  name: 'jsgrill',
+  children: [
+    { name: 'mentour.js' },
+    { name: 'community.json' },
+    {
+      name: 'images',
+      children: [
+        { name: 'logo.png' },
+        {
+          name: 'codepen',
+          children: [
+            { name: 'background.svg' }, 
+            { name: 'tmbn.png' }
+          ],
+        },
+      ],
+    },
+    { name: 'channel.js' },
+  ],
+}
+```
+
+Нужно распечатать ее вот так:
+
+```js
+'jsgrill
+  channel.js
+  images
+    codepen
+      tmbn.png
+      background.svg
+    logo.png
+  community.json
+  mentour.js
+'
+```
+
+Ответы: 
+```js
+const printStructure = (input) => {
+  const printItem = (item, level = 0) => {
+    console.log(`${' '.repeat(2 * level)}${item.name}`);
+    
+    if (item.children?.length > 0) {
+      for (let i = item.children.length - 1; i >= 0; i--) {
+        printItem(item.children[i], level + 1);
+      }
+    }
+  };
+  
+  printItem(input);
+};
+```
+
+```js
+const printStructure = (input, indentSize = 2) => {
+  const stack = [{ node: input, level: 0 }];
+
+  while (stack.length) {
+    const { node, level } = stack.pop();
+
+    console.log(`${' '.repeat(indentSize * level)}${node.name}`);
+
+    const children = node.children ?? [];
+
+    for (const node of children) {
+      stack.push({ node, level: level + 1 });
+    }
+  }
+};
+```
+
+```js
+const printStructure = (input) => {
+    const getStructure = (input, initialPrefix = '', prefix = ' ') => {
+        let result = '';
+
+        const { name, children } = input;
+
+        result += `${initialPrefix}${name}\n`;
+
+        if (!!children) {
+
+            for (let i = children.length - 1; i >= 0; i--) {
+                result += getStructure(children[i], `${initialPrefix}${prefix}`, prefix);
+            }
+        }
+
+        return result;
+    };
+
+    return getStructure(input, '', ' ');
+}
+```
+
+```js
+const printStructure = (input) => {
+	let structure = ''
+	const stack = [[input, '']]
+
+	while (stack.length) {
+    const [obj, offset] = stack.pop()
+    structure += `${offset}${obj.name}\n`
+		if (obj.children) {
+			obj.children.forEach((child) => stack.push([child, offset + '  ']))
+		}
+	}
+
+	return structure
+}
+
+console.log(
+	printStructure({
+		name: 'jsgrill',
+		children: [
+			{ name: 'mentour.js' },
+			{ name: 'community.json' },
+			{
+				name: 'images',
+				children: [
+					{ name: 'logo.png' },
+					{
+						name: 'codepen',
+						children: [{ name: 'background.svg' }, { name: 'tmbn.png' }]
+					}
+				]
+			},
+			{ name: 'channel.js' }
+		]
+	})
+)
+
+/*
+'jsgrill
+  channel.js
+  images
+    codepen
+      tmbn.png
+      background.svg
+    logo.png
+  community.json
+  mentour.js
+'
+*/
+```
+</details>
+
+<details>
+<summary>Задача: generate(n)</summary>
+
+Пары - нужно написать функцию, которая генерирует все корректные комбинации для двух пар круглых скобок
+
+```js
+function generate(n) {
+    const result = [];
+    function backtrack(currentString, openCount, closeCount) {
+        if (currentString.length === n * 2) {
+            result.push(currentString);
+            return;
+        }
+        if (openCount < n) backtrack(currentString + '(', openCount + 1, closeCount);
+        if (closeCount < openCount) backtrack(currentString + ')', openCount, closeCount + 1);
+    }
+    backtrack('', 0, 0);
+    return result;
+}
+generate(2); // ['()()', '(())'] // truye
+```
+</details>
+
+<details>
+<summary>Скобки</summary>
+
+Дана строка: '[(js){}(grill)()]'
+
+Нужно проверить что на каждую открывающую скобку приходится закрывающая и скобочные группы не пересекаются: true
+
+```js
+function isBalanced(s) {
+    const stack = [];
+    const brackets = {
+        '(': ')',
+        '[': ']',
+        '{': '}'
+    };
+
+    for (let char of s) {
+        if (brackets[char]) {
+            stack.push(char);
+        } else if (Object.values(brackets).includes(char)) {
+            if (stack.length === 0 || brackets[stack.pop()] !== char) {
+                return false;
+            }
+        }
+    }
+
+    return stack.length === 0;
+}
+```
+
+```js
+// Сложность похуже
+const isBalanced = (string) => {
+    let filtered = string.replace(/[a-zA-Z]/g, '');
+    const bracketsPairs = ['()', '[]', '{}']
+    for (let i = 0; i < filtered.length; i++) {
+        bracketsPairs.forEach(element => {
+            filtered = filtered.replace(element, '')
+        });
+    }
+    return filtered.length === 0
+}
+```
+
+```js
+const isValid = (str) => {
+  const openBrackets = new Set(['(', '[', '{']);
+  const brackets = {
+     ')': '(',
+     ']': '[',
+     '}': '{',
+  };
+  const stack = [];
+  
+  for(const char of str) {
+      if(openBrackets.has(char)) {
+          stack.push(char);
+          continue;
+      }
+      
+      if(!(char in brackets)) {
+          continue;
+      }
+      
+      const lastBracket = stack.pop();
+          
+      if(brackets[char] !== lastBracket) {
+          return false;
+      }
+  }
+  
+  return stack.length === 0;
+}
+
+// Заводим стакс, сет и обьект со скобками.
+// Итерируемся по строке.
+// Если символ является открывающей скобкой, пушим в стак и пропускаем итерацию.
+// Если символ не закрывающая скобка, пропускаем итерацию.
+// Берем последнюю добавленую скобку из стака (последняя открывающая)
+// Берем скобку по текущему символу из обьекта закрывающих скобок. (Получаем открытую скобку)
+// Сравниваем если последний елемент стака является таким же как и символ взятая выше. (Открывающая скобка)
+// Если символы не равны, значит скобки перемешаны.
+// Если итерация завершена и стак пустой, значит все скобки имеют свою пару в нужном порядке.
+```
+</details>

@@ -1,0 +1,1 @@
+https://github.com/the-real-daniil/yandex-interview/blob/main/step-1-platofrm/tasks.md

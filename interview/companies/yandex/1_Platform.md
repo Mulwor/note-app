@@ -10,23 +10,15 @@
 <summary>Приведены 9 секций с кодом. Какой будет результат вызова каждого</summary>
 
 ```js
-// 1.
-console.log(typeof []);
-
-// 2.
-console.log(typeof null);
-
-// 3.
-console.log(1 + "2");
-
-// 4.
-console.log("4" - 2);
+console.log(typeof []);         // 1
+console.log(typeof null);       // 2
+console.log(1 + "2");           // 3.
+console.log("4" - 2);           // 4.
 
 // 5
 const first = () => console.log("Один");
 const second = () => console.log("Два");
 const third = () => console.log("Три");
-
 first();
 setTimeout(second, 0);
 third();
@@ -35,7 +27,6 @@ third();
 var a = 2;
 var b = a;
 b++
-
 console.log(a);
 console.log(b);
 
@@ -60,6 +51,69 @@ console.log(d);
   console.log(i)
 }
 ```
+
+### Ответ
+
+```js
+// 1. Здесь у нас пустой массив. В JavaScript массивы являются объектами, поэтому typeof вернёт "object".
+
+console.log(typeof []);
+
+// 2. Здесь тоже "object" — это историческая ошибка в JavaScript.
+console.log(typeof null);
+```
+
+```js
+// 3. При сложении, JS видит строку в одном из операдов и преобразует все остальные операнды тоже в строку: String(1) + String(2) => '12'
+
+console.log(1 + "2");  
+
+// 4. При вычитании JS - преобразует строку "4" в число, а затем вычитает: Number(4) - 2 ===> 2. И это происходит всегда, стоит отметить, что также приводит к числу - умножение, деление взятие от остатка, возведение в степень и т.д.
+console.log("4" - 2);
+```
+
+```js
+// 5. Сначала выполнятся все синхронные вызовы (first и third), а setTimeout даже с нулевой задержкой выполнится асинхронно после них.
+const first = () => console.log("Один");
+const second = () => console.log("Два");
+const third = () => console.log("Три");
+
+first();
+setTimeout(second, 0);
+third();
+```
+
+```js
+// 6. Так как примитивные типы передаются по значению в первой переменной сохраняется число 2, затем мы просто копируем и в него записывается число 2, и на следующей строке увеличивается b на единицу
+var a = 2;
+var b = a;
+b++
+console.log(a);    // 2 
+console.log(b);    // 3
+
+// 7. Массивы (как и объекты) передаются по ссылке, а не по значению. При присваивании d = c, переменная d получает ту же самую ссылку на массив в памяти. Теперь обе переменные работают с одним и тем же массивом.
+var c = [1, 2, 3]
+var d = c;
+d.push(4);
+console.log(c);     // [1, 2, 3, 4]
+console.log(d);     // [1, 2, 3, 4]
+```
+
+```js
+// 8. В JS есть такое понятие как временная мертвая зона которая появилась в ЕС6, что означает, что мы не можем вызвать переменную до его инициализации если мы вызовем его, то у нас будет ошибка. Но так как это появилась это позже варов, то с ними в начале будет undefined, а затем число
+{ 
+  console.log(i);   // undefined
+  var i = 10;
+  console.log(i)    // 10
+}
+
+// 9
+{
+  console.log(i);   // Reference Error
+  const i = 10;
+  console.log(i)    // 10
+}
+```
 </details>
 
 <details>
@@ -74,9 +128,36 @@ Promise.resolve(1)
   .then(x => Promise.resolve(x))
   .catch((err) => console.log(err))
   .then((x) => console.log(x))
-
 ```
 
+### Ответ
+
+1. `Promise.resolve(1)` — создаётся уже выполненный (fulfilled) промис со значением 1.
+→ состояние: fulfilled, значение 1.
+2. `.then((x) => x + 1)` — получает значение 1, возвращает новый промис, который выполнится со значением 2.
+→ состояние: fulfilled, значение 2.
+3. `.then((x) => { throw x })` — выбрасывает исключение, из-за чего возвращаемый промис переходит в состояние rejected с причиной 2.
+→ состояние: rejected, reason: 2.
+4. `.then(x => console.log(x))` — не выполнится, так как предыдущий промис был отклонён (rejected).
+5. `.catch(err => console.log(err))` — перехватывает ошибку, выводит 2.
+Так как console.log возвращает undefined, этот catch завершится успешно (fulfilled) со значением undefined.
+→ в консоли: 2
+→ состояние: fulfilled, значение undefined.
+6. `.then(x => Promise.resolve(x))` — вернёт промис, выполненный со значением undefined.
+→ состояние: fulfilled, значение undefined.
+7. `.catch((err) => console.log(err))` — не выполнится, так как ошибок нет.
+8. `.then(x => console.log(x))` — выведет undefined. → в консоли: undefined.
+
+```js
+Promise.resolve(1)                          // fulfilled: 1
+  .then(x => x + 1)                         // fulfilled: 2  
+  .then(x => { throw x })                   // rejected: 2
+  .then(x => console.log(x))                // ПРОПУСКАЕТСЯ (был reject)
+  .catch(err => console.log(err))           // Выведет: 2, fulfilled: undefined
+  .then(x => Promise.resolve(x))            // fulfilled: undefined
+  .catch(err => console.log(err))           // ПРОПУСКАЕТСЯ (был fulfilled)
+  .then(x => console.log(x))                // Выведет: undefined
+```
 
 </details>
 
@@ -90,16 +171,183 @@ function strjoin() {
 
 console.log(strjoin('.', 'a', 'b', 'c')); // 'a.b.c.
 console.log(strjoin('-', 'a', 'b', 'c', 'd', 'e', 'f')); // a-b-c-d-e-f
+console.log(strjoin('.'));               // ? 
 
-// Доп.вопрос, что вернет если мы добавим только разделитель
-console.log(strjoin('.'));
-
-// Напиши решение с помощью ЕС6, и до ЕС5;
-
-// Что такое arguments
+// Напиши решение с помощью ЕС6, и до ЕС5 и что такое arguments
 
 ```
+
+### Ответ
+
+```js
+// 1. Мы в начале возьмем, он будет в качестве первого аргумента, а затем используем rest, которые собирают все аргументы после separator в массив strings.
+function strJoin(separator, ...words) {
+  return words.join(separator)
+}
+
+// 2. C помощью ЕС5
+function strJoin(separator) {
+  let result = '';
+  
+  // Начинаем с 1, потому что arguments[0] - это separator
+  for (let i = 1; i < arguments.length; i++) {
+    result += arguments[i];
+    
+    // Добавляем разделитель после каждого элемента, кроме последнего
+    if (i < arguments.length - 1) {
+      result += separator;
+    }
+  }
+  
+  return result;
+}
+
+strJoin(".", "a", "b", "c")                     // 'a.b.c.
+strJoin("-", "a", "b", "c", "d", "e", "f");     // 'a-b-c-d-e-f'
+strJoin("")                                     // '' (пустая строка)
+```
 </details>
+
+<details>
+<summary>Реализовать функцию разделения слов</summary>
+
+Необходимо написать функцию, которая разделит каждую строку в массиве `words` по строке `separator`. Необходимо вернуть массив получившихся после разделения строк, исключая пустые строки
+ 
+[Задача с литкода](https://leetcode.com/problems/split-strings-by-separator/)
+
+```js
+const splitWordsBySeparator = (words, separator) => {
+  // code here
+};
+
+splitWordsBySeparator(["one.two.three", "four.five", "six"], '.')       // ["one", "two", "three", "four", "five", "six"]
+splitWordsBySeparator(["hello-world", "this-is", "great"], '-')         // ["hello", "world", "this", "is", "great"]
+splitWordsBySeparator(["test..case", "split.", ".start"], '.')          // ["test", "case", "split", "start"]
+```
+
+### Ответы
+
+```js
+// Решение №1. 
+var splitWordsBySeparator = function(words, separator) {
+  let result = []
+
+  for (let i = 0; i < words.length; i++) {
+    let split = words[i]
+      .split(separator)                     // (1) [ '', 'easy', '' ] (2) [ '', 'problem', '' ]
+      .filter(Boolean);                     // (1) ['easy'] (2) ['problem']
+      // .filter(value => value != '')
+    
+    result.push(...split)
+  }
+
+  return result
+};
+```
+
+```js
+// Решение №2
+var splitWordsBySeparator = function (words, separator) {
+  let join = words.join(separator);         //  $easy$$$problem$
+  let split = join.split(separator)         // [ '', 'easy', '', '', 'problem', '' ]
+
+  return split.filter(Boolean)
+};
+```
+
+</details>
+
+<details>
+<summary>Написать функцию sleep для создании задержки</summary>
+
+```js
+function sleep() {
+  // code here
+}
+```
+
+### Ответы
+```js
+function sleep(time = 100) {
+  return new Promise((resolve) => setTimeout(resolve, time))
+}
+
+console.log('Начало');
+await sleep(2000);
+console.log('Прошло 2 секунды');
+```
+</details>
+
+<details>
+<summary>* Необходимо сложить все promise</summary>
+
+```js
+function sumPromises(...promises) {
+  // TODO  
+}
+
+// Пример использования
+const promise1 = Promise.resolve(1);
+const promise2 = Promise.resolve(2);
+
+sumPromises(promise1, promise2).then(console.log); // 3
+```
+
+### Ответы
+
+Мы можем использовать метод промиса, который дожидается выполнения ВСЕХ promises, если успешно вернет массив, если нет, то вернет последний promise с ошибкой
+
+```js
+function sumPromises(...promises) {
+  return Promise.all(promises)
+    .then(results => results.reduce((sum, value) => sum + value, 0));
+}
+```
+
+</details>
+</details>
+
+
+<details>
+<summary>* Необходимо написать функцию camelToSnake</summary>
+
+Преобразуйте строку из camelCase в snake_case.
+
+```js
+function camelToSnake(text) {
+  // code here
+}
+
+camelToSnake("helloWorld")        // "hello_world"
+camelToSnake("getHTTPResponse")   // "get_http_response"
+camelToSnake("firstName")         // "first_name"
+camelToSnake("UserID")           // "user_id"
+```
+
+### Ответ
+
+```js
+function camelToSnake(text) {
+  let result = '';
+  
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    
+    // Проверяем, является ли символ заглавной буквой
+    if (char >= 'A' && char <= 'Z') {
+      // Добавляем подчеркивание, если это не первый символ
+      if (i !== 0) result += '_';
+      result += char.toLowerCase();
+    } else {
+      result += char;
+    }
+  }
+  
+  return result;
+}
+```
+</details>
+
 
 <details>
 <summary>Панаграмма</summary>
@@ -139,45 +387,29 @@ function isPangram(text) {
   return false;
 }
 ```
+</details>
+</details>
 
-</details>
-</details>
 
 <details>
-<summary>Реализовать функцию разделения слов</summary>
+<summary>Функция обертка - runOnce</summary>
+Реализовать функцию-обертку runOnce, которая принимает функцию и возвращает новую функцию. Новая функции может быть вызвана только 1 раз, все последующие вызовы возвращают undefined.
 
-Необходимо написать функцию, которая разделит каждую строку в массиве `words` по строке `separator`. Необходимо вернуть массив получившихся после разделения строк,
- исключая пустые строки
- 
+Оборачиваемая функция может принимать аргументы и возвращать результат
 
-```js
-const splitWordsBySeparator = (words, separator) => {
-
-  const res = []
-
-  words.forEach((word) => {
-    const splitted = word.split(separator).filter(Boolean);
-    res.push(...splitted);
-
-  })
-
-  return res
-};
-```
-
-</details>
-
-<details>
-<summary>Написать функцию sleep для создании задержки</summary>
-
-function sleep(time = 100) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, time);
-  })
+function runOnce(fn) {
+  // your code
 }
 
-</details>
+const logHello = () => {
+  console.log('hello!')
+}
 
+const logHelloOnce = runOnce(logHello);
+console.clear()
+logHelloOnce()
+logHelloOnce()
+</details>
 
 <details>
 <summary>Реализовать функцию carry (каррирование)</summary>
@@ -223,36 +455,8 @@ function curry(fn) {
 </details>
 
 <details>
-<summary>Сложить все промисы</summary>
 
-
-```js
-function sumPromises(...promises) {
-  // TODO  
-}
-
-// Пример использования
-const promise1 = Promise.resolve(1);
-const promise2 = Promise.resolve(2);
-
-sumPromises(promise1, promise2).then(console.log); // 3
-```
-
-<details>
-<summary>Ответ</summary>
-
-```js
-function sumPromises(...promises) {
-  return Promise.all(promises)
-    .then(results => results.reduce((sum, value) => sum + value, 0));
-}
-```
-
-</details>
-</details>
-<details>
-
-<summary>Написать функцию timeLimited которая реджектит по истечению времени</summary>
+<summary>* Написать функцию timeLimited которая реджектит по истечению времени</summary>
 Дана асинхронная функция fn и время t в миллисекундах, нужно вернуть новую версию этой функции, выполнение которой ограничено заданным временем.
 
 Функция fn принимает аргументы, переданные в эту новую функцию.
@@ -521,6 +725,7 @@ function get(url) {
         }
       })
     }
+
     getRetried()
   })
 }
@@ -557,34 +762,9 @@ function get(url) {
 
 </details>
 
-<details>
-<summary>Необходимо написать функцию camelToSnake</summary>
-
-```js
-function camelToSnake(text) {
-  let result = '';
-  
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i];
-    
-    // Проверяем, является ли символ заглавной буквой
-    if (char >= 'A' && char <= 'Z') {
-      // Добавляем подчеркивание, если это не первый символ
-      if (i !== 0) result += '_';
-      result += char.toLowerCase();
-    } else {
-      result += char;
-    }
-  }
-  
-  return result;
-}
-```
-
-</details>
 
 <details>
-<summary>Написать декоратор для функции, который ограничивает число вызовов</summary>
+<summary>* Написать декоратор для функции, который ограничивает число вызовов</summary>
 
 - callLimit(fn, limit, callback), принимает следующие аргументы:
 - fn - функция, которую декодируем;
