@@ -211,7 +211,7 @@ strJoin("")                                     // '' (пустая строка
 </details>
 
 <details>
-<summary>Реализовать функцию разделения слов</summary>
+<summary>Реализовать функцию разделения слов - splitWordsBySeparator</summary>
 
 Необходимо написать функцию, которая разделит каждую строку в массиве `words` по строке `separator`. Необходимо вернуть массив получившихся после разделения строк, исключая пустые строки
  
@@ -328,6 +328,30 @@ camelToSnake("UserID")           // "user_id"
 
 ```js
 function camelToSnake(text) {
+  const upperCase = [
+    "A", "B", "C", "D", "E", "F",
+    "G", "H", "J", "K", "L", "M",
+    "N", "O", "P", "T", "I", "D "
+  ]
+
+  let result = "";
+
+  for (let i = 0; i < text.length; i++) {
+
+    if (text[i] !== upperCase[i]) {
+      
+      result += "_" + text[i].toLowerCase()
+    } else {
+      result += text[i]
+    }
+  }
+
+  return result
+}
+```
+
+```js
+function camelToSnake(text) {
   let result = '';
   
   for (let i = 0; i < text.length; i++) {
@@ -354,16 +378,9 @@ function camelToSnake(text) {
 
 Вам задана строка, состоящая из латинских букв, пробелов и знаков преминания. Строка называется панграммой, если она содержит каждую из 26 латинских букв хотя бы раз. Определите является ли строка панграммой
 
-```js
-const LETTERS = [
-    "A", "B", "C", "D", "E",
-    "F", "G", "H", "I", "J",
-    "K", "L", "M", "N", "O", 
-    "P", "Q", "R", "S", "T",
-    "U", "V", "W", "X", "Y", 
-    "Z"
-]
+[Задача с литкода](https://leetcode.com/problems/check-if-the-sentence-is-pangram/)
 
+```js
 function isPangram(text) {
     // your code her
 }
