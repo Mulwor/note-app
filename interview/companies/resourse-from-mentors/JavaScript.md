@@ -1,0 +1,2105 @@
+### Адекватные (важно)
+
+<details>
+<summary>Оплата за проживание</summary>
+Необходимо написать функцию расчета стоимости проживания посетителя в отеле. Функция может принимать 2 аргумента:
+
+- количество ночей проживания в отеле (обязательный параметр);
+- дата заселения (необязательный параметр). Если значение не указано, то отсчет ведется от текущего дня;
+
+Стоимость проживания в будние дни (с понедельника по пятницу) стоит 1500 руб.
+Стоимость проживания в выходные дни (суббота, воскресенье) стоит 2200 руб.
+
+```js
+const prices = {
+  weekday: 1500,
+  holiday: 2200,
+};
+
+function bookingCalculate() {}
+
+console.log(bookingCalculate(7)); // 11900
+console.log(bookingCalculate(3, new Date("2023-11-10"))); // 5900
+```
+
+### Ответ
+
+```js
+const prices = {
+  weekday: 1500,
+  holiday: 2200,
+};
+
+const getPricy = (nights, date = new Date()) => {
+  let curDate = date;
+  let price = 0;
+
+  for (i = 0; i < nights; i++) {
+    const dayNum = curDate.getDay();
+
+    if (dayNum === 6 || dayNum === 0) {
+      price += prices.holiday;
+    } else {
+      price += prices.weekday;
+    }
+
+    curDate.setDate(curDate.getDate() + 1);
+  }
+
+  return price;
+};
+
+console.log(getPricy(7)); // 11900
+console.log(getPricy(3, new Date("2023-11-10"))); // 5900
+```
+</details>
+
+
+<details>
+<summary>Вернуть объект с ключами</summary>
+
+Вернуть объект с ключами type, а значение - объект вида {count: количество, weight: суммарный вес}
+
+```js
+const arr = [
+  { type: "banana", weight: 32 },
+  { type: "apple", weight: 24 },
+  { type: "kiwi", weight: 55 },
+  { type: "banana", weight: 44 },
+  { type: "orange", weight: 5 },
+];
+
+const groupByType = (arr) => {};
+
+console.log(groupByType(arr));
+```
+
+### Ответ
+
+```js
+const groupByType = (arr) => {
+  const result = {};
+
+  arr.forEach((item) => {
+    const { type, ...rest } = item;
+
+    if (result[type]) {
+      result[type].push(rest);
+    } else {
+      result[type] = [rest];
+    }
+  });
+
+  return result;
+};
+```
+</details>
+
+<details>
+<summary>Массив плоских данных</summary>
+
+Имеется исходный массив плоских данных
+
+Необходимо преобразовать его в структуру, где данные будут сгруппированы по одному из полей (кроме id). Внутри сформированной группы должен лежать объект, ключами в которого должно стать поле (к примеру id). Значением должен быть объект из исходного массива с
+соответствующем полем id, не включая само поле id
+
+```js
+const data = [
+  { id: 1, age: 20, name: "Иван", country: "Russia" },
+  { id: 2, age: 20, name: "Дмитрий", country: "USA" },
+  { id: 3, age: 20, name: "Алексей", country: "Russia" },
+  { id: 4, age: 20, name: "Александр", country: "USA" },
+  { id: 5, age: 20, name: "Иван", country: "Russia" },
+];
+
+const result = {
+  Russia: {
+    1: { age: 20, name: "Иван", country: "Russia" },
+    3: { age: 20, name: "Алексей", country: "Russia" },
+    5: { age: 20, name: "Иван", country: "Russia" },
+  },
+  USA: {
+    2: { age: 20, name: "Дмитрий", country: "USA" },
+    4: { age: 20, name: "Александр", country: "USA" },
+  },
+};
+
+const groupCountries = (data) => {};
+
+console.log(groupCountries(data));
+```
+
+### Ответ
+
+```js
+const groupCountries = (data) => {
+  const result = {};
+
+  data.forEach((item) => {
+    const { age, name, country, id } = item;
+    const itemWithoutId = { age, name, country };
+
+    if (result[country]) {
+      result[country][id] = itemWithoutId;
+    } else {
+      result[country] = { [id]: itemWithoutId };
+    }
+  });
+
+  return result;
+};
+```
+</details>
+
+<details>
+<summary>Написать класс EventEmmiter</summary>
+
+Написать класс EventEmmiter, аналог addeventlistener.
+
+- Метод метод on, который вызывается в именем события и функцией. 
+- Метод off, который вызывается также с названием события и функцией
+- Метод emit, который триггерит все функции
+
+```js
+class EventEmitter {}
+
+// Пример использования
+const myEventEmitter = new EventEmitter();
+
+const greetListener = (name) => {
+  console.log(`Hello, ${name}!`);
+};
+
+myEventEmitter.on("greet", greetListener);
+myEventEmitter.emit("greet", "Alice"); // Output: Hello, Alice!
+
+myEventEmitter.off("greet", greetListener);
+myEventEmitter.emit("greet", "Bob"); // No output
+```
+
+### Ответ
+
+Создаем поле класса, где будем хранить функции по каждому названию события - это будет объект, типа Record<string, Function[]>
+- В on, если по такому типа нет событий создается пустой массив и пушим в него функцию
+- В off делаем фильтр и удаляем найденную функцию
+- В emit проходим через forEach по функциям и вызываем их
+
+```js
+class EventEmitter {
+  events = {};
+
+  on(eventName, listener) {
+    if (!this.events[eventName]) {
+      this.events[eventName] = [];
+    }
+    this.events[eventName].push(listener);
+  }
+
+  off(eventName, listener) {
+    if (this.events[eventName]) {
+      this.events[eventName] = this.events[eventName].filter(
+        (eventListener) => eventListener !== listener
+      );
+    }
+  }
+
+  emit(eventName, ...args) {
+    if (this.events[eventName]) {
+      this.events[eventName].forEach((listener) => {
+        listener(...args);
+      });
+    }
+  }
+}
+
+// Пример использования
+const myEventEmitter = new EventEmitter();
+
+const greetListener = (name) => {
+  console.log(`Hello, ${name}!`);
+};
+
+myEventEmitter.on("greet", greetListener);
+myEventEmitter.emit("greet", "Alice"); // Output: Hello, Alice!
+
+myEventEmitter.off("greet", greetListener);
+myEventEmitter.emit("greet", "Bob"); // No output
+```
+</details>
+
+<details>
+<summary>Разделения на команды</summary>
+
+Есть массив игроков. Нужно разделить их на тех, к кого есть команда и нет. Определяем наличие команды по полю squad.
+
+```js
+const players = [
+  { id: 2, squad: 1 },
+  { id: 3, squad: 1 },
+  { id: 4, squad: null },
+  { id: 5, squad: 2 },
+  { id: 6, squad: 1 },
+  { id: 7, squad: 2 },
+];
+
+const groupPlayersBySquad = (players) => {};
+
+const [playersWithSquad, playersWithoutSquad] = groupPlayersBySquad(players);
+```
+
+### Ответ
+
+```js
+const groupPlayersBySquad = (players) => {
+  let playersWithSquad = [];
+  let playersWithoutSquad = [];
+
+  for (var i = 0; i < players.length; i++) {
+    if (players[i].squad === null) {
+      playersWithoutSquad.push(players[i]);
+    } else {
+      playersWithSquad.push(players[i]);
+    }
+  }
+
+  return [playersWithSquad, playersWithoutSquad];
+};
+
+const players = [
+  { id: 2, squad: 1 },
+  { id: 3, squad: 1 },
+  { id: 4, squad: null },
+  { id: 5, squad: 2 },
+  { id: 6, squad: 1 },
+  { id: 7, squad: 2 },
+];
+
+const [playersWithSquad, playersWithoutSquad] = groupPlayersBySquad(players);
+
+console.log({ playersWithSquad, playersWithoutSquad });
+```
+</details>
+
+### Алгоритмы
+
+<details>
+<summary>Объединить отсортированные массивы</summary>
+
+Объединить отсортированные массивы, чтобы из двух массивов получился один со всеми данными - отсортированными по возрастанию. По условию 2 массива и a и b - всегда отсортированны изначально по возрастанию
+
+```js
+const a = [1, 3, 5];
+const b = [2, 4, 6, 7];
+
+const sortArrays = (a, b) => {};
+
+console.log(sortArrays(a, b));
+```
+
+Ответ
+```js
+const a = [1, 3, 5, 10, 11, 12, 13, 14];
+const b = [2, 4, 6, 7];
+
+const sortArrays = (a, b) => {
+  let aIndex = 0;
+  let bIndex = 0;
+  const result = [];
+
+  while (aIndex < a.length && bIndex < b.length) {
+    if (a[aIndex] < b[bIndex]) {
+      result.push(a[aIndex]);
+      aIndex++;
+    } else {
+      result.push(b[bIndex]);
+      bIndex++;
+    }
+  }
+
+  while (aIndex < a.length) {
+    result.push(a[aIndex]);
+    aIndex++;
+  }
+
+  while (bIndex < b.length) {
+    result.push(b[bIndex]);
+    bIndex++;
+  }
+
+  return result;
+};
+
+console.log(sortArrays(a, b));
+```
+</details>
+
+
+<details>
+<summary>Найти индексы элементов, которые в сумме дают target</summary>
+
+```js
+function twoSum(nums, target) {}
+
+console.log(twoSum([2, 7, 11, 5, 9, 10, 15], 26)); // Output: [0, 1]
+console.log(twoSum([2, 7, 11, 15], 9)); // Output: [0, 1]
+console.log(twoSum([3, 2, 4], 6)); // Output: [1, 2]
+console.log(twoSum([3, 3], 6)); // Output: [0, 1]
+```
+
+```js
+// если мы уже встречали число, которое в сумме с текущим элементом дает target. Иначе добавим текущий элемент и его индекс в Map
+const twoSum = (nums, target) => {
+  const mapa = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    if (mapa.has(target - nums[i])) {
+      return [i, mapa.get(target - nums[i])];
+    } else {
+      mapa.set(nums[i], i);
+    }
+  }
+
+  return [];
+};
+
+console.log(twoSum([2, 7, 11, 5, 9, 10, 15], 26)); // Output: [6, 2]
+console.log(twoSum([2, 7, 11, 15], 9)); // Output: [0, 1]
+console.log(twoSum([3, 2, 4], 6)); // Output: [1, 2]
+console.log(twoSum([3, 3], 6)); // Output: [0, 1]
+```
+</details>
+
+<details>
+<summary>Реализовать функцию проверку на анаграммы</summary>
+
+```js
+function isAnagram(first, second) {}
+
+isAnagram("finder", "friend"); // true
+isAnagram("test", "sets"); // false
+isAnagram("abc", "aaa"); // false
+isAnagram("abb", "aab"); // false
+```
+
+```js
+const isAnagram = (str1, str2) => {
+  if (str1.length !== str2.length) return false;
+
+  const str1Map = {};
+
+  for (let i = 0; i < str1.length; i++) {
+    const cur = str1[i].toLowerCase();
+    str1Map[cur] ? (str1Map[cur] += 1) : (str1Map[cur] = 1);
+  }
+
+  for (let i = 0; i < str1.length; i++) {
+    const cur = str2[i].toLowerCase();
+
+    if (str1Map[cur]) {
+      str1Map[cur] -= 1;
+    } else {
+      return false;
+    }
+  }
+
+  return Object.values(str1Map).every((v) => v === 0);
+};
+
+console.log(isAnagram("offer", "refFo"), isAnagram("rat", "car"), "isAnagram");
+
+//================= 2nd VARIANT
+const isAnagram2 = (str1, str2) => {
+  if (str1.length !== str2.length) return false;
+
+  const sort1 = str1.toLowerCase().split("").sort().join("");
+  const sort2 = str2.toLowerCase().split("").sort().join("");
+  return sort1 === sort2;
+};
+
+console.log(
+  isAnagram2("offer", "refFo"),
+  isAnagram2("rat", "car"),
+  "isAnagram"
+);
+```
+</details>
+
+<details>
+<summary>Написать функцию которая вернет те значения из первого массива, которых нету во втором массиве</summary>
+
+```js
+const longArr1: number[] = [1, 4, 3, 2];
+const longArr2: number[] = [1, 2];
+
+const func = (longArr1: number[], longArr2: number[]) => {};
+
+console.log(func(longArr1, longArr2)); // вернуть [4,3]
+```
+
+### Ответ
+
+```js
+const longArr1 = [1, 4, 3, 2];
+const longArr2 = [1, 2];
+
+const func = (longArr1, longArr2) => {
+  // Создаем Set из второго массива для быстрого поиска
+  const set2 = new Set(longArr2);
+
+  // Фильтруем первый массив, оставляя только те элементы, которых нет во втором массиве
+  return longArr1.filter((item) => !set2.has(item));
+};
+
+console.log(func(longArr1, longArr2)); // вернуть [4, 3]
+
+```
+</details>
+
+<details>
+<summary>Напишите функцию checkBrackets(str)</summary>
+
+ Напишите функцию checkBrackets(str), которая принимает строку содержащую скобки трех видов: (), {}, []. Функция должна вернуть true, если скобки в строке закрыты и вложены корректно, и false в противном случае.
+
+ ```js
+// Стартовый код:
+
+function checkBrackets(str) {}
+
+// Примеры использования
+console.log(checkBrackets("{Hi(good day)!}")); // true
+console.log(checkBrackets("{nice[day}")); // false
+console.log(checkBrackets("(delicious[food])")); // true
+
+ ```
+
+Ответ
+ ```js
+const checkBrackets = (str) => {
+  const openBrackets = new Set(["(", "[", "{"]);
+  const brackets = {
+    ")": "(",
+    "]": "[",
+    "}": "{",
+  };
+  const stack = [];
+
+  for (const char of str) {
+    if (openBrackets.has(char)) {
+      stack.push(char);
+      continue;
+    }
+
+    if (!(char in brackets)) {
+      continue;
+    }
+
+    const lastBracket = stack.pop();
+
+    if (brackets[char] !== lastBracket) {
+      return false;
+    }
+  }
+
+  return stack.length === 0;
+};
+// Примеры использования
+console.log(checkBrackets("{Hi(good day)!}")); // true
+console.log(checkBrackets("{nice[day}")); // false
+console.log(checkBrackets("(delicious[food])")); // true
+
+ ```
+</details>
+
+<details>
+<summary>Найти самый глубокий максимальный элемент
+</summary>
+
+```js
+const array = [1, [[20, 1, [101]], 2], [[-2], [[102, 100]]]];
+
+const findDeepestMaxElement = (array) => {};
+
+console.log(findDeepestMaxElement(array) === 102); // true
+```
+
+### Ответ
+
+```js
+const array = [1, [[20, 1, [101]], 2], [[-2], [[102, 100]]]];
+
+const deepthStorage = {};
+
+const arrayRecursiveDeep = (_array, deepth = 0) => {
+  for (let arr of _array) {
+    if (typeof arr === "object") {
+      arrayRecursiveDeep(arr, deepth + 1);
+    } else {
+      if (!deepthStorage[deepth]) {
+        deepthStorage[deepth] = [];
+      }
+
+      deepthStorage[deepth].push(arr);
+    }
+  }
+};
+
+arrayRecursiveDeep(array);
+
+const keys = Object.keys(deepthStorage).map(Number);
+const maxKey = Math.max(...keys);
+const maxDeepValue = Math.max(...deepthStorage[maxKey]);
+
+console.log(deepthStorage);
+```
+</details>
+
+<details>
+<summary>Cконкотенировать value</summary>
+
+ Результат - строка из сконкотенированных value элементов, расположенных в обратном порядке букв, в порядке возрастания order, не содержит одинаковых букв, не содержит expired элементов
+
+```js
+const input = [
+  { value: "abcd", order: 4, expired: false },
+  { value: "qwer", order: 2, expired: true },
+  { value: "xyz1", order: 1, expired: false },
+  { value: "abx2", order: 3, expired: false },
+];
+
+const getConcated = (arr) => {};
+
+console.log(getConcated(input)); // 1zyx2badc
+```
+
+### Ответ
+
+```js
+const input = [
+  { value: "abcd", order: 4, expired: false },
+  { value: "qwer", order: 2, expired: true },
+  { value: "xyz1", order: 1, expired: false },
+  { value: "abx2", order: 3, expired: false },
+];
+
+const getConcated = (arr) => {
+  const sorted = arr.sort((a, b) => a.order - b.order);
+
+  const str = sorted.reduce((acc, cur) => {
+    if (!cur.expired) {
+      const val = cur.value.split("").reverse().join("");
+      acc += val;
+    }
+
+    return acc;
+  }, "");
+
+  return Array.from(new Set(str)).join("");
+};
+
+console.log(getConcated(input), "getConcat"); // 1zyx2badc
+```
+
+</details>
+
+<details>
+<summary>Вернуть массив из картежей</summary>
+
+Дан неотсортированный массив уникальных чисел и число. Необходимо вернуть массив из кортежей пар чисел массива, если их сумма равна исходному числу и вернуть пустой массив, если таких пар нет.
+
+```js
+function getRanges(arr) {}
+
+console.log(getRanges([1, 2, 5, 10, 9, 11, 6, 8, 0, 13, 16]));
+// 0-2,5-6,8-11,13
+```
+
+Ответы
+
+```
+function getRanges1(arr) {
+  arr.sort((a, b) => a - b);
+
+  const ranges = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    const value = arr[i];
+    const previousPossibleValue = arr[i] - 1;
+
+    if (arr.indexOf(previousPossibleValue) === -1) {
+      let end = value;
+
+      while (arr.indexOf(end + 1) !== -1) {
+        end++;
+      }
+
+      if (value === end) {
+        ranges.push(value);
+      } else {
+        ranges.push(`${value}-${end}`);
+      }
+    }
+  }
+
+  return ranges.join(",");
+}
+
+console.log(getRanges1([1, 2, 5, 10, 9, 11, 6, 8, 0, 13, 16]));
+// 0-2,5-6,8-11,13
+
+// ========== За один проход
+function getRanges2(arr) {
+  arr.sort((a, b) => a - b); // Sort the array in ascending order
+
+  let ranges = [];
+  let start = arr[0]; // 8
+  let end = arr[0]; // 8
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] === end + 1) {
+      end = arr[i];
+    } else {
+      ranges.push(start === end ? `${start}` : `${start}-${end}`);
+      start = arr[i];
+      end = arr[i];
+    }
+  }
+
+  ranges.push(start === end ? `${start}` : `${start}-${end}`);
+
+  return ranges.join(",");
+}
+
+console.log(getRanges2([1, 2, 5, 10, 9, 11, 6, 8, 0, 13, 16]));
+```
+</details>
+
+### Асинхронщина
+
+<details>
+<summary>написать функцию для создания задержки</summary>
+
+function sleep(time = 100) {}
+
+### Ответ
+
+```js
+function sleep(ms) {
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      resolve(ms);
+    }, ms)
+  );
+}
+```
+
+</details>
+
+<details>
+<summary>Сделать аналог Promise.all и Promise.allSettled</summary>
+
+```js
+const resolveFunc = async (val, timeout) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(val);
+    }, timeout);
+  });
+};
+
+const rejectFunc = async (val, timeout) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(val);
+    }, timeout);
+  });
+};
+
+const requests = [
+  resolveFunc(1, 100),
+  resolveFunc(2, 900),
+  resolveFunc(3, 800),
+  resolveFunc(4, 1500),
+  resolveFunc(5, 3500),
+  resolveFunc(6, 1500),
+];
+
+promiseAll(requests).then(console.log).catch(console.error);
+
+promiseSettled(requests).then(console.log).catch(console.error);
+```
+
+Ответ
+
+```js
+const promiseAll = (proms) => {
+  const result = [];
+  let count = 0;
+
+  return new Promise((resolve, reject) => {
+    proms.forEach((pr, idx) => {
+      pr.then((res) => {
+        result[idx] = res;
+        count += 1;
+        if (count === proms.length) resolve(result);
+      }).catch(reject);
+    });
+  });
+};
+
+promiseAll([
+  new Promise((res) => res("promise1")),
+  new Promise((res) => res("promise2")),
+  new Promise((res) => res("promise3")),
+]).then((res) => console.log(res));
+
+//=======================
+const promiseAllSettled = async (promises) => {
+  return new Promise((resolve, reject) => {
+    const result = new Array(promises.length);
+
+    let finishedPomisesCount = 0;
+
+    for (let index in promises) {
+      let tempPromiseResult = null;
+      promises[index]
+        .then((data) => {
+          tempPromiseResult = { status: "fulfilled", data };
+        })
+        .catch((data) => {
+          tempPromiseResult = { status: "rejected", data };
+        })
+        .finally(() => {
+          result[index] = tempPromiseResult;
+          finishedPomisesCount++;
+
+          if (promises.length === finishedPomisesCount) {
+            resolve(result);
+          }
+        });
+    }
+  });
+};
+```
+</details>
+
+<details>
+<summary>Реализовать Promise.any</summary>
+
+```js
+function customPromiseAny(promises) {}
+
+customPromiseAny([
+  new Promise((res, rej) => rej("promise1")),
+  new Promise((res) => res("promise2")),
+  new Promise((res) => res("promise3")),
+]).then((r) => console.log(r)); // promise2
+
+```
+### Ответ
+
+```js
+function customPromiseAny(promises) {
+  // Создаём счётчик промисов
+  let errorPromises = 0;
+  // Создаём пустой массив с длиной равной кол-ву промисов (надо для порядка результатов)
+  const errors = new Array(promises.length);
+
+  return new Promise((resolve, reject) => {
+    // Создаём новый промис, в нём бежим по каждому промису
+    for (let i = 0; i < promises.length; i++) {
+      promises[i]
+        .then(resolve) // Резолвим главный промис при первом попавшемся резолве дочернего
+        .catch((error) => {
+          errors[index] = error;
+          errorPromises += 1;
+
+          if (errorPromises === promises.length) {
+            // Реджектим главный промис если все промисы зареджектились
+            reject(promiseErrors);
+          }
+        });
+    }
+  });
+}
+
+customPromiseAny([
+  new Promise((res, rej) => rej("promise1")),
+  new Promise((res) => res("promise2")),
+  new Promise((res) => res("promise3")),
+]).then((r) => console.log(r));
+```
+
+</details>
+
+### Замыкание
+
+<details>
+<summary> Что выведется в консоль; - Варианты, как исправить;</summary>
+
+```js
+const button = document.getElementById("button");
+
+for (var i = 0; i < 3; i++) {
+  button.addEventListener("click", function (e) {
+    console.log(i);
+  });
+}
+
+button.click();
+```
+</details>
+
+<details>
+<summary>Что выведется в консоль; - Варианты, как исправить (хотябы 2 варианта)</summary>
+
+```js
+for (var i = 0; i < 10; i++) {
+  setTimeout(function () {
+    console.log(i);
+  });
+}
+```
+
+Ответ
+```js
+//====== передать 3 аргумент в setTimeout, чтобы создать замыкание
+for (var i = 0; i < 3; i++) {
+  setTimeout((arg) => console.log(arg), 1000, i);
+}
+
+//====== заменить var на let
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 1000);
+}
+
+//====== обернуть в IIFE чтобы создать замыкание
+for (var i = 0; i < 3; i++) {
+  (function (arg) {
+    setTimeout(() => console.log(arg), 1000);
+  })(i);
+}
+```
+
+</details>
+
+<details>
+<summary>Что будет выведено в консоль?</summary>
+
+```js
+let number = 0;
+
+const increment = () => {
+  number += 1;
+  const message = `Incremented to ${number}`;
+
+  return () => {
+    console.log(message);
+    console.log(`Number: ${number}`);
+  };
+};
+
+const log = increment();
+increment();
+increment();
+log();
+```
+</details>
+
+<details>
+<summary>Что будет выведено в консоль?</summary>
+
+```js
+function createIncrement() {
+  let count = 0;
+
+  function increment() {
+    count++;
+  }
+
+  let message = `Count is ${count}`;
+
+  function log() {
+    console.log(message);
+  }
+
+  return [increment, log];
+}
+
+const [increment, log] = createIncrement();
+increment();
+increment();
+increment();
+log(); // что выведет и какая у нас проблема
+
+```
+</details>
+
+### Каррирование
+
+<details>
+<summary>Каррирование с двумя значениями</summary>
+
+```js
+const sum = (val1, val2) => {};
+
+sum(1, 2);
+sum(1)(2);
+```
+
+```js
+const sum = (val1, val2) => {
+  if (val2) return val1 + val2;
+
+  return (num) => val1 + num;
+};
+```
+</details>
+
+<details>
+<summary>Бесконечное каррирование</summary>
+
+```js
+const sum = () => {};
+
+sum(1)(); // 1
+sum(1)(2)(3)(); // 6
+```
+
+Ответ
+
+```js
+function curry_sum(x) {
+  const fn = (y) => {
+    if (y === undefined) {
+      return x;
+    }
+
+    return curry_sum(x + y);
+  };
+
+  return fn;
+}
+
+console.log(curry_sum(1)(2)(3)()); // 6
+console.log(curry_sum(2)(11)(11)()); // 24
+```
+</details>
+
+### Популярные задачи
+
+<details>
+<summary>1. Объясните -  что происходит в данном коде</summary>
+Условие задачи:
+
+Объясните, что происходит в данном коде и какой будет вывод в консоль при его выполнении.
+    
+Какими способами можно это исправить? (минимум 2)
+
+```js
+for (var i = 0; i < 10; i++) {
+  setTimeout(function () {
+    console.log(i);
+  });
+}
+```
+
+### Ответ
+
+```js
+//====== передать 3 аргумент в setTimeout, чтобы создать замыкание
+for (var i = 0; i < 3; i++) {
+  setTimeout((arg) => console.log(arg), 1000, i);
+}
+
+//====== заменить var на let
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 1000);
+}
+
+//====== обернуть в IIFE чтобы создать замыкание
+for (var i = 0; i < 3; i++) {
+  (function (arg) {
+    setTimeout(() => console.log(arg), 1000);
+  })(i);
+}
+```
+
+</details>
+
+<details>
+<summary>2. Напишите функцию memo</summary>
+
+
+Напишите функцию memo, которая принимает функцию и мемоизирует ее. То есть если мы вызываем мемоизированную функцию с одними и теми же аргументами несколько раз, она берет значение из кеша
+
+```js
+const memo = (fn) => {
+  // Ваш код здесь
+};
+
+const count = (a, b) => {
+  return a + b;
+};
+
+const memoCount = memo(count);
+
+console.log(memoCount(1, 2)); // 3 (вызов count)
+console.log(memoCount(3, 1)); // 4 (вызов count)
+console.log(memoCount(1, 2)); // 3 (обращение к cache)
+
+```
+
+### Ответ
+
+```js
+const memo = (fn) => {
+  const cache = new Map();
+
+  return function (...args) {
+    const stringArgs = JSON.stringify(args);
+
+    if (cache.has(stringArgs)) {
+      console.log("from cache");
+      return cache.get(stringArgs);
+    }
+
+    const result = fn(...args);
+    cache.set(stringArgs, result);
+    return result;
+  };
+};
+
+const count = (a, b) => {
+  return a + b;
+};
+
+const memoCount = memo(count);
+
+console.log(memoCount(1, 2)); // 3 (вызов count)
+console.log(memoCount(3, 1)); // 4 (вызов count)
+```
+
+</details>
+
+<details>
+<summary>3. Напишите аналог метода массива .flat(),</summary>
+
+Напишите аналог метода массива .flat(), который превращает многомерный массив в плоский, одномерный.
+
+```js
+const flatten = (arr) => {
+  // Ваш код здесь
+};
+
+console.log(flatten([1, 2, [3, 4], [[5, [6]]], 7, 8])); // [1,2,3,4,5,6,7,8]
+```
+
+### Ответ
+
+```js
+const flatten = (arr) => {
+  const result = [];
+
+  arr.forEach((el) => {
+    Array.isArray(el) ? result.push(...flatten(el)) : result.push(el);
+  });
+
+  return result;
+};
+
+console.log(flatten([1, 2, [3, 4], [[5, [6]]], 7, 8])); // [1,2,3,4,5,6,7,8]
+```
+
+</details>
+
+<details>
+<summary>4. Сгруппируйте анаграммы вместе</summary>
+
+Получив массив строк strs, сгруппируйте анаграммы вместе. Вы можете вернуть ответ в любом порядке.
+
+Анаграмма - это слово или фраза, образованные путем перестановки букв другого слова или фразы. tea => eat 
+
+```js
+const groupAnagrams = (arr) => {
+  // Ваш код здесь
+};
+
+console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"])); // [["bat"],["nat","tan"],["ate","eat","tea"]]
+```
+
+### Ответ
+
+```js
+const groupAnagrams = (arr) => {
+  const mapa = {};
+
+  arr.forEach((el) => {
+    const sorted = el.toLowerCase().split("").sort().join("");
+
+    if (!mapa[sorted]) mapa[sorted] = [];
+
+    mapa[sorted].push(el);
+  });
+
+  return Object.values(mapa);
+};
+
+console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"])); // [["bat"],["nat","tan"],["ate","eat","tea"]]
+```
+
+</details>
+
+<details>
+<summary>5.  Проверить, что все скобкки в строке валидны</summary>
+
+```js
+const checkBrackets = (str) => {};
+
+console.log(checkBrackets("[[((]]))"));
+console.log(checkBrackets("[)"));
+console.log(checkBrackets("))[[()()]]"));
+console.log(checkBrackets("[[]](((([[]]))))"));
+console.log(checkBrackets("[]"));
+
+```
+
+### Ответ
+
+```js
+
+const checkBrackets = (str) => {
+  const mapa = { "[": "]", "{": "}", "(": ")" };
+  const stack = [];
+
+  for (let i = 0; i < str.length; i++) {
+    const cur = str[i];
+    if (mapa[cur]) {
+      stack.push(mapa[cur]);
+    } else if (stack.pop() !== cur) {
+      return false;
+    }
+  }
+
+  return !stack.length;
+};
+
+console.log(checkBrackets("[[((]]))"));
+console.log(checkBrackets("[)"));
+console.log(checkBrackets("))[[()()]]"));
+console.log(checkBrackets("[[]](((([[]]))))"));
+console.log(checkBrackets("[]"));
+
+```
+
+</details>
+
+<details>
+<summary>6. Реализуйте функцию Promise.all(). </summary>
+
+Реализуйте функцию customPromiseAll(promises), которая работает 
+подобно Promise.all().
+
+Функция должна принимать массив промисов и возвращать промис, 
+который разрешается массивом результатов исходных промисов.
+
+```js
+
+function customPromiseAll(promises) {
+  // Ваш код здесь
+}
+
+// Пример использования
+const promise1 = Promise.resolve(1);
+const promise2 = Promise.resolve(2);
+const promise3 = Promise.resolve(3);
+
+customPromiseAll([promise1, promise2, promise3])
+  .then((results) => console.log(results)) // [1, 2, 3]
+  .catch((error) => console.error(error));
+```
+
+### Ответ
+
+```js
+const customPromiseAll = (promises) => {
+  const result = [];
+  let count = 0;
+
+  return new Promise((resolve, reject) => {
+    promises.forEach((pr, idx) => {
+      pr.then((res) => {
+        result[idx] = res;
+        count += 1;
+        if (count === promises.length) resolve(result);
+      }).catch(reject);
+    });
+  });
+};
+
+// Пример использования
+const promise1 = Promise.resolve(1);
+const promise2 = Promise.resolve(2);
+const promise3 = Promise.resolve(3);
+
+customPromiseAll([promise1, promise2, promise3])
+  .then((results) => console.log(results)) // [1, 2, 3]
+  .catch((error) => console.error(error));
+
+```
+
+</details>
+
+
+<details>
+<summary>7. Реализуйте функцию customMap(array, callback), </summary>
+
+Реализуйте функцию customMap(array, callback), которая имитирует поведение метода массива .map(). 
+
+Функция должна принимать массив и колбэк функцию, которая применяется  к каждому элементу массива, результаты выполнения колбэк функции формируют новый массив.
+
+```js
+function customMap(array, callback) {
+  // Ваш код здесь
+}
+
+// Пример использования
+const numbers = [1, 2, 3, 4];
+const doubled = customMap(numbers, (num) => num * 2);
+console.log(doubled); // [2, 4, 6, 8]
+
+//===================================
+function customFilter(array, callback) {
+  const result = [];
+
+  for (let i = 0; i < array.length; i++) {
+    const cur = array[i];
+
+    if (callback(cur, i, array)) result.push(cur);
+  }
+
+  return result;
+}
+
+// Пример использования
+console.log(customFilter(numbers, (el, id) => el > 2)); // [3,4]
+
+```
+
+### Ответ
+
+```js
+function customMap(array, callback) {
+  const result = [];
+
+  for (let i = 0; i < array.length; i++) {
+    const cur = array[i];
+    result.push(callback(cur, i, array));
+  }
+
+  return result;
+}
+```
+
+</details>
+
+
+<details>
+<summary>8. Напишите функцию get(obj, path)</summary>
+
+Напишите функцию get(obj, path), которая возвращает значение по указанному пути в объекте.  Если путь не существует, функция должна возвращать undefined.
+
+
+```js
+function get(obj, path) {
+  // Ваш код здесь
+}
+
+const obj = {
+  a: {
+    b: {
+      c: "d",
+    },
+  },
+};
+
+console.log(get(obj, "a.b.c")); // Ожидаемый вывод: d
+```
+
+### Ответ
+
+```js
+function get(obj, path) {
+  let result = obj;
+  const keys = path.split(".");
+
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    if (result) {
+      result = result[key];
+    } else {
+      return undefined;
+    }
+  }
+
+  return result;
+}
+```
+
+</details>
+
+
+<details>
+<summary>9. Реализовать debounce</summary>
+
+debounce(f, ms) – это обёртка, которая откладывает вызовы cb, пока не пройдёт ms миллисекунд бездействия 
+
+```js
+const debounce = (cb, ms) => {};
+
+const deb = debounce((v) => console.log(v), 500);
+
+// должно вывести только 777999
+// deb(1);
+// deb(2);
+// deb(777999);
+```
+
+### Ответ
+
+```js
+const debounce = (cb, ms) => {
+  let timer;
+
+  return (...args) => {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      cb.apply(this, args);
+    }, ms);
+  };
+};
+
+const deb = debounce((v) => console.log(v), 500);
+deb(1);
+deb(2);
+deb(777999);
+```
+
+</details>
+
+
+<details>
+<summary>10. Реализовать функцию, которая будет делать сетевой запрос. </summary>
+
+Получение данных с количестом попыток на перезапрос. Реализовать функцию, которая будет делать сетевой запрос. Если он завершается с ошибкой, то повторяет его
+После retryCount неудачных попыток - завершается ошибкой. Или возвращает успешный результат.
+
+
+```js
+const fetchRetry = async (url, retryCount = 5) => {};
+
+fetchRetry("/", 5);
+fetchRetry("/", 2);
+```
+
+### Ответ
+
+```js
+const fetchRetry = async (url, retryCount = 5) => {
+  try {
+    const data = await fetch(url);
+    return await data.json();
+  } catch (err) {
+    retryCount -= 1;
+    if (retryCount === 0) {
+      console.log("ERRORRRRRRRR");
+    } else {
+      fetchRetry(url, retryCount);
+    }
+  }
+};
+
+fetchRetry("/", 5);
+```
+</details>
+
+### Прототип THIS
+
+<details>
+<summary>Что происходит в коде</summary>
+
+/** 
+#### Условие задачи:
+Объясните, что происходит в данном коде и какой будет вывод в консоль при 
+его выполнении.
+*/
+const object = {
+  firstName: "Bill",
+  lastName: "Ivanov",
+
+  sayLastName: () => {
+    console.log(this.lastName);
+  },
+
+  sayName() {
+    console.log(this.firstName);
+  },
+};
+
+object.sayName(); //
+object.sayLastName(); //
+
+var b = object.sayName;
+b(); //
+
+object.sayName.bind({ firstName: "Cash" })(); //
+object.sayLastName.bind({ firstName: "Arrow" })(); //
+
+object.sayName.bind({ firstName: "Name1" }).bind({ firstName: "Name2" })(); //
+</details>
+
+<details>
+<summary>Что происходит в коде</summary>
+
+function Person(name) {
+  this.name = name;
+}
+
+const juan = new Person("Juan");
+
+Person.prototype = {
+  getName: function () {
+    return this.name;
+  },
+};
+
+const pedro = new Person("Pedro");
+
+console.log(pedro.getName());
+console.log(juan.getName());
+</details>
+
+<details>
+<summary>Что будет выведено и как это исправить?</summary>
+
+let obj = {
+  name: "David",
+  getName() {
+    console.log(`name is: ${this.name}`);
+  },
+};
+
+let fn = obj.getName;
+
+fn();
+
+</details>
+
+<details>
+<summary>Что будет выведено</summary>
+
+```js
+let obj1 = {
+  name: "User 1",
+  getName() {
+    console.log(`name is: ${this.name}`);
+  },
+};
+
+let obj2 = {
+  name: "User 2",
+  getName() {
+    console.log(`name is: ${this.name}`);
+  },
+};
+
+let fn = obj1.getName.bind(obj2).bind(obj1);
+
+fn();
+```
+
+</details>
+
+<details>
+<summary>Что будет выведено</summary>
+
+const person = { name: "Vasya", age: 22 };
+const position = { title: "Software Engineer" };
+
+person.position = position;
+person.position.salary = 120;
+
+console.log(person.position);
+console.log(position);
+</details>
+
+<details>
+<summary>Что будет выведено</summary>
+
+```js
+function foo() {
+  const x = 10;
+
+  return {
+    x: 20,
+
+    bar() {
+      console.log(this.x);
+    },
+
+    baz: () => {
+      console.log(this.x);
+    },
+  };
+}
+
+const obj1 = foo();
+obj1.bar(); //
+obj1.baz(); //
+
+const obj2 = foo.call({ x: 30 });
+let y = obj2.bar;
+let x = obj2.baz;
+
+y(); //
+x(); //
+
+obj2.bar(); //
+obj2.baz(); //
+```
+</details>
+
+<details>
+<summary>Что будет выведено в консоль</summary>
+
+Разница между hasOwnProperty и in
+
+```js
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+
+  sound() {
+    console.log("Some sound");
+  }
+}
+
+class Dog extends Animal {
+  constructor(name, breed) {
+    super(name);
+    this.breed = breed;
+  }
+
+  bark() {
+    console.log("Woof woof!");
+  }
+}
+
+let myDog = new Dog("Buddy", "Labrador");
+
+console.log(myDog.hasOwnProperty("name")); // ?
+console.log(myDog.hasOwnProperty("sound")); // ?
+
+console.log("name" in myDog); // ?
+console.log("sound" in myDog); // ?
+```
+</details>
+
+### Работа со строками
+
+<details>
+<summary>Необходимо разработать функцию compressString, которая принимает строку и возвращает её сжатую версию.</summary>
+
+```js
+const compressString = (str) => {};
+console.log(compressString("AAAABBBCCF")); // A4B3C2F
+```
+
+### Ответ
+
+```js
+const compressString = (str) => {
+  let res = "";
+  let count = 1;
+
+  for (let i = 0; i < str.length; i++) {
+    const cur = str[i];
+    const next = str[i + 1];
+
+    if (cur === next) {
+      count += 1;
+    } else {
+      count > 1 ? (res += cur + count) : (res += cur);
+      count = 1;
+    }
+  }
+
+  return res;
+};
+
+console.log(compressString("AAAABBBCCF")); // A4B3C2F
+```
+</details>
+
+<details>
+<summary>Вывести строки, в которых есть подстрока</summary>
+
+```js
+const findSubstring = (substribg, arr) => {};
+
+console.log(
+  findSubstring("am", [
+    "fuzzy",
+    "maskva",
+    "mama",
+    "search",
+    "algorithm",
+    "utility",
+  ])
+);
+```
+
+### Ответ
+
+```js
+const fuzzySearch = (substring, arr) => {
+  return arr.filter((string) => {
+    let index = 0;
+
+    for (let i = 0; i < string.length; i++) {
+      if (string[i] === substring[index]) {
+        index++;
+      } else {
+        index = 0;
+      }
+
+      if (index === substring.length) {
+        return true;
+      }
+    }
+
+    return false;
+  });
+};
+
+console.log(
+  fuzzySearch("am", ["fuzzy", "maskva", "mama", "search", "am", "utility"])
+);
+```
+</details>
+
+<details>
+<summary>Напишите функцию capitalize(input)</summary>
+
+Напишите функцию capitalize(input), возвращающую копию строки input, в которой каждое слово начинается с заглавной буквы.
+
+"Слово" в данном контексте - последовательность юникод-символов из группы "letters". В целях упрощения в тестовых кейсах будут использоваться только строки из латинских букв и кириллицы. Слова с дефисами ("Что-то", "кто-либо" и т.д.) считаются одним словом.
+ 
+```js 
+@param  {string} input строка с произвольным предложением.
+@return {string}
+ 
+function capitalize(input) {}
+
+console.log(
+  capitalize("А роза упала на лапу Азора") === "А Роза Упала На Лапу Азора"
+);
+```
+
+### Ответы
+
+```js
+function capitalize(input) {
+  return input
+    .split(" ")
+    .map((word) => {
+      const [first, ...rest] = word.split("");
+      return first.toUpperCase() + rest.join("");
+    })
+    .join(" ");
+}
+
+console.log(
+  capitalize("А роза упала на лапу Азора") === "А Роза Упала На Лапу Азора"
+);
+```
+</details>
+
+### Рекурсия
+
+<details>
+<summary>Преобразовать вложенный объект в flat-структуру</summary>
+
+```js
+const tree = {
+  a: {
+    b: "two",
+    c: {
+      d: "one",
+    },
+  },
+};
+
+const treeFn = (obj) => {};
+
+console.log(JSON.Parce(treeFn(tree)));
+//    {
+//     'a.b': 'two',
+//     'a.c.d': 'one'
+//    }
+```
+
+### Ответ
+
+```js
+const treeFn = (tree, parentKey = "") => {
+  let result = {};
+
+  for (let key in tree) {
+    let newKey = parentKey ? `${parentKey}.${key}` : key;
+
+    if (typeof tree[key] === "object") {
+      Object.assign(result, treeFn(tree[key], newKey));
+    } else {
+      result[newKey] = tree[key];
+    }
+  }
+
+  return result;
+};
+```
+</details>
+
+<details>
+<summary>Рекурсивно просуммировать все цифры</summary>
+
+```js
+const obj = {
+  a: 1,
+  b: {
+    c: 3,
+    d: -10,
+    e: {
+      f: {
+        g: 1,
+      },
+    },
+  },
+};
+```
+
+### Ответ
+
+```js
+// Вариант с передачей аккамулятора
+const sumRecursive = (node, sum = 0) => {
+  for (let key in node) {
+    console.log(key, node[key]);
+    if (typeof node[key] === "number") {
+      sum += node[key];
+    } else {
+      sum = sumRecursive(node[key], sum);
+    }
+  }
+
+  return sum;
+};
+```
+
+```js
+// Вариант без передачи параметра
+const sumRecursive2 = (node) => {
+  if (typeof node === "number") {
+    return node;
+  } else {
+    let sum = 0;
+
+    for (let key in node) {
+      sum += sumRecursive(node[key]);
+    }
+
+    return sum;
+  }
+};
+```
+</details>
+
+<details>
+<summary>Просуммировать все value</summary>
+
+```js
+const tree = {
+  value: 1,
+  children: [
+    {
+      value: 2,
+      children: [{ value: 4 }, { value: 5 }],
+    },
+    {
+      value: 3,
+      children: [{ value: 6 }, { value: 7 }],
+    },
+  ],
+};
+
+console.log(getTreeVal(tree), "tree-val"); //28
+```
+
+Ответ
+
+```js
+const getTreeVal = (obj) => {
+  return Object.values(obj).reduce((acc, curVal) => {
+    if (Array.isArray(curVal)) {
+      curVal.forEach((el) => (acc += getTreeVal(el)));
+    } else {
+      acc += curVal;
+    }
+
+    return acc;
+  }, 0);
+};
+```
+</details>
+
+<details>
+<summary>Скопировать значение</summary>
+
+Исходный объект, который нужно скопировать значение "a" может быть массивом, объектом или примитивом вложенность "а" может быть бесконечной
+
+```js
+const a = [
+  {
+    name: "6x45",
+    draw: {
+      cost: 50,
+      multiDraws: [1, 2, 3],
+    },
+    count: null,
+  },
+  {
+    name: "7x49",
+    draw: {
+      cost: 75,
+      multiDraws: [{ c: 13 }, 5, 6],
+    },
+    count: 10,
+  },
+];
+
+const b = copy(a);
+
+function copy() {
+  //написать функцию copy
+}
+
+// ниже проверка, что объект "а" действительно был скопирован в новый объект
+if (b) b[1].draw.multiDraws[0].c = "369";
+console.log(" ORIG: ", JSON.stringify(a), "\n\n", "COPY: ", JSON.stringify(b));
+```
+
+### Ответ
+
+```js
+function copy(a) {
+  if (Array.isArray(a)) {
+    // Проверяем, является ли a массивом
+    return a.map((item) => copy(item)); // Рекурсивно копируем каждый элемент массива
+  } else if (a !== null && typeof a === "object") {
+    // Проверяем, является ли a объектом (не массивом и не null)
+    const newObj = {}; // Создаем новый объект для копии
+
+    for (const key in a) {
+      // Перебираем все свойства объекта
+      if (a.hasOwnProperty(key)) {
+        // Проверяем, что свойство принадлежит самому объекту (не унаследовано)
+        newObj[key] = copy(a[key]); // Рекурсивно копируем каждое свойство объекта
+      }
+    }
+    return newObj; // Возвращаем новый объект-копию
+  }
+
+  return a; // Если a не является ни массивом, ни объектом Просто возвращаем значение
+}
+```
+</details>
+
+### EventLoop
+
+<details>
+<summary>Объясните, что происходит в данном коде и какой будет вывод в консоль при его выполнении.</summary>
+
+```js
+setTimeout(function timeout() {
+  console.log("Таймаут");
+}, 0);
+
+let p = new Promise(function (resolve, reject) {
+  console.log("Создание промиса");
+  resolve();
+});
+
+p.then(function () {
+  console.log("Обработка промиса");
+});
+
+console.log("Конец скрипта");
+```
+</details>
+
+<details>
+<summary>Укажите порядок вывода и объясните почему</summary>
+
+console.log(1);
+setTimeout(() => console.log(2));
+Promise.resolve().then(() => console.log(3));
+Promise.resolve().then(() => setTimeout(() => console.log(4)));
+Promise.resolve().then(() => console.log(5));
+setTimeout(() => console.log(6));
+console.log(7);
+</details>
+
+<details>
+<summary>Укажите порядок вывода и объясните почему</summary>
+
+```js
+console.log(1);
+
+setTimeout(function timeout() {
+  console.log("Таймаут");
+}, 0);
+
+new Promise(function (resolve, reject) {
+  console.log("Promise");
+  setTimeout(() => {
+    console.log(777);
+    resolve();
+  }, 0);
+})
+  .then(() => {
+    console.log("then1");
+  })
+  .then(() => {
+    console.log("then2");
+  });
+
+console.log(4);
+
+setTimeout(() => {
+  console.log("timeOut2");
+}, 0);
+```
+</details>
+
+<details>
+<summary>Укажите порядок вывода и объясните почему</summary>
+
+```js
+setTimeout(() => console.log("setTimeout 1"), 0);
+
+new Promise((resolve, reject) => {
+  console.log("Promise 1");
+  resolve();
+  console.log("Promise 2");
+}).then(() => console.log("Promise 3"));
+
+Promise.resolve().then(() => setTimeout(() => console.log("setTimeout 2"), 0));
+
+Promise.resolve().then(() => console.log("Promise 4"));
+
+setTimeout(() => console.log("setTimeout 3"), 0);
+
+console.log("final");
+```
+</details>
+
+<details>
+<summary>Укажите порядок вывода и объясните почему</summary>
+
+```js
+setTimeout(console.log(1));
+
+new Promise(function (resolve, reject) {
+  resolve();
+})
+  .then(() => console.log(2))
+  .then(() => console.log(3))
+  .catch(() => console.log("err"))
+  .then(() => setTimeout(() => console.log(4)));
+
+console.log(5);
+```
+
+</details>
+
+<details>
+<summary>Укажите порядок вывода и объясните почему</summary>
+
+```js
+console.log("A");
+
+const p = new Promise((resolve) => {
+  resolve("");
+  console.log("B");
+});
+
+p.then(() => {
+  p.then(() => console.log("C"));
+  console.log("D");
+});
+
+setTimeout(() => {
+  console.log("E");
+}, 0);
+
+p.then(() => console.log("F"));
+```
+</details>
+
+<details>
+<summary>Укажите порядок вывода и объясните почему</summary>
+
+```js
+//==============  1)
+Promise.reject("a")
+  .catch((p) => p + "b")
+  .catch((p) => p + "c")
+  .then((p) => p + "d")
+  .then((p) => console.log(p));
+
+// ============== 2)
+Promise.reject("a")
+  .then((p) => p + "2")
+  .then((p) => p + "3")
+  .catch((p) => {
+    throw "4";
+  })
+  .catch((p) => p + "5")
+  .catch((p) => p + "7")
+  .then((p) => p + "8")
+  .catch((p) => p + "9")
+  .then(console.log);
+```
+
+### Ответ
+
+Первый catch обрабатывает первую ошибку, выборшенную через reject. Дальше в catch не проваливаемся и можно обрабатывать полученное значение. То есть
+
+```js
+Promise.reject("a")
+.catch((p)=> p + "b") // отловили reject
+.catch((p)=> p + "c") // пропускаем, так как уже отловили ошибку и получили результат
+.then((p)=>p + "d") // обработали результат
+.then((p)=>console.log(p)) // обработали результат
+
+
+Promise.reject("a")
+.then((p)=>p + "2") // пропускаем, так как нужно отловить ошибку
+.then((p)=>p + "3") // пропускаем, так как нужно отловить ошибку
+.catch((p)=> throw new Error('4')) // отловили reject. И отдали еще одну ошибку
+.catch((p)=> p + "5") // обрабатываем выброшенную ошибку
+.catch((p)=> p + "7") // пропускаем, так как уже отловили ошибку и получили результат
+.then((p)=>p + "8") // обработали результат
+.catch((p)=> p + "9")  // пропускаем, так как уже отловили ошибку и получили результат
+```
+</details>
