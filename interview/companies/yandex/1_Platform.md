@@ -903,9 +903,43 @@ async function tryAuth(n){
 
 </details>
 
+<details>
+<summary>Реализовать структуру данных MaxStack</summary>
 
---- 
-Источники: 
-1. [Даниил Лаптев](https://www.youtube.com/watch?v=CblVMItA3fM)
-2. [itrostic](https://www.youtube.com/watch?v=jNgOQjznh-E)
-3. [Misha - frontend dev](https://www.youtube.com/watch?v=0rZeskdTQRs)
+Реализовать структуру данных MaxStack, в которой есть методы: 
+- pop() - удаляет и возвращает последний добавленный элемент за O(1), кидает исключение или возвращает ошибку, если стек пустой;
+- push(value) - добавляет элемент в стек за O(1);
+- max() - возвращает макимальное значение среди всех элементов стека за O(1), кидает исключение или возвращает ошибку, если стек пустой
+
+```js
+// code here
+
+const stack = new MaxStack();
+stack.push(2);                // max = 2, stack = [2]
+stack.push(1);                // max = 2, stack = [2, 1]
+stack.push(3);                // max = 3, stack = [2, 1, 3]
+stack.push(3);                // max = 3, stack = [2, 1, 3, 3]
+stack.pop();                  // 3; max = 3, stack = [2, 1, 3]
+stack.pop();                  // 3; max = 2, stack = [2, 1]
+```
+</details>
+
+<details>
+<summary>Необходимо убрать все falsy значения - filterFalsy(obj)</summary>
+
+Необходимо написать функцию, которая на вход принимает объект и убирает из него все falsy значения;
+
+falsy значение - это такое значение value, для которого Boolean(value) === false считаем, что obj - результат выполнения JSON.parse, то есть plain object
+
+
+```js
+function filterFalsy(obj) {
+  // code here
+}
+
+console.log(filterFalsy([null, 0, false, 1]));    // => [1]
+console.log(filterFalsy({ 'a': null, 'b': [false, 1]}));    // => { 'b': [1] }
+console.log(filterFalsy([null, 0, 5, [0], [false, 16]]));   // => [5, [], [16]]
+
+````
+</details>
