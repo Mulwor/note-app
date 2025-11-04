@@ -117,7 +117,7 @@ console.log(d);     // [1, 2, 3, 4]
 </details>
 
 <details>
-<summary>Необходимо пройтись по коду, рассказать максимально подробно объяснить, что происходит в каждой строчке кода</summary>
+<summary>Пройтись по коду и рассказать максимально подробно объяснить, что происходит в каждой строчке кода</summary>
 
 ```js
 Promise.resolve(1)
@@ -132,7 +132,7 @@ Promise.resolve(1)
 
 ### Ответ
 
-1. `Promise.resolve(1)` — создаётся уже выполненный (fulfilled) промис со значением 1.
+1. `Promise.resolve(1)` — создаётся уже выполненный (fulfilled) promise со значением 1.
 → состояние: fulfilled, значение 1.
 2. `.then((x) => x + 1)` — получает значение 1, возвращает новый промис, который выполнится со значением 2.
 → состояние: fulfilled, значение 2.
@@ -162,10 +162,10 @@ Promise.resolve(1)                          // fulfilled: 1
 </details>
 
 <details>
-<summary>Необходимо написать функцию strjoin, которая склеивает строки через разделитель</summary>
+<summary>Написать функцию strjoin, которая склеивает строки через разделитель</summary>
 
 ```js
-function strjoin() {
+function strjoin(separator, ...word) {
   // code here
 }
 
@@ -210,12 +210,64 @@ strJoin("")                                     // '' (пустая строка
 ```
 </details>
 
+</details>
+
+<details>
+<summary>Написать функцию задержки sleep</summary>
+
+```js
+function sleep() {
+  // code here
+}
+```
+
+### Ответы
+```js
+function sleep(time = 100) {
+  return new Promise((resolve) => setTimeout(resolve, time))
+}
+
+console.log('Начало');
+await sleep(2000);
+console.log('Прошло 2 секунды');
+```
+</details>
+
+<details>
+<summary>Необходимо сложить все promise</summary>
+
+Стоит отметить, что [задача взята из leetcode c небольшим изменением](https://leetcode.com/problems/add-two-promises/description/)
+
+```js
+function sumPromises(...promises) {
+  // TODO  
+}
+
+const promise1 = Promise.resolve(1);
+const promise2 = Promise.resolve(2);
+
+sumPromises(promise1, promise2).then(console.log); // 3
+```
+
+### Ответы
+
+Мы можем использовать метод promise.all([prom1, prom2]), который принимает массив promises,  и возвращает новый promise, если выполнится успешно, а если нет только дальше он не пойдет и вернет отклоненный promise
+
+```js
+function sumPromises(...promises) {
+  return Promise.all(promises)
+    .then(results => results.reduce((sum, value) => sum + value, 0));
+}
+```
+
+</details>
+</details>
+
+
 <details>
 <summary>Реализовать функцию разделения слов - splitWordsBySeparator</summary>
 
-Необходимо написать функцию, которая разделит каждую строку в массиве `words` по строке `separator`. Необходимо вернуть массив получившихся после разделения строк, исключая пустые строки
- 
-[Задача с литкода](https://leetcode.com/problems/split-strings-by-separator/)
+Необходимо написать функцию, которая разделит каждую строку в массиве `words` по строке `separator`. Необходимо вернуть массив получившихся после разделения строк, исключая пустые строки. [Задача взята с leetcode](https://leetcode.com/problems/split-strings-by-separator/)
 
 ```js
 const splitWordsBySeparator = (words, separator) => {
@@ -227,7 +279,11 @@ splitWordsBySeparator(["hello-world", "this-is", "great"], '-')         // ["hel
 splitWordsBySeparator(["test..case", "split.", ".start"], '.')          // ["test", "case", "split", "start"]
 ```
 
-### Ответы
+### Ответ
+
+Во первых нам необходимо написать переменную с пустым массивом. Затем внутри с помощью цикла необходимо пробежаться по словам и пушить их в ранее записанную переменную
+
+У меня сплита первым аргументом можно вставить separator => `str.split([separator[, limit]])`, затем мы можем отфильтровать его по булевому значению, чтобы избавится от пустых строк
 
 ```js
 var splitWordsBySeparator = function(words, separator) {
@@ -257,59 +313,9 @@ var splitWordsBySeparator = function (words, separator) {
 
 </details>
 
-<details>
-<summary>Написать функцию sleep для создании задержки</summary>
-
-```js
-function sleep() {
-  // code here
-}
-```
-
-### Ответы
-```js
-function sleep(time = 100) {
-  return new Promise((resolve) => setTimeout(resolve, time))
-}
-
-console.log('Начало');
-await sleep(2000);
-console.log('Прошло 2 секунды');
-```
-</details>
 
 <details>
-<summary>* Необходимо сложить все promise</summary>
-
-```js
-function sumPromises(...promises) {
-  // TODO  
-}
-
-// Пример использования
-const promise1 = Promise.resolve(1);
-const promise2 = Promise.resolve(2);
-
-sumPromises(promise1, promise2).then(console.log); // 3
-```
-
-### Ответы
-
-Мы можем использовать метод промиса, который дожидается выполнения ВСЕХ promises, если успешно вернет массив, если нет, то вернет последний promise с ошибкой
-
-```js
-function sumPromises(...promises) {
-  return Promise.all(promises)
-    .then(results => results.reduce((sum, value) => sum + value, 0));
-}
-```
-
-</details>
-</details>
-
-
-<details>
-<summary>* Необходимо написать функцию camelToSnake</summary>
+<summary>Необходимо написать функцию camelToSnake</summary>
 
 Преобразуйте строку из camelCase в snake_case.
 
@@ -326,48 +332,38 @@ camelToSnake("UserID")           // "user_id"
 
 ### Ответ
 
-```js
-function camelToSnake(text) {
-  const upperCase = [
-    "A", "B", "C", "D", "E", "F",
-    "G", "H", "J", "K", "L", "M",
-    "N", "O", "P", "T", "I", "D "
-  ]
-
-  let result = "";
-
-  for (let i = 0; i < text.length; i++) {
-
-    if (text[i] !== upperCase[i]) {
-      
-      result += "_" + text[i].toLowerCase()
-    } else {
-      result += text[i]
-    }
-  }
-
-  return result
-}
-```
+Мы внутри можем написать переменную, куда будем складывать символы. Затем нам необходимо пройтись по циклу и написать условия,
+которая будет проверять является ли символ заглавной буквой и напишем условия, если не первый символ, то мы не добавляем нижнее
+подчеркивания. 
 
 ```js
 function camelToSnake(text) {
   let result = '';
   
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i];
-    
-    // Проверяем, является ли символ заглавной буквой
-    if (char >= 'A' && char <= 'Z') {
+  for (let i = 0; i < text.length; i++) {    
+    // С помощью условия - `(char >= 'A' && char <= 'Z')` - мы можем проверить является ли символ заглавной буквой
+    if (text[i] >= 'A' && text[i] <= 'Z') {
       // Добавляем подчеркивание, если это не первый символ
-      if (i !== 0) result += '_';
-      result += char.toLowerCase();
+      if (i !== 0) { 
+        result += '_';
+      }
+
+      result += text[i].toLowerCase();
     } else {
-      result += char;
+      result += text[i];
     }
   }
   
   return result;
+}
+```
+
+С помощью регулярного выражения replace
+```js
+function camelToSnake(text) {
+  // Заменяем все заглавные буквы на _ + та же буква в нижнем регистре
+  // $1 - это содержимое первой группы (в нашем случае - заглавная буква)
+  return text.replace(/([A-Z])/g, '_$1').toLowerCase();
 }
 ```
 </details>
@@ -376,35 +372,52 @@ function camelToSnake(text) {
 <details>
 <summary>Панаграмма</summary>
 
-Вам задана строка, состоящая из латинских букв, пробелов и знаков преминания. Строка называется панграммой, если она содержит каждую из 26 латинских букв хотя бы раз. Определите является ли строка панграммой
+Панграмма (с греч. — «все буквы»), или разнобуквица, — короткий текст, использующий все или почти все буквы алфавита, по возможности не повторяя их.
 
-[Задача с литкода](https://leetcode.com/problems/check-if-the-sentence-is-pangram/)
+Вам задана строка, состоящая из латинских букв, пробелов и знаков преминания. Строка называется панграммой, если она содержит каждую из 26 латинских букв хотя бы раз. Определите является ли строка панграммой. [Похожая задача с leetcode](https://leetcode.com/problems/check-if-the-sentence-is-pangram/)
 
 ```js
 function isPangram(text) {
     // your code her
 }
 
-console.log(isPangram('A pangram or holoalphabetic sentence is a sentence using every letter of a gived alphabet at least once'))
-console.log(isPangram('Waltz, bad nymph, for quick jigs vex'))
+console.log(isPangram('A pangram or holoalphabetic sentence is a sentence using every letter of a gived alphabet at least once'))  // False
+console.log(isPangram('Waltz, bad nymph, for quick jigs vex')) // True
 ```
 
-<details>
-<summary>Ответ</summary>
+### Ответ
+
+```js
+const letter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+
+function isPangram(text) {
+  let newStr = new Set();
+
+  for (let i = 0; i < text.length; i++) {
+    let newTextWithUpperCase = text[i].toUpperCase()
+        
+    if (newTextWithUpperCase >= letter[0] && newTextWithUpperCase <= letter[25]) {
+      newStr.add(text[i])
+    }
+  }
+
+  return newStr.size === 26
+}
+```
 
 ```js
 function isPangram(text) {
   const letters = new Set();
-  for (const c of text.toUpperCase()) {
-    if (c >= 'A' && c <= 'Z') {
-      letters.add(c);
-      if (letters.size === 26) return true;
+    
+  for (let char of text.toLowerCase()) {
+    if (char >= 'a' && char <= 'z') {
+      letters.add(char);
     }
   }
-  return false;
+    
+  return letters.size === 26;
 }
 ```
-</details>
 </details>
 
 
@@ -412,7 +425,7 @@ function isPangram(text) {
 <summary>Функция обертка - runOnce</summary>
 Реализовать функцию-обертку runOnce, которая принимает функцию и возвращает новую функцию. Новая функции может быть вызвана только 1 раз, все последующие вызовы возвращают undefined.
 
-Оборачиваемая функция может принимать аргументы и возвращать результат
+Оборачиваемая функция может принимать аргументы и возвращать результат. [Задача взята с литкода](https://leetcode.com/problems/allow-one-function-call/description/)
 
 ```js
 function runOnce(fn) {
@@ -427,6 +440,36 @@ const logHelloOnce = runOnce(logHello);
 console.clear();
 logHelloOnce();
 logHelloOnce();
+```
+
+### Ответы
+
+В начале нам необходимо объявить переменную called, которая будет отслеживать состояние вызова функции. Затем мы возвращаем функцию, которая замыкается на переменной called. Если called имеет значение true (что означает, что функция уже была вызвана ранее), то возвращается undefined. В противном случае, мы устанавливаем called в true и вызываем оригинальную функцию.
+
+
+```js
+function runOnce(fn) {
+  let called = false;
+  
+  return function(...args) {   
+    // Если у нас called был уже вызван заранее, то он вернет undefined
+    if (called) return undefined;
+    called = true;
+    return fn(...args);
+  };
+}
+```
+
+```js
+function runOnce(fn) {
+  let called = false;
+  
+  return (...args) => {
+    if (called) return undefined;
+    called = true;
+    return fn(...args);
+  };
+}
 ```
 </details>
 
@@ -467,10 +510,21 @@ function curry(fn) {
   return curried;
 }
 ```
-
+</details>
+</details>
 </details>
 
-</details>
+<details>
+<summary>Необходимо написать функцию compose</summary>
+
+```js
+const square = (x) => x * x;
+const times2 = (x) => x * 2;
+const sum = (a, b) => a + b;
+
+console.log(compose(square, times2(2) === square(times(2))))
+console.log(compose(square, times2, num)(3, 4) === square(times(sum(3, 4))))
+```
 </details>
 
 <details>
@@ -815,20 +869,6 @@ function callLimit(fn, limit, callback) {
 ```
 </details>
 
-
-<details>
-<summary>Необходимо написать функцию compose</summary>
-
-```js
-const square = (x) => x * x;
-const times2 = (x) => x * 2;
-const sum = (a, b) => a + b;
-
-console.log(compose(square, times2(2) === square(times(2))))
-console.log(compose(square, times2, num)(3, 4) === square(times(sum(3, 4))))
-```
-
-</details>
 
 <details>
 <summary>Необходимо написать функцию auth() и tryAuth()</summary>
