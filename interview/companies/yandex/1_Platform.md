@@ -477,7 +477,7 @@ function runOnce(fn) {
 <summary>Реализовать функцию carry (каррирование)</summary>
 
 ```js
-function sum(a,b,c) {
+function sum(a, b, c) {
   return a + b + c  
 }
 
