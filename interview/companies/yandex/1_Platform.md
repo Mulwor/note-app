@@ -705,11 +705,7 @@ Array.prototype.groupBy = function(fn) {
     },{})
 };
 ```
-
 </details>
-</details>
-
----
 
 <details>
 <summary>Написать декоратор для функции, который ограничивает число вызовов</summary>
@@ -719,6 +715,27 @@ Array.prototype.groupBy = function(fn) {
 - limit - максимально число вызывов
 - callback - вызывается, когда совершен последний вызов. Опционально
 У вызываемой функции должен быть метод для перезагрузки счетчика в начальном положении
+
+```js
+function callLimit(fn, limit, callback) {
+  // ToDo
+}
+
+function log(title, message) {
+  console.log(title + ": " + message);
+}
+
+var logLimited = callLimit(log, 3)
+logLimited('title', 'desc')     // output => title: desc
+logLimited('title2', 'desc')    // output => title2: desc
+logLimited('title3', 'desc')    // output => title3: desc
+logLimited('title4', 'desc')    // Не сработает, в консоль ничего не выведется
+
+logLimited.reset()              // Перезагружаем счетчик и можно еще 3 раза вызвать
+logLimited('title5', 'desc')    // output => title5: desc
+```
+
+### Ответы
 
 ```js
 function callLimit(fn, limit, callback) {
@@ -755,65 +772,93 @@ function get(url) {
 }
 
 get(url)
-.then(res => console.log(res))
-.catch(err => console.error(err))
+  .then(res => console.log(res))
+  .catch(err => console.error(err))
 ```
 
-<details>
-<summary>Ответы</summary>
+### Ответ
 
 ```js
-function get(url) {
-  let count = 0
+// Решение через .then
+function get(url, retryCount = 1) {
+  return fetch(url)
+    .then(
+      (res) => resolve(res.json())
+      () => {
+        if (count > 5) return Promise.reject("Заданный URL недоступен")
+        retry get(url, ++retryCount)
+      }
+    )
+} 
+```
 
+```js
+// Решение через catch и счетчика
+function get(url, retryCount = 1) {
+  let counter = 0;
+  
+  function attemptToCall() {
+    counter++;
+    return fetch(url)
+      .then((response) => response.json())
+      .catch((error) => {
+        if (counter >= 5) throw new Error("Заданный URL недоступен");
+        return attempt();
+      });
+  }
+  
+  return attemptToCall();
+}
+```
+</details>
+
+
+<details>
+<summary>Функции auth() и tryAuth()</summary>
+
+Функция `asyncAuth(callback)` принимает callback, в который может быть передана ошибка (первым аргументом) и данные с бекенда (вторым аргументом). 
+`asyncAuth((error, data) => {})`
+
+Вам нужно реализовать функцию `auth()`, которая вызывает `asyncAuth()`, но возвращает Promise
+
+### Ответ №1
+
+```js
+function auth() {
   return new Promise((resolve, reject) => {
-    function getRetried() {
-      fetch(url).then((res) => {
-        resolve(res.json())
-      }).catch(() => {
-        count += 1
-        if (count >= 5) {
-          reject('Заданный URL недоступен')
-        } else {
-          getRetried()
-        }
-      })
-    }
+    asyncAuth((error, data) => {
+      if (error) return reject(error)
 
-    getRetried()
+      resolve(data)
+    })
   })
 }
 
-// async function get(url) {
-//   let count = 0;
-//
-//   while (count < 5) {
-//     try {
-//       const res = await fetch(url);
-//       const data = await res.json();
-//       return data;
-//     } catch {
-//       count++;
-//       if (count >= 5) {
-//         throw new Error('Заданный URL недоступен');
-//       }
-//     }
-//   }
-// }
+// auth().then(data => ).catch(err => )
+// await auth()
+```
 
-// (async ()=>{
-//   try {
-//     const data = await get('url')
-//     console.log(data)
-//   } catch(e){
-//     console.log(e);
-//   }
-// })()
+Функция tryAuth() использует auth() и в случае ошибки, совершает N дополнительных попыток. В случае, если все попытки провалились - вернуть последнюю ошибку
 
-// get('url').then(console.log).catch(console.log)
+### Ответ №2
+
+```js
+async function tryAuth(n){
+  try {
+    const response = await auth();
+    return response
+  } catch (err) {
+    n -= 1;
+    if (n === -1) throw err;
+    return tryAuth(n) 
+  }
+}
+
+// tryAuth(10).then(data => ).catch(err =>)
 ```
 </details>
-</details>
+
+---
 
 <details>
 <summary>Вычислить интервалы пользователей в двух отсортированных списка</summary>
@@ -916,7 +961,6 @@ function intersectionTimeline(user1, user2) {
 - Если хоть один не ответил - вывести error;
 - Если хоть один отвечает дольше 1 сек - вывести timeout
 
-
 ```js
 import {checkResult} from 'myLib'
 
@@ -927,39 +971,8 @@ const url2 = "google.com";
 checkResult(url1, solution);
 checkResult(url2, solution)
 ```
-</details>
 
 
-<details>
-<summary>Необходимо написать функцию auth() и tryAuth()</summary>
-
-Функция `asyncAuth(callback)` принимает callback, в который может быть передана ошибка (первым аргументом) и данные с бекенда (вторым аргументом). 
-`asyncAuth((error, data) => {})`
-
-Вам нужно реализовать функцию `auth()`, которая вызывает `asyncAuth()`, но возвращает Promise
-
-```js
-function auth() {
-  // asyncAuth((error, data) => {})`
-}
-// auth().then(data => ).catch(err => )
-// await auth()
-```
-
-Функция tryAuth() использует auth() и в случае ошибки, совершает N дополнительных попыток. В случае, если все попытки провалились - вернуть последнюю ошибку
-
-```js
-async function tryAuth(n){
-  try {
-
-  } catch (err) {
-    n -= 1;
-    if (n === -1) err;
-    return tryAuth(n) 
-  }
-}
-
-```
 
 </details>
 
