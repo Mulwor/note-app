@@ -4,6 +4,11 @@
 
 Платформа длится около часа, за это время собеседующий должен решить как можно больше задач (~5). Во время данного этапа собеседующий не должен ничего гуглить, дебажить и использовать console.log. В случае если возникают вопрос, то можно спросить у интервюера, но большое кол-во вопросов может сказаться на том, что данную платформу не сможете пройти.
 
+## Если хотите хорошо пройти данную секцию необходимо:
+- Первые задачи в основном легкие, совет просто узнать, что выведется консоль или что-то простое;
+- Решить задачи из [leetcode - Days 30](https://leetcode.com/studyplan/30-days-of-javascript/) - в основном задачи под номер 2 или 3 берутся от туда;
+- 
+
 ## Задачи
 
 <details>
@@ -476,6 +481,8 @@ function runOnce(fn) {
 <details>
 <summary>Реализовать функцию carry (каррирование)</summary>
 
+Каррирование - это преобразование функции от нескольких аргументов в последовательность функций, каждая из которых принимает один аргумент.
+
 ```js
 function sum(a, b, c) {
   return a + b + c  
@@ -485,56 +492,108 @@ function curry(fn) {
   // TODO
 }
 
-carry(sum)(1, 2, 3);
+curry(sum)(1, 2, 3);
 curry(sum)(1, 2)(3);
 curry(sum)(1)(2)(3);
 ```
 
-<details>
-<summary>Ответ</summary>
+### Ответы
 
 ```js
-function curry(fn) {
-  const arity = fn.length;
-
-  function curried(...args) {
-    if (args.length >= arity) {
+function curry(fn) {                  
+  return function curried(...args) {                                // 1.
+    if (args.length >= fn.length) {                                 // 2.
       return fn(...args);
-    } else {
-      return function (...newArgs) {
-        return curried(...args, ...newArgs);
-      };
     }
-  }
-
-  return curried;
+    
+    return (...nextArgs) => curried(...args, ...nextArgs);          // 3.
+  };
 }
+
+--- Объяснения ---
+
+1. Возвращаем функцию с аргументом;
+
+2. Проверяем кол-во переданных аргументов: fn.length - количество параметров исходной функции (для sum = 3). Если аргументов достаточно - вызываем исходную функцию;
+
+3. Если аргументов недостаточно: возвращаем новую функцию, которая запоминает текущие аргументы через замыкание и ждет следующие
 ```
-</details>
+
+```js
+function curry(fn) {                                       // ? 1
+  return function curried(...args) {                       // ? 2
+    if (args.length >= fn.length) {                        // ? 3
+      return fn.apply(this, args)
+    } 
+
+    return curried.bind(this, ...args)
+  }
+}
+
+console.log(curry(sum)(1, 2, 3))
+console.log(curry(sum)(1, 2)(3))
+console.log(curry(sum)(1)(2)(3))
+
+--- Объяснения ---
+
+1. Создаем функцию каррирования, и передаем в качества аргумента function;
+
+2. В теле нам необходимо вернуть функцию, которую мы потом вызовем еще раз. Необходимо также проверять достаточно ли аргументов было передано, для этого мы воспользуемся spread оператором arguments;
+
+3. Если длина аргументов больше или равен чем сама функция требует этих аргументов, то мы просто берем и возвращаем результат;
+
+4. `fn.apply(this.args)` - вызывает исходную функцию с текущим контекстом (this), args - все накопленные аргументы, который возвращает результат;
+
+5. `curried.bind(this, ...args)` - bind создает новую функцию с привязанными аргументами this сохраняет контекст вызова, ...args - аргументы, которые уже были переданы и возвращает функцию, которая ждет остальные аргументы;
+```
+
 </details>
 </details>
 
 <details>
 <summary>Необходимо написать функцию compose</summary>
 
+Необходимо написать функцию compose, которая комбинирует несколько функцию в одну цепочку вычислений. (loadash, классовые компоненты)
+
+Функция compose на первый свой вызов возвращает просто функцию - `compose(square, times2)` - она еще не вызвалась мы можем выполнить еще раз (2). Функций может быть несколько
+
+Когда мы второй раз вызываем передаем какие-то аргументы (от 0 до 500 аргументов) и они уже все передаются в функцию например в times2, а его результат передается аргументом в square. А в кейсе где их побольше например sum, а именно 3 и 4 результат sum передается аргументом в times2, потом результат от этого передается в square. Запись справа эквивалентно такому же
+
+
 ```js
 const square = (x) => x * x;
 const times2 = (x) => x * 2;
 const sum = (a, b) => a + b;
 
-console.log(compose(square, times2(2) === square(times(2))))
-console.log(compose(square, times2, num)(3, 4) === square(times(sum(3, 4))))
+compose(square, times2)(2) === square(times2(2))                 // true
+compose(square, times2, sum)(3, 4) === square(times2(sum(3, 4))) // true
+```
+
+### Ответ
+
+```js
+const compose = (...functions) => {
+  return (...args) => {
+    return functions.reduceRight((acc, fn) => {                // 2.
+      return Array.isArray(acc) ? fn(...acc) : fn(acc);        // 3.
+    }, args)
+  }
+}
+
+--- Объяснения ---
+1. Надо написать функцию compose со spread функций, затем необходимо вернуть набор аргументов состоящей из spread
+
+2. Возвращаем функцию, которую объявили в самом начале и идем справа-налево через reduceRight а в теле функции пишем
+
+3. Проверяем, является ли acc массивом: если да - передаем его элементы как отдельные аргументы в функцию, если нет - передаем acc как единственный аргумент
 ```
 </details>
 
 <details>
 
-<summary>* Написать функцию timeLimited которая реджектит по истечению времени</summary>
-Дана асинхронная функция fn и время t в миллисекундах, нужно вернуть новую версию этой функции, выполнение которой ограничено заданным временем.
+<summary>Написать функцию timeLimited которая реджектит по истечению времени</summary>
 
-Функция fn принимает аргументы, переданные в эту новую функцию.
-  
-Возвращаемая функция работает по следующим правилам: 
+[Leetcode - 2637. Promise Time Limit](https://leetcode.com/problems/promise-time-limit/description/) - Дана асинхронная функция fn и время t в миллисекундах, нужно вернуть новую версию этой функции, выполнение которой ограничено заданным временем. Функция fn принимает аргументы, переданные в эту новую функцию.Возвращаемая функция работает по следующим правилам: 
 - если fn выполнится за заданное время t, то функция резолвит полученные данные;
 - если fn не выполнился за заданное время t, то функция реджектит строку "Time limit exceeded"
 
@@ -544,122 +603,222 @@ const timeLimited = function (fn, t) {
 }
 ```
 
-<details>
-<summary>Ответ</summary>
+### Ответы 
 
 ```js
-const timeLimited = function (fn, t) {
-  return async function (...args) {
-    // Обещание, которое сработает, если функция превысит лимит
-    const timeoutPromise = new Promise((_, reject) => {
-      setTimeout(() => reject("Time limit exceeded"), t);
-    });
+const timeLimited = (fn, t) => {
+  const str = "Time Limit Exceeded";
+  const executor = (_, reject) => setTimeout(() => reject(str), t);
 
-    // Запускаем fn с переданными аргументами
-    const fnPromise = fn(...args);
+  return async (...args) => {
+    const timeout = new Promise(executor);
+    const result = fn(...args);
+    return Promise.race([timeout, result])
+  }
+}
 
-    // Возвращаем результат того, кто быстрее завершится
-    return Promise.race([fnPromise, timeoutPromise]);
-  };
-};
+
+----- Объяснение -----
+1. Создаем переменную в котором помещаем текст ошибки;
+2. Создаем функцию executor которая будет использовано для создания promise. Она будет использовать setTimeout, чтобы через время t отклонить promise с сообщением,
+которая мы передаем. Resolve нам не нужен мы можем его пропустить;
+3. Затем возвращаем функцию передавая в нее аргументы;
+4. Внутрь возвращаемой функции поместить timeout который будет ожидать выполнения нашего promise
+5. После этого создаем еще одну переменную, где передаем функцию со всеми аргументами;
+6. И в конце необходимо просто вернуть метод Promise.race, где в качестве аргумента передаем массив промисов и он возвращает результат первого которого завершится
 ```
 
 ```js
-const timeLimited = function (fn, t) {
-  return new Promise((res, rej) => {
-    const timeout = setTimeout(() => {
-      rej('Time limit exceeded')
-    }, t)
+const timeLimited02 = (fn, t) => new Promise((resolve, reject) => {
+    setTimeout(() => reject("Time Limit Exceeded"), t);
+    fn(...args).then(resolve).catch(reject)
+})
 
-    fn().then((value) => {
-      clearTimeout(timeout)
-      res(value)
-    }).catch(() => {
-      clearTimeout(timeout)
-      rej('rejected')
-    })
-  })
-};
+----- Объяснение -----
+1. Возвращаем новый promise который принимает у нас сразу два параметра;
+2. В теле этого promise запускаем setTimeout, которая время через t вызовет reject с нашим сообщением;
+3. А после timeout вызываем функцию fn передавая туда все аргументы и если fn завершается без ошибок мы используем чейнинк и метод then в которую опять же передаем resolve которая вернет наш результат и используем метод catch если она вернется с ошибкой;
 ```
 
-</details>
 </details>
 
 <details>
 <summary>Необходимо реализовать метод groupBy, расширяющий стандартные методы массивов.</summary>
 
-Метод должен возвращать сгруппированную версию массива - объект, в котором
-каждый ключ является результатом выполнения переданной функции fn(arr[i]), а
-каждое значение - массивом, содержащим все элементы исходного массива с этим 
-ключом
+[leetcode - 2631. Group By](https://leetcode.com/problems/group-by/description/)
+
+Необходимо реализовать метод groupBy, расширяющий стандартные методы массивов. - Метод должен возвращать сгруппированную версию массива - объект, в котором каждый ключ является результатом выполнения переданной функции fn(arr[i]), а каждое значение - массивом, содержащим все элементы исходного массива с этим ключом
 
 ```js
-
-Array.prototype.groupBy
-
-
-// Пример №1
-const array1 = [
-    { id: 1 },
-    { id: 1 },
-    { id: 3 }
-]
-
-const fn = (item) => item.id;
-
-console.log(array1,groupBy(fn));
-// {
-//   1: [ {id: 1}, { id: 1 }]
-//   2: [ {id: 2}]   
-// }
-
-// Пример №2
-const array2 = [1, 2, 3];
-console.log(array2.groupBy(String));
-// {
-//   "1": [1]
-//   "2": [2]   
-//   "3": [3]   
-// }
-
-
-// Пример №3
-const array3 = [3.3, 0.5, 1.4];
-console.log(array2.groupBy(Math.round));
-// {
-//   3: [3.3]
-//   1: [0.5, 1.4]   
-// }
-```
-
-<details>
-<summary>Ответ</summary>
-
-```js
-Array.prototype.groupBy = function (fn) {
-  const result = {};
-
-  for (let item of this) {
-    const key = fn(item);
-    if (!result[key]) {
-      result[key] = [];
-    }
-    result[key].push(item);
-  }
-  return result;
+Array.prototype.groupBy = function(fn) {
+    
 };
 
-const array1 = [{id: 1}, {id: 1}, {id: 2}];
+// ----- Примеры -----
+const array1 = [{ id: 1 }, { id: 1 }, { id: 3 }]
+const fn = (item) => item.id;
+console.log(array1,groupBy(fn));
+// { 1: [ {id: 1}, { id: 1 }], 2: [ {id: 2}] }
 
-const fn = (item) => item.id
+const array2 = [1, 2, 3];
+console.log(array2.groupBy(String));
+// { "1": [1], "2": [2], "3": [3] }
+```
+
+### Ответ 
+```js
+Array.prototype.groupBy = function(fn) {
+  const object = {};
+
+  for (let item of this) {
+    const ket = fn(item)
+
+    if (!object[key]) {
+      object[key] = [];
+    } else {
+      object[key].push(item)
+    }
+  }
+
+  return object
+};
+
+------------  Объяснения -------------
+1. Необходимо создать объект;
+2. Затем пройтись по всему массиву через цикл `for of`, где this - любой массив с которым мы будем использовать любой метод;
+3. Внутри цикла создаем ключ, который будет формироваться с помощью вызова функции fn;
+4. Если ключа у нас не имеется, то мы обращаем через объект ключ и записываем туда первый элемент - item. А если есть то мы просто пушим item;
+```
+
+```js
+Array.prototype.groupBy = function(fn) {
+  return this.reduce((grouped,item) =>{
+    const key = fn(item)
+    
+    if (!grouped[key]){
+      grouped[key] = []
+    }
+    
+    grouped[key].push(item);
+
+    return grouped
+    },{})
+};
 ```
 
 </details>
+</details>
 
+---
+
+<details>
+<summary>Написать декоратор для функции, который ограничивает число вызовов</summary>
+
+- callLimit(fn, limit, callback), принимает следующие аргументы:
+- fn - функция, которую декодируем;
+- limit - максимально число вызывов
+- callback - вызывается, когда совершен последний вызов. Опционально
+У вызываемой функции должен быть метод для перезагрузки счетчика в начальном положении
+
+```js
+function callLimit(fn, limit, callback) {
+  let count = 0;
+
+  function limitedFn(...args) {
+    if (count < limit) {
+      count++;
+      fn(...args);
+
+      if (count === limit && typeof callback === 'function') {
+        callback();
+      }
+    }
+  }
+
+  limitedFn.reset = function() {
+    count = 0;
+  };
+
+  return limitedFn;
+}
+```
+</details>
+
+<details>
+<summary>Написать функцию, которая принимает url, асинхронно ходит по этому URL - get запросом и возвращает json.</summary>
+
+Для получение данных использовать fetch. Можно использовать только Promise API. Если во время запроса произошла ошибка, то пробовать запросить еще 5 раз. Если в итоге информацию получить не удалось, вернуть ошибку "Заданный url недоступен
+
+```js
+function get(url) {
+    // code here
+}
+
+get(url)
+.then(res => console.log(res))
+.catch(err => console.error(err))
+```
+
+<details>
+<summary>Ответы</summary>
+
+```js
+function get(url) {
+  let count = 0
+
+  return new Promise((resolve, reject) => {
+    function getRetried() {
+      fetch(url).then((res) => {
+        resolve(res.json())
+      }).catch(() => {
+        count += 1
+        if (count >= 5) {
+          reject('Заданный URL недоступен')
+        } else {
+          getRetried()
+        }
+      })
+    }
+
+    getRetried()
+  })
+}
+
+// async function get(url) {
+//   let count = 0;
+//
+//   while (count < 5) {
+//     try {
+//       const res = await fetch(url);
+//       const data = await res.json();
+//       return data;
+//     } catch {
+//       count++;
+//       if (count >= 5) {
+//         throw new Error('Заданный URL недоступен');
+//       }
+//     }
+//   }
+// }
+
+// (async ()=>{
+//   try {
+//     const data = await get('url')
+//     console.log(data)
+//   } catch(e){
+//     console.log(e);
+//   }
+// })()
+
+// get('url').then(console.log).catch(console.log)
+```
+</details>
 </details>
 
 <details>
 <summary>Вычислить интервалы пользователей в двух отсортированных списка</summary>
+
+[Leetcode - 986. Interval List Intersections](https://leetcode.com/problems/interval-list-intersections/description/) - основное отличие заключается в `if (start < end)` этом пункте, там должно быть `if (start <= end)`
 
 Даны два отсортированных списка с интервалами присутствия пользователей в онлайне в течение дня. Начало интервала строго меньше конца. Нужно вычислить интервалы, когда оба пользователя были в онлайне.
 
@@ -679,6 +838,13 @@ function intersection(user1, user2) {
 }
 ```
 
+### Ответы
+
+```js
+function intersection(user1, user2) {
+  // your code here
+}
+```
 
 <details>
 <summary>Ответ</summary>
@@ -760,112 +926,6 @@ const url2 = "google.com";
 
 checkResult(url1, solution);
 checkResult(url2, solution)
-```
-</details>
-
-<details>
-<summary>Написать функцию, которая принимает url, асинхронно ходит по этому URL - get запросом и возвращает json.</summary>
-
-Для получение данных использовать fetch. Можно использовать только Promise API. Если во время запроса произошла ошибка, то пробовать запросить еще 5 раз. Если в итоге информацию получить не удалось, вернуть ошибку "Заданный url недоступен
-
-```js
-function get(url) {
-    // code here
-}
-
-get(url)
-.then(res => console.log(res))
-.catch(err => console.error(err))
-```
-
-<details>
-<summary>Ответы</summary>
-
-```js
-function get(url) {
-  let count = 0
-
-  return new Promise((resolve, reject) => {
-    function getRetried() {
-      fetch(url).then((res) => {
-        resolve(res.json())
-      }).catch(() => {
-        count += 1
-        if (count >= 5) {
-          reject('Заданный URL недоступен')
-        } else {
-          getRetried()
-        }
-      })
-    }
-
-    getRetried()
-  })
-}
-
-// async function get(url) {
-//   let count = 0;
-//
-//   while (count < 5) {
-//     try {
-//       const res = await fetch(url);
-//       const data = await res.json();
-//       return data;
-//     } catch {
-//       count++;
-//       if (count >= 5) {
-//         throw new Error('Заданный URL недоступен');
-//       }
-//     }
-//   }
-// }
-
-// (async ()=>{
-//   try {
-//     const data = await get('url')
-//     console.log(data)
-//   } catch(e){
-//     console.log(e);
-//   }
-// })()
-
-// get('url').then(console.log).catch(console.log)
-```
-</details>
-
-</details>
-
-
-<details>
-<summary>* Написать декоратор для функции, который ограничивает число вызовов</summary>
-
-- callLimit(fn, limit, callback), принимает следующие аргументы:
-- fn - функция, которую декодируем;
-- limit - максимально число вызывов
-- callback - вызывается, когда совершен последний вызов. Опционально
-У вызываемой функции должен быть метод для перезагрузки счетчика в начальном положении
-
-```js
-function callLimit(fn, limit, callback) {
-  let count = 0;
-
-  function limitedFn(...args) {
-    if (count < limit) {
-      count++;
-      fn(...args);
-
-      if (count === limit && typeof callback === 'function') {
-        callback();
-      }
-    }
-  }
-
-  limitedFn.reset = function() {
-    count = 0;
-  };
-
-  return limitedFn;
-}
 ```
 </details>
 
