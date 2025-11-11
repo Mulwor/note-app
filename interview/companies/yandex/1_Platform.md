@@ -7,7 +7,6 @@
 ## Если хотите хорошо пройти данную секцию необходимо:
 - Первые задачи в основном легкие, совет просто узнать, что выведется консоль или что-то простое;
 - Решить задачи из [leetcode - Days 30](https://leetcode.com/studyplan/30-days-of-javascript/) - в основном задачи под номер 2 или 3 берутся от туда;
-- 
 
 ## Задачи
 
@@ -812,7 +811,6 @@ function get(url, retryCount = 1) {
 ```
 </details>
 
-
 <details>
 <summary>Функции auth() и tryAuth()</summary>
 
@@ -858,8 +856,6 @@ async function tryAuth(n){
 ```
 </details>
 
----
-
 <details>
 <summary>Вычислить интервалы пользователей в двух отсортированных списка</summary>
 
@@ -887,74 +883,31 @@ function intersection(user1, user2) {
 
 ```js
 function intersection(user1, user2) {
-  // your code here
-}
-```
-
-<details>
-<summary>Ответ</summary>
-
-```js
-function intersection(user1, user2) {
   const result = [];
-  let i = 0, j = 0;
+  let firstPointer = 0, 
+  let secondPointer = 0;
 
-  while (i < user1.length && j < user2.length) {
-    const [start1, end1] = user1[i];
-    const [start2, end2] = user2[j];
+  while (firstPointer < user1.length && secondPointer < user2.length) {
+    const [start1, end1] = user1[firstPointer];
+    const [start2, end2] = user2[secondPointer];
 
     const start = Math.max(start1, start2);
     const end = Math.min(end1, end2);
 
-    if (start < end) {
-      result.push([start, end]);
-    }
+    if (start < end) result.push([start, end]);
 
-    if (end1 < end2) {
-      i++;
-    } else {
-      j++;
-    }
+    end1 < end2 ? firstPointer++ : secondPointer++;
   }
 
   return result;
 }
 ```
-
-```js
-function intersectionTimeline(user1, user2) {
-  const timeline1 = new Array(25).fill(0);
-  const timeline2 = new Array(25).fill(0);
-
-  for (const [start, end] of user1) {
-    for (let h = start; h < end; h++) timeline1[h] = 1;
-  }
-
-  for (const [start, end] of user2) {
-    for (let h = start; h < end; h++) timeline2[h] = 1;
-  }
-
-  const result = [];
-  let start = null;
-
-  for (let h = 0; h <= 24; h++) {
-    if (timeline1[h] && timeline2[h]) {
-      if (start === null) start = h;
-    } else if (start !== null) {
-      result.push([start, h]);
-      start = null;
-    }
-  }
-
-  return result;
-}
-```
-
-</details>
 </details>
 
 <details>
 <summary> Необходимо проверить решение задачи по двум сервисом, вызвав checkResult(url1, solution), checkResult(url2, solution) checkResult: (url: string, solution: string | number) => Promise<boolean>;</summary>
+
+import {checkResult} from 'myLib' - Делаем запрос и возвращает promise со значением boolean
 
 - Если оба запроса вернули true - вывести success;
 - Если хоть один вернул false - вывести fail
@@ -962,7 +915,7 @@ function intersectionTimeline(user1, user2) {
 - Если хоть один отвечает дольше 1 сек - вывести timeout
 
 ```js
-import {checkResult} from 'myLib'
+import {checkResult} from 'myLib';
 
 const solution = "Any answer";
 const url1 = "yandex.ru";
@@ -972,7 +925,42 @@ checkResult(url1, solution);
 checkResult(url2, solution)
 ```
 
+### Ответы
 
+```js
+// ...
+// Они возвращают булевое значения
+const a = checkResult(url1, solution);
+const b = checkResult(url2, solution);
+
+function checkConditions (a, b) {
+  const promise = new Promise((res, rej) = {                    // 1. 
+    setTimeout(() => throw 'timeout');
+  }, 1000)
+
+  const result = Promise.race([Promise.all([a, b], promise)])   // 2. 
+  
+  return result.then(([bool1, bool2]) => {
+    if (bool1 && bool2) console.log('success');
+    else console.log('fail')
+  }).catch((error) => {
+    throw error
+  })
+}
+
+try {                                                          // 4.
+  checkConditions(a, b)
+} catch ((e) => {
+  console.log(e)
+})
+
+--- Объяснения ---
+1. Создали искусственный promise с 1 секундой который если успеет выполнится, вернет нам setTimeout
+
+2. Потом мы все таки дожидаемся либо promise.All  или наш setTimeout
+
+3. Чтобы обработать ошибку можем использовать try {} catch (() => {})
+```
 
 </details>
 
@@ -985,8 +973,6 @@ checkResult(url2, solution)
 - max() - возвращает макимальное значение среди всех элементов стека за O(1), кидает исключение или возвращает ошибку, если стек пустой
 
 ```js
-// code here
-
 const stack = new MaxStack();
 stack.push(2);                // max = 2, stack = [2]
 stack.push(1);                // max = 2, stack = [2, 1]
@@ -994,6 +980,49 @@ stack.push(3);                // max = 3, stack = [2, 1, 3]
 stack.push(3);                // max = 3, stack = [2, 1, 3, 3]
 stack.pop();                  // 3; max = 3, stack = [2, 1, 3]
 stack.pop();                  // 3; max = 2, stack = [2, 1]
+```
+
+### Ответ
+
+```js
+class MaxStack {
+  constructor() {
+    this.stack = []; // основной стек для хранения значений
+    this.maxStack = []; // стек для хранения текущих максимумов
+  }
+
+  push(value) {                   // Добавляет элемент в стек
+    this.stack.push(value);
+    
+    // Если maxStack пустой или новый элемент >= текущего максимума
+    if (this.maxStack.length === 0 || value >= this.max()) {
+      this.maxStack.push(value);
+    }
+  }
+
+  pop() {       // Удаляет и возвращает последний добавленный элемент
+    if (this.stack.length === 0) {
+      throw new Error("Stack is empty");
+    }
+    
+    const value = this.stack.pop();
+    
+    // Если удаляемый элемент равен текущему максимуму, удаляем его из maxStack
+    if (value === this.max()) {
+      this.maxStack.pop();
+    }
+    
+    return value;
+  }
+
+  max() {         // Возвращает максимальное значение в стеке
+    if (this.maxStack.length === 0) {
+      throw new Error("Stack is empty");
+    }
+    
+    return this.maxStack[this.maxStack.length - 1];
+  }
+}
 ```
 </details>
 
@@ -1004,7 +1033,6 @@ stack.pop();                  // 3; max = 2, stack = [2, 1]
 
 falsy значение - это такое значение value, для которого Boolean(value) === false считаем, что obj - результат выполнения JSON.parse, то есть plain object
 
-
 ```js
 function filterFalsy(obj) {
   // code here
@@ -1013,6 +1041,38 @@ function filterFalsy(obj) {
 console.log(filterFalsy([null, 0, false, 1]));    // => [1]
 console.log(filterFalsy({ 'a': null, 'b': [false, 1]}));    // => { 'b': [1] }
 console.log(filterFalsy([null, 0, 5, [0], [false, 16]]));   // => [5, [], [16]]
+```
 
-````
+### Ответ
+
+```js
+function filterFalsy(obj) {
+  if (Array.isArray(obj)) {                               // Если obj - массив
+    return obj
+      .map(item => filterFalsy(item))                     // рекурсивно обрабатываем каждый элемент
+       // для массивов оставляем всегда, для остальных - проверяем Boolean
+      .filter(item => !Array.isArray(item) ? Boolean(item) : true);
+  }
+  
+  if (obj && typeof obj === 'object') {                   // Если obj - объект
+    const result = {};
+    
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const value = filterFalsy(obj[key]);              // рекурсивно обрабатываем значение
+        
+        // Добавляем в результат только если значение не falsy
+        if (Boolean(value)) result[key] = value
+      }
+    }
+    
+    return result;
+  }
+  
+  
+  // Если это примитив - возвращаем как есть
+  return obj;
+}
+```
+
 </details>
