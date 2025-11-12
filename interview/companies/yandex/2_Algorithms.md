@@ -9,7 +9,7 @@
 ## Задачи
 
 <details>
-<summary>Задача: digitPermutation(arr)</summary>
+<summary>1. Задача: digitPermutation(arr)</summary>
 
 Дан массив целых неотрицательных чисел, нужно сгруппировать друг с другом числа, которые можно получить путём перестановки цифр их составляющих, нули при этом игнорируем, т. к. нет числа 011. Решение должно быть максимально эффективно по памяти и времени.
 
@@ -71,7 +71,7 @@ console.log(digitPermutation([11111112, 12222222])); // [[11111112], [12222222]]
 </details>
 
 <details>
-<summary>Задача: getNodes(tree, type)</summary>
+<summary>2. Задача: getNodes(tree, type)</summary>
 
 Дана древовидная структура следующего формата:
 
@@ -192,7 +192,7 @@ const getNodes = (tree, type) => {
 
 
 <details>
-<summary>Задача: throttle(fn, delay, ctx)</summary>
+<summary>3. Задача: throttle(fn, delay, ctx)</summary>
 
 Throttle — это функция, которая позволяет ограничивать частоту вызова другой функции fn. Эта функция полезна для обработки событий, например, resize окна, так как она генерирует множество событий за короткий промежуток времени.
 
@@ -391,7 +391,7 @@ function throttle(fn, delay, ctx) {
 </details>
 
 <details>
-<summary>Задача: connect(msg)</summary>
+<summary>4. Задача: connect(msg)</summary>
 
 Наше приложение-чат должно отображать новые сообщения, которые приходят с сервера, как можно быстрее.
 
@@ -474,7 +474,7 @@ onMessage({ id: 4, text: "yo" }); // триггерит рендер 4 и 5
 
 
 <details>
-<summary>Задача: printFileTree(root)</summary>
+<summary>5. Задача: printFileTree(root)</summary>
 
 Дана вложенная структура файлов и папок.
 
@@ -601,7 +601,7 @@ createFolder(tree);
 
 
 <details>
-<summary>Задача: nextSequence</summary>
+<summary>6. Задача: nextSequence</summary>
 
 Напишите функцию, которая будет возвращать комбинацию слов, для переданного массива массивов слов. Комбинации должны быть перечислены в порядке из примера. Если комбинации закончились, то функция возвращает `undefined`. При решении нельзя пользоваться генераторами.
 
@@ -732,8 +732,7 @@ console.log(nextSequence()); // undefined
 </details>
 
 <details>
-<summary>Задача: createSmartFetch(timeout)</summary>
-
+<summary>7. Задача: createSmartFetch(timeout)</summary>
 
 Есть функция batchFetch для запроса данных из бэкенда по id, работающая следующим образом:
 
@@ -839,7 +838,7 @@ function batchFetch(ids) {
 </details>
 
 <details>
-<summary>Задача: getRoute(tickets = [], start)</summary>
+<summary>8. Задача: getRoute(tickets = [], start)</summary>
 
 У нас есть набор билетов вида:
 
@@ -898,7 +897,7 @@ console.log(
 </details>
 
 <details>
-<summary>Задача: solve(urls, n)</summary>
+<summary>9. Задача: solve(urls, n)</summary>
 
 Дан массив ссылок: ['url1', 'url2', ...] и лимит одновременных запросов (limit)
 Необходимо реализовать функцию, которая опросит урлы в том порядке, в котором они идут в массиве, и вызовет callback c массивом ответов
@@ -972,7 +971,7 @@ setTimeout(() => {
 </details>
 
 <details>
-<summary>Задача: sortedSquares</summary>
+<summary>10. Задача: sortedSquares</summary>
 
 Input: nums = [-4,-1,0,3,10]
 Output: [0,1,9,16,100]
@@ -1007,7 +1006,7 @@ var sortedSquares = function (nums) {
 </details>
 
 <details>
-<summary>Задача: isVert(arr)</summary>
+<summary>11. Задача: isVert(arr)</summary>
 
 делиться ли множество точек на две симметричные части вертикальной линией
 
@@ -1081,7 +1080,7 @@ function isVer(points) {
 </details>
 
 <details>
-<summary>Задача: findCommonElements(arr1, arr2)</summary>
+<summary>12. Задача: findCommonElements(arr1, arr2)</summary>
 
 ```js
 function findCommonElements(arr1, arr2) {
@@ -1119,7 +1118,7 @@ console.log(commonElements);  // Ожидаемый результат: [6, 8, 1
 </details>
 
 <details>
-<summary>Задача: printFolders(folders, path = "")</summary>
+<summary>13. Задача: printFolders(folders, path = "")</summary>
 
 ```js
 // Пример структуры папок
@@ -1174,7 +1173,7 @@ printFolders(folders);
 </details>
 
 <details>
-<summary>Задача: removeZero(arr)</summary>
+<summary>14. Задача: removeZero(arr)</summary>
 
 ```js
 function removeZero(arr) {
@@ -1202,7 +1201,7 @@ removeZero([]);
 </details>
 
 <details>
-<summary>Задача: promisePool</summary>
+<summary>15. Задача: promisePool</summary>
 
 ```js
 const prom = (ms, txt) =>
@@ -1364,7 +1363,7 @@ limit(url, 10, fn);
 </details>
 
 <details>
-<summary>Задача: findSubSum(arr, x) </summary>
+<summary>16. Задача: findSubSum(arr, x) </summary>
 
 Вернуть отрезок сумма которого равна х
 
@@ -1402,7 +1401,7 @@ console.log(findSubSum([9, -6, 5, 4, -2], 10));
 </details>
 
 <details>
-<summary>Задача: getElementByPath(data, path)</summary>
+<summary>17. Задача: getElementByPath(data, path)</summary>
 
 ```js
 // Определение функции, которая получает элемент из объекта по строковому пути
@@ -1457,7 +1456,7 @@ console.log(invalidPath); // undefined
 </details>
 
 <details>
-<summary>Задача: maxVisitors</summary>
+<summary>18 Задача: maxVisitors</summary>
 
 ```js
 function maxVisitors(arr) {
@@ -1548,7 +1547,7 @@ function maxVisit(arr) {
 </details>
 
 <details>
-<summary>Задача: findFull(target, str)</summary>
+<summary>19 Задача: findFull(target, str)</summary>
 
 Функция fuzzySearch - нечеткий поиск - первая строка подпоследовательность второй?
 
@@ -1572,7 +1571,7 @@ function findFull(target, str) {
 </details>
 
 <details>
-<summary>Задача: deleteSmile(str)</summary>
+<summary>20. Задача: deleteSmile(str)</summary>
 
 ```js
 function deleteSmile(str) {
@@ -1602,7 +1601,7 @@ deleteSmile('z ytn :-(((:-)))) blya');
 
 
 <details>
-<summary>Задача: createRange/range(line,arr)</summary>
+<summary>21. Задача: createRange/range(line,arr)</summary>
 
 ```js
 // console.log(range([4, 8], [1, 3, 4, 5, 8, 9]));
@@ -1648,7 +1647,7 @@ function range(line, arr) {
 
 
 <details>
-<summary>Задача: createObjectByPath(obj, path)</summary>
+<summary>22. Задача: createObjectByPath(obj, path)</summary>
 
 ```js
 // Определение функции, которая создает вложенные объекты по строковому пути
@@ -1686,7 +1685,7 @@ console.log(createdPath3); // { person: { name: {}, address: { city: {}, zip: {}
 
 
 <details>
-<summary>Задача: coupleNum(arr, k)</summary>
+<summary>23. Задача: coupleNum(arr, k)</summary>
 
 ```js
 // количество пар чисел, разницы которых >= k
@@ -1720,7 +1719,7 @@ coupleNum(data, 3);
 
 
 <details>
-<summary>Задача: correctStr(s1, s2)</summary>
+<summary>24. Задача: correctStr(s1, s2)</summary>
 
 ```js
 function correctStr(s1, s2) {
@@ -1770,7 +1769,7 @@ function correctStr(s1, s2) {
 
 
 <details>
-<summary>Задача: fetchFlights(from)</summary>
+<summary>25. Задача: fetchFlights(from)</summary>
 
 ```js
 async function fetchFlights(from) {
@@ -1826,7 +1825,7 @@ findPath('B', 'S', fetchFlights)
 
 
 <details>
-<summary>Задача: calculateRPN(expression)</summary>
+<summary>26. Задача: calculateRPN(expression)</summary>
 <img src="../../assets/yandex/rpn.jpeg" alt="ошибка" />
 
 ```js
@@ -1871,7 +1870,7 @@ function calculateRPN(expression) {
 </details>
 
 <details>
-<summary>Задача: groupWords</summary>
+<summary>27. Задача: groupWords</summary>
 <img src="../../assets/yandex/groupAnagram.jpeg" alt="ошибка" />
 
 ```js
@@ -1902,7 +1901,7 @@ console.log(groupWords(testWords));
 </details>
 
 <details>
-<summary>Задача: isPalindrome(str)</summary>
+<summary>28. Задача: isPalindrome(str)</summary>
 
 <img src="../../assets/yandex/palindrome.jpeg" alt="ошибка" />
 
@@ -1966,7 +1965,7 @@ function isPalindrome(str) {
 
 
 <details>
-<summary>Задача: bankomat(sum, bankLimits, nominals)</summary>
+<summary>29. Задача: bankomat(sum, bankLimits, nominals)</summary>
 <img src="../../assets/yandex/bankomat.jpeg" alt="ошибка" />
 
 ```js
@@ -2050,7 +2049,7 @@ function atm(sum, limits, noms) {
 </details>
 
 <details>
-<summary>Задача: getRoute(tickets = [], start) </summary>
+<summary>30. Задача: getRoute(tickets = [], start) </summary>
 
 Ожидаем линейный алгоритм с доп.памятью. Квадратный может возникнуть в процессе поиска следующей карточки. 
 
@@ -2126,7 +2125,7 @@ function getRoute(tickets = [], start) {
 </details>
 
 <details>
-<summary>Задача: typeWrite(delay, outputChar) </summary>
+<summary>31. Задача: typeWrite(delay, outputChar) </summary>
 <img src='../../assets/yandex/typeWriter.png' alt="type writter"/>
 
 Необходимо написать функцию, которая принимает на вход delay и outputChar (метод для печати символов), а возвращает функцию для добавления текста на печать. Если в очереди на печать есть текст - то функция посимвольно выводит его в outputChar
@@ -2176,7 +2175,7 @@ runTest();
 
 
 <details>
-<summary>Задача: createSmartFetch(timeout) и batchFetch(ids) </summary>
+<summary>32. Задача: createSmartFetch(timeout) и batchFetch(ids) </summary>
 
 Есть функция batchFetch для запроса данных из бекенда по id, работа : batchFetch([1,2]) -> Promise {1:{id:1,title:'one'},2:{id:2,title:'two'}} для уменьшения количества запросов к бекенду нужно написать обёртку, создающую функцию 'smartFetch(id)', которая склеивает вызовы в один (с окном timeout мс)
 
@@ -2261,7 +2260,7 @@ function batchFetch(ids) {
 
 
 <details>
-<summary>Задача: chat(connect, render)  </summary>
+<summary>33. Задача: chat(connect, render)  </summary>
 <img src="../../assets/yandex/chat.png" alt="chat" />
 
 Наше приложение чат должно отображать новые сообщения, которые приходят с сервера как можно быстрее. Сообщение имеет формат: `interface Message {id: number; text:string}`,  id самого первого сообщения = 1 , а id каждого следующего на 1 больше чем id предыдущего. 
@@ -2342,7 +2341,7 @@ runTest();
 </details>
 
 <details>
-<summary>Задача: addItem(items, item, position)</summary>
+<summary>34. Задача: addItem(items, item, position)</summary>
 
 Входные данные: массив объектов, каждый из которых имеет поля val и type.
 
@@ -2470,7 +2469,7 @@ testAddItem(
 </details>
 
 <details>
-<summary>Задача: bestBuyer(buyers)</summary>
+<summary>35. Задача: bestBuyer(buyers)</summary>
 
 В прототипе рекламной сети продажа рекламных мест устроена следующий образом: покупатели заранее называют свою цену, а на каждое рекласное место отвечают, готовы они его купить или нет. Необходимо реализовать функцию, которая перед продажей рекласного места будет ожидать согласия согласия или отказа от покупателей с высокой ценой ставки, а затем продаст рекламное место покупателю с самой высокой ценой среди тех кто согласился на покупку
 
@@ -2686,7 +2685,7 @@ const testcase = async (label, expectedIndex, timeLimit, fn) => {
 </details>
 
 <details>
-<summary>Задача: compress (list)</summary>
+<summary>36. Задача: compress (list)</summary>
 Дан список неотрицательных целых чисел, в котором повторяющихся элементов нет. Необходимо преобразовать этот список в строку, сворачивая соседние по числовому ряду числа в диапазоны.
 
 Примеры:
@@ -2751,7 +2750,7 @@ console.log (compress (arr4))
 
 
 <details>
-<summary>Задача: isVertSym()</summary>
+<summary>37. Задача: isVertSym()</summary>
 
 Дан массив точек с целочисленными координатами (x, y). Нужно определить,
 существует ли вертикальная прямая, которая делит все точки, не лежащие на ней,
@@ -2814,7 +2813,7 @@ function isVertSym(list) {
 
 
 <details>
-<summary>Задача: parallelLimit(urls, limit, callback)</summary>
+<summary>38. Задача: parallelLimit(urls, limit, callback)</summary>
 
 Описание задачи:
 - Дан список ссылок.
@@ -2935,7 +2934,7 @@ function parallelLimit(urls, limit, callback) {
 </details>
 
 <details>
-<summary>Глубокое сравнение двух объектов</summary>
+<summary>39. Глубокое сравнение двух объектов</summary>
 
 Дано два объекта:
 
@@ -3092,7 +3091,7 @@ console.log(objectDeepEqual(obj1, obj2));
 </details>
 
 <details>
-<summary>Сжатие объектов</summary>
+<summary>40. Сжатие объектов</summary>
 
 Дан объект: 
 ```js
@@ -3209,7 +3208,7 @@ const flattenObject = (obj, parentKey) => {
 </details>
 
 <details>
-<summary>Задача: полиморфизм Promise.race</summary>
+<summary>41. Задача: полиморфизм Promise.race</summary>
 
 Нужно реализовать идентичный метод, не используя другие методы класса.
 
@@ -3253,7 +3252,7 @@ const promiseRace = (promises) => {
 </details>
 
 <details>
-<summary>Задача: hasPathSum - сумма пути (бинарное дерево)</summary>
+<summary>42. Задача: hasPathSum - сумма пути (бинарное дерево)</summary>
 
 Дано бинарное дерево:
 
@@ -3346,7 +3345,7 @@ console.log(hasPathSum(null, 5)) // false
 </details>
 
 <details>
-<summary>Задача: дан объект, который необходимо почистить</summary>
+<summary>43. Задача: дан объект, который необходимо почистить</summary>
 
 Дан объект:
 
@@ -3566,7 +3565,7 @@ console.log(
 </details>
 
 <details>
-<summary>Задача: printStructure (принтер)</summary>
+<summary>44. Задача: printStructure (принтер)</summary>
 
 Дана структура:
 ```js
@@ -3719,7 +3718,7 @@ console.log(
 </details>
 
 <details>
-<summary>Задача: generate(n)</summary>
+<summary>45. Задача: generate(n)</summary>
 
 Пары - нужно написать функцию, которая генерирует все корректные комбинации для двух пар круглых скобок
 
@@ -3742,7 +3741,7 @@ generate(2); // ['()()', '(())'] // truye
 </details>
 
 <details>
-<summary>Скобки</summary>
+<summary>46. Скобки</summary>
 
 Дана строка: '[(js){}(grill)()]'
 
