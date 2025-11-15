@@ -9,29 +9,22 @@ import {
 } from './features/counter/counterSlice.ts';
 import { useAppDispatch, useAppSelector } from './hooks/useReduxHooks.ts';
 
-// Перечисление для статусов счетчика
 enum CounterStatus {
   NEGATIVE = 'negative',
   POSITIVE = 'positive',
   NEUTRAL = 'neutral',
 }
 
-// Классы стилей для каждого статуса счетчика
 const CounterClassnameByStatus = {
   [CounterStatus.NEGATIVE]: 'text-red-500',
   [CounterStatus.POSITIVE]: 'text-green-500',
   [CounterStatus.NEUTRAL]: 'text-neutral-900',
 };
 
-/**
- * Компонент React для отображения счетчика и управления им.
- * @component
- */
 const App = () => {
   const dispatch = useAppDispatch();
-  // Получение значения счетчика из хранилища
-  const { counter } = useAppSelector(counterSelector);
-  // Определение класса стилей на основе статуса счетчика
+  const { counter } = useAppSelector(counterSelector);     // ? Получение значения счетчика из хранилища
+
   let className: string = CounterClassnameByStatus[CounterStatus.NEUTRAL];
 
   if (counter < 0) {
@@ -67,23 +60,13 @@ const App = () => {
 
 export default App;
 
-/**
- * Пропсы для компонента кнопки.
- * @interface IButtonProps
- * @property {React.ReactNode} children - Дочерние элементы кнопки.
- * @property {string} className - Классы стилей кнопки.
- * @property {() => void} onClick - Обработчик события клика на кнопку.
- */
+
 interface IButtonProps {
   children: React.ReactNode;
   className: string;
   onClick: () => void;
 }
 
-/**
- * Компонент кнопки.
- * @component
- */
 const Button: React.FC<IButtonProps> = ({ children, className, onClick }) => {
   return (
     <button className={`btn font-bold text-white ${className}`} onClick={onClick}>

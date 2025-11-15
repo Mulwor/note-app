@@ -1,9 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { counterReducer as counter } from '../features/counter/counterSlice';
 
-/**
- * Конфигурация Redux-хранилища.
- */
+// ? Конфигурация Redux-хранилища.
 export const store = configureStore({
   reducer: {
     counter,
@@ -14,14 +12,9 @@ export const store = configureStore({
   },
 });
 
-/**
- * Тип для состояния всего приложения.
- * @typedef {ReturnType<typeof store.getState>} RootState
- */
+
+// ? Тип для состояния всего приложения.
 export type RootState = ReturnType<typeof store.getState>
 
-/**
- * Тип для диспетчера Redux-экшенов.
- * @typedef {typeof store.dispatch} AppDispatch
- */
+// ? Тип для диспетчера Redux-экшенов.
 export type AppDispatch = typeof store.dispatch
