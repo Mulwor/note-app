@@ -1,0 +1,1 @@
+1. [Резюме находятся здесь](https://docs.google.com/presentation/u/0/)

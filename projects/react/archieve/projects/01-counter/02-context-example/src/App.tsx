@@ -1,37 +1,24 @@
 import { useAppContext } from './context/AppContext.tsx';
 import React from 'react';
 
-/**
- * Перечисление для статусов счетчика.
- * @enum {string}
- */
+// ? Перечисление для статусов счетчика.
 enum CounterStatus {
   NEGATIVE = 'negative',
   POSITIVE = 'positive',
   NEUTRAL = 'neutral',
 }
 
-/**
- * Объект, который содержит соответствие между статусом счетчика и соответствующим классом CSS.
- * @type {Object.<CounterStatus, string>}
- */
+// ?  Объект, который содержит соответствие между статусом счетчика и соответствующим классом CSS.
 const CounterClassnameByStatus = {
   [CounterStatus.NEGATIVE]: 'text-red-500',
   [CounterStatus.POSITIVE]: 'text-green-500',
   [CounterStatus.NEUTRAL]: 'text-neutral-900',
 };
 
-/**
- * Компонент React для отображения счетчика и управления им.
- * @component
- */
 const App = () => {
   const { counter, handleDecrease, handleIncrease, handleReset } = useAppContext();
 
-  /**
-   * CSS-класс, определенный на основе статуса счетчика.
-   * @type {string}
-   */
+  // ? CSS-класс, определенный на основе статуса счетчика
   let className: string = CounterClassnameByStatus[CounterStatus.NEUTRAL];
 
   if (counter < 0) {
@@ -55,21 +42,14 @@ const App = () => {
 
 export default App;
 
-/**
- * Интерфейс для свойств компонента Button.
- * @interface
- */
+
+// ? Выносим кнопку в отдельную стрелочную функцию и переиспользуем его в App
 interface IButtonProps {
   children: React.ReactNode;
   className: string;
   onClick: () => void;
 }
 
-/**
- * Компонент кнопки.
- * @param {IButtonProps} props - Свойства кнопки.
- * @component
- */
 const Button = ({ children, className, onClick }: IButtonProps) => {
   return (
     <button className={`btn font-bold text-white ${className}`} onClick={onClick}>

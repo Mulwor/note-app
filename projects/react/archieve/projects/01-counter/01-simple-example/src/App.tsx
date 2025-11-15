@@ -1,56 +1,25 @@
 import { useState } from 'react';
 
-/**
- * Перечисление классов стилей для отображения счетчика в разных состояниях.
- * @enum {string}
- */
+// ? Перечисление классов стилей для отображения счетчика в разных состояниях.
 enum CounterClassNames {
   Negative = 'text-red-500',
   Positive = 'text-green-500',
   Neutral = 'text-neutral-900',
 }
 
-/**
- * Компонент React для отображения счетчика и управления им.
- * @component
- */
 const App = () => {
-  /**
-   * Состояние счетчика.
-   * @type {number}
-   */
+  // ? Состояние счетчика
   const [counter, setCounter] = useState<number>(0);
 
-  /**
-   * Класс стилей для отображения счетчика.
-   * @type {CounterClassNames}
-   */
+  // ? Отображение счетчика - Меняет цвет когда доходит до определенного диапозона
   const className: CounterClassNames = counter < 0
     ? CounterClassNames.Negative
-    : counter > 0
-      ? CounterClassNames.Positive
-      : CounterClassNames.Neutral;
+    : counter > 0 ? CounterClassNames.Positive : CounterClassNames.Neutral;
 
-  /**
-   * Обработчик уменьшения значения счетчика.
-   */
-  function handleDecrease() {
-    setCounter(v => v - 1);
-  }
-
-  /**
-   * Обработчик увеличения значения счетчика.
-   */
-  function handleIncrease() {
-    setCounter(v => v + 1);
-  }
-
-  /**
-   * Обработчик сброса значения счетчика.
-   */
-  function handleReset() {
-    setCounter(0);
-  }
+  // ? Увеличение, уменьшение и обнуления счетчика
+  const handleDecrease = () => setCounter((result) => result - 1);
+  const handleIncrease = () => setCounter((result) => result + 1);
+  const handleReset = () => setCounter(0)
 
   return (
     <div className='max-w-md w-full mx-auto p-3 grid gap-3 bg-white border-2 rounded-md'>

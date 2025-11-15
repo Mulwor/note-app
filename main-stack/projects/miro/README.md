@@ -1,1 +1,0 @@
-1. [Init project](https://github.com/Mulwor/note-app/commit/3f569deabcff4b9740f3a4feaece318e8758f6b2) - установка vite и построение приложения.

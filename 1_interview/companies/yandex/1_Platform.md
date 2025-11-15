@@ -1076,3 +1076,74 @@ function filterFalsy(obj) {
 ```
 
 </details>
+
+<details>
+<summary>Полифил Array.prototype.some</summary>
+
+Нужно написать полифилл для Array.prototype.some
+
+Параметры
+1. callback - функция проверки каждого элемента, принимает 3 аргумента:
+- element - текущий обрабатываемый элемент массива
+- index (необязательный) - индекс текущего обрабатываемого элемента массива
+- array (необязательный) - массив, по которому осуществляется проход
+
+2. thisArg (необъязательный) - значение, используемое в качестве this при выполнении функции callback.
+
+Возвращаемое значение
+true, если функция проверки возвращает truthy значение хотя бы одного элемента массива иначе false
+
+Array.prototype.some = 
+
+console.log([1, 2, 3, 'hello']. some(arg => typeof arg === 'string')) // true
+</details>
+
+<details>
+<summary>Реализовать функцию any, promise.Any</summary>
+
+Реализовать функцию any, которая бы работала, как Promise.any().
+
+Функция принимает массив проммисов (считаем что непустой) и возвращает промис. Если какой-то из переданных промисов резолвится (успешно выполнится), то возвращаемый промис резовлится с этим значением. Если все переданные промисы реджектятся, то возвращаемый промис реджектится с ошибкой AggregateError, в которой сгруппированы все ошибки.
+
+AggregateError можно создавать таким образом: `new AggregateError(error, 'No promise in any was resolved');`
+
+```js
+function any(promises)
+```
+
+</details>
+
+<details>
+<summary>Даны 3 секции кода, необходимо написать результат выполнения каждого console.log</summary>
+
+```js
+var n = 1;
+
+function f(n) {
+  n = 3;
+}
+f(n)
+console.log(n)
+```
+
+```js
+var obj = { a: 1 };
+
+function f1(o) {
+  o.a = 5;
+}
+f1(obj)
+
+console.log(obj)
+```
+
+```js
+var obj = { a: 1 };
+
+function f2(o) {
+  o = { hello: 1 }
+}
+f2(obj)
+console.log(obj)
+```
+</details>
