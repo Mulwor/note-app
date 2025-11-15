@@ -13,7 +13,7 @@ import {
   ResultsNumber,
   Search,
   WatchedSummary,
-} from './components';
+} from './components/index.ts';
 
 interface Movie {
   countRatingDecisions: number;

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Loader, StarRating } from './index.ts';
-import useKey from '../hooks/useKey.jsx';
-import useTitle from '../hooks/useTitle.jsx';
-import useFetchMovie from '../hooks/useFetchMovie.jsx';
+import useKey from '../hooks/useKey.js';
+import useTitle from '../hooks/useTitle.js';
+import useFetchMovie from '../hooks/useFetchMovie.js';
 
 interface IMovieDetailsProps {
   selectedId: string;
