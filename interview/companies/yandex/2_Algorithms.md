@@ -3240,6 +3240,7 @@ const promiseRace = (promises) => {
   if (promises.length === 0) {
     return Promise.resolve()
   }
+  
   return new Promise((res, rej) => {
     promises.forEach(promise => {
         Promise.resolve(promise)

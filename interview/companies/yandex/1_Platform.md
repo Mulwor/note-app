@@ -121,6 +121,49 @@ console.log(d);     // [1, 2, 3, 4]
 </details>
 
 <details>
+<summary>Даны 3 секции кода, необходимо написать результат выполнения каждого console.log</summary>
+
+```js
+var n = 1;
+
+function f(n) {
+  n = 3;
+}
+f(n)
+console.log(n)     // 1
+
+// Когда мы передаем примитив в функцию, то создается отдельная локальная копия этого значения. По этому ответ 1
+```
+
+```js
+var obj = { a: 1 };
+
+function f1(o) {
+  o.a = 5;
+}
+
+f1(obj)
+console.log(obj)  // { a: 5 } 
+
+// Во второй случае передается уже ссылка на объект. По этому ответ 5
+```
+
+```js
+var obj = { a: 1 };
+
+function f2(o) {
+  o = { hello: 1 }
+  console.log(o)
+}
+
+f2(obj)
+console.log(obj) // { a: 1 }
+// Ссылка ведет на существующий объект, но внутри функции параметр 
+// o переназначается на новый объект, который не влияет на исходный obj
+```
+</details>
+
+<details>
 <summary>Пройтись по коду и рассказать максимально подробно объяснить, что происходит в каждой строчке кода</summary>
 
 ```js
@@ -1093,9 +1136,59 @@ function filterFalsy(obj) {
 Возвращаемое значение
 true, если функция проверки возвращает truthy значение хотя бы одного элемента массива иначе false
 
-Array.prototype.some = 
+```js
+Array.prototype.some = function(callback, thisArg) {
+  for (let i = 0; i < this.length; i++) {
+    const callbackValue = callback(this[i], i, this)
+    // const callbackValue = callback(thisArg, this[i], i, this)
 
-console.log([1, 2, 3, 'hello']. some(arg => typeof arg === 'string')) // true
+    if (callbackValue) return true
+  }
+
+  return false
+}
+
+console.log([1, 2, 3, 'hello'].some(arg => typeof arg === 'string')) // true
+```
+</details>
+
+<details>
+<summary>Реализовать полиморфизм Promise.race</summary>
+
+Нужно реализовать идентичный метод, не используя другие методы класса.
+
+Вот некоторый особенности, которые помогут тебе начать:
+  - метод принимает массив промисов;
+  - метод возвращает промис;
+  - метод ждет фуфила одного из переданных промисов;
+  - и сразу возвращает его результат.
+
+На примере с кодом будет понятнее
+
+### Ответ 
+
+```js
+const promiseRace = (promises) => {
+  if (promises.length === 0) {
+    return Promise.resolve()
+  }
+  
+  return new Promise((resolve, reject) => {
+    promises.forEach((promise) => 
+      Promise.resolve(promise).then(resolve, reject)
+      // .catch(rej)
+    )
+  })
+}
+
+const promise1 = new Promise((resolve) => setTimeout(() => resolve('Первый'), 500));
+const promise2 = new Promise((resolve) => setTimeout(() => resolve('Второй'), 200));
+const promise3 = new Promise((resolve) => setTimeout(() => reject('Третий'), 800));
+
+promiseRace([promise1, promise2, promise3])
+  .then(result => console.log(result))
+  .catch(error => console.error(error));
+```
 </details>
 
 <details>
@@ -1107,43 +1200,34 @@ console.log([1, 2, 3, 'hello']. some(arg => typeof arg === 'string')) // true
 
 AggregateError можно создавать таким образом: `new AggregateError(error, 'No promise in any was resolved');`
 
-```js
-function any(promises)
-```
-
-</details>
-
-<details>
-<summary>Даны 3 секции кода, необходимо написать результат выполнения каждого console.log</summary>
+### Ответ
 
 ```js
-var n = 1;
+function any(promises) {
+  return new Promise((resolve, reject) => {
+    let showReject = new AggregateError(error, 'No promise in any was resolved')
+    const errors = [];
 
-function f(n) {
-  n = 3;
+    promises.forEach((promise, index) => {
+      Promise.resolve(promise)
+        .then(resolve)
+        .catch(error => {
+          errors[index] = error;
+          promise.length--;
+          
+          if (promise.length === 0) reject(showReject);
+        });
+    });
+  })
 }
-f(n)
-console.log(n)
+
+// 1. Возвращаем новый promise
+// 2. Инициализируем массив ошибок и счетчик ожидающих promises
+// 3. Для каждого promise в массиве:
+// - Преобразуем в promise с Promise.resolve() (на случай не-promises)
+// - Если promise resolve - сразу resolve основной promise с его значением
+// - Если reject - сохраняем ошибку и уменьшаем счетчик
+// 4. Когда все promises reject (счетчик = 0) - reject с AggregateError
 ```
 
-```js
-var obj = { a: 1 };
-
-function f1(o) {
-  o.a = 5;
-}
-f1(obj)
-
-console.log(obj)
-```
-
-```js
-var obj = { a: 1 };
-
-function f2(o) {
-  o = { hello: 1 }
-}
-f2(obj)
-console.log(obj)
-```
 </details>
