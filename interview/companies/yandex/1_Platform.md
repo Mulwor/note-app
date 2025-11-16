@@ -972,7 +972,7 @@ checkResult(url2, solution)
 
 ```js
 // ...
-// Они возвращают булевое значения
+// Они возвращают boolean значения
 const a = checkResult(url1, solution);
 const b = checkResult(url2, solution);
 

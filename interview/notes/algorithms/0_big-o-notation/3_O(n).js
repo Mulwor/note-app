@@ -3,7 +3,6 @@
 // ? требуется для выполнения алгоритма
 
 // !=============================== Пример №1 =====================================\
-
 function printArray(arr) {
   for (let i = 0; i < arr.length; i++) {
     console.log(arr[i]);
@@ -13,7 +12,6 @@ function printArray(arr) {
 printArray([1, 2, 3, 4, 5])
 
 // !=============================== Пример №2 =====================================
-
 function sumArray(arr) {
   let sum = 0; 
   for (let i = 0; i < arr.length; i++) {
@@ -24,7 +22,6 @@ function sumArray(arr) {
 sumArray([1, 2, 3, 4])                
 
 // !=============================== Пример №3 =====================================
-
 function findMaxElement(arr) {
   let max = arr[0];
   for (let i = 1; i < arr.length; i++) {
@@ -36,7 +33,6 @@ function findMaxElement(arr) {
 }
 
 // !=============================== Пример №4 =====================================
-
 function findAverageElement(arr) {
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
@@ -47,7 +43,6 @@ function findAverageElement(arr) {
 
 
 // !=============================== Пример №5 =====================================
-
 var getConcatenation = function(numbers) {
   return numbers.concat(numbers)
 };
