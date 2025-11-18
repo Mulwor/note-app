@@ -1,5 +1,4 @@
 // ? Типы данных в JS
-
 let string = "Oleg";
 let number = 25;
 let bigInt = 1234567890123456789012345678901234567890n;
@@ -17,9 +16,7 @@ let user = {
 };
 
 // ! =================================================================
-
 // ? Определить тип данных можно через typeOf
-
 console.log(typeof 0)                               // * number
 console.log(typeof true)                            // * boolean
 console.log(typeof 'Javascript')                    // * string
