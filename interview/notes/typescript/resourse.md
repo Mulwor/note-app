@@ -133,8 +133,8 @@ function test(a: findStrOrNum) : findStrOrNum extends string ? number : string {
 function test2<T extends string | number>(a: T): T extends string ? number : string
 // Через перегрузку
 test3 = {
-    (a: number): string
-    (a: string): number
+  (a: number): string
+  (a: string): number
 }
 const test4 = function (a) {
     return 1;
@@ -162,3 +162,96 @@ type Arr = number[];
 type ValueOfObj = ValueOf<Obj>;         // ? type ValueOfObj = string | number;
 type ValueOfArr = ValueOf<Arr>          // ? type ValueOfArr = number
 ```
+
+### Решение
+
+```ts
+type obj = { key1: string; key2: number };
+type Arr = number[];
+type ValueOfObj = ValueOf<Obj>;         // ? type ValueOfObj = string | number;
+type ValueOfArr = ValueOf<Arr>          // ? type ValueOfArr = number
+
+type ValueOf<T> = T extends Arr ? number : T extends Obj ? T[keyof T]: never
+```  
+
+Доп.вопрос - что такое infer  
+
+Оператор infer используется в контексте типовых параметров для "вывода" типа данных из другого типа. Это позволяет явно указывать тип данных, когда TypeScript не может самостоятельно его определить
+
+```ts
+type obj = { key1: string; key2: number };
+type Arr = number[];
+type ValueOfObj = ValueOf<Obj>;         // ? type ValueOfObj = string | number;
+type ValueOfArr = ValueOf<Arr>          // ? type ValueOfArr = number
+
+type ValueOf<T> = T extends Arr<infer U> ? U : T extends Obj ? T[keyof T]: never
+```  
+
+--- 
+
+Доп.вопрос - Какие утилитарные типы используется для функций? - Parameters, return type, awaited (условный промис)
+
+6. Необходимо протипизировать данную функцию
+```ts
+interface User { age: number, name: string };
+
+function createAndValidate(name, age) {
+  const newUser = {};
+
+  if (name.length = 0) {
+    newUser.name = name
+  }
+  
+  if (age > 18) {
+    newUser.age = age
+  }
+
+  return newUser
+}
+```
+
+### Решение
+
+```ts
+interface User { age: number, name: string };
+
+function createAndValidate(name: string, age: number) {
+  const newUser: Partial<User> = {};
+
+  if (name.length === 0) {
+    newUser.name = name
+  }
+  
+  if (age > 18) {
+    newUser.age = age
+  }
+
+  return newUser
+}
+```
+
+7. Что будет содержать Type1 и Type2
+
+Что такое extract (берет то, что соответствует условию) и exclude (берет не то, что соответствует условию). Похож на pick и omit, только здесь идет работа с ключами уже
+
+```ts
+interface User { name: string; age: number; hobbies: string[] };
+
+type Type1 = Extract<'age' | 'some' | 'hobbies', keyof User>
+type Type2 = Exclude<'a' | 'b' | User, string>
+```
+
+### Решение
+
+```ts
+interface User { name: string; age: number; hobbies: string[] };
+
+type Type1 = Extract<'age' | 'some' | 'hobbies', keyof User>    // age, hobbies
+type Type2 = Exclude<'a' | 'b' | User, string>                  // User
+
+
+// Extract берет то что соответствует условию - в начале у нас есть тип из объединения строк 'age' | 'some' | 'hobbies', keyof тоже возвращает ключи - name, age, hobbies и возвращает age и hobbies, так как они одинаковые
+// В начале в Exclude у нас будет тип, из которого мы будем исключать - 'a' | 'b' | User, и исключаем мы все типы string и остается только User
+```
+
+8. Нам нужно получить тип функции и тип возвращаемого значения
