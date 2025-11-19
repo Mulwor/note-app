@@ -255,3 +255,241 @@ type Type2 = Exclude<'a' | 'b' | User, string>                  // User
 ```
 
 8. Нам нужно получить тип функции и тип возвращаемого значения
+
+```ts
+function log(data: string[], num: number): boolean {
+  console.log(data, num)
+  return false;
+}
+```
+
+### Решение
+
+```ts
+function log(data: string[], num: number): boolean {
+  console.log(data, num)
+  return false;
+}
+
+type LogReturn = ReturnType<typeof log>
+type LogParams = Parameter<typeof log>[1]
+```
+
+---
+
+Что такое record (для описания типов) - подходит для описания пар ключ значения. Первым передаем тип для ключ, а вторым для нашего значения
+
+Чем отличается map от record - 
+
+9. Задача: как описать объект `obj` так, что бы `values` были только <string | boolean>. А при обращении к любому `keys` объекта `obj` не терялся тип значения
+
+```ts
+const obj = {
+  hello: 'world',
+  enable: true,
+  whatAboutNumber: 0,
+  // ...other keys values
+}
+
+console.log('obj', obj.hello.toLocaleUpperCase())
+console.log('obj', obj.enable)
+```
+
+### Решение
+
+```ts
+const obj: Record<string, string | boolean> = {
+  hello: 'world',
+  enable: true,
+  // whatAboutNumber: 0,
+  // ...other keys values
+}
+
+console.log('obj', obj.hello.toLocaleUpperCase())
+console.log('obj', obj.enable)
+```
+
+---
+
+### 10. Напишите и типизируйте функцию, выполняющую запрос за данными по переданному URL. Выведите их в консоль в формате: "ID: id", Email: email".
+
+```ts
+const COMMENTS_URL = "https://jsonplaceholder.typicode.com/comments";
+/** 
+ * Id: 1, Email: Eliseo...
+ * Id: 2, Email: Eliseo_2...
+*/
+
+const getData = ( url ) => {
+  // Your code here
+}
+
+// 10.1. Необходимо получить тип возвращаемого значение функции (не Promise, а массив комментов)
+
+getData(COMMENTS_URL).then((data) => {
+  // Your code here
+})
+```
+
+### Решение
+
+```ts
+const COMMENTS_URL = "https://jsonplaceholder.typicode.com/comments";
+
+interface Comment {
+  post: number;
+  id: number;
+  name: string;
+  email: string;
+  body: string
+}
+
+const getData = async ( url: string ): Promise<Comment[]> => {
+  const response = await fetch(url);
+  const data = await response.json();
+
+  return data
+}
+
+// Если мы хотим получит тип возвращаемого значение функции (не Promise, а массив комментов), то можем использовать
+type res = Awaited<ReturnType<typeof getData>>
+```
+
+
+### 11. Написать и использовать типизацию 
+
+Написать типизацию подходящего для двух объектов, не потерять типизацию "за" ключами в endpoints, то есть key: string и Record<string> не подходят.
+
+Принять, что сами ключи endpoint нам известны на этапе типизации каждого объекта: "getVtemplates" и "postVtemplates" для vtemplateObject, getReports и putReports для reportObject
+
+Подсказка - у нас должен быть общий тип
+
+```ts
+// --- 1 --- Задает структуру объектов, не знает про конкретные объекты, и их методы
+```
+
+
+```ts
+// --- 2 --- Не может менять базовый тип, но знает про структуру объекта который типизирует
+```
+
+```js
+const templateObject = {
+  entity: 'template',
+  endpoints: {
+    getTemplates: {
+      method: "GET",
+      url: "template"
+    }
+    postTemplates: {
+      method: "POST",
+      url: "template"
+    }
+  }
+}
+
+const reportObject = {
+  entity: 'report',
+  endpoints: {
+    getReports: {
+      method: "GET",
+      url: "report"
+    }
+    postReports: {
+      method: "POST",
+      url: "report"
+    }
+  }
+}
+
+
+```
+
+
+### Решение
+
+```ts
+// --- 1 --- 
+interface Endpoint {
+  method: string;
+  url: string;
+}
+
+interface ApiObject<T extends string> {
+  entity: string,
+  endpoints: Record<T, Endpoint>
+}
+
+const templateObject: ApiObject<'getTemplates' | 'postTemplates'> = {
+  entity: 'template',
+  endpoints: {
+    getTemplates: {
+      method: "GET",
+      url: "template"
+    }
+    postTemplates: {
+      method: "POST",
+      url: "template"
+    }
+  }
+}
+
+const reportObject: ApiObject<'getReports' | 'postReports'> = {
+  entity: 'report',
+  endpoints: {
+    getReports: {
+      method: "GET",
+      url: "report"
+    }
+    postReports: {
+      method: "POST",
+      url: "report"
+    }
+  }
+}
+```
+
+### 11. Мы должны проверять, если мы передали isTeamMember, то обязательно должен быть передан и yearsOfExperience
+
+isTeamMembers и yearsOfExperience должны идти парами, если нет isTeamMembers, то и не должно быть yearsOfExperience
+
+```ts
+interface AvatarProps {
+  imgSrc: string;
+  isTeamMembers?: boolean;
+  yearsOfExperience?: number;
+}
+
+const avatarProps1: AvatarProps = { imgSrc: '...' }
+// @ts-expect-error
+const avatarProp2: AvatarProps = { imgSrc: '....'; isTeamMembers?: true; }
+
+const avatarProp3: AvatarProps = {
+  imgSrc: '-----';
+  isTeamMembers?: true;
+  yearsOfExperience?: 3;
+}
+```
+
+### Решение
+
+```ts
+type AvatarProps = {
+  imgSrc: string;
+} & (
+  | { isTeamMember?: never; yearOfExperience?: never}
+  | { isTeamMember: true; yearOfExperience: true}
+)
+
+// Объяснения imageSource будет постоянным и мы этот интерфейс через пересечение & выбираем с чем объединить либо с вариантом isTeamMember и тогда не yearsOfExperience либо с тем и с тем
+```
+
+Вопросы на собеседование
+
+1. Отличие типов от интерфейсов
+2. Какие утилиты тайпы знаешь - использовал?
+3. Что такое дженерики 
+4. Как сузить дженерик
+
+// ========================================================================
+
