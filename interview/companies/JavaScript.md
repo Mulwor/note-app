@@ -673,24 +673,6 @@ console.log(getRanges2([1, 2, 5, 10, 9, 11, 6, 8, 0, 13, 16]));
 ```
 </details>
 
-### Асинхронщина
-
-<details>
-<summary>написать функцию для создания задержки</summary>
-
-function sleep(time = 100) {}
-
-### Ответ
-
-```js
-function sleep(ms) {
-  return new Promise((resolve) =>
-    setTimeout(() => {
-      resolve(ms);
-    }, ms)
-  );
-}
-```
 
 </details>
 
@@ -782,54 +764,7 @@ const promiseAllSettled = async (promises) => {
 ```
 </details>
 
-<details>
-<summary>Реализовать Promise.any</summary>
 
-```js
-function customPromiseAny(promises) {}
-
-customPromiseAny([
-  new Promise((res, rej) => rej("promise1")),
-  new Promise((res) => res("promise2")),
-  new Promise((res) => res("promise3")),
-]).then((r) => console.log(r)); // promise2
-
-```
-### Ответ
-
-```js
-function customPromiseAny(promises) {
-  // Создаём счётчик промисов
-  let errorPromises = 0;
-  // Создаём пустой массив с длиной равной кол-ву промисов (надо для порядка результатов)
-  const errors = new Array(promises.length);
-
-  return new Promise((resolve, reject) => {
-    // Создаём новый промис, в нём бежим по каждому промису
-    for (let i = 0; i < promises.length; i++) {
-      promises[i]
-        .then(resolve) // Резолвим главный промис при первом попавшемся резолве дочернего
-        .catch((error) => {
-          errors[index] = error;
-          errorPromises += 1;
-
-          if (errorPromises === promises.length) {
-            // Реджектим главный промис если все промисы зареджектились
-            reject(promiseErrors);
-          }
-        });
-    }
-  });
-}
-
-customPromiseAny([
-  new Promise((res, rej) => rej("promise1")),
-  new Promise((res) => res("promise2")),
-  new Promise((res) => res("promise3")),
-]).then((r) => console.log(r));
-```
-
-</details>
 
 ### Замыкание
 
@@ -1921,138 +1856,6 @@ function copy(a) {
 
   return a; // Если a не является ни массивом, ни объектом Просто возвращаем значение
 }
-```
-</details>
-
-### EventLoop
-
-<details>
-<summary>Объясните, что происходит в данном коде и какой будет вывод в консоль при его выполнении.</summary>
-
-```js
-setTimeout(function timeout() {
-  console.log("Таймаут");
-}, 0);
-
-let p = new Promise(function (resolve, reject) {
-  console.log("Создание промиса");
-  resolve();
-});
-
-p.then(function () {
-  console.log("Обработка промиса");
-});
-
-console.log("Конец скрипта");
-```
-</details>
-
-<details>
-<summary>Укажите порядок вывода и объясните почему</summary>
-
-console.log(1);
-setTimeout(() => console.log(2));
-Promise.resolve().then(() => console.log(3));
-Promise.resolve().then(() => setTimeout(() => console.log(4)));
-Promise.resolve().then(() => console.log(5));
-setTimeout(() => console.log(6));
-console.log(7);
-</details>
-
-<details>
-<summary>Укажите порядок вывода и объясните почему</summary>
-
-```js
-console.log(1);
-
-setTimeout(function timeout() {
-  console.log("Таймаут");
-}, 0);
-
-new Promise(function (resolve, reject) {
-  console.log("Promise");
-  setTimeout(() => {
-    console.log(777);
-    resolve();
-  }, 0);
-})
-  .then(() => {
-    console.log("then1");
-  })
-  .then(() => {
-    console.log("then2");
-  });
-
-console.log(4);
-
-setTimeout(() => {
-  console.log("timeOut2");
-}, 0);
-```
-</details>
-
-<details>
-<summary>Укажите порядок вывода и объясните почему</summary>
-
-```js
-setTimeout(() => console.log("setTimeout 1"), 0);
-
-new Promise((resolve, reject) => {
-  console.log("Promise 1");
-  resolve();
-  console.log("Promise 2");
-}).then(() => console.log("Promise 3"));
-
-Promise.resolve().then(() => setTimeout(() => console.log("setTimeout 2"), 0));
-
-Promise.resolve().then(() => console.log("Promise 4"));
-
-setTimeout(() => console.log("setTimeout 3"), 0);
-
-console.log("final");
-```
-</details>
-
-<details>
-<summary>Укажите порядок вывода и объясните почему</summary>
-
-```js
-setTimeout(console.log(1));
-
-new Promise(function (resolve, reject) {
-  resolve();
-})
-  .then(() => console.log(2))
-  .then(() => console.log(3))
-  .catch(() => console.log("err"))
-  .then(() => setTimeout(() => console.log(4)));
-
-console.log(5);
-```
-
-</details>
-
-<details>
-<summary>Укажите порядок вывода и объясните почему</summary>
-
-```js
-console.log("A");
-
-const p = new Promise((resolve) => {
-  resolve("");
-  console.log("B");
-});
-
-p.then(() => {
-  p.then(() => console.log("C"));
-  console.log("D");
-});
-
-setTimeout(() => {
-  console.log("E");
-}, 0);
-
-p.then(() => console.log("F"));
 ```
 </details>
 

@@ -179,33 +179,7 @@ Promise.resolve(1)
 
 ### Ответ
 
-1. `Promise.resolve(1)` — создаётся уже выполненный (fulfilled) promise со значением 1.
-→ состояние: fulfilled, значение 1.
-2. `.then((x) => x + 1)` — получает значение 1, возвращает новый промис, который выполнится со значением 2.
-→ состояние: fulfilled, значение 2.
-3. `.then((x) => { throw x })` — выбрасывает исключение, из-за чего возвращаемый промис переходит в состояние rejected с причиной 2.
-→ состояние: rejected, reason: 2.
-4. `.then(x => console.log(x))` — не выполнится, так как предыдущий промис был отклонён (rejected).
-5. `.catch(err => console.log(err))` — перехватывает ошибку, выводит 2.
-Так как console.log возвращает undefined, этот catch завершится успешно (fulfilled) со значением undefined.
-→ в консоли: 2
-→ состояние: fulfilled, значение undefined.
-6. `.then(x => Promise.resolve(x))` — вернёт промис, выполненный со значением undefined.
-→ состояние: fulfilled, значение undefined.
-7. `.catch((err) => console.log(err))` — не выполнится, так как ошибок нет.
-8. `.then(x => console.log(x))` — выведет undefined. → в консоли: undefined.
-
-```js
-Promise.resolve(1)                          // fulfilled: 1
-  .then(x => x + 1)                         // fulfilled: 2  
-  .then(x => { throw x })                   // rejected: 2
-  .then(x => console.log(x))                // ПРОПУСКАЕТСЯ (был reject)
-  .catch(err => console.log(err))           // Выведет: 2, fulfilled: undefined
-  .then(x => Promise.resolve(x))            // fulfilled: undefined
-  .catch(err => console.log(err))           // ПРОПУСКАЕТСЯ (был fulfilled)
-  .then(x => console.log(x))                // Выведет: undefined
-```
-
+Есть зарезвлоенный промис 1, мы идем к then получаем 2, затем выбрасываем ошибку после чего следующий then пропускаем и в блоке catch на пятой строчке мы как раз выводим и нашу двойку потому что мы ранее выбрасили двойку. После блока catch ошибка у нас считается обработанной по этому мы идем выполнения then. В следующем then у нас в качестве x ничего не передается и значит результат равен undefined. Блок catch пропускаем так как ошибок у нас нет и на последней строчке мы этот undefined выводим в консоль
 </details>
 
 <details>
