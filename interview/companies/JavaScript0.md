@@ -1,8 +1,10 @@
 ### Задачи с собеседований
 
+### Объект
+
 ---
 
-✅ Есть объект, какие ты способы знаешь, чтобы его заклонить
+✅ Есть объект, какие ты способы знаешь, чтобы его скопировать (заклонить)
 
 ```js
 const person = { name: "Valera", surname: "Valerovich" }
@@ -19,7 +21,7 @@ const person = { name: "Valera", surname: "Valerovich" }
 
 ---
 
-❌  Что будет в консоль логе? 
+✅ Что будет в консоль логе? 
 
 ```js
 let firstObj = { greeting: 'hey' };
@@ -29,18 +31,22 @@ firstObj.greeting = 'ho';
 
 console.log(secondObj.greeting); // ?
 firstObj = { greeting: 'hello' };
-
 console.log(secondObj.greeting); // ?
 ```
 
 <details>
 <summary>Ответ</summary>
-...
+
+`let secondObj = firstObj` - создается ссылка на тот же объект. Потом меняем свойство объекта, на который ссылаются обе переменные
+
+`firstObj = { greeting: 'hello' }` - создается новый объект, 
+
+Ответ буде ho и ho так как secondObj ссылается на 27 строку firstObject
 </details>
 
 ---
 
-❌  Что будет в консоль логе? 
+✅ Что будет в консоль логе? 
 
 ```js
 let a = {};
@@ -48,11 +54,13 @@ let b = {};
 
 b[a] = 1
 
-console.log(b);  //    { "[object Object]": 1 }
+console.log(b);
 ```
 
 <details>
 <summary>Ответ</summary>
+
+`{ "[object Object]": 1 }`
 
 b[a] = 1 - пытаемся использовать объект `a` как ключ объекта `b`
 Объект a автоматически преобразуется в строку через toString()
@@ -62,27 +70,7 @@ a.toString() возвращает "[object Object]"
 
 ---
 
-❌  Что будет в консоли?
-
-```js
-const a = { a: "a" };
-const b = { b: "b" };
-const c = {};
-
-c[a] = a;
-c[b] = b;
-
-console.log(c[a].a, c[b].b); 
-```
-
-<details>
-<summary>Ответ</summary>
-
-</details>
-
----
-
-❌  Какой будет ответ
+✅ Что будет в консоль логе? 
 
 ```js
 let a = {};
@@ -105,8 +93,44 @@ let obj = {
 };
 ```
 
-3. А так как ключи у нас одинаковы, то они перезаписываются и сохраняется лишь последнее значение 2. Ответ будет 4. 
+✅ А так как ключи у нас одинаковы, то они перезаписываются и сохраняется лишь последнее значение 2. Ответ будет 4. 
 </details>
+
+---
+
+✅ Что будет в консоль логе? 
+
+```js
+const a = { a: "a" };
+const b = { b: "b" };
+const c = {};
+
+c[a] = a;
+c[b] = b;
+
+console.log(c[a].a, c[b].b); 
+```
+
+<details>
+<summary>Ответ</summary>
+
+В JavaScript ключи объекта могут быть только строками или символами.
+Когда объект используется как ключ, он автоматически преобразуется в строку через toString() => `a.toString() возвращает "[object Object]"`,
+
+```js
+a.toString => [object, Object]: a;
+b.toString => [object, Object]: b;
+
+{
+  [object, Object]: a, // убирается так как перезаписывается следующее значение
+  [object, Object]: b,
+}
+
+При попытке вызвать c[a].a вернет undefined, так как он не находит его
+```
+
+</details>
+
 ---
 
 ✅ Будет ли переменная b одинаковой переменной a, то есть будут ли они визуально одинаковые или разные. Какой будет ответ и как правильно отсортировать
@@ -124,7 +148,7 @@ const b = a.sort()
 
 ---
 
-❌ Необходимо отсортировать массив по order, и нужно деструктуризовать его
+✅ Необходимо отсортировать массив по order, и нужно деструктуризовать его
 
 ```js
 const input = [
@@ -138,8 +162,8 @@ const input = [
 <details>
 <summary>Ответ</summary>
 
-1. Если нам нужна простая сортировка: input.sort((a, b) => a.order - b.order);
-2. Если нам нужна деструктуризация: input.sort(({ order: orderA }, { order: orderB }) => orderA - orderB);
+1. Если нам нужна простая сортировка: `input.sort((a, b) => a.order - b.order);`
+2. Если нам нужна деструктуризация: `input.sort(({ order: orderA }, { order: orderB }) => orderA - orderB);`
 ..
 </details>
 
@@ -170,7 +194,9 @@ sum([1, 2, 3, 4])
 </details>
 </details>
 
-Напишите функцию, которая переворачивает строку 
+---
+
+✅ Напишите функцию, которая переворачивает строку 
 
 ```js
 const str = "Welcome to this JavaScript Guide!"; // => "emocleW ot siht ...."
@@ -232,7 +258,9 @@ removeDuplicates(arr)
 
 </details>
 
-❌ Написать функцию, которая принимает массив чисел и возвращает массив, содержащий только те числа, которые встречаются в исходном массиве только один раз. Например, для массива [1, 1, 2, 3, 3, 4, 5, 6, 7, 7, 5, 6] результат должен быть [2, 4].
+---
+
+✅ Написать функцию, которая принимает массив чисел и возвращает массив, содержащий только те числа, которые встречаются в исходном массиве только один раз. Например, для массива [1, 1, 2, 3, 3, 4, 5, 6, 7, 7, 5, 6] результат должен быть [2, 4].
 
 ```js
 export const TEST_ARRAY = [1, 1, 2, 3, 3, 4, 5, 6, 7, 7, 5, 6];
@@ -242,29 +270,60 @@ notRepeat(TEST_ARRAY);
 
 <details>
 <summary>Ответ</summary>
+
+1. Решение через цикл
+
+```js
+function onlyOneInArray(array) {
+  let result = [];
+    
+  for(let i = 0; i < array.length; i++) {
+    let count = 0;
+        
+    for(let j = 0; j < array.length; j++) {
+      if (array[i] === array[j]) count++;
+    }
+  
+    if (count === 1) result.push(array[i]);
+  }
+    
+  return result;
+}
+```
+
+2. Решение через фильтр и индекс офф
+
+```js
+const notRepeat = (testArr) => {
+  return testArr.filter((num, index, arr) => 
+    arr.indexOf(num) === arr.lastIndexOf(num)
+  );
+};
+```
 </details>
 
 ---
 
 ✅ Что выведется в консоль
 
-```
+```js
 const year = Date.getYear();   
 const month = Date.getMonth(); 
 const day = Date.getDay();  
 
-console.log (year, month, day)
+console.log(year, month, day)
 ```
 
 <details>
 <summary>Ответ</summary>
-2023, 8(месяц начинается с нуля), 15
+
+Месяц начинается с нуля
 </details>
 
 ---
 ✅ В чем разница между process1 / process2. Представим себе, что каждый из action выполняется по 10 секунд, какой из action выполнится раньше и почему.
 
-```
+```js
 type action = () => Promise<string>
 
 async function process1(action1: action, action2: action, action3: action): Promise<string[]> {

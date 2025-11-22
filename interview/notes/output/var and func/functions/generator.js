@@ -1,17 +1,14 @@
-// * Генератор - некая функция, которая выполняясь может в некоторый момент
-// * остановится и вернуть промежуточный результат
+// ? Генераторы — это функции, которые могут приостанавливать своё
+// ? выполнение и возобновлять его позже. 
 
-// * Простая функция
-function commonFunction() {
-  console.log("first step")
-  console.log("second step")
+function* generatorFunction() {
+  yield 'Первое значение';
+  yield 'Второе значение';
+  return 'Финал';
 }
-commonFunction()
 
-// * Функция генератор
-function* generate() {
-  console.log("first step")
-  yield
-  console.log("second step")
-}
-console.log(generate())
+const gen = generatorFunction();
+
+console.log(gen.next()); // { value: 'Первое значение', done: false }
+console.log(gen.next()); // { value: 'Второе значение', done: false }
+console.log(gen.next()); // { value: 'Финал', done: true }
