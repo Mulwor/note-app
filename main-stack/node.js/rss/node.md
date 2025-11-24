@@ -13,15 +13,15 @@
     - [EcmaScript modules](#ESM)
       - [Виды импортов и экспортов](#import-and-exports)
       - [Ключевые особенности](#key-features)
-    - [Модульная система](#module-system)
+  - [Модульная система](#module-system)
       - [process](#module-system-process)
-      - [events](#module-system-events)
-      - [file system](#module-system-file-system)
-      - [streams](#module-system-streams)
-      - [os](#module-system-os)
-      - [http](#module-system-http)
+      - [events (событийный механизм)](#module-system-events)
+      - [file system (работа с файлами)](#module-system-file-system)
+      - [streams (работа с потоками данных)](#module-system-streams)
+      - [os (информация об ОС)](#module-system-os)
+      - [http (создание сервера)](#module-system-http)
       - [timers & related](#module-system-timers-and-related)
-
+- [Подробнее про streams (работу с потоками данных)]()
 
 ---
 
@@ -204,6 +204,8 @@ const require = createRequire(import.meta.url);
 
 <a id="module-system"></a>
 ### Модульная система
+
+---
 
 Node.js использует модульную систему. То есть вся встроенная функциональность разбита на отдельные пакеты или модули. Модуль представляет блок кода, который может использоваться повторно в других модулях. А так модули делятся на 3 типа: 
 
