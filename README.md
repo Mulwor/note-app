@@ -1,17 +1,13 @@
 Оглавления
 
-1\. [Собеседование с HR](./HR-Screening.md);
+1\. [Собеседование с HR](./interview/HR-Screening.md);
 
-2\. [HTML и CSS](./HTML-and-CSS.md);
+2\. [HTML, CSS и GIT](./interview/HTML-and-CSS.md);
 
-3\. [GIT](./GIT.md);
+3\. [JavaScript](./interview/JavaScript.md) и [typeScript](./interview/TypeScript.md);
 
-4\. [JavaScript](./JavaScript.md);
+4\. [Работа с браузером и вопросы с тестированием](./interview/Browser-and-tests.md);
 
-5\. [TypeScript](./TypeScript.md);
+5\. [React](./interview/React.md);
 
-6\. [Работа с браузером и вопросы с тестированием](./Browser-and-tests.md);
-
-7\. [HTTP](./HTTP.md);
-
-8\. [React](./React.md);
+6\. [HTTP](./interview/HTTP.md);
