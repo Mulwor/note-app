@@ -6,12 +6,12 @@
 
 3\. [GIT](./GIT.md);
 
-4\. [JavaScript]('./JavaScript.md');
+4\. [JavaScript](./JavaScript.md);
 
-5\. [TypeScript]('./TypeScript.md');
+5\. [TypeScript](./TypeScript.md);
 
-6\. [Работа с браузером и вопросы с тестированием]('./Browser-and-tests.md');
+6\. [Работа с браузером и вопросы с тестированием](./Browser-and-tests.md);
 
-7\. [HTTP]('./HTTP.md');
+7\. [HTTP](./HTTP.md);
 
-8\. [React]('./React.md');
+8\. [React](./React.md);
