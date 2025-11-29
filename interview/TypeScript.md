@@ -1,4 +1,5 @@
-### TypeScript
+
+<h2 align="center">TypeScript</h2>
 
 <details>
 <summary>Что такое TypeScript и какие преимущество и недостатки у него?</summary>
@@ -211,9 +212,7 @@ TypeGuard - механизм в TypeScript, который позволяет с
 
 </details>
 
----
-
-### Задачи по TypeScript
+<h2 align="center">Задачи по TypeScript</h2>
 
 <details>
 <summary>Необходимо протипизировать функцию, которая принимает два параметра: obj, key и возвращает значения по ключу объекта.
