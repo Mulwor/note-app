@@ -70,6 +70,17 @@ value = true;               // Ошибка: boolean не входит в string
 
 В то время как Intersection - `&` работает противоположно union. То есть когда все поля в интерфейсах должны быть обязательными к заполнению. Если пропустим какой-то тип, то выбросит ошибку, что данное поля нет например в объекте
 
+```ts
+interface Person { name: string; }
+interface Employee { company: string; }
+type EmployeePerson = Person & Employee;
+
+const john: EmployeePerson = { name: "John", company: "Tech Corp" };
+
+// ОШИБКА - отсутствует поле 'company'
+const invalidPerson: EmployeePerson = { name: "John" };
+```
+
 </details>
 
 <details>
@@ -89,7 +100,7 @@ prop = '123';     // ❌ ошибка - такого ключа нет
 prop = 'email';   // ❌ ошибка - такого ключа нет
 ```
 
-`typeof` - возвращаем нам тип значения - объект, массив и т.д.
+`typeof` - в рантайме возвращает нам строку с типом, однако на этапе компиляции он вытаскивает тип и значения
 
 ```ts
 const message = { id: 1, text: 'JavaScript' };
