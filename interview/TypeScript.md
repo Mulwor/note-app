@@ -86,7 +86,7 @@ const invalidPerson: EmployeePerson = { name: "John" };
 <details>
 <summary>Для чего используется keyof и typeof </summary>
 
-`keyof` - возвращает ключи любого типа
+`keyof` - возвращает ключи через union любого типа
 
 ```ts
 interface User { name: string; age: number };
@@ -100,7 +100,7 @@ prop = '123';     // ❌ ошибка - такого ключа нет
 prop = 'email';   // ❌ ошибка - такого ключа нет
 ```
 
-`typeof` - в рантайме возвращает нам строку с типом, однако на этапе компиляции он вытаскивает тип и значения
+`typeof` - в runtime возвращает нам строку с типом, однако на этапе компиляции он вытаскивает тип и значения
 
 ```ts
 const message = { id: 1, text: 'JavaScript' };
