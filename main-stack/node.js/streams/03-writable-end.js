@@ -2,13 +2,13 @@ const { createWriteStream } = require("fs");
 
 const writable = createWriteStream("./output.txt");
 
-// writable.write("First-line\n");
-// writable.write("Second-line\n");
-// writable.write("Third-line\n");
+writable.write("First-line\n");
+writable.write("Second-line\n");
+writable.write("Third-line\n");
 
-// writable.end("Finished");
+writable.end("Finished");
 
-// writable.write("One more plus")
+writable.write("One more plus")
 
 // ! Cork and Uncork
 

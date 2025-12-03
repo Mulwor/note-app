@@ -1,6 +1,8 @@
 const fs = require('fs');
 
+// Читает из /01-buffer.js
 const rs = fs.createReadStream('./01-buffer.js');
+// И пишет в другой файл
 const ws = fs.createWriteStream('new_file.txt');
 
 ws.on('close', () => console.log("Writable stream has been closed"));
