@@ -31,6 +31,9 @@
       - [Readable stream](#readable-stream);
           - [Readable mode](#readable-mode);
           - [Readable api event emitter](#readable-api-event);
+      - [Duplex stream](#dublex-stream);
+      - [Transform stream](#transform-stream);
+    - [Полезные фитчи стримов](#полезные-фитчи-стримов)
 
 ---
 
@@ -682,12 +685,240 @@ server.listen(PORT, () => {
 
 5\. `.resume` - эмитится когда вызывает метод readable.resume и при этом reable.flowing у нас не равен true
 
+<details>
+<summary>В данном примере происходит остановка стрима и возобновления его</summary>
+
+Пишем в терминале до тех пор пока не напишем слово СТОП, он соберет все что написали, и потом выдаст его
+
+```js
+// Сработает когда что-то запишет в консоль
+process.stdin.on('data', (chunk) => {
+  const chunkStringified = chunk.toString();
+
+  // Если чанк содержит строку стоп, тогда происходит остановика нашего стрима
+  // и через 5 секунд он возмобновится
+  if (chunkStringified.match('STOP')) {
+    process.stdin.pause();
+
+    setTimeout(() => {
+      process.stdin.resume()
+    }, 5000);
+  };
+
+  process.stdout.write(chunkStringified);
+});
+```
+</details>
+
 6\. `.error` - для обработки ошибок
 
 7\. `.close` - когда стрим у нас закрывается
+
+Также стоит упоминуть, что у readable.read([size]) - есть size, он необязательный и указывает кол-во байтов для чтения
+
+### Методы readable
+
+`.pipe` - метод который присоединяет какой-то стрим
+`.unpipe` - метод, который отсоединяет какой-то стрим
+
+```js
+
+const {createWriteStream} = require('fs');
+
+const readableFromTerminal = process.stdin;
+const writableToTerminal = process.stdout;
+const writableToFile = createWriteStream('./output.txt');
+
+readableFromTerminal.pipe(writableToTerminal)
+readableFromTerminal.pipe(writableToFile)
+
+readableFromTerminal.on('data', (chunk) => {
+    const chunkStringified = chunk.toString();
+
+    // Если наша строка не содержит unpipe terminal, то повторное написание любых слов выводится в консоль, после написать вывода никакого нету
+    if (chunkStringified.match('unpipe terminal')) readableFromTerminal.unpipe(writableToTerminal)
+    // А после него пишем это и у нас завершается выполнения кода
+    if (chunkStringified.match('unpipe file')) readableFromTerminal.unpipe(writableToFile)
+})
+```
+
+Что лучше выбрать readable.read в сочетании с обработкой события readable или подписку на события read - Оба варианта хороши, но лучше выбрать один стиль для всего, но предпочтительнее pipe, unpipe, a readable.read нужен для большего контроля - когда вы  хотите определять как вы хотите вызвать ваш метод read сколько вы хотите считать, что вы хотите сделать с этими данными, при использовании можно достичь большего перформанса, однако нужно знать подводные камни
+
+`.destroy` - уничтожает стрим и принимает ошибку как Writable
+`.unshift` - Возвращает обратно прочитанный chunk
+`.wrap` - Нужен для работы с легаси кодом, когда вы на базе него создаете современный readable stream и он будет использовать легаси стрим для источника данных
+`.isPaused` - флаг который показывает остановлен ли стрим или нет
+`.iterator` - c помощью данного метода можно создать итератор, будет возможность отменить уничтожения стрима, если цикл for await of который использует в ассинхронных итераторах если вы его завершаете каким-то образом через break, return и прочее. Или если итератор должен завершить стрим
+`.readable` - флаг который показывает, что стрим можно читать
+`.readableAborted` - флаг, который показывает, что стрим был уничтожен через destroy
+`.readableDidRead` - флаг, который показывает было ли чтения 
+`.readableEncoding` - выдает кодировку, которая была использовано в стриме
+`.readableEnded` - выдаст true, если у нас уже было событие end
+`.readableFlowing` - показывает геттер значения состояния readable, то есть в каком он состоянии находится
+`.readablePause` - что и flowing только показывает что остановлен ли стрим
+
+---
+
+
+
+
+<a id="duplex-streams"></a>
+
+### Duplex streams
+
+Это стримы, которые работают в два направления - writable interface и readable interface, то есть они могут и читать и писать. Примеры, где используются данные стримы - это `TCP sockets`, `zlib streams`, `crypto streams`
+
+У duplex стрима есть специфичность и это `duplex.allowHalfOpen` - флаг, значения которого если будет false, то тогда когда стрим автоматически завершает свою writable часть, если завершится его readable часть. То есть разрешить ли стриму быть наполовину открытым
+
+---
+
+<a id="transform-streams"></a>
+
+### Transform streams 
+
+Это такие стримы, которые нужны для преобразования данных (разновидность duplex стримов - все интерфейсы также есть и transform). Они генерируют некий output основываясь на инпуте и это необязательно просто преобразование входных данных и отдачи в каком-то измененном виде. Например - можно отдавать больше данных чем получили, также и наоборот, либо можно вообще не отдавать данных в определнных случаях или можно то отдавать, то не отдавать. Смысл в том, что данные вычисляются выходные на основе входных при помощи какой-то внутренней реализации. Вот пример простого transform стрима, которая переварачивает строку
+
+```js
+const { Transform, pipeline } = require('stream');
+
+const readable = process.stdin;
+const writable = process.stdout;
+
+const transform = new Transform({
+    transform(chunk, eng, callback) {
+        // Считываем чанк, приводим его к строке и убираем трим для убирания служеб.переводов строки и возврата корретки
+        const chunkStringified = chunk.toString().trim();
+        const reversedChunk = chunkStringified.split("").reverse().join('');
+        this.push(reversedChunk + "\n");
+        callback()
+    }
+})
+
+pipeline(readable, transform, writable, err => console.log(`Error: ${err}`))
+```
+
+Есть также разновидность transform streams - это passThrough - он не преобразует данные, которые него идут, а используется для мониторинга внутри вашего пайплайна
+
+
+---
+
+<a id="полезные-фитчи-стримов"></a>
+
+### Полезные фитчи стримов
+
+1. `Stream.finish` - функция, которая принимает stream и получает оповещения когда stream завершается. Если это readable stream, то он больше не может читать, если writable stream, то он не может больше писать или если стрим завершился с ошибкой. Это полезно когда стрим может прерваться внезапно - например при HTTP сервера, когда мы передаем большой файл с клиента на сервер через запрос и внезапно пропадает интернет. [Пример кода находится здесь](./streams/05-stream.finished.js)
+
+2. `Stream.pipeline` - у него есть два метода использований:
+- Если просто достаем из метода stream, то это коллбек версия после всего необходимо передать коллбек для обработки ошибок
+- промифицированные версия пайплайна
+
+```js
+const processData = async () => {
+  try {
+    // Передаем два стрима один будет читать c инпута
+    // а второй будет писать с оупута 
+    await pipelinePromisified(
+      createReadStream('./input.txt'),
+      createWriteStream('./output.txt')
+    )
+    console.log('Success!');
+  } catch (err) {
+    console.error(`Error occured: ${err}`)
+  } finally {
+    console.log("DO SMTH IN THE END")
+  }
+}
+```
+Чем pipeline лучше чем pipe тем, что пайплан за собой почищает вещи - корректно уничтожает все стримы, все закрывает
+
+3. Stream.readable.from - мы можем создавать стримы из итерируемых объектов. 
+
+```js
+import { Readable } = require('stream');
+
+const iterable = {
+  from: 1,
+  to: 10,
+  // Для того, чтобы объект был итерируемый у него должен iterator, который
+  // должен возвращать объект, который содержит метод next
+  [Symbol.iterator]() {
+    return {
+      current: this.from,
+      last: this.to,
+      // Данный метод опять должен возвращать объект, в котором будет flag - done
+      // завершили мы итерацию или нет и какое-то value
+      next() {
+        if (this.current < this.last) {
+          return {
+            done: false,
+            value: this.curren++
+          }
+        }
+
+        return {
+          done: true,
+          value: this.curren
+        }
+      }
+    }
+  }
+}
+
+const readableFromIterable = Readable.from(iterable);
+readableFromIterable.on('data', (chunk) => {
+  console.log(chunk)
+})
+```
+
+### Custom streams
+
+Мы можем создавать свои стримы с помощью прототипного наследования js, но нужны они когда мы хотим что-то создать универсальное, в 95% задач нам уже доступно все и ничего не нужно создавать. Есть следующие моменты использования своих кастомных стримов - это то что там есть `прототипное наследование`, чтобы реализовать свой стрим вы должны наследвоатся от одного из базовых классов - stream readable, writable и т.д. и убедится в том, что они вызывают конструктор родительского класса через `super()`. `Common API` вы должны придерживатся его и третий принцип - `flexibility` (гибкость)
+
+Для того, чтобы опции, которые мы передаем в конструктор нашего кастомного стрима, чтобы они работали мы должны передавать в родительнский конструктор - вызвав super, перед тем как мы что-то запишем в this в дочернем экземпляре. Также кастомный стрим не должен вызыватся снаружи, можно использовать только публичные методы
+
+Создавать стримы можно двумя способами:
+
+1. Упрощенный, когда мы достаем из модуля стрим - базовый класс и создаем его экземляр. Все что он делает - это записывает в process.stdout какой-то чанк и мы его пайпим к стидн
+
+```js
+const { Writable } = require('stream');
+
+const myWritable = new Writable({ 
+  write(chunk, enc, callback) {
+    process.stdout.write(chunk);
+    callback();
+  };
+})
+
+process.stdin.pipe(myWritable);
+```
+
+2. Гибкий - когда наследуемся от базового класса
+
+```js
+const { Writable } = require('stream');
+
+const myWritable extends Writable { 
+  constructor(options = {}) {
+    super(options);
+  }
+
+  _write(chunk, enc, callback) {
+    process.stdout.write(chunk);
+    callback();
+  };
+}
+
+const myWritable = new MyWritable();
+process.stdin.pipe(myWritable);
+```
+
+Более подробно можно прочитать из документации по созданию [writable streams](https://nodejs.org/api/stream.html#implementing-a-writable-stream), [reading streams](https://nodejs.org/api/stream.html#implementing-a-readable-stream), [duplex streams](https://nodejs.org/api/stream.html#implementing-a-duplex-stream), [transform streams](https://nodejs.org/api/stream.html#implementing-a-transform-stream)
+
 
 ---
 
 Источники:
 
+[Rolling scopes school -  NodeJS 2021Q2 Modules](https://www.youtube.com/watch?v=RXFOAqsWzFA)
 [Rolling scopes school -  NodeJS 2021Q2 Modules](https://www.youtube.com/watch?v=RXFOAqsWzFA)
