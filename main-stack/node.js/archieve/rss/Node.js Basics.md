@@ -9,8 +9,7 @@ f) All of them
 
 ---
 
-2. Which Node.js server-side HTTP response methods may set request header? - С помощью каких
-методов можно установить в node-js заголовок запроса?
+2. Which Node.js server-side HTTP response methods may set request header? - С помощью каких методов можно установить в node-js заголовок запроса?
 
 `a) setHeader`
 b) write
