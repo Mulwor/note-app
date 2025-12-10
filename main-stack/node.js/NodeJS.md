@@ -10,6 +10,8 @@
     - [IIFE](#IIFE)
     - [CommonJS](#CommonJS)
     - [EcmaScript modules](#ESM)
+  - [Способы взаимодействия с путями](#работа-с-url)
+    - [Глобальные переменные](#глобальные-переменные)
   - [Модульная система](#module-system)
     - [process](#module-system-process)
     - [events (событийный механизм)](#module-system-events)
@@ -203,6 +205,73 @@ const require = createRequire(import.meta.url);
 
 - Ecmascript modules такие же как в браузере
 </details>
+
+---
+
+<a id="работа-с-url"></a>
+### Способы взаимодействия с путями
+
+Существует несколько способов взаимодействия с путями, например мы можем относительно вызвать его `./files/fileToRead.txt`, но это плохая практика, так как на разных операционных систем используется разные виды слешов. Например в линуксе есть обратный слеш `\`, и это надо учитывать
+
+```js
+import path from 'path';
+
+const fileToRead = path.join('files', 'fileToRead.txt');        // files/fileToRead.txt (Позволяет склеивать несколько участков пути)
+
+path.resolve('src', 'app.js');                                  // '/full/path/to/current/dir/src/app.js' (создает абсолютный путь, начиная с текущей рабочей директории)
+
+path.extname('file.txt');                                       // '.txt' (Получить расширение файла)
+
+path.basename('/path/to/file.txt');                             // 'file.txt' (Получить имя файла с расширением)
+
+path.basename('/path/to/file.txt', '.txt');                     // 'file' (Получить имя файла без расширения)
+
+path.dirname('/path/to/file.txt');                              // '/path/to'  (Получить директорию)
+
+path.normalize('/path//to/../file.txt');                        // '/path/file.txt'  (Нормализация пути (убирает лишние символы))
+
+path.isAbsolute('/path/to/file');                               // true (Проверка абсолютный ли путь)
+
+path.isAbsolute('./file');                                      // false (Проверка абсолютный ли путь)
+```
+
+<a id="глобальные-переменные"></a>
+#### В node.js есть две глобальные переменные:
+
+`__dirname` - строка, которая содержит путь к текущей директории. То есть на любом устройстве мы можем получить абсолютный путь от корня до дериктории, в которую мы используем эту глобальную переменную.
+
+```js
+console.log(path.join(__dirname))         // ../node-nodejs-basics/src/fs/read.js 
+console.log(path.join(__dirname, ".."))   // ../node-nodejs-basics/src/fs 
+```
+
+Также стоит уточнить, что в ES-модулях не доступен dirname, вместо этого используется `import.meta.url`
+
+```js
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+```
+
+3. Создать new URL, у которого внутри два параметры - если мы пишем с одним параметром, то это абсолютная путь, если задействуем второй путь, то это относительный путь + базовый url
+
+```js
+const base = 'https://example.com/api/v2';
+
+new URL('users', base);        // → https://example.com/api/v2/users
+new URL('/users', base);       // → https://example.com/users
+new URL('./stats', base);      // → https://example.com/api/v2/stats
+new URL('../v1/users', base);  // → https://example.com/api/v1/users
+```
+
+```js
+const fileToRead = new URL('./files/fileToRead.txt', import.meta.url)
+// file:///C:/Users/mulwo/Desktop/pet-project/node-nodejs-basics/src/fs/read.js
+```
+
+---
 
 <a id="module-system"></a>
 ### Модульная система
@@ -543,178 +612,59 @@ writable.uncork();
 | writable.writableNeedDrain | Флаг, который показывает нужно ли чистить наш внутренний буфер |
 | writable.writableObjectMode | Геттер для object-мода, если у нас true, то стрим у нас работает в object-mode если нет, то работает со строками
 
----
 
 <a id="readable-stream"></a>
 
-### Readable streams 
+<h2 align="center">Readable streams</h2>
 
-Readable streams нужны нам для чтения данных. Какие есть readable stream: 
+Readable streams нужны нам для чтения данных. Они могут приходить постепенно (например, видео с сервера) или быть доступны сразу. К readable streams относится: 
 
-1\. `request(server side)` на серверной стороне, так как мы их читаем, 
-
-2\. `response(client side)` так читаем ответ сервера, 
-
-3\. `process.stdin()` - стандартный поток ввода
-
-4\. `child process stdout`, `stderr` - те потоки, которые мы можем читать из дочернего процесса. 
-
-5\. `fs streams`
-
-6\. `zlib`, `crypto`, `TCP sockets` и так далее. 
-
+| Категория | Поток/Метод | Назначение |
+|-----------|-------------|------------|
+| **HTTP** | `request` (серверная сторона) | Чтение входящих HTTP-запросов |
+| | `response` (клиентская сторона) | Чтение ответов сервера |
+| **Процессы** | `process.stdin()` | Стандартный поток ввода |
+| | `child process.stdout` | Стандартный вывод дочернего процесса |
+| | `child process.stderr` | Поток ошибок дочернего процесса |
+| **Файловая система** | `fs.createReadStream()` | Чтение файлов через потоки |
+| **Трансформации** | `zlib` | Сжатие и распаковка данных |
+| | `crypto` | Шифрование и дешифрование данных |
+| **Сеть** | `TCP sockets` | Чтение данных из сетевых соединений |
 
 <a id="readable-mode"></a>
-
-### Readable stream modes
-
-У readable stream есть несколько modes (режимы чтения):
+<h2 align="center">Readable stream modes</h2>
 
 1\. `Paused mode` - когда он находится в остановленном состоянии. Он не читает данные, чтобы их буфферизировать, чтобы их прочитать нам надо явно вызвать метод readable. Когда мы только создаем стрим fs.createStream - он не читает данные, он находится в paused mode, надо явно указать чтобы он начал читать 
 
 2\. `Flowing mode` - когда он находится в текущем состоянии (в состоянии потока). Когда readable stream читает данные автоматически и отдает их дальше так быстро как это возможно и метод внутренний readable.read он вызывается автоматом
 
-Для того, чтобы переключить с paused mode на flowing mode можно:
+Для того, чтобы переключить с paused mode на flowing mode можно: `повесить обработчик события на data` или `Вызвать метод readable.resume (продолжить чтения)` или `Использовать readable.pipe(writable)`
 
-1\. Повесить обработчик события на data
-
-2\. Вызвать метод readable.resume (продолжить чтения)
-
-3\. Использовать readable.pipe(writable)
-
-А для того чтобы перевести его обратно в pause mode  
-
-1\. Мы должны вызвать readable.pause метод, который его остановит, однако это не сработает если readable куда-то запайпили. 
-2\. Если у него есть какие-то пайпы, то необходимо отключить все через readable.unpipe.
+А для того чтобы перевести его обратно в pause mode: `мы должны вызвать readable.pause метод, который его остановит, однако это не сработает если readable куда-то запайпили. Если у него есть какие-то пайпы, то необходимо отключить все через readable.unpipe.`
 
 Что нужно понимать - Readable стрим не отдает данные никуда до тех пор пока не реализовали механизм, который их поглощать. 
 
 <a id="readable-api-event"></a>
-
-### Readable api event emitter
+<h2 align="center">Readable api event emitter</h2>
 
 Он тоже использует API event-emitter и имеет список событий
 
-1\. `.data` - подписавший на событие мы можем читать данные
+| Событие | Что делает | Пример кода |
+|---------|------------|-------------|
+| **`.data`** | При подписке на событие мы можем читать данные. Stream автоматически переходит в `Flowing mode` и нам не надо вручную дергать метод `readable.read`. | [Пример кода](./streams/readable/data.js) |
+| **`.readable`** | Имитится, когда можно прочитать данные. Пользователь должен самостоятельно вызвать `readable.read()` для получения данных, у которого есть необ.параметры `([size])`, кол-во байтов для чтения. | [Пример кода](./streams/readable/readable.js) |
+| **`.end`** | Имитится, когда больше нет данных для чтения. Срабатывает только после полной обработки всех данных. | — |
+| **`.pause`** | Имитится при вызове метода `readable.pause()`, если `readable.flowing` не равен `false`. Используется для приостановки потока в flowing mode. | — |
+| **`.resume`** | Имитится при вызове метода `readable.resume()`, если `readable.flowing` не равен `true`. Используется для возобновления потока. | [Остановка и возобновление стрима](./streams/readable/pauseAndResume.js) |
+| **`.error`** | Обработка ошибок, возникающих при работе с потоком. | — |
+| **`.close`** | Срабатывает, когда стрим закрывается и все ресурсы освобождаются. | — |
 
-<details>
-<summary>Пример кода</summary>
-
-```js
-const { createServer } = require("http");
-const PORT = 3000;
-
-// Представим себе, что мы с клиента отправляем запрос, который содержит тело и нам
-// это тело нужно прочитать и что-то с ним сделать
-const server = createServer((request, response) => {
-  let body = ""; 
-
-  // Подписываемся на событие date, и здесь у нас callback, 
-  // который передается чанк с данными и приводим к строке
-  request.on('data', (chunk) => {
-    body += chunk.toString();
-  });
-
-  // После чего мы просто отправляем на клиент сообщение, что тело
-  // было успешно прочитано и мы отправляем сколько в нем было св-в
-  request.on('end', () => {
-    const parsedBody = JSON.parse(body);
-    console.log('Parsed body', parsedBody);
-
-    const propsCount = Object.keys(parsedBody).length;
-    console.log("Props count", propsCount);
-
-    response
-      .writeHead(200, { "Content-type": "text/plain" })
-      .end(`Body from request has been successfully accepted and parsed. It has ${propsCount}`)
-  })
-})
-
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
-})
-```
-</details>
-
-<br />
-
-2\. `.readable` - имитится тогда когда можно прочитать какие-то данные
-
-<details>
-<summary>Пример кода</summary>
-
-```js
-const { createServer } = require("http");
-const PORT = 3000;
-
-const server = createServer((request, response) => {
-  let body = ""; 
-
-  // Подписываемся на readable, когда вылетает данное событие когда стрим говорит нам, что нужно прочитать. У меня есть данные приди и забери
-  request.on('readable', () => {
-    let chunk;
-    // req.read() - берем и вызываем метод read() - он возвращает нам либо наши данные либо null (возвращает в том случае когда достигнут конец нашего источника данных в нашем случае когда body будет прочитано до конца либо когда данные не готовы - когда мы забираем быстрее чем они помещаются в наш буфер)
-    // Пока результат не является наллом мы записываем значения
-    while ((chunk = req.read()) !== null) {
-        body += chunk.toString();
-    }
-  });
-
-  request.on('end', () => {/* Тоже самое что и в первом примере */})
-})
-
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
-})
-```
-</details>
-
-Основное отличие при событии data у нас автоматически генерится эти события, stream перешел во `Flowing mode` и нам не надо вручную дергать метод `readable.read`. А события readable говорит вот сейчас подходящий момент чтобы вызвать метод read и вы уже сами его вызываете
-
-3\. `.end` - эмитится когда у нас больше нет данных, которых можно прочитать. Данное события выйдет только тогда когда события будут полностью поглащены (то есть когда они будут отданы куда-то)
-
-4\. `.pause` - эмитится когда вызывает метод readable.pause и при этом он не равно false. Когда будет фиктивный вызов
-
-5\. `.resume` - эмитится когда вызывает метод readable.resume и при этом reable.flowing у нас не равен true
-
-<details>
-<summary>В данном примере происходит остановка стрима и возобновления его</summary>
-
-Пишем в терминале до тех пор пока не напишем слово СТОП, он соберет все что написали, и потом выдаст его
-
-```js
-// Сработает когда что-то запишет в консоль
-process.stdin.on('data', (chunk) => {
-  const chunkStringified = chunk.toString();
-
-  // Если чанк содержит строку стоп, тогда происходит остановика нашего стрима
-  // и через 5 секунд он возмобновится
-  if (chunkStringified.match('STOP')) {
-    process.stdin.pause();
-
-    setTimeout(() => {
-      process.stdin.resume()
-    }, 5000);
-  };
-
-  process.stdout.write(chunkStringified);
-});
-```
-</details>
-
-6\. `.error` - для обработки ошибок
-
-7\. `.close` - когда стрим у нас закрывается
-
-Также стоит упоминуть, что у readable.read([size]) - есть size, он необязательный и указывает кол-во байтов для чтения
-
-### Методы readable
+<h2 align="center">Методы readable</h2>
 
 `.pipe` - метод который присоединяет какой-то стрим
 `.unpipe` - метод, который отсоединяет какой-то стрим
 
 ```js
-
 const {createWriteStream} = require('fs');
 
 const readableFromTerminal = process.stdin;
@@ -725,30 +675,34 @@ readableFromTerminal.pipe(writableToTerminal)
 readableFromTerminal.pipe(writableToFile)
 
 readableFromTerminal.on('data', (chunk) => {
-    const chunkStringified = chunk.toString();
+  const chunkStringified = chunk.toString();
 
-    // Если наша строка не содержит unpipe terminal, то повторное написание любых слов выводится в консоль, после написать вывода никакого нету
-    if (chunkStringified.match('unpipe terminal')) readableFromTerminal.unpipe(writableToTerminal)
-    // А после него пишем это и у нас завершается выполнения кода
-    if (chunkStringified.match('unpipe file')) readableFromTerminal.unpipe(writableToFile)
+  // Если наша строка не содержит unpipe terminal, то повторное написание любых слов выводится в консоль, после написать вывода никакого нету
+  if (chunkStringified.match('unpipe terminal')) readableFromTerminal.unpipe(writableToTerminal)
+  
+  // А после него пишем это и у нас завершается выполнения кода
+  if (chunkStringified.match('unpipe file')) readableFromTerminal.unpipe(writableToFile)
 })
 ```
 
 Что лучше выбрать readable.read в сочетании с обработкой события readable или подписку на события read - Оба варианта хороши, но лучше выбрать один стиль для всего, но предпочтительнее pipe, unpipe, a readable.read нужен для большего контроля - когда вы  хотите определять как вы хотите вызвать ваш метод read сколько вы хотите считать, что вы хотите сделать с этими данными, при использовании можно достичь большего перформанса, однако нужно знать подводные камни
 
-`.destroy` - уничтожает стрим и принимает ошибку как Writable
-`.unshift` - Возвращает обратно прочитанный chunk
-`.wrap` - Нужен для работы с легаси кодом, когда вы на базе него создаете современный readable stream и он будет использовать легаси стрим для источника данных
-`.isPaused` - флаг который показывает остановлен ли стрим или нет
-`.iterator` - c помощью данного метода можно создать итератор, будет возможность отменить уничтожения стрима, если цикл for await of который использует в ассинхронных итераторах если вы его завершаете каким-то образом через break, return и прочее. Или если итератор должен завершить стрим
-`.readable` - флаг который показывает, что стрим можно читать
-`.readableAborted` - флаг, который показывает, что стрим был уничтожен через destroy
-`.readableDidRead` - флаг, который показывает было ли чтения 
-`.readableEncoding` - выдает кодировку, которая была использовано в стриме
-`.readableEnded` - выдаст true, если у нас уже было событие end
-`.readableFlowing` - показывает геттер значения состояния readable, то есть в каком он состоянии находится
-`.readablePause` - что и flowing только показывает что остановлен ли стрим
+Другие методы и свойства:
 
+| Метод | Что делает | Пример кода |
+|-------|------------|-------------|
+| **`.destroy([error])`** | Уничтожает поток и принимает опциональный параметр `error` (объект ошибки) аналогично Writable потоку. Освобождает все ресурсы, связанные с потоком. | - |
+| **`.unshift(chunk)`** | Возвращает обратно прочитанный chunk во внутренний буфер потока для последующего чтения. Полезно при парсинге данных, когда нужно "откатить" обработку. | - |
+| **`.wrap(legacyStream)`** | Используется для работы с legacy-кодом. Позволяет создать современный Readable Stream на основе устаревшего потока, который будет использоваться как источник данных. | - |
+| **`.isPaused()`** | Возвращает `true`, если поток остановлен (находится в paused mode), и `false` если поток активен (flowing mode). | - |
+| **`[Symbol.asyncIterator]()`** | Создает асинхронный итератор для использования с `for await...of`. Автоматически предотвращает уничтожение потока при досрочном завершении цикла (break, return). Также может завершить поток при необходимости. | - |
+| **`.readable`** | Флаг, показывающий, что поток находится в состоянии, пригодном для чтения данных. Возвращает `true` если поток можно читать, `false` если поток закрыт или уничтожен. | - |
+| **`.readableAborted`** | Флаг, показывающий, что поток был принудительно уничтожен через метод `.destroy()` до полного чтения всех данных. | - |
+| **`.readableDidRead`** | Флаг, показывающий, было ли выполнено хотя бы одно чтение данных из потока после его создания. | - |
+| **`.readableEncoding`** | Возвращает кодировку, которая была установлена для потока через метод `.setEncoding()` или при создании. | - |
+| **`.readableEnded`** | Возвращает `true`, если поток завершил чтение (событие `'end'` уже произошло). Показывает, что все данные были прочитаны. | - |
+| **`.readableFlowing`** | Геттер, показывающий текущее состояние потока: `null` (начальное состояние, не подписан на события), `true` (flowing mode, данные поступают автоматически), `false` (paused mode, чтение приостановлено). | - |
+| **`.readablePaused`** | Аналогичен `.isPaused()`. Возвращает `true`, если поток остановлен (находится в paused mode). | - |
 ---
 
 
