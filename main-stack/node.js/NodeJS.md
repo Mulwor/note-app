@@ -415,69 +415,30 @@ Timers & related (отложенное исполнения callback)
 <a id="writable-stream"></a>
 <h2 align="center">Writable streams</h2>
 
-Writable streams наследники базового класса одного-именного writable, которые находится в модуле стримы. И они предоставляют два метода с которыми можно работать - метод `WRITABLE.WRITE` и `WRITABLE.END`. Какие есть стримы во writable: 
+Writable streams (потоки для записи) наследуются от базового класса stream.Writable, которые находится в модуле `stream`. Они предоставляют два основных метода для работы: `writable.write()` и `writable.end().`. Примеры потоков для записи (Writable streams):
 
 | Категория | Поток/Метод | Назначение |
 |-----------|-------------|------------|
-| **HTTP** | `request` (клиентская сторона) | Отправка запроса на клиентской стороне;|
-| | `response` (серверная сторона) | Ответ на серверной стороне |
-| **Процессы**  | [`process.stdout`](./streams/methods/process/stdout.js) | Выводит данные |
-| | [`process.stderr`](./streams/methods/process/stderr.js) | Выводит ошибки |
+| **HTTP** | `request` (на клиентской стороне) | Отправка HTTP-запроса с клиента на сервер.
+| | `response` (на серверной стороне) | Отправка HTTP-ответа с сервера клиенту. |
+| **Процессы**  | [`process.stdout`](./streams/methods/process/stdout.js) | Вывод данных |
+| | [`process.stderr`](./streams/methods/process/stderr.js) | Вывод ошибок |
 | **Дочерние процесс** | `child.stdin` | Для передачи данных дочернему процессу (отправляет данные другой программе). |
-| **Файловая система** | `fs.createWriteStream()` | Запись файла |
-| **Трансформации** | `zlib` | Сжатие и распаковка данных |
+| **Файловая система** | `fs.createWriteStream()` | Запись данных в файл. |
+| **Трансформации** | `zlib` | 	Сжатие и распаковка данных (например, Gzip, Deflate). |
 | | `crypto` | Шифрование и дешифрование данных |
-| **Сеть** | `TCP sockets` | Чтение данных из сетевых соединений |
+| **Сеть** | `TCP sockets` | Передача данных по сетевым соединениям (через TCP). |
 
 <a id="writable-api-event"></a>
 
 Все стримы, включая writable использует API eventemitter (встроенный модуль в node.js, который предоставляет функционал нам для работы с событиями), позволяет нам эмитеть некие события, генерировать, подписаться и т.д. Основной список событий, который эмитит у нас writable stream: 
 
-| Событие | Что делает | Пример кода |
+| Событие | Что делает | Когда происходит |
 |-----------|-------------| -------------| 
-| *.error* | события эмитится когда происходит какая-то ошибка и для обработки ошибки мы можем подписать на это события | 
-| *.drain* | когда внутренний буфер заполняется, то с помощью данного метода когда буфер освободится он сразу же запишет какие-то значения | 
-| *.close* | когда стрим ресурс закрывается или завершается и он не может писать данные - метод writable.destroy | 
-| *.finish* | когда процесс записи завершается и все данные уже записаны пример writable.end() | 
-| *.pipe* | метод для соединения двух потоков - readable stream и writable stream | [Пример кода](./streams/methods/pipe.js) |
-| *.unpipe* |  метод для отсоединения двух потоков - readable stream и writable stream. Используем когда нужно переключить поток, отменить действие, когда достигает лимита | [Пример кода](./streams/methods/pipe.js) |
-
-
-<details>
-<summary>Пример кода</summary>
-
-```js
-const fs = require('fs');
-
-// Читает из /01-buffer.js и записывает в другой файл
-const rs = fs.createReadStream('./01-buffer.js');
-const ws = fs.createWriteStream('new_file.txt');
-
-// Подписываемся на все события
-ws.on('close', () => console.log("Writable stream has been closed"));
-ws.on('finish', () => console.log("Writable streams has been finished"));
-ws.on('pipe', () => console.log("Piped to readable stream"));
-ws.on('unpipe', () => console.log("Unpiped from readable stream"));
-
-/*
-  Вот что выведется в console.log
-  
-  В начале отработал события подсоединение к стриму => 
-    1. Piped to readable stream, 
-  затем у нас стрим завершился обработал события close =>
-    2. Writable streams has been finished
-  затем у нас обработался finish, потому что запись завершилась =>
-    3. Unpipe from readable stream
-  а в конце уже обработался close => 
-    4. Writable stream has been closed
-*/
-
-ws.on('error', (err) => console.log(`Error occurred: ${err}`));
-ws.destroy(new Error("Ooops"))
-
-rs.pipe(ws);
-```
-</details>
+| *.error* | Происходит при возникновении ошибки в потоке |  При любой ошибке чтения/записи или принудительном уничтожении потока с ошибкой |
+| *.drain* | Сигнализирует, что можно возобновить запись данных | После того как write() возвращал false (буфер был заполнен) и буфер освободился
+| *.close* | Поток закрыт и его ресурсы освобождены | После вызова writable.destroy() или при полном завершении работы потока | 
+| *.finish* | Все данные успешно записаны в целевой ресурс | После вызова writable.end() и полной обработки всех буферизованных данных |
 
 <a id="writable-полезные-свойства"></a>
 
@@ -499,7 +460,7 @@ rs.pipe(ws);
 | Метод | Описание |
 |-----|----------|
 | writable.setDefaultEncoding(encoding) | Установить дефолтную кодировку для строк с которыми он будет работать |
-| writable.destroyed | Показывает (true/false) был ли вызван метод ,destroy | 
+| writable.destroyed | Показывает (true/false) был ли вызван метод .destroy | 
 | writable.writable | Показывает можно ли еще стрим использовать для того, чтобы писать |
 | writable.writableEnded | Показывает был ли вызван метод .end |
 | writable.writableCorked | Показывает был ли вызван метод .cork и при этом не вызван ли метод .uncork |

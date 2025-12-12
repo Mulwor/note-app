@@ -13,6 +13,9 @@ process.stdin.once('data', (name) => {
   // process.exit();
 });
 
+// Завершение ввода 
+process.stdin.on('end', () => console.log('Ввод завершен'))
+
 
 // ! ============== Сложение первых двух чисел ===============
 // console.log('Введи первое число:');
