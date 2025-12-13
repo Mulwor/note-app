@@ -10,8 +10,6 @@ worker.on('message', (result) => {
   console.log(`Сумма чисел: ${result}`);
   worker.terminate(); // Завершаем worker
 });
-
-// Обработка ошибок
 worker.on('error', (err) => console.error('Ошибка в worker:', err));
 
 // Обработка завершения
