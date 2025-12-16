@@ -8,6 +8,4 @@ const timeout = setTimeout(() => {
   console.log('Process timeout');
 }, 30000);
 
-child.on('close', () => {
-  clearTimeout(timeout);
-});
+child.on('close', () => clearTimeout(timeout));

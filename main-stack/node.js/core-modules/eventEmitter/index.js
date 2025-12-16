@@ -1,3 +1,11 @@
+const EventEmitter = require('events');
+const calculator = new EventEmitter();
+calculator.on('sum', (a, b) => console.log(`Result is ${a + b}`))
+calculator.emit('sum', 1, 3 )
+
+
+// !================= ==================== ===============================
+
 // Модули события
 
 const EventEmitter = require('events');
@@ -43,3 +51,4 @@ logger.on('some_event', (args) => {
 })
 
 logger.log('User logged')
+
