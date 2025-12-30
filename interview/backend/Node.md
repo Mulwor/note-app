@@ -11,7 +11,7 @@
 11. Что такое замыкание?
 12. Что такое http? Методы http? PUT vs PATCH? В каком случае лучше всего использовать PATCH?
 13. Что такое REST API?
-14.  Каким образом можем отправлять данные с фронта на бек? Что такое двери параметры? Как передать массива значений?
+14. Каким образом можем отправлять данные с фронта на бек? Что такое двери параметры? Как передать массива значений?
 15. Что такое CORS?
 16. HTTP метод OPTIONS
 17. Хеширование паролей / соль / радужные таблицы
@@ -36,7 +36,7 @@
 
 Посмотреть собесы по node.js
 
-https://www.youtube.com/watch?v=Hs8LdjvgbkI
+[junior](https://www.youtube.com/watch?v=Hs8LdjvgbkI)
+[junior](https://www.youtube.com/watch?v=2DIBCDxYkUc)
 https://www.youtube.com/watch?v=8b49Id8zMu8
 https://www.youtube.com/watch?v=8BCWAKNYUOc
-https://www.youtube.com/watch?v=2DIBCDxYkUc

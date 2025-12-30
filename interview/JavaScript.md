@@ -1,4 +1,4 @@
-### Основы
+<h2 align="center">Основы</h2>
 
 <details>
 <summary>Перечислите типы данных в JavaScript? </summary>
@@ -351,10 +351,7 @@ console.log(Object.fromEntries(user))       // {0: 2, 1: 3, vulgar: true}
 </details>
 </details>
 
----
-
-### Переменные и функции
-
+<h2 align="center">Переменные и функции</h2>
 
 <details>
 <summary> Разница между переменными: var, let и const?</summary>
@@ -442,8 +439,6 @@ console.log(obj)  // { a: 5 }
 
 // Во второй случае передается уже ссылка на объект. По этому ответ 5
 ```
-
-
 </details>
 
 <details>
@@ -594,48 +589,32 @@ HOF - обычная функция, которая принимает в кач
 </details>
 </details>
 
----
-
-### Асинхронный код и прототипы наследование
+<h2 align="center">Асинхронный код</h2>
 
 <details>
-<summary>Что такое callback-функцию? Что такое Callback Hell?</summary>
+<summary>Что такое callback-функцию?</summary>
 
-Сallback - это функция, которая передается в другую функцию в качестве аргумента, что является одним из способов работы с асинхронным кодом. Однако есть такое понятие как callback heck, когда внутри одного callback есть еще один callback, а внутри него еще один, а внутри этого еще один. И это очень трудно читать и понимать. Но позже придумали promise в ЕС6 и чуть позже async...await в ЕС8.
+Callback — это функция, которая передаётся в другую функцию в качестве аргумента. Это один из способов работы с асинхронным кодом. Однако существует проблема, называемая Callback hell («ад колбэков»), когда внутри одного колбэка находится другой колбэк, внутри него — ещё один, и так далее. Такой код становится очень сложно читать, тестировать и поддерживать. Поэтому в ES6 появились Promise (промисы), а в ES8 — async/await
 
 </details>
 
 <details>
-<summary>Что такое Promise?</summary>
+<summary>Что такое Promise и какие у него есть методы?</summary>
 
-Promise - это объект и один из способов работы с асинхронным кодом и promise содержит в себе 3 состояния: `pending` - ожидания; `resolved (fulfilled)` - выполнено успешно; `rejected` - выполнено с ошибкой. И в качестве аргумента функции принимает: resolve и reject.
+Это один из способов работы с асинхронным кодом и пришел на замену callback. Promise представляет из себя специальный объект и у него есть три состояния: `pending`, `fulfilled`, `rejected`.
 
-<details>
-<summary>Доп.вопрос: Какие есть методы у Promise?</summary>
+--- 
 
-`Promise.all()` - дожидается выполнения ВСЕХ promises, если успешно вернет массив, если нет, то вернет последний promise с ошибкой
+Также можно вспомнить, что у промисов есть методы в отличии от callback. К методом промисов относится:
+- `.all()` - дожидается выполнения ВСЕХ promises, если успешно вернет массив, если нет, то вернет последний promise с ошибкой
+- `.allSettled()` - дожидается выполнения ВСЕХ promise, и не важно выполнятся они успешно или нет он вернет массив полученных значение (ответов)
+- `.any()` - дожидается выполнения ПЕРВОГО УСПЕШНОГО promise и возвращает результат, если не находит возвращает ошибку
+- `.race()`дожидается выполнения ПЕРВОГО promise и возвращает результат.
 
-`Promise.allSettled()` - дожидается выполнения ВСЕХ promise, и не важно выполнятся они успешно или нет он вернет массив полученных значение (ответов)
-
-`Promise.any()` - дожидается выполнения ПЕРВОГО УСПЕШНОГО promise и если он находится его, то он возвращает данные результат, а если нет, то выводит ошибку. Если первым promise есть reject, он идет дальше пока не найдет его. 
-
-`Promise.race()` - дожидается выполнения ПЕРВОГО promise и возвращает результат. Все последующие будут игнорироваться. Не важно успешный или отклоненный
-</details>
+А также значительно легче читать промисы
 
 <details>
-<summary>Доп.вопрос: Преимущества использовании promise вместо callback</summary>
-
-- Помогает избежать callback-hell который может быть нечитаемым
-
-- Упрощает последовательное написание последовательного читаемого async кода с помощью then, а также обработку ошибок с помощью catch()
-
-- Есть методы
-
-- С использованием promise можно избежать следующих проблем: callback-функция была вызвана слишком рано, поздно или вовсе не была вызвана; функция была вызвана слишком мало или слишком много раз; не удалось передать необходимую среду/параметры; были пропущены ошибки/исключения.
-</details>
-
-<details>
-<summary>Доп.вопрос: Например есть promise и мы вызываем какую-то функцию которая возвращает promise. Мы на него подписались через .then, .catch и т.д. Теперь вопрос а может ли быть ситуация когда promise никогда не закончится не then, не catch не вызовутся? Нам нужно чтобы оно было бесконечное как это сделать</summary>
+<summary>Например есть promise и мы вызываем какую-то функцию которая возвращает promise. Мы на него подписались через .then, .catch и т.д. Теперь вопрос а может ли быть ситуация когда promise никогда не закончится не then, не catch не вызовутся? Нам нужно чтобы оно было бесконечное как это сделать</summary>
 
 ```
 const neverEndingPromise = new Promise((resolve, reject) => {
@@ -645,7 +624,7 @@ const neverEndingPromise = new Promise((resolve, reject) => {
 </details>
 
 <details>
-<summary>Доп.вопрос: Есть ли у promise какой-то функционал, что если через 5 секунд он ничего не сделал, то как принудительно зарезолвились или заречеджектились promise</summary>
+<summary> Есть ли у promise какой-то функционал, что если через 5 секунд он ничего не сделал, то как принудительно зарезолвились или заречеджектились promise</summary>
 
 Promise.race c SetTimeOut
 
@@ -669,17 +648,17 @@ withTimeout(somePromise, 5000) // Таймаут 5 секунд
     .then(result => console.log(result))
     .catch(error => console.error(error.message));
 ```
-
 </details>
-
 </details>
 
 <details>
 <summary>Что такое async/await? И что у него общего у promise </summary>
 
-Async является еще одним способом написание асинхронного кода, который всегда возвращает promise, await добавляется в тело функции и ждет выполнения promise. Если какой-то из await не выполнится, то дальше он не пойдет и поместится в catch, а это обработчиком ошибок
+Async является еще одним способом написание асинхронного кода, который всегда возвращает promise, await добавляется в тело функции и ждет выполнения promise. 
 
-```
+Если какой-то из await не выполнится, то дальше он не пойдет и поместится в catch, а это обработчиком ошибок
+
+```js
 async function getMainActorProfileFromMovie(id) {
   try {
     const movieResponse = await fetch(`https://swapi.dev/api/films/${id}/`);
@@ -690,23 +669,535 @@ async function getMainActorProfileFromMovie(id) {
   }
 }
 ```
-
 </details>
 
 <details>
-<summary>Что такое Eventloop (цикл событий) и как он работает?</summary>
+<summary>Что такое Eventloop (цикл событий) и как он работает?</summary
 
-Eventloop - это бесконечный цикл, который решает проблему однопоточности, он ждет поступления задач, выполняет их и затем снова ждет поступления новых задач.  У него есть callstack (стек вызовов). Если очередь пустой, то туда сначала попадают micro-task (promise, консоли), так как у них приоритетность больше, а затем уже macro-task (setTimeOut и SetTimeInterval.)
+Eventloop - это бесконечный цикл, который решает проблему однопоточности. У него есть callstack (стек вызовов), куда постоянно попадает задачи, он их выполняет и ждет снова поступления новых задачи. Задачи в свою очередь делятся на микро и макро-таски. У микро-тасок приоритетность больше и они будут выполняться раньше чем макро-таски. К микротаскам можно отнести then, catch, finally у промисов, queueMicrotask, MutationObserver, async await а к макро таском setTimeOut, setTimeInterval, события
+</details>
 
 <details>
-<summary>Доп.вопрос: если все micro-task выполнятся а дальше пойдут macro-task внутри которого есть micro-task , что вызовется микро или макро</summary>
+<summary>Задачи по evenloop и вывода консоль</summary>
+
+<details>
+<summary>Если все micro-task выполнятся а дальше пойдут macro-task внутри которого есть micro-task , что вызовется микро или макро</summary>
 
 Сначала выполнится внутри micro-task , а затем уже macro-task
+</details>
+
+<details>
+<summary>Каков будет ответ</summary>
+
+```js
+new Promise((resolve, reject) => {
+    resolve(1);
+    resolve(2);
+    reject('error')
+}).then(
+    (value) => console.log(value),
+    (error) => console.log('error')
+)
+```
+---
+
+Промис вызовется один раз и ответ будет зарезволенный 1, а последующие будут игнорировать, по этому и ответ 1
+</details>
+
+
+<details>
+<summary>Каков будет ответ</summary>
+
+```js
+Promise.reject('a')
+    .catch((p) => p + 'b')
+    .catch((p) => p + 'c')
+    .then((p) => p + 'd')
+    .then((p) => console.log(p))
+
+console.log('f')
+```
+
+---
+
+В начале получаем зареджектный а, потом мы ловим catch и будет 'ab', следующий catch пропуск так как мы уже обработали ошибку, затем идем в then и выводим 'abd'
+</details>
+
+<details>
+<summary>Опиши подробно последовательность ответа</summary>
+
+```js
+Promise.resolve(1)
+  .then((x) => x + 1)
+  .then((x) => { throw x } )
+  .then((x) => console.log(x))
+  .catch((err) => console.log(err))
+  .then(x => Promise.resolve(x))
+  .catch((err) => console.log(err))
+  .then((x) => console.log(x))
+```
+
+---
+
+Есть зарезвлоенный промис 1, мы идем к then получаем 2, затем выбрасываем ошибку после чего следующий then пропускаем и в блоке catch на пятой строчке мы как раз выводим и нашу двойку потому что мы ранее выбрасили двойку. После блока catch ошибка у нас считается обработанной по этому мы идем выполнения then. В следующем then у нас в качестве x ничего не передается и значит результат равен undefined. Блок catch пропускаем так как ошибок у нас нет и на последней строчке мы этот undefined выводим в консоль
+
 
 </details>
 
 <details>
-<summary>Доп.вопрос: какие типы таймеров есть в JavaScript?</summary>
+<summary>Level №1 - Простой порядок</summary>
+
+```js
+console.log('1');
+setTimeout(() => console.log('2'), 0);
+Promise.resolve().then(() => console.log('3'););
+console.log('4');
+```
+
+--- 
+
+Ответ: 1432 
+
+Решение: 1 и 4 попадут в стек сразу выполнятся так как они синхронные, 3 попадает в микротаски и выполнится сразу, а 2 идет к макротаскам и он выполнится последним
+</details>
+
+<details>
+<summary>Level №2 - Микрозадачи vs макрозадачи</summary>
+
+```js
+setTimeout(() => console.log('timeout'));
+Promise.resolve().then(() => console.log('promise'));
+queueMicrotask(() => console.log('microtask'));
+console.log('code');
+```
+
+--- 
+
+Ответ: code → promise → microtask → timeout
+
+Решение: code выполнится сразу, затем идет две микрозадачи в очередь - promise и microtask, и выполнятся в начале все они, а затем уже timeout который в макрозадачи
+
+</details>
+
+
+<details>
+<summary>Level №3</summary>
+
+```js
+Promise.resolve()
+  .then(() => {
+    console.log('promise1');
+    Promise.resolve()
+      .then(() => console.log('promise2'));
+  })
+  .then(() => console.log('promise3'));
+
+console.log('code');
+```
+
+--- 
+
+Ответ: code → promise1 → promise2 → promise3
+
+Вначале выполнится code, затем в callstack будут записан then и внутри него создастя еще одна микрозадача с promise2, пока все микрозадачи первого зена не завершится он не перейлет к следующему then с промис3
+
+все внутренности первого зена включая промиса, а затем уже второй then отработает
+
+</details>
+
+<details>
+<summary>Level №4</summary>
+
+```js
+console.log(1);                       
+setTimeout(() => console.log(2));
+Promise.resolve().then(() => console.log(3));
+Promise.resolve().then(() => setTimeout(() => console.log(4)));
+Promise.resolve(console.log(5)).then(() => console.log(6));
+setTimeout(() => console.log(7));
+console.log(8);                       
+```
+
+--- 
+
+Ответ: 1 -> 5 -> 8 -> 3 -> 6 -> 2 -> 7 -> 4
+
+Решение: в начале выполнится 1 в console.log, затем 5 хоть она и в промисе, но аргумент из Promise.resolve() вычисляется синхронно, и чтобы быть в микрозадачи нужно быть в .then, .catch, затем синхронный код 8, а теперь разбираем все микрозадачи это 3 и 6, 4 уходит в макрозадачу. И у нас остается 3 макрозадачи - setTimeout 2, 7, 4. А в самом конце 4, потому что он попал в очередь макротаск после того как там уже было 2 и 7 и он добавился в конец
+
+</details>
+
+<details>
+<summary>Level №5</summary>
+
+```js
+setTimeout(function timeout() {
+  console.log("Таймаут");
+}, 0);
+
+let p = new Promise(function (resolve, reject) {
+  console.log("Создание промиса");
+  resolve();
+});
+
+p.then(function () {
+  console.log("Обработка промиса");
+});
+
+console.log("Конец скрипта");
+```
+
+---
+
+Ответ: Конец скрипта -> Создание промиса -> Обработка промиса -> Таймаут
+
+Решение => у нас then., .catch, .finally - ассинхронны, а простой вызов промиса синхронный по этому в начале у нас выполнится синхронные операции - это создание промиса, конец скрипта, обработка промиса (микротаска) и Таймаут (макротаска)
+
+</details>
+
+
+<details>
+<summary>Level №6</summary>
+
+```js
+const promise = new Promise((resolve) => {
+  console.log(1);
+
+  setTimeout(() => {
+    console.log("timerStart");
+
+    resolve("success");
+
+    console.log("timerEnd");
+  });
+
+  console.log(2);
+});
+
+promise.then((res) => console.log(res));
+
+console.log(4);
+```
+
+---
+
+Ответ: 1 -> 2 -> 4 -> timerStart -> timerEnd -> success
+
+Решение:
+- Сначала выполняются все синхронные операции (console.log(1), console.log(2), console.log(4)).
+- Затем срабатывает setTimeout, выполняя console.log("timerStart"), затем resolve("success"), затем console.log("timerEnd").
+- После завершения макрозадачи setTimeout, обрабатывается микрозадача promise.then(), которая выводит "success".
+
+</details>
+
+
+<details>
+<summary>Level №7</summary>
+
+```js
+console.log(1); // вывод синхронный
+
+setTimeout(function timeout() {
+  console.log("Таймаут");
+}, 0);
+
+new Promise(function (resolve, reject) {
+  console.log("Promise");    // вывод синхронный
+  setTimeout(() => {
+    console.log(777);
+    resolve();
+  }, 0);
+})
+  .then(() => console.log("then1"))
+  .then(() => console.log("then2"));
+
+console.log(4);   // вывод синхронный
+
+setTimeout(() => {
+  console.log("timeOut2");
+}, 0);
+```
+
+Решение:
+
+- В начале выполняем все синхронны операции это 1, затем settimeout идет в макротаски. Внутри конструктора есть промис это синхронная операция Promise вывелся, и следующий setTimeout идет к макротаском, then1 и then2 пропускается так в начале должен выполнится setTimeout в макротаске. Выводим затем 4 он тоже синхронный и у нас остается последняя макротаска - timeout2. Теперь разберем макротаски - выводим первый таймаут, затем внутри сработывает второй таймаут выводится 777 и промис резолвится и срабатывают then1 и then2 в конце срабатывает последний макротаск timeout2
+</details>
+
+<details>
+<summary>Level №8</summary>
+
+```js
+setTimeout(console.log(1));
+
+new Promise(function (resolve, reject) {
+  resolve();
+})
+  .then(() => console.log(2))
+  .then(() => console.log(3))
+  .catch(() => console.log("err"))
+  .then(() => setTimeout(() => console.log(4)));
+
+console.log(5);
+```
+
+Ответ: 1 => 5 => 2 => 3 => 4
+
+Решение: setTimeout(console.log(1)) получает результат выполнения сразу, а это означает что он синхронный, дальше промис зарезовленный и мы получаем 2, 3, catch пропускаем и получаем 4 который берем из макротаски 
+
+</details>
+
+
+<details>
+<summary>Level №9</summary>
+
+```js
+console.log("A");
+
+const p = new Promise((resolve) => {
+  resolve("");
+  console.log("B");
+});
+
+p.then(() => {
+  p.then(() => console.log("C"));
+  console.log("D");
+});
+
+setTimeout(() => {
+  console.log("E");
+}, 0);
+
+p.then(() => console.log("F"));
+```
+
+---
+
+Ответ: А => B => D => F => С => E 
+
+Решение => 
+  A (синхронный код), B (синхронный код),
+  первый then (внутри него: выводит D и создает новую задачу C в конец очереди),
+  затем выполняется F (который уже был в очереди перед C),
+  затем выполняется C (добавленный позже),
+  затем макрозадача E.
+</details>
+
+<details>
+<summary>Level №10</summary>
+
+```js
+setInterval(() => console.log(1), 1)
+setTimeout(() => console.log(2), 1)
+console.log(3);
+Promise.resolve().then(() => console.log(4));
+const promiseTest = new Promise(() => {
+  console.log(5)
+})
+setTimeout(() => console.log(6), 0)
+console.log(7)
+promiseTest.then(() => console.log(8))
+```
+
+---
+Ответ: 3 => 5 => 7 => 4 => 6 => 2 => 1111111
+
+Решение:
+1. => 357 - синхронные операции
+2. => 4 - микротаска, 8 пропускаем так как нет resolve
+3. => 6 и 2 выполняются по очереди в микросекундах
+4. => setInterval до самого конца идет 1 1 1 1
+
+</details>
+
+<details>
+<summary>Level №11</summary>
+
+```js
+setTimeout(() => console.log("setTimeout 1"), 0);
+
+new Promise((resolve, reject) => {
+  console.log("Promise 1");
+  resolve();
+  console.log("Promise 2");
+}).then(() => console.log("Promise 3"));
+
+Promise.resolve().then(() => setTimeout(() => console.log("setTimeout 2"), 0));
+
+Promise.resolve().then(() => console.log("Promise 4"));
+
+setTimeout(() => console.log("setTimeout 3"), 0);
+
+console.log("final");
+```
+
+---
+
+Ответ: Promise1, Promise2, final, Promise3, Promise4, setTimeout1, setTimeout2, setTimeout3
+
+
+</details>
+
+<details>
+<summary>Level №12</summary>
+
+```js
+console.log(1)
+
+setTimeout(() => {
+  console.log(2)
+})
+
+Promise.resolve().then(() => {
+  console.log(3)
+})
+
+console.log(4);
+
+setTimeout(() => {
+  console.log(5)
+}, 0)
+
+console.log(6);
+
+const fool = () => {
+  console.log('foo1');
+  return Promise.resolve().then(fool)
+}
+
+fool();
+```
+
+---
+
+Ответ: 146 => foo1 => 3 => fool бесконечно и микрозадача никогда пустой не станет
+</details>
+
+
+<details>
+<summary>Level №13</summary>
+
+```js
+
+async function f() {
+  console.log(1);
+  const promise = new Promise((resolve) => {
+    console.log(2);
+    setTimeout(() => {
+      console.log(3);
+      resolve('готово!')
+      console.log(4)
+    })
+  })
+
+  console.log(5);
+
+  const result = await promise;
+  console.log(6)
+  console.log(result)
+  return 'Result'
+}
+
+f();
+console.log(7);
+```
+
+--- 
+
+Ответ: 1 => 2 => 5 => 6 => 7 => 3 => 4 => ГОТОВО
+
+Объяснения, в начале у нас срабатывает до await код - это 1 2 5 потом выходит из функции и срабатывает 7 заходит обратно и мы должны выполнить все операции промиса так 3 4 6 'готово'
+
+</details>
+
+
+
+<details>
+<summary>Level №14</summary>
+
+```js
+function checkOrder() {
+    console.log('1');
+
+    async function asyncFn() {
+      console.log('2');
+      await Promise.resolve(null);
+      console.log('3')
+    }
+
+    asyncFn();
+
+    new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+        console.log('4')
+      }, 0);
+      
+      console.log('5')
+    }).then(() => console.log('6'))
+
+    console.log('7')
+}
+console.log('8');
+checkOrder();
+console.log('9')
+
+```
+
+--- На
+
+Ответ: 8 => 1 => 2 => 5 => 7 => 9 => 3 => 4 => 6
+</details>
+
+<details>
+<summary>Level №15</summary>
+
+```js
+console.log('1')
+setTimeout(() => console.log('2'), 0)
+
+async function asyncFunc() {
+  console.log('3')
+
+  await new Promise((resolve) => {
+    console.log('4');
+    setTimeout(() => {
+      console.log('5');
+      resolve()
+    }, 0)
+  })
+  
+  console.log('6')
+
+  Promise.resolve()
+    .then(() => console.log('7'))
+    .then(() => console.log('8'))
+}
+
+asyncFunc();
+console.log('9')
+```
+
+Ответ: 1 => 3 => 4 => 9 => 2 => 5 => 6 => 7 => 8
+
+</details>
+
+<details>
+<summary>Level №15</summary>
+
+```js
+setTimeout(() => console.log('timeout'));
+Promise.resolve().then(() => Promise.reject('reject').catch(console.log));
+window.requestIdleCallback(() => console.log('requestIdleCallback'));
+window.requestAnimationFrame(() => console.log('requestAnimationFrame'));
+console.log('code')
+```
+
+Ответ: `code` (синхронный код) => `reject` (микротаска) => requestAnimationFrame(сработает перед полной загрузкой страницы хоть и тоже макротаска) => timeout => requestIdleCallback(уже после завершение страниц)
+
+</details>
+</details>
+
+<details>
+<summary>Какие типы таймеров есть в JavaScript?</summary>
 
 В JS есть два основных типа таймеров:
 
@@ -714,21 +1205,19 @@ Eventloop - это бесконечный цикл, который решает 
 - `setInterval(...)` - позволяет вызвать переданную функцию много раз через определенный интервал времени. Чтобы отменить `setInterval` мы можем использовать тип: `clearInterval()` и внутрь передаем переменную, где использовали `setInterval`.
 
 </details>
-</details>
+
+<h2 align="center">Прототип, прототипное наследование</h2>
 
 <details>
-<summary>Что такое прототип в JS? А также расскажите по подробней про прототипное наследование</summary>
+<summary>Что такое прототип в JS? И как работает цепочка прототипов</summary>
 
-Прототип — это объект, который содержит свойства и методы, доступные другим объектам через механизм прототипного наследования. Каждый объект в JavaScript может иметь скрытое внутреннее свойство [[Prototype]] (доступное через __proto__ или устанавливаемое с помощью Object.setPrototypeOf), которое указывает на другой объект-прототип. Что позволяет избежать дублирования кода
-</details>
+У каждого объекта в JavaScript есть прототип — это специальная ссылка на другой объект (или null). Прототип содержит свойства и методы, к которым объект может обратиться через прототипное наследование.
 
-<details>
-<summary>Как работает цепочка прототипов (prototype chain)</summary>
+В коде мы можем получить к ней доступ через геттер/сеттер Object.getPrototypeOf(obj) / Object.setPrototypeOf(obj, proto) или через устаревшее свойство __proto__.
 
-Когда мы обращаемся к св-в внутри объекта, то он в начале ищет
-его внутри самого объекта, если не находит, то ищет внутри прототипа, 
-а потом внутри него пока не дойдет до null, что означает больше искать не куда и прототипной цепочки нет
+Как это работает:
 
+Когда мы обращаемся к свойству объекта, JavaScript сначала ищет его в самом объекте. Если не находит — переходит по ссылке в прототип и ищет там. Затем — в прототипе прототипа, и так далее, пока цепочка не закончится на null (это значит, что свойство не найдено).
 
 - Что произойдет если запрашиваемая св-в не найдено в объекте? - Вернет undefined
 </details>
@@ -736,14 +1225,11 @@ Eventloop - это бесконечный цикл, который решает 
 <details>
 <summary>В чём разница между __proto__ и prototype?</summary>
 
-__proto__  - ссылка на прототип объекта у любого объекта
-prototype - свойство функции, задающее прототип у функций конструктора
+У функций есть свойство prototype, которое становится прототипом (__proto__) для объектов, созданных через new этой функции, а __proto__ - ссылка на прототип у любого объекта.
 
 </details>
 
----
-
-### DOM-дерево
+<h2 align="center">DOM-дерево</h2>
 
 <details>
 <summary>Что такое DOM (document object model) ?</summary>
@@ -871,28 +1357,24 @@ domContentLoaded
 - Либо пишем квериселектор, а потом вызываем onclick и вешаем его на кнопку
 </details>
 
----
 
-### Принципы ООП и Solid
+<h2 align="center">Другие вопросы</h2>
+
 
 <details>
 <summary>Что такое Solid и расшифруйте его?</summary>
 
 - S `(single responsibility principle)` - принцип единственной ответственный. Функция, метод внутри класса должен выполнять лишь 1 задачу. Например - отсортировать массив или отфильтровать его 
 
-- O `(open-closed principle)` - принцип открытости и закрытости. Код должен быть открыт для добавления нового функционала, но при этом исходный код не должен быть изменен. На классах мы можем это сделать через extends
+- O `(open-closed principle)` - принцип открытости и закрытости. Код должен быть написан так, чтобы в него можно было добавлять новый функционал, но при этом исходный код не должен быть изменен. На классах мы можем это сделать через extends
 
-- L `(liskov substiution)` - принцип подставки Барбары Лисков.
+- L `(liskov substitution principle)` - принцип подставки Барбары Лисков. Наследуемый класс должен уметь делать всё то же самое, что и родительский, не ломая логику программы.
 
-- I `(interface segregation)` - принцип разделения интерфейса.
+- I `(interface segregation)` - принцип разделения интерфейса. Есть один большой интерфейс внутри которого разные методы относящиеся к разным темам, и в наследуемом классе не нужно все их использовать
 
 - D `(dependency inversion)` - принцип инверсии зависимостей
 
----
-
-L => `Liskov substitution` (принцип подстановки Барбары Лисков) => сущности (классы, функции), которые использует родительский тип должны точно также работать с дочерними классами, при этом ничего не должно ломатся в логике программы и она не должна нарушаться. Наследуемый класс должен дополнять, а не замещать поведение базового класса, при работе с дочерними классами мы должны быть уверены, что у нас ничего не сломается
-
-I => `Interface segregation` (принцип разделения интерфейса) => програмные сущности не должны зависеть от методов, которые они не используют. Основная суть заключается в том, чтобы разбивать наши толстые интерфейсы наши програмные сущности на более маленькие узкоспециализированные решающие одну задачи. Нельзя заставлять клиента реализовывать интерфейс, которым он не пользуется.
+---.
 
 D => `Dependency inversion` (принцип инверсии зависимостей) => модули высокого уровня не должны зависеть от модулей более низкого уровня, все они должны зависеть от абстракций, а они в свою очередь не должны зависеть от деталей, а детали как раз должны зависеть от абстракции. 
 
