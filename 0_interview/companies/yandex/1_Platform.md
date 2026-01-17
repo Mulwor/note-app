@@ -310,6 +310,47 @@ logHelloOnce();
 </details>
 
 <details>
+<summary>function objFromArr(arr)</summary>
+
+С бекенда приходит массив такого вида:
+
+```js
+const arr = [
+  { name: "width", value: 10 },
+  { name: "height", value: 20 },
+];
+```
+
+Нужно получить объект такого вида:
+```js
+{
+  width: 10,
+  height: 20,
+}
+```
+
+```js
+function objFromArr(arr) {
+  const transformToObject = {};
+
+  for (const element of arr) {
+    transformToObject[element.name] = element.value;
+  }
+
+  // for (let i = 0; i < arr.length; i++) {
+  //   transformToObject[arr[i].name] = arr[i].value;
+  // }
+
+  return transformToObject
+}
+```
+</details>
+
+<details>
+<summary>function countSymbol(str)</summary>
+</details>
+
+<details>
 <summary>Реализовать функцию carry (каррирование)</summary>
 
 Каррирование - это преобразование функции от нескольких аргументов в последовательность функций, каждая из которых принимает один аргумент.
@@ -532,6 +573,116 @@ Number.prototype.times = function(fn) {
 ```js
 console.clear();
 (3).times(console.log)    // 0 1 2
+```
+</details>
+
+<details>
+<summary>Функция get(obj, path){...}</summary>
+
+Нужно написать функцию get. На входе функция принимает объект и путь до поля объекта
+Путь - это строка, разведенная точкой. Функция должна вернуть соответствующее поле объекта. Запрашиваемого поля в объекте может не быть
+
+```js
+// Можно путь разделить через сплит, потом создать переменную которая будет 
+// перемещаться внутри объекта. Создать цикл и проверить содержит ли он свойство 
+// через hasOwnProperty
+function get(obj, path) {
+  const key = path.split(".");
+  let current = obj;
+  
+  for (let i = 0; i < key.length; i++) {
+    if (!current.hasOwnProperty(key[i])) {
+      return undefined
+    }
+
+    current = current[key[i]];
+  }
+
+  return current;
+}
+
+const obj = {
+  a: { 
+    b: {
+      c: 'd'
+    },
+    e: 'f'
+  }
+}
+
+console.log(get(obj, 'a.b'));      // { c: 'd' }
+console.log(get(obj, 'a.b.x'));    // undefined
+```
+</details>
+
+<details>
+<summary>Функция rle(str)</summary>
+
+Дана строка, содержащая буквы //A-Z//:
+"AAAABBCCCXY2DDDDEEEFFFFAAAABBBBBBBBBBBBBBBBBBBB"
+Нужно написать функцию RLE, которая выведет строку вида:
+"A4B3C2XYD4E3F3A6B28"
+
+Примечания:
+1. Если символ встречается один раз, он остается неизменным
+2. Если символ встречается более одного раза, к нему добавляется число повторений
+
+```js
+function rle(str) {
+  if (!str) return ""
+  if (str.length === 1) return str;
+
+  let counter = 1;
+  let result = ""
+
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === str[i + 1]) {
+      counter += 1
+    } else {
+      result += str[i];
+      if (counter > 1) result += counter
+      counter = 1;
+    }
+  }
+
+  return result;
+}
+
+console.log(rle('A'));    // A
+console.log(rle('AAAB')); // A3B
+console.log(rle('ABCCC')) // ABC3
+```
+</details>
+
+<details>
+<summary>function isMonotonic(number)</summary>
+
+Написать функцию, которая принимает массив чисел. Необходимо определить монотонный он или нет
+
+Монотонное число - это число которое может только либо увеличивать либо уменьшаться. Другими словами => 1, 2, 3, 4, 5 и 5, 3, 1 - это монотомность. А не монотомность это 1 10 2 41; 
+
+
+```js
+function isMonotonic(numbers) {
+  let increasing = true;
+  let decreasing = true;
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > arr[i - 1]) {
+      decreasing = false;
+    }
+    if (arr[i] < arr[i - 1]) {
+      increasing = false;
+    }
+  }
+
+  return increasing || decreasing
+}
+
+isMonotonic([1, 2, 3, 6]);          // true
+isMonotonic([6, 3, 3, 2, 1]);       // true
+isMonotonic([1, 1, 1]);             // true
+isMonotonic([1, 10, 6]);            // false
 ```
 </details>
 
