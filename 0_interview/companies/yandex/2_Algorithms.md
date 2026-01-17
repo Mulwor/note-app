@@ -3828,3 +3828,51 @@ const isValid = (str) => {
 // Если итерация завершена и стак пустой, значит все скобки имеют свою пару в нужном порядке.
 ```
 </details>
+
+<details>
+<summary>Вычислить интервалы пользователей в двух отсортированных списка</summary>
+
+[Leetcode - 986. Interval List Intersections](https://leetcode.com/problems/interval-list-intersections/description/) - основное отличие заключается в `if (start < end)` этом пункте, там должно быть `if (start <= end)`
+
+Даны два отсортированных списка с интервалами присутствия пользователей в онлайне в течение дня. Начало интервала строго меньше конца. Нужно вычислить интервалы, когда оба пользователя были в онлайне.
+
+```js
+intersection(
+    [(8, 12), (17, 22)],
+    [(5, 11), (14, 18), (20, 23)]
+) // [(8, 11), (17, 18), (20, 22)]
+
+intersection(
+    [(9, 15), (18, 21)],
+    [(10, 14), (21, 22)]
+) // [(10, 14)]
+
+function intersection(user1, user2) {
+  // your code here
+}
+```
+
+### Ответы
+
+```js
+function intersection(user1, user2) {
+  const result = [];
+  let firstPointer = 0, 
+  let secondPointer = 0;
+
+  while (firstPointer < user1.length && secondPointer < user2.length) {
+    const [start1, end1] = user1[firstPointer];
+    const [start2, end2] = user2[secondPointer];
+
+    const start = Math.max(start1, start2);
+    const end = Math.min(end1, end2);
+
+    if (start < end) result.push([start, end]);
+
+    end1 < end2 ? firstPointer++ : secondPointer++;
+  }
+
+  return result;
+}
+```
+</details>
