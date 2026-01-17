@@ -348,10 +348,6 @@ logHelloOnce();
 </details>
 
 <details>
-<summary>function countSymbol(str)</summary>
-</details>
-
-<details>
 <summary>Реализовать функцию carry (каррирование)</summary>
 
 Каррирование - это преобразование функции от нескольких аргументов в последовательность функций, каждая из которых принимает один аргумент.
