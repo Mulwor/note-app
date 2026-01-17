@@ -225,9 +225,11 @@ var splitWordsBySeparator = function (words, separator) {
 function camelToSnake(text) {
   let result = "";
 
-  for (let i = 0; i < text.length; ++i) {
-    const char = text[i];
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i]
 
+    // Сверяем букву которая приходит с большой буквой
+    // и делаем так чтобы нижнее подчеркивание не было в самом начале
     if (char === char.toUpperCase() && i !== 0) {
       result += "_";
     }
@@ -238,10 +240,9 @@ function camelToSnake(text) {
   return result;
 }
 
-camelToSnake("helloWorld")        // "hello_world"
-camelToSnake("getHTTPResponse")   // "get_http_response"
-camelToSnake("firstName")         // "first_name"
-camelToSnake("UserID")           // "user_id"
+console.log(camelToSnake("updatedAt")); // "updated_at"
+console.log(camelToSnake("XmlHttpRequest")); // "xml_http_request"
+console.log(camelToSnake("XmlHttpRequestI")); // "xml_http_request_i"
 ```
 </details>
 
@@ -273,39 +274,6 @@ function isPangram(text) {
 
 console.log(isPangram('A pangram or holoalphabetic sentence is a sentence using every letter of a gived alphabet at least once'))  // False
 console.log(isPangram('Waltz, bad nymph, for quick jigs vex')) // True
-```
-</details>
-
-
-<details>
-<summary>Функция обертка - runOnce</summary>
-Реализовать функцию-обертку runOnce, которая принимает функцию и возвращает новую функцию. Новая функции может быть вызвана только 1 раз, все последующие вызовы возвращают undefined. Оборачиваемая функция может принимать аргументы и возвращать результат. [Задача взята с литкода](https://leetcode.com/problems/allow-one-function-call/description/)
-
----
-
-В начале нам необходимо объявить переменную called, которая будет отслеживать состояние вызова функции. Затем мы возвращаем функцию, которая замыкается на переменной called. Если called имеет значение true (что означает, что функция уже была вызвана ранее), то возвращается undefined. В противном случае, мы устанавливаем called в true и вызываем оригинальную функцию.
-
-```js
-function runOnce(fn) {
-  let called = false;
-  
-  // return (...args) => {
-  return function(...args) {   
-    // Если у нас called был уже вызван заранее, то он вернет undefined
-    if (called) return undefined;
-    called = true;
-    return fn(...args);
-  };
-}
-
-const logHello = () => {
-  console.log('hello!')
-}
-
-const logHelloOnce = runOnce(logHello);
-console.clear();
-logHelloOnce();
-logHelloOnce();
 ```
 </details>
 
@@ -343,6 +311,39 @@ function objFromArr(arr) {
 
   return transformToObject
 }
+```
+</details>
+
+
+<details>
+<summary>Функция обертка - runOnce</summary>
+Реализовать функцию-обертку runOnce, которая принимает функцию и возвращает новую функцию. Новая функции может быть вызвана только 1 раз, все последующие вызовы возвращают undefined. Оборачиваемая функция может принимать аргументы и возвращать результат. [Задача взята с литкода](https://leetcode.com/problems/allow-one-function-call/description/)
+
+---
+
+В начале нам необходимо объявить переменную called, которая будет отслеживать состояние вызова функции. Затем мы возвращаем функцию, которая замыкается на переменной called. Если called имеет значение true (что означает, что функция уже была вызвана ранее), то возвращается undefined. В противном случае, мы устанавливаем called в true и вызываем оригинальную функцию.
+
+```js
+function runOnce(fn) {
+  let called = false;
+  
+  // return (...args) => {
+  return function(...args) {   
+    // Если у нас called был уже вызван заранее, то он вернет undefined
+    if (called) return undefined;
+    called = true;
+    return fn(...args);
+  };
+}
+
+const logHello = () => {
+  console.log('hello!')
+}
+
+const logHelloOnce = runOnce(logHello);
+console.clear();
+logHelloOnce();
+logHelloOnce();
 ```
 </details>
 
