@@ -1087,3 +1087,47 @@ function promiseAll(promises) {
 ```
 
 </details>
+
+<details>
+<summary>Отвратительная задача  - intersection</summary>
+
+Даны два отсортированных списка с интервалами присутствия пользователей в онлайне в течение дня. Начало интервала строго меньше конца. Нужно вычислить интервалы, когда оба пользователя были в онлайне. Интервалы указаны в часах, считаем что могут быть часы от 0 до 24
+
+```js
+// 
+
+function intersection(firstList, secondList) {
+  let result = [];
+  let firstPointer = 0; 
+  let secondPointer = 0;
+
+  // Делаем проверку, что мы не дошли до конца первого и второго списка интервала
+  // (0 < [[8,12],[17,22]]) ===> 0 < 2 && (0 < [[5,11],[14,18],[20,23]]) ===> 0 < 3
+  while(firstPointer < firstList.length && secondPointer < secondList.length) {
+    const leftIndex = firstList[firstPointer]              // 8 8 17 17 ===> index[0]; 12 12 22 22 ===> index[1]
+    const rightIndex = secondList[secondPointer]           // 5 14 14 20 ===> index[0]; 11 18 18 23 ===> index[1]
+      
+    // Max(8 8 17 17 || 5 14 14 20) => 8 14 17 20
+    const start = Math.max(leftIndex[0], rightIndex[0]);
+    // Min(12 12 22 22 || 11 18 18 23) => 11 12 18 22  
+    const end = Math.min(leftIndex[1], rightIndex[1]);
+
+    // 8 14 17 20 < 11 12 18 22 ===> [8, 11], [17, 18], [20, 22] 
+    if(start <= end) result.push([start, end]);
+
+    // Идем в следующую цепочку
+    leftIndex[1] < rightIndex[1] ? firstPointer++ : secondPointer++
+  }
+
+  return result;
+};
+
+console.log(intersection(
+  [[8, 12],[17, 22]],
+  [[5, 11],[14, 18],[20, 23]];
+))
+// [8, 11], [17, 18], [20, 22] 
+
+```
+
+</details>
