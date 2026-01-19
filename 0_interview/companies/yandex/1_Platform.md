@@ -95,6 +95,47 @@ console.log(obj)  // { a: 1 }, хоть и передается по ссылк�
 </details>
 
 <details>
+<summary>Что произойдет в консоле после выполнение следующего фрагмента кода</summary>
+
+```js
+var i = 10;
+var array = [];
+
+while (i--) {
+  array.push(function() {
+    return i + 1
+  })
+}
+
+console.log(
+  array[0]();   0;
+  array[1]();   0;
+)
+```
+
+Попросят переписать код, чтобы loc стал 16 и 18
+
+
+```js
+let i = 10;
+var array = [];
+
+while (i--) {
+  const currentNumber = 1;
+
+  array.push(function() {
+    return currentNumber + currentNumber
+  })
+}
+
+console.log(
+  array[0]();   // 16;
+  array[1]();   // 18;
+)
+```
+</details>
+
+<details>
 <summary>Пройтись по Promise.resolve(1)</summary>
 
 Пройтись по коду и рассказать максимально подробно объяснить, что происходит в каждой строчке кода
@@ -144,7 +185,6 @@ console.log(strjoin('-', 'a', 'b', 'c', 'd', 'e', 'f')); // a-b-c-d-e-f
 console.log(strjoin('.'));               // ? 
 ```
 </details>
-
 </details>
 
 <details>
@@ -213,7 +253,6 @@ var splitWordsBySeparator = function (words, separator) {
   return split.filter(Boolean)
 };
 ```
-
 </details>
 
 <details>
@@ -246,6 +285,44 @@ console.log(camelToSnake("XmlHttpRequestI")); // "xml_http_request_i"
 ```
 </details>
 
+<details>
+<summary>Требуется реализовать функцию spy, которая умеет шпионить за другой функцией</summary>
+
+```js
+function _sum(a, b) {
+  return a + b
+}
+
+function spy(f) {
+  const data = {
+    calls: 0,
+    args: [],
+    results: []
+  }
+
+  function spyWrapper(...args){
+    data.calls = 1;
+    data.args.push(args);
+    const result = f.apply(this, args);
+    data.results.push(result);
+
+    return result;
+  }
+
+  spyWrapper.data = data;
+
+  return spyWrapper
+}
+
+const sum = spy(_sum);
+
+console.log(sum(2, 2));
+console.log(sum(21, 21));
+console.log(sum.data.calls); // 2
+console.log(sum.data.args); // [[2, 2] [21, 21]];
+console.log(sum.data.results); // [4, 42];
+```
+</details>
 
 <details>
 <summary>Панаграмма</summary>
