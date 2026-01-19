@@ -294,24 +294,23 @@ function _sum(a, b) {
 }
 
 function spy(f) {
-  const data = {
+  function spyWrapper(...args){
+    const result = f(...args);
+    
+    wrapper.data.calls += 1;
+    wrapper.data.args.push(args);
+    wrapper.data.results.push(result);
+
+    return result;
+  }
+
+  wrapper.data = {
     calls: 0,
     args: [],
     results: []
   }
 
-  function spyWrapper(...args){
-    data.calls = 1;
-    data.args.push(args);
-    const result = f.apply(this, args);
-    data.results.push(result);
-
-    return result;
-  }
-
-  spyWrapper.data = data;
-
-  return spyWrapper
+  return wrapper
 }
 
 const sum = spy(_sum);
