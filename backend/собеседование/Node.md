@@ -40,3 +40,5 @@
 [junior](https://www.youtube.com/watch?v=2DIBCDxYkUc)
 https://www.youtube.com/watch?v=8b49Id8zMu8
 https://www.youtube.com/watch?v=8BCWAKNYUOc
+
+https://www.youtube.com/watch?v=Vx1-vFIAhF4&list=LL

@@ -543,7 +543,7 @@ async function process1(action1: action, action2: action, action3: action): Prom
 
 ---
 
-✅ Необходимо написать функцию для слипа (sleep), чтобы он выполнился через 300 миллисекнуж после process1 и протипизируйте его
+✅ Необходимо написать функцию для слипа (sleep), чтобы он выполнился через 300мс после process1 и протипизируйте его
 
 ```js
 const action2 = () => return new Promise((res, rej) => {
@@ -665,25 +665,5 @@ function customPromiseAny(promises) {
     }
   });
 }
-```
-</details>
-
----
-
-✅ Необходимо реализовать жизненный цикл в хуке useEffect когда он монтируется и размонтируется. И если мы в зависимости будем передавать show и count, то когда он будет размонтироваться
-
-<details>
-<summary>Ответ</summary>
-
-```js
-console.log("Render")
-
-useEffect(() => {
-  return () => {
-    console.log("Unmount")
-  }
-}, [show, count])
-
-Если мы передали какую-то зависимость, то он срабатывается при первом рендеринге и когда меняется состояние.
 ```
 </details>
