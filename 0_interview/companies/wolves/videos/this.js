@@ -28,7 +28,7 @@ const personSet = {
   },
   greet_02: function () {
     setTimeout(function () {
-        console.log(`Hello, ${this.name}`)
+      console.log(`Hello, ${this.name}`)
     }, 1000)
   }
 }

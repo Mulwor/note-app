@@ -1,9 +1,7 @@
-- map
 - concat
-- reduce
 - find
 - pop
-- filter
+- flat
 
 - groupAnagram
 
@@ -11,3 +9,6 @@
 - debounce
 - callLimit
 - cache (memoize)
+
+// =====================================================================
+
