@@ -1,6 +1,3 @@
-- concat
-- find
-- pop
 - flat
 
 - groupAnagram

@@ -1,17 +1,16 @@
-Array.prototype.myFilter = function (callback) {
-  let result = []
-
+Array.prototype.myEvery = function (callback) {
   for (let i = 0; i < this.length; i++) {
-    // Проверяем, возвращает ли callback true для текущего элемента
-    if (callback(this[i], i, this)) {
-      result.push(this[i])
+    const conditional = callback(this[i], i, this)
+
+    if (!conditional) {
+      return false
     }
-    result.push(newItems)
   }
 
-  return result;
+  return true;
 }
 
-const items = [2, 4, 6, 8, 10, 11]
-const result = items.myFilter((value) => value > 10 );
-console.log(result)
+const numbers = [2, 4, 6, 8, 10];
+const result_01 = numbers.myEvery(num => num % 2 === 0);
+const result_02 = numbers.myEvery(num => num > 3);
+console.log(`Результат 1_`, result_01, `Результат 2_`, result_02)  

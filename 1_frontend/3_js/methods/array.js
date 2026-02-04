@@ -19,30 +19,6 @@ var removed = myFish.splice(3, 1);
 var myFish2 = ['angel', 'clown', 'trumpet', 'sturgeon'];             // myFish равен ["parrot", "anemone", "blue", "trumpet", "sturgeon"]
 var removed = myFish.splice(0, 2, 'parrot', 'anemone', 'blue')
 
-
-// ! Find, findIndex, indexOf
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const found = arr.find(el => el > 5)
-console.log(found)
-
-
-// ===============
-
-const arr1 = ["John", "Artur", "Tommy", "Finn"];
-const foundIndex = arr1.findIndex(el => el == "Artur")              // 1 
-console.log(foundIndex)
-
-function isWantedGuest(element, index, array) {
-    const guestName = 'Лиза'
-    return element === guestName
-}
-
-const partyGuests = [ 'Даня', 'Саша', 'Юля', 'Лиза', 'Егор']
-const meetingGuests = [ 'Даня', 'Егор', 'Арсений' ]
-  
-console.log(partyGuests.findIndex(isWantedGuest))           // 3 (так как partyGuests[3] -> 'Лиза')
-console.log(meetingGuests.findIndex(isWantedGuest))         // -1 (совпадений нет)
-
 // ===============
 
 const arr2 =  ["John", "Artur", "Tommy", "Finn"];
