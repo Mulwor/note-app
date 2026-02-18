@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { Select } from './components';
+import { Select } from './components/index.ts';
 import { addZero } from './utils/addZero.ts';
 import { useAppContext } from './context/AppContext.tsx';
 

@@ -1,5 +1,5 @@
 import { Toaster } from 'react-hot-toast';
-import { Form, Screen } from './components';
+import { Form, Screen } from './components/index.ts';
 import { useAppContext } from './context/AppContext.tsx';
 
 

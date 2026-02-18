@@ -1,5 +1,5 @@
 import { createContext, FormEvent, useContext, useRef, useState } from 'react';
-import { IAppContextProps } from '../types';
+import { IAppContextProps } from '../types/index.ts';
 import { getRandomNumber } from '../utils/getRandomNumber.ts';
 import { toast } from 'react-hot-toast';
 

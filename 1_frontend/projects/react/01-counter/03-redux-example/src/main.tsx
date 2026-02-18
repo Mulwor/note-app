@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App.tsx';
 import { Provider } from 'react-redux';
-import { store } from './store';
+import { store } from './store/index.ts';
 
 /**
  * Создает корневой элемент приложения и рендерит в него компонент `App`.

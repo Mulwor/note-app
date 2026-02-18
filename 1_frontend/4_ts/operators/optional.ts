@@ -18,6 +18,6 @@ function prepareUser (user: Person) {
   // ! user.getAge();            // Cannot invoke an object which is possibly 'undefined'
   user.getAge?.()
 
-  // ! user.array[0]               // 'user.array' is possibly 'undefined'.
+  // ! user.array[0]             // 'user.array' is possibly 'undefined'.
   user.array?.[0]
 }

@@ -1,5 +1,5 @@
 import React, { ChangeEvent, createContext, useContext, useEffect, useRef, useState } from 'react';
-import { IAppContextProps } from '../types';
+import { IAppContextProps } from '../types/index.ts';
 import mp3 from '/sounds/ringtone.mp3';
 import { addZero } from '../utils/addZero.ts';
 import { toast } from 'react-hot-toast';
