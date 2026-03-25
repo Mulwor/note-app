@@ -1,7 +1,9 @@
-import { Controller } from '@nestjs/common';
-import { MovieService } from './movie.service';
+import { Controller, Get } from '@nestjs/common';
 
 @Controller('movie')
 export class MovieController {
-  constructor(private readonly movieService: MovieService) {}
+  @Get()
+  findAll() {
+    return [{ title: 'Fight club' }, { title: 'Matrix' }];
+  }
 }
