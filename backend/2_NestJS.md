@@ -1,0 +1,595 @@
+- [Что такое nestjs?](#nest-js)
+- [Установка, структура и запуск nestjs](#install-nest-js)
+- [Архитектура приложения - модули, контролеры, сервисы](#architecture-nest-js)
+- [Генерация сущностей в nest.js](#generation-entity-in-nest-js)
+- [Работа с]()
+  - [декораторами REST API](#in-restAPI)
+  - [валидацией DTO](#validation-DTO)
+  - [декоратором модуля](#module-work)
+  - [декоратором контролер](#controller-work)
+  - [декоратором для методов](#method-work)
+- [База данных]()
+  - [TypeORM]()
+
+<a id="nest-js"></a>
+
+<h2 align='center'>Что такое nestjs?</h2>
+
+Nest (NestJS) — это фреймворк для создания эффективных и масштабируемых серверных приложений на Node.js. Он использует прогрессивный JavaScript, построен на TypeScript и полностью его поддерживает (при этом позволяя разработчикам писать код на чистом JavaScript), а также сочетает в себе элементы объектно-ориентированного программирования (ООП), функционального программирования (ФП) и реактивного функционального программирования (РФНП).
+
+В основе Nest лежат мощные фреймворки для HTTP-серверов, такие как Express (по умолчанию), а также, при желании, его можно настроить на использование Fastify! Nest обеспечивает уровень абстракции выше, чем у распространенных фреймворков Node.js (Express/Fastify), но при этом напрямую предоставляет разработчику доступ к их API. Это дает разработчикам свободу использовать множество сторонних модулей, доступных для базовой платформы.
+
+Nest предлагает готовую архитектуру приложений, которая позволяет разработчикам и командам создавать приложения, легко тестируемые, масштабируемые, слабо связанные и простые в обслуживании. Архитектура во многом вдохновлена ​​Angular.
+
+<a id="install-nest-js"></a>
+
+<h2 align='center'>Установка, структура и запуск nestjs</h2>
+
+1\. В начале необходимо глобально установить nestjs => `npm i -g @nestjs/cli`, затем проверяет установлен ли он `nest --version`;
+
+2\. Затем переходим в папку где хотим работать с nest и пишем команду: `nest new nestjs`, где nestjs - это названия репозитория. Данная команда создает нам приложение на nestjs. После того как мы написали команду, у нас идет выборка пакетного менеджера: `Which package manager would you ❤️ to use? - npm, yarn, pnpm` и после выбора происходит установка nest и собираются зависимости нашего предложения. И в конце увидим вот это сообщение - `Thanks for installing Nest`
+3\. Запускаем приложением переходя на него `cd nestjs` и `yarn run start`
+
+<h3 align='center'>Базовая структура приложения</h3>
+
+1\. tsconfig.json необходим для typescript;
+
+2\. tsconfig.build.json нужен для настройки typescript когда у нас проект соберется;
+
+3\. README.md;
+
+4\. package.json содержит список зависимостей и какую-либ информацию о проекте;
+
+5\. nest-cli.json где можно настроить различные параметры нашего приложения;
+
+6\. eslint.config.mjs - настройки еслинта;
+
+7\. .prettierrc - настройки форматирования;
+
+8\. .gitignore - файлы которые необходимо игнорировать при публикации на репозиторий;
+
+9\. src - главная папка нашего проекта (controller, module, service), где app.controller.ts главный контроллер нашего приложения, где app.module - это главный модуль предложения в котором мы все будем объединять все остальные модули нашего предложения (модуль авторизации, для продуктов и прочее), и app.service.ts - располагается различная бизнес-логика, а также есть app.controller.spec.ts, где просто есть тесты для нашего контролера и main.ts - основной файл нашего приложения
+
+```js
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+
+async function bootstrap() {
+  // Главная функция, в которое инициализируем наше приложение,
+  // прокидываем главный модуль и указываем что он будет на порту 3000
+  // либо которое берет из env и будет запускаться
+  const app = await NestFactory.create(AppModule);
+  await app.listen(process.env.PORT ?? 3000);
+}
+bootstrap();
+```
+
+10\. test
+
+<h3 align='center'>Запуск приложения</h3>
+
+Для того, чтобы запустить проект необходимо написать `yarn run start:dev` либо `npm run start:dev` в зависимости какой был выбран пакетный менеджер; заходим в гугл и вбиваем в адресную строку - http://localhost:3000/; затем идем в `src/app.service.ts` там и содержится наш hello world. Если захотим возвращать в формате json, то переписываем так
+
+```js
+// src/app.service.ts
+getHello() {
+   return { message: "Welcome to nest js course" }
+}
+
+// src/controller.ts
+@Get()
+getHello() {
+  return this.appService.getHello();
+}
+```
+
+<a id="architecture-nest-js"></a>
+
+<h2 align='center'>Архитектура приложения</h2>
+
+Каждый элемент приложения выполняет свой роль, что позволяет легко масштабировать проекты, поддерживать его в долгосрочной перспективе. Главное строительное приложение в nest-js - модули, контроллеры и сервисы
+
+<h3 align='center'>Модули</h3>
+Модуль в nest-js - это контейнер, который группирует все компоненты для решения конкретных задач. Проще говоря модуль это как часть приложения, которая отвечает за определенную область функционала. Например если вы делается систему с работы с пользователями, то модуль будет выглядеть так
+
+```js
+@Module({
+  controllers: [UsersController],
+  providers: [UsersService],
+})
+export class UsersModule {}
+```
+
+Здесь мы видим, что модуль UsersModule включает в контроллеры сервис, которая отвечает за работу с пользователями. Модули помогают организовать код, не позволяя всему перемещиваться в одну кучу
+
+<h3 align='center'>Контроллеры</h3>
+Контроллеры - это те компоненты, которые принимают входящие http-запросы и передают их на обработку сервисам. Они не занимаются логикой обработки данных, а только направляют запрос туда где это логика уже есть, это позволяет разгрузить контроллеры и сосредоточить всю бизнес логику в сервисах.
+
+```js
+@Controller('users')
+export class UsersController {
+  constructor(private readonly usersService: UsersService) {}
+
+  @Get()
+  getUsers(){
+    return this.usersService.getUsers()
+  }
+}
+```
+
+Когда происходит get запрос на получения всех пользователей, контроллер вызывает метод getUsers из нашего сервиса и тот уже занимается списком получения пользователей. В итоге контроллер просто принимает запрос и отдает нам результат.
+
+<h3 align='center'>Сервисы</h3>
+Сервисы - это мозг вашего приложения, когда контроллер получает запрос от клиента, он делегирует всю работу сервису. Сервисы занимаются такой логикой - взаимодействуют с базой данных, проверяют данные, обрабатывают ошибки и решают что делать дальше. То есть контроллер сам по себе не выполняет никакой бизнес-логики, его задача лишь передать в нужное место, а сервис уже все решит.
+
+```js
+@Injectable()
+export class UsersService {
+  private users = [
+    { id: 1,  name: "Alice" },
+    { id: 2,  name: "Bob" },
+  ];
+
+  getUsers() {
+    return this.users;
+  }
+}
+```
+
+В примере сверху сервис просто возвращает массив пользователей, в реальном приложение сервис просто взаимодействует с базой данных при различных orm - prisma или typeorm
+
+В реальном приложение эти элементы работают следующим образом - все начинается с запроса от клиента, он отправляет запрос на получения списка пользователей, запрос должен быть обработан контроллером, который передаст его в сервис, а сервис уже сделает всю свою работу и вернет нам результат
+
+<a id='generation-entity-in-nest-js'></a>
+
+<h2 align='center'>Генерация сущностей в nest.js</h2>
+
+Сущность - модуль, сервис, контроллер. Для генерации сущностей необходимо написать в терминале команду `nest generate resource task` или `nest g res task`, где resource - указания на сущность, а task это названия сущности в единственном числе, нажимаем на enter и нам предлагают выбрать - транспорт, который будем использовать:
+
+`What transport layer do you use? - REST API, GraphQL (code first), GraphQL (schema first), Microservice (non-HTTP), websockets` - Выбрали например REST API и получаем следующую команду:
+
+`Would you like to generate CRUD entry points? (Y/n)` - хотим ли мы генерировать CRUD энтри поинтсы. При нажатие на Y, у нас уже будут в сервисе описаны какие-то методы, dto (входные параметры). Выбираем n, так как хотим отказать от установки. И в левой части - `src/task` замечаем установку сущностей.
+
+Стоит отметить, что у нас сгенерировалось все сущности включая тесты, если мы не хотим генерировать тесты, то используем флажок --no-spec => `nest g res task --no-spec`
+
+Отличительной чертой также является что если в `src/app.controller` у нас в контроле было пусто, то в `src/task/task.controller.ts` присвоится значения `@Controller('task')`, и в app.module.ts (основной) добавился импорт task
+
+<a id='in-restAPI'></a>
+
+<h2 align='center'>Работа с декораторами REST API</h2>
+
+В данном разделе будут рассматриваться все способы создание REST API запросов. И начнем с классического get-запроса
+
+<h2 align='center'>Получение всех тасок через get-запрос</h2>
+
+В NestJS контроллере создайте функцию findAll(), которая будет брать таски из сервиса и пометьте декоратором @Get(), чтобы обрабатывать GET-запросы. Всю бизнес-логику выносится на сервис.
+
+```ts
+// src/task/task.controller.ts
+import { Controller, Get } from "@nestjs/common";
+import { TaskService } from "./task.service";
+
+@Controller("task")
+export class TaskController {
+  constructor(private readonly taskService: TaskService) {}
+
+  @Get()
+  findAll() {
+    return this.taskService.findAll();
+  }
+}
+```
+
+```ts
+// src/task/task.service.ts
+import { Injectable } from "@nestjs/common";
+
+@Injectable()
+export class TaskService {
+  private tasks = [
+    { id: 1, title: "Learn NestJS", isCompleted: false },
+    { id: 2, title: "Build API", isCompleted: true },
+  ];
+
+  findAll() {
+    return this.tasks;
+  }
+}
+```
+
+Потом в терминале пишем yarn run start:dev и видим путь в терминале => `[Nest] 18648 - 09.01.2026, 19:16:29 LOG [RouterExplorer] Mapped {/task, GET} route +0ms`, что означает что по данному запросу у нас создался REST Api, открываем `localhost:3000/task` и получаем результат массив с двумя объектами.
+
+<h2 align="center"> Получения таски по id через Get-запрос </h2>
+
+Для того, чтобы получить таску по id необходимо написать функцию findById, который принимает в себя id, проверяет есть ли и возвращает его
+
+```ts
+// src/task/task.service.ts => после findAll
+findById(id: number) {
+  const task = this.tasks.find((task) => task.id === id)
+
+  if (!task) {
+    throw new NotFoundException('Task not found');
+  }
+
+  return task
+}
+```
+
+Есть два способа написание в контроллере, в первом примере захордкодить данное значение
+
+```ts
+// src/task/task.controller.ts => после findAll
+@Get()
+findById() {
+  return this.taskService.findById(1)
+}
+```
+
+Или получить из ссылки браузера, установив в качества аргумента param, и в нем указав название нашего параметра, и указать что это id с типом number, который прокидываем внутрь
+
+```ts
+@Get('by-id/:id')
+findById(@Param('id') id: string) {
+  return this.taskService.findById(Number(id))
+}
+```
+
+<h2 align="center"> Отправка новое таски через post-запрос</h2>
+
+В начале нам необходимо создать DTO. Если коротко, то DTO (data transfer object) - это некий объект для передачи данных, который помогает четко определить непосредственно какие данные мы ожидаем в запросе. Грубо говоря специальный класс в котором описываем поля, которые хотим принимать от пользователя
+
+```ts
+// task/dto/create-task.dto.ts
+export class CreateTaskDto {
+  title: string;
+}
+```
+
+Затем пишем логику в сервис с бизнес-логикой, создаем функция и в качестве аргумента передаем функцию dto и обращается к классу
+
+```ts
+// src/task/task.service.ts
+createTask(dto: CreateTaskDto) {
+  const newTask = {
+    id: this.tasks.length + 1,
+    title: dto.title,
+    isCompleted: false,
+  };
+
+  this.tasks.push(newTask);
+  return this.tasks;
+}
+```
+
+И в самом конце обрабатываем запрос в контроллере
+
+```ts
+// src/task/task.controller.ts
+@Post()
+createTask(@Body() dto: CreateTaskDto) {
+  return this.taskService.createTask(dto);
+}
+```
+
+Открываем postman и вбиваем туда post запрос с http://localhost:3000/task, переходим во вкладку body-raw нажимаем на JSON вместо text и пишем названия title - `{ "title": "New task 1" }` и должно добавится по нажатию на sent новая таска
+
+<!-- <h2 align="center">Полное (put-запрос) и частичное редактирования (patch-запрос) таски</h2> -->
+
+<h2 align="center">Полное обновления объекта через put-запрос</h2>
+
+Создаем новое dto - update-task-dto.ts
+
+```ts
+export class UpdateTaskDto {
+  title: string;
+  isCompleted: boolean;
+}
+```
+
+Затем пишем логику в сервис с бизнес-логикой, создаем функция и в качестве аргумента передаем функцию dto и обращаемся к классу. Помимо dto нам нужно также, чтобы он принимал id, которое мы хотим обновить. У нас логика нахождения уже есть в findById(id) и юзаем его и в качестве title и isCompleted будем указывать то что нам из dto приходит
+
+```ts
+// src/task/task.service.ts
+updateTask(id: number, dto: UpdateTaskDto) {
+  const { title, isCompleted } = dto
+
+  const task = this.findById(id);
+
+  task.title = title;
+  task.isCompleted = isCompleted;
+
+  return task;
+}
+```
+
+И в самом конце обрабатываем запрос в контроллере. И забираем из param наш динамически изменяемый id
+
+```ts
+// src/task/task.controller.ts
+@Put(':id')
+updateTask(@Param('id') id: string, @Body() dto: UpdateTaskDto) {
+  return this.taskService.updateTask(+id, dto);
+}
+```
+
+Открываем postman и вбиваем туда put запрос с http://localhost:3000/task/1, переходим во вкладку body-raw нажимаем на JSON вместо text и пишем названия title - `{ "title": "New task edit" }` и должно редактироваться
+
+<h2 align="center">Частичное обновления объекта через patch-запрос</h2>
+
+Например, если мы хотим обновить одно поле - мы можем использовать patch-запрос. Мы возьмем UpdateTaskDto и сделаем поля необаятельными. И обратимся к объекту вызвав метод assign(target, sources), данный метод копирует все перечисляемые собственные свойства и возвращает целевой объект
+
+```js
+// src/task/task.service.ts
+patchUpdate(id: number, dto: Partial<UpdateTaskDto>) {
+  const task = this.findById(id);
+  Object.assign(task, dto);
+  return task;
+}
+```
+
+Обрабатываем запрос в контроллере.
+
+```ts
+// src/task/task.controller.ts
+@Patch(':id')
+patchUpdate(@Param('id') id: string, @Body() dto: Partial<UpdateTaskDto>) {
+  return this.taskService.patchUpdate(+id, dto);
+}
+```
+
+Открываем postman и вбиваем туда patch запрос с http://localhost:3000/task/1, переходим во вкладку body-raw нажимаем на JSON вместо text и пишем названия title - `{ "title": "New task patched" }` и запрос изменится
+
+<h2 align="center">Удаления таски через delete-запрос</h2>
+
+```js
+// src/task/task.service.ts
+delete(id: number) {
+  const task = this.findById(id);
+
+  this.tasks = this.tasks.filter((t) => t.id !== task.id)
+
+  return task;
+}
+```
+
+```ts
+// src/task/task.controller.ts
+@Delete(':id')
+delete(@Param('id') id: string) {
+  return this.taskService.delete(+id);
+}
+```
+
+<a id="validation-DTO"></a>
+
+<h2 align="center">Работа с валидацией DTO</h2>
+
+Валидация — это процесс проверки входящих данных на соответствие заданным правилам. DTO с валидацией защищает ваше приложение от некорректных или вредоносных данных. Без валидации - пользователь может отправить что угодно
+
+Необходимо установить библиотеки yarn add:
+
+1\. `yarn add class-validator` - отвечает за проверку данных через специальные декораторы
+
+2\. `yarn add class-transformer` - позволяет автоматически преобразовывать данные в нужный формат - строку/число.
+
+Полный скрипт: `yarn add class-validator class-transformer`
+
+Чтобы валидация автоматически работала для всех входящих запросов необходимо перейти в `src/main.ts`. Внутри мы обращаемся к useGlobalPipes() - устанавливаем некие глобальный пайп
+
+```ts
+import { ValidationPipe } from "@nestjs/common";
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe());
+  await app.listen(process.env.PORT ?? 3000);
+}
+bootstrap();
+```
+
+<h2 align="center">Основные декораторы</h2>
+
+| Валидатор                                     | Что он делает                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@IsString()`                                 | Проверяет, является ли значение строкой                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `@IsNotEmpty()`                               | Запрещает пустые строки, null, undefined                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `@MinLength(2)`                               | Регулирует минимальную длину название - например 2 символа                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `@MaxLength(36)`                              | Регулирует максимальную длину название - например максимальное допустимый символ - 36                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `@Length(2, 36)`                              | Ограничивает минимальную и максимальную длину строки                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `@isEmail`                                    | Проверяет формат email                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `@IsBoolean()`                                | Проверяет булево значение                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `@IsOptional()`                               | Поле необязательно для заполнения                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `@IsNumber()`                                 | Проверяет, является ли значение числом (в т.ч. с плавающей точкой)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `@IsPositive()`                               | Проверяет является ли число положительным                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `@IsInt()`                                    | Проверяет, является ли число целым - 4, 5, а не 4.3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `@IsArray()` + `@IsString({ each: true })`    | Проверяет является ли декоратор массивом, + проверяет, что каждый элемент массива — строка                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `@IsEnum(enum, { each: true })`               | Проверяет, что значение принадлежит enum (перечислению)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `@Matches(/^(?=.*[A-Z])(?=.*[0-9]).+$/)`      | Проверяет строку по регулярному выражению - например пароль должен содержать хотя бы одну заглавную букву                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `@IsUrl({}, { message: 'Некорректный url' })` | Проверяет является ли валидным url. В качестве первого параметра объекта туда можно записать `protocols : ['http']` - где будет поддерживаться только http протокол, а так по дефолту он принимает все 3 варианта; `require_protocol: true` - протокол должен начинаться с http; `require_port: true` - проверяет наличие порта в конце; `require_valid_protocol: true` - должен содержать допустимые протоколы, то есть которые существуют; `host_whitelist: ['google.com']` - позволяет указать список разрешенных хостов, в данном примере только гугл разрешен; `host_blacklist: ['']` - позволяет указать черный список доменов, то есть которую указывать нельзя |
+| `@IsUUID(version?)`                           | Проверяет является ли это уникальной айдишкой, в качестве первого параметра указываем id, а вторым параметром можно message передать                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `@ValidateNested()`                           | Включает валидацию для вложенного объекта                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+
+Стоит отметить, что у каждого метода можно прописать свои кастомные сообщение например:
+
+```js
+@IsString({
+  message: "Название задачи должно быть строкой"
+})
+@Length(2, 36, {message: "..."})
+```
+
+<h2 align="center">Кастомный валидация DTO</h2>
+
+Мы можем также создать свой кастомный валидатор. Например - валидатор для проверки совпадения двух полей
+
+```ts
+import {
+  registerDecorator,
+  ValidationOptions,
+  ValidationArguments,
+} from "class-validator";
+
+export function Match(property: string, validationOptions?: ValidationOptions) {
+  return function (object: Object, propertyName: string) {
+    registerDecorator({
+      name: "Match",
+      target: object.constructor,
+      propertyName: propertyName,
+      options: validationOptions,
+      constraints: [property],
+      validator: {
+        validate(value: any, args: ValidationArguments) {
+          const [relatedPropertyName] = args.constraints;
+          const relatedValue = (args.object as any)[relatedPropertyName];
+          return value === relatedValue;
+        },
+        // Сообщение, которое выводится если произойдет ошибка
+        defaultMessage(args: ValidationArguments) {
+          const [relatedPropertyName] = args.constraints;
+          return `${propertyName} должен совпадать с ${relatedPropertyName}`;
+        },
+      },
+    });
+  };
+}
+```
+
+<a id='#module-work'></a>
+<a align="center">Работа с декоратором модуля</a>
+
+Декоратор `@Module()` служит для организации структуры приложения. Он группирует связанные компоненты (контроллеры, провайдеры) в единый модуль.
+
+Основные свойства объекта модуля:
+
+- **`controllers`** — массив контроллеров, отвечающих за обработку HTTP-запросов.
+- **`providers`** — массив провайдеров (сервисов), содержащих бизнес-логику.
+- **`imports`** — список импортируемых модулей. Позволяет использовать провайдеры из других модулей.
+- **`exports`** — список провайдеров, которые становятся доступными для других модулей (при условии, что модуль, предоставляющий их, был импортирован).
+
+_Пример использования:_ сервис авторизации (`AuthService`) часто экспортируется, чтобы его можно было использовать в любом другом модуле приложения.
+
+```ts
+@Module({
+  imports: [AnotherModule], // Подключаем функциональность другого модуля
+  controllers: [MovieController],
+  providers: [MovieService], // Регистрируем сервис внутри модуля
+  exports: [MovieService], // Делаем MovieService доступным вовне
+})
+export class MovieModule {}
+```
+
+Если требуется сделать модуль доступным во всем приложении без необходимости добавлять его в imports каждого модуля, используется декоратор @Global().
+
+```ts
+import {Global, Module } from '@nestjs/common';
+
+@Global()
+@Module({
+  imports: [AnotherModule],
+  controllers: [MovieController],
+  providers: [MovieService],
+  exports: [MovieService],
+})
+```
+
+<a id='#controller-work'></a>
+<a align="center">Работа с декоратором контролер</a>
+
+Декоратор @Controller() определяет базовый префикс или конфигурацию для всех маршрутов внутри класса.
+
+```ts
+@Controller("movie")
+export class MovieController {}
+```
+
+Помимо основной передачи строки `@Controller('movie')`, мы можем использовать объект конфигурации и у него есть следующие свойства: `path`(Указываем сам путь по которому будут идти все запросы в контроллеры) и`host` (тем самым скажем что отправлять запросы в наш контроллер можно быть только с хоста) при попытке обратится по другому адресу выйдет ошибка. Можно также передать массив хостов
+
+```ts
+@Controller{
+  path: "movies",
+  host: "test.ru"
+}
+```
+
+<a id='#method-work'></a>
+<a align="center">Работа с декоратором для методов</a>
+
+Декораторы параметров позволяют легко получить параметры запроса, тело запроса, загаловки, куки и различные другие данные которые мы можем вытащить из объекта req. Данные параметры ставится внутри наших методов. Например: @Param (позволяет получить динамически изменяемый параметр из url) @Body (позволяет получить тело запроса). Помимо этих есть еще:
+
+`@Body()` — позволяет получить тело запроса. Используется для получения данных из POST, PUT или PATCH запросов. Рекомендуется типизировать с помощью DTO (Data Transfer Object) и валидировать через class-validator.
+
+```ts
+@Post()
+create(@Body() createMovieDto: CreateMovieDto) {
+  return createMovieDto;
+}
+```
+
+`Query()` - позволяет получить какие-либо query-параметры из url (?key=value)
+
+```ts
+// Запрос: /movies?genre=action&sort=asc
+@Get()
+findAll(@Query('genre') genre: string) { ... }
+
+// Получение всех параметров
+findAll(@Query() query: any) {
+  return JSON.stringify(query);
+}
+```
+
+`@Headers()` — позволяет получить все заголовки или конкретный по имени.
+
+```ts
+@Get('headers')
+getHeaders(@Headers() headers: any) {
+  return headers;
+}
+
+@Get('user-agent')
+getUserAgent(@Headers('user-agent') userAgent: string) {
+  return { userAgent };
+}
+```
+
+`@Req() / @Res()` — доступ к объектам Request/Response. Используется для низкоуровневого доступа к объектам Express (или Fastify).
+
+```ts
+@Get('request')
+getRequestDetails(@Req() req: Request) {
+  return {
+    method: req.method,
+    url: req.url,
+    headers: req.headers,
+    query: req.query,
+    params: req.params
+  }
+}
+
+@Get('response')
+getResponseDetails(@Res() req: Response) {
+  res.status(201).json({message: "Hello"})
+}
+```
+
+⚠️ Важно: Использование @Res() без параметров переводит обработчик в режим ручного управления ответом. В этом случае NestJS не будет отправлять ответ автоматически. Если вы используете @Res(), обязательно вызовите res.send() или res.json().
+
+`@Param()` - Декоратор, который позволяет получать динамически изменяемый параметр
+
+```ts
+@Get(':id')
+findById(@Param('id') id: string) {
+  return { id };
+}
+```
+
+Дополнительные декораторы:
+
+`@Ip()` — получает IP-адрес клиента.
+`@Session()` - позволяет получить объект секции - Request Session.
+`@UploadedFile() / @UploadedFiles()` — для работы с файлами (в связке с FileInterceptor).
+
+---
