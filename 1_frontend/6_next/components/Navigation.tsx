@@ -31,5 +31,6 @@ const Navigation = ( {navLinks} : Props) => {
       })}
     </>
   )
-};c:\Users\mulwo\Desktop\miro-code\public c:\Users\mulwo\Desktop\miro-code\src c:\Users\mulwo\Desktop\miro-code\.gitignore c:\Users\mulwo\Desktop\miro-code\eslint.config.js c:\Users\mulwo\Desktop\miro-code\index.html c:\Users\mulwo\Desktop\miro-code\package.json c:\Users\mulwo\Desktop\miro-code\package-lock.json c:\Users\mulwo\Desktop\miro-code\README.md c:\Users\mulwo\Desktop\miro-code\tsconfig.app.json c:\Users\mulwo\Desktop\miro-code\tsconfig.json c:\Users\mulwo\Desktop\miro-code\tsconfig.node.json c:\Users\mulwo\Desktop\miro-code\vite.config.ts
+}
+
 export { Navigation }
