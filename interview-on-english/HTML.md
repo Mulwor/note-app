@@ -18,81 +18,47 @@ An inline style is a style inside the style attribute. It has high specificity a
 
 4. What is semantics? What semantic tags do you know?
 
-<details>
-<summary>HTML (HyperText Markup Language)</summary>
+Semantic HTML means using the right elements for their intended purpose or meaning. It helps browsers and search engines analyze and understand the structure and content of our web application. It also improves accessibility. For example, when we use <strong>, screen readers put emphasis on this tag.
 
-<details>
-<summary>What is semantics? What semantic tags do you know?</summary>
-
-In the past, all developers wrote everything using divs and spans. However, with the introduction of semantic tags in HTML5, a lot has changed. They help browsers and search engines analyze and understand the structure and content of our web application. They also improve accessibility. For example, for visually impaired users – screen readers read the text and emphasize certain words using tags like `strong` or `em`. Instead of an image, a screen reader reads the explanatory text inside the `img` tag's `alt` attribute.
-
-</details>
-
-<details>
-<summary>What is the difference between the tags `strong` and `em` vs `b` and `i`?</summary>
+5. What is the difference between the tags `strong` and `em` vs `b` and `i`?
 
 Tags: `strong` and `b` (bold) – make text bold.
 Tags: `em` (emphasis) and `i` (italic) – make text italic.
 
-The main difference is that some are semantic (`strong`, `em`), while others are non-semantic (`b`, `i`). When a screen reader reads the `strong` and `em` tags, it places a slight emphasis on them, whereas it does not emphasize `b` and `i`.
+"The main difference is that <strong> and <em> are semantic tags, while <b> and <i> are not. When a screen reader reads <strong> or <em>, it places a slight emphasis or accent on them, whereas <b> and <i> are just visual styling."
 
-</details>
-
-<details>
-<summary>How do you semantically correctly markup a navigation menu?</summary>
+6. How do you semantically correctly markup a navigation menu?
 
 Using `nav > ul > li > a`.
 
-</details>
+7. How can you hide an element in the markup without using CSS or JS?
+
+We can use the global hidden attribute. However, the element will not be rendered visually and will be hidden from screen readers as well.
+
+8. Which tag should be used to markup a button?
+
+We can use a semantic tag — <button>. Alternatively, <input type="button"> or <input type="submit"> can create button-like controls, such as sending a request.
+
+9. Types of lists in HTML?
+
+There are 3 types of lists in HTML: <ul> (unordered list), <ol> (ordered list), and <dl> (definition list).
+
+10. What are the tags tr, th, td used for?
+
+The <tr>, <th>, and <td> tags are used to create HTML tables:
+
+<tr> — table row (строка таблицы)
+<th> — table header (ячейка-заголовок)
+<td> — table data (обычная ячейка с данными)
+
+11. Which tag uses the alt attribute and why is it needed?
+
+Alt is used in the <img> tag. It shows text if the image doesn't load, and screen readers read it and also it is needed for validation
 
 <details>
-<summary>How can you hide an element in the markup without using CSS or JS?</summary>
+<summary>HTML (HyperText Markup Language)</summary>
 
-HTML has a special attribute for this: `hidden`. However, this is not the best practice because it affects the page via markup – the element is not visible not only to the user but also to screen readers. This attribute is global and can be added anywhere. Its CSS equivalent is `display: none`.
-
-</details>
-
-<details>
-<summary>Which tag should be used to markup a button?</summary>
-
-Regular button: `<button>Button</button>`
-
-Form submission button, used as:
-<button type="submit">Submit button</button>
-<input type="submit" value="Submit">
-
-<input type="button" value="Button"> ```</details><details> <summary>Types of lists in HTML?</summary>
-
-<ul> – unordered list. Each list item is marked with a bullet: li;
-
-<ol> – ordered list. Each list item is marked with a number: li;
-
-Definition list – consists of the following tags: dl – main wrapper, dt – definition term, and dd – description.
-
-</details><details> <summary>What are the tags tr, th, td used for?</summary>
-These tags are used inside another tag: <td>, which is necessary for creating tables:
-
-<tr> (table row) – container for creating a table row.
-<th> (table-header) – used to create a single table cell as a header.
-<td> (table-data) – table cell
-<table>
-   <tr>
-     <td>Hi, I'm your first cell.</td>
-     <td>I'm your second cell.</td>
-     <td>I'm your third cell.</td>
-   </tr>
-</table>
-<img src="./0_interview/assets/html/table.PNG" alt="table" /></details><details> <summary>Which tag uses the alt attribute and why is it needed?</summary>
-It is written in the img tag. If an image does not display on the page, the explanatory text (the one we put in alt) will be shown instead.
-
-This attribute is also useful for people with disabilities – when a screen reader reads the page, it will read out what is in the alt. (Additionally, using this attribute improves accessibility because various screen readers read it when browsing a web page. As a result, users with disabilities understand the context of the image.)
-
-It is also required for validation.
-
-</details><details> <summary>What is HTML markup validation? What types of HTML document checks do you know?</summary>
-HTML markup validation is the process of checking code against W3C (World Wide Web Consortium) standards. W3C provides a platform where we can drag and drop our HTML code to have it checked for errors. Errors can be of different types – missing closing tags, missing alt attributes for images, etc.
-
-</details><details> <summary>Why is it considered good practice to place the link tag for CSS styles inside the head tag, and to put the script tag for JS just before the closing body tag?</summary>
+<details><summary>Why is it considered good practice to place the link tag for CSS styles inside the head tag, and to put the script tag for JS just before the closing body tag?</summary>
 The link tag inside the site's header is specified in the HTML specification. If the stylesheet is in the head, the page loads faster.
 
 HTML and CSS are loaded first on the initial page load, and they should be placed in the header. After everything is loaded, JavaScript is used. If we put JS at the very beginning, it will block the rendering of the HTML. Placing scripts at the bottom allows the browser to first parse and display all the HTML to the user, and then add logic to it.
