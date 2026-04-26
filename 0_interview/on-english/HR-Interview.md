@@ -4,159 +4,149 @@
    - **Answer:** Start with your name, current education and internship, and relevant experiences.
    - **Example:** "My name is Tushar Bhardwaj. I'm pursuing a B.Tech in Computer Science and currently interning at Microsoft as a Software Engineer. I’ve worked on scalable systems and have experience with full-stack projects, content authoring at LeetCode, and data-driven operations at CipherSchools."
 
-2. **Why do you want to work at Microsoft?**
-   - **Answer:** Reflect on your internship experience, culture, and growth opportunities.
-   - **Example:** "I experienced firsthand the collaborative and innovative environment at Microsoft during my internship. I’m inspired by the scale of impact and want to continue contributing while growing alongside world-class engineers."
+2. **Can you walk me through your background?.**
 
-3. **What are your strengths?**
-   - **Answer:** Mention strengths with examples of use.
-   - **Example:** "Problem-solving and ownership. During my Microsoft internship, I took full responsibility for a backend module and ensured timely delivery by proactively coordinating with cross-team dependencies."
+-
+-
 
-4. **What are your weaknesses?**
-   - **Answer:** Be honest, and show active improvement.
-   - **Example:** "I used to take too long polishing every detail. Now, I set internal deadlines and follow the 80/20 rule to balance quality and delivery speed."
+3. What kind of projects have you worked on?
 
-5. **Why should we hire you?**
-   - **Answer:** Highlight fit, past performance, and readiness.
-   - **Example:** "I understand Microsoft’s systems and expectations, having delivered production-ready code during my internship. My skills in system design and eagerness to learn make me a strong fit for the team."
+4. **How did you get into software development**
 
----
+-
+-
+
+5.  What are you currently working on?
+
+-
+-
+
+6. Why are you looking for a new job?
+
+7. Have you worked in a team? What was your team size?
+
+8. Have you had any experience with mentoring?
+
+9. **Why do you want to work at ... (name of company) / Why do you want to work us?**
+
+- **Answer:** Reflect on your internship experience, culture, and growth opportunities.
+- **Example:** "I experienced firsthand the collaborative and innovative environment at Microsoft during my internship. I’m inspired by the scale of impact and want to continue contributing while growing alongside world-class engineers."
+
+10. **What are your strengths and weakness (сильные и слабые стороны) /?**
+
+`Strength`
+
+- **Answer:** Mention strengths with examples of use.
+- **Example:** "Problem-solving and ownership. During my Microsoft internship, I took full responsibility for a backend module and ensured timely delivery by proactively coordinating with cross-team dependencies."
+
+`Weakness`
+
+- **Answer:** Be honest, and show active improvement.
+- **Example:** "I used to take too long polishing every detail. Now, I set internal deadlines and follow the 80/20 rule to balance quality and delivery speed."
+
+11. **Why should we hire you?**
+
+- **Answer:** Highlight fit, past performance, and readiness.
+- **Example:** "I understand Microsoft’s systems and expectations, having delivered production-ready code during my internship. My skills in system design and eagerness to learn make me a strong fit for the team."
+
+12. Tell me about a difficult situation at work. How did you handle it?
 
 ### **Work Experience and Skills**
 
-6. **Walk me through your resume.**
-   - **Answer:** Brief overview of education, internships, and major projects.
-   - **Example:** "I’m currently at LPU. I’ve interned at CipherSchools managing operations, authored 120+ DSA questions at LeetCode, and built production-level full-stack applications. At Microsoft, I contributed to backend service optimization."
+13. **Walk me through your resume.**
 
-7. **What was your biggest achievement in your previous job?**
-   - **Answer:** Pick a measurable and impactful result.
-   - **Example:** "At Microsoft, I reduced service response latency by 25% through optimized API integration and caching, which improved internal tool performance."
+- **Answer:** Brief overview of education, internships, and major projects.
+- **Example:** "I’m currently at LPU. I’ve interned at CipherSchools managing operations, authored 120+ DSA questions at LeetCode, and built production-level full-stack applications. At Microsoft, I contributed to backend service optimization."
 
-8. **Describe a challenging situation and how you handled it.**
-   - **Answer:** Use STAR format.
-   - **Example:** "I was blocked by incomplete documentation. I reached out to engineers, reverse-engineered API behavior, validated it with peers, and wrote clear internal documentation for future use."
+14. **What was your biggest achievement in your previous job?**
 
-9. **What technical skills do you possess that are relevant to this role?**
-   - **Answer:** Match skills to job requirements.
-   - **Example:** "I’m strong in DSA, JavaScript, Node.js, React, MongoDB, and cloud tools like Azure. I’ve used Git, Docker, and Sentry in most of my projects."
+- **Answer:** Pick a measurable and impactful result.
+- **Example:** "At Microsoft, I reduced service response latency by 25% through optimized API integration and caching, which improved internal tool performance."
 
-10. **What tools and software do you use daily?**
-    - **Answer:** Mention practical tools.
-    - **Example:** "VS Code, GitHub, Azure DevOps, Postman, and Sentry. I use React and Node.js across most of my applications."
+15. **Describe a challenging situation and how you handled it.**
+
+- **Answer:** Use STAR format.
+- **Example:** "I was blocked by incomplete documentation. I reached out to engineers, reverse-engineered API behavior, validated it with peers, and wrote clear internal documentation for future use."
 
 ---
 
-### **Company and Career Goals**
+16. **What tools and software do you use daily?**
 
-11. **Where do you see yourself in 5 years?**
-    - **Answer:** Talk about career growth in Microsoft.
-    - **Example:** "I aspire to be a Software Engineer II or higher at Microsoft, mentoring juniors and leading impactful features for global-scale products."
+**Answer:** "VS Code, Gitlab, Postman. I use React and Node.js across most of my applications."
 
-12. **Why do you want to leave your current job?**
-    - **Answer:** Show progression.
-    - **Example:** "My internship is concluding, and I’m excited to transition into a full-time role to take on bigger responsibilities."
+17. **What technologies do you feel most confident with?**
 
-13. **What do you know about our company?**
-    - **Answer:** Highlight culture, products, and experience.
-    - **Example:** "Microsoft stands out for its innovation in cloud and AI. Its emphasis on collaboration and learning made my internship extremely rewarding."
+**Answer:** I specialize more in frontend development, but I don't mind writing in node-js, as I've also been enjoying working on the backend lately.
 
-14. **What motivates you to do your best at work?**
-    - **Answer:** Mention intrinsic motivation.
-    - **Example:** "Solving real-world problems and building efficient systems that users depend on excites me. I also enjoy mentoring and learning from peers."
+18. **Where do you see yourself in 5 years?**
 
-15. **Are you open to relocation?**
-    - **Answer:** Be flexible.
-    - **Example:** "Yes, I’m open to relocation if it helps me grow within the company and aligns with team goals."
+**Answer** - Now I'm more focused on development. I think in 2–3 years I'll either aim for a CTO role or learn backend development in other languages.
 
----
+19. **Why do you want to leave your current job?**
 
-### **Behavioral and Situational**
+**Answer** - I was laid off because the company's revenue dropped significantly. As a result, 50% of the staff was reduced.
 
-16. **How do you handle conflicts at work?**
-    - **Answer:** Describe an example focused on resolution.
-    - **Example:** "I ensure open communication. Once, two team members clashed over implementation logic. I facilitated a short sync to align on priorities and helped define a hybrid solution."
+20. **What do you know about our company?**
 
-17. **Describe your ideal work environment.**
-    - **Answer:** Align with Microsoft culture.
-    - **Example:** "A fast-paced, collaborative, and inclusive environment where learning and growth are prioritized—like I experienced during my internship."
+**Answer** - I know EPAM is a global software engineering company. You're behind The Rolling Scopes School, which I respect. A friend of mine has worked there for 4+ years and speaks highly of the company. I also know you work with enterprise clients across finance, healthcare, and tech. I'd love to learn more from you about your current tech stack for backend teams.
 
-18. **How do you prioritize tasks?**
-    - **Answer:** Mention a method.
-    - **Example:** "I use the Eisenhower Matrix and agile tools like Jira to plan and execute tasks. I focus first on urgent-impactful work."
+**Answer** - No, I don't know much about the company, please tell me
 
-19. **Have you ever missed a deadline?**
-    - **Answer:** Be honest, show recovery.
-    - **Example:** "Yes, due to unexpected blockers. I flagged it early, coordinated with the PM to realign deliverables, and recovered within two days."
+21. **What motivates you to do your best at work?**
 
-20. **How do you handle stress or pressure?**
-    - **Answer:** Share your approach.
-    - **Example:** "I break down large tasks, focus on the next action, and regularly review progress. Planning ahead and taking breaks help me stay balanced."
+**Answer:**: Solving real problems and complex architectural issues.
 
----
+22. **Are you open to relocation?**
 
-### **Teamwork and Leadership**
+**Answer:** "Yes, absolutely. If relocation makes sense for the role and the company sees a long-term fit — I'm ready to move within 2-3 months.»
 
-21. **Do you prefer working in a team or alone?**
-    - **Answer:** Show flexibility.
-    - **Example:** "Both. I enjoy pair programming and idea sharing in teams, but I’m equally comfortable working solo to implement features end-to-end."
+23. **How do you handle (справляться с) conflicts at work?**
 
-22. **How do you handle feedback?**
-    - **Answer:** Be receptive and growth-focused.
-    - **Example:** "During my internship, feedback helped me modularize my code better. I now apply those patterns by default in new projects."
+**Example** - We rarely have any conflicts at work over the code, but if we did (или if we had them), I am open to criticism and the guys and I would come to a common agreement
 
-23. **Describe a time you led a team.**
-    - **Answer:** Use STAR method.
-    - **Example:** "I led the 'Hire Me' portal project, divided tasks among 4 peers, reviewed PRs, and deployed the app successfully within 4 weeks."
+24. **Describe your ideal work environment.**
 
-24. **What role do you usually take in a team?**
-    - **Answer:** Highlight a natural tendency.
-    - **Example:** "I usually take initiative in planning and help others unblock quickly. I enjoy organizing sprints and ensuring alignment."
+**Answer** - My ideal work environment includes coffee in the morning and working from home on rainy days
 
-25. **How do you ensure team members stay motivated?**
-    - **Answer:** Show leadership mindset.
-    - **Example:** "I check in regularly, celebrate progress, and ensure everyone’s voice is heard in decisions. Recognition boosts morale."
+25. **How do you prioritize (расставляете приоритеты) tasks?**
 
----
+**Answer:** There are several options here — either our team lead or the project manager sets the priorities, and then we follow them. Speaking for myself, let's say there are 5 tasks — I sort them by importance and start with the most important ones, then move to the less important ones.
 
-### **Job-Specific and Miscellaneous**
+26. **Have you ever missed a deadline? and How do you handle tight deadlines?**
 
-26. **What are your salary expectations?**
-    - **Answer:** Research and offer a flexible range.
-    - **Example:** "Based on industry standards for a new grad at Microsoft, I expect ₹15–18 LPA. I’m flexible and more focused on role and learning."
+**Answer** - In my entire career, there have been a couple of times when I didn't complete a task on time. But if I can't meet a deadline, I inform the team lead or project manager about the blocker. We discuss it, and my task gets postponed for a couple of days.
 
-27. **What would your manager say about you?**
-    - **Answer:** Share strengths.
-    - **Example:** "Dependable, curious, and solution-driven. My mentor appreciated my quick ramp-up and attention to detail."
+27. **How do you handle (справляетесь с) stress or pressure (давлением)?**
 
-28. **Are you willing to work overtime or on weekends?**
-    - **Answer:** Be open with boundaries.
-    - **Example:** "Yes, occasionally. If there's a critical release or blocker, I’m more than happy to pitch in."
+**Answer:** - I try to relax and not panic. I take one big task, break it down into smaller ones, and solve them one by one.
 
-29. **How do you keep up with industry trends?**
-    - **Answer:** List credible sources.
-    - **Example:** "I follow blogs like Microsoft Developer, Hacker News, and TechCrunch, and take online courses on new tools and frameworks."
+28. **Do you prefer working in a team or alone?**
 
-30. **Do you have any questions for us?**
-    - **Answer:** Ask thoughtful, role-specific questions.
-    - **Example:** "How do you evaluate new grads for promotion to SDE II? And what’s the onboarding process like for someone returning as FTE after an internship?"
+**Answer:** "It doesn't matter to me, I can work either in a team or alone."
 
-- Can you walk me through your background?
-- How did you get into software development?
-- What are you currently working on?
-- Why are you looking for a new job?
-- What kind of role are you looking for?
-- What technologies do you feel most confident with?
-- What kind of projects have you worked on?
-- Have you worked in a team? What was your team size?
-- Have you had any experience with mentoring?
+29. **What role do you usually take in a team?**
 
-- Tell me about a difficult situation at work. How did you handle it?
-- Describe a conflict with a teammate. What happened?
-- Tell me about a mistake you made.
+**Answer:** - I usually act as a senior developer. I look for different ways to improve the project, such as adding new libraries that speed up development.
 
-Have you ever disagreed with your manager? What did you do?
-Tell me about a time you had to learn something quickly.
-How do you handle tight deadlines?
+30. **What are your salary expectations?**
 
-Where do you see yourself in 5?
-Why do you want to work us
+**Answer** - "I expect between $3000 and $3500 after taxes (net salary). But I'm flexible — if I really like the project, I'm willing to lower my expectations.
+
+31. **What would your manager say about you?**
+
+**Answer** - My manager would say that I'm great, that I get the job done on time, and that he's glad he found me.
+
+32. **Are you willing to work overtime or on weekends?**
+
+**Answer:** - "Yes, but not very often. If there's a critical release or blocker, I’m more than happy to pitch in."
+
+33. **How do you keep up with industry trends?**
+
+**Answer** - I am subscribed to various Telegram channels where some IT news is published daily.
+
+34. **Do you have any questions for us?**
+
+**Answer** -
+
+- How many people will be involved (будут задействованы/участвовать) in the project?
+- How many interview rounds will there be, and what will they include?
