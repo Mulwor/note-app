@@ -777,6 +777,8 @@ Git add, commit -m ..., push, reset,
 <details>
 <summary>JavaScript</summary>
 
+### JavaScript
+
 <h2 align="center">Основы</h2>
 
 <details>
