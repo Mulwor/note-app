@@ -6,20 +6,11 @@
 
 2. **Can you walk me through your background?.**
 
--
--
-
 3. What kind of projects have you worked on?
 
 4. **How did you get into software development**
 
--
--
-
-5.  What are you currently working on?
-
--
--
+5. What are you currently working on?
 
 6. Why are you looking for a new job?
 
@@ -44,31 +35,15 @@
 - **Answer:** Be honest, and show active improvement.
 - **Example:** "I used to take too long polishing every detail. Now, I set internal deadlines and follow the 80/20 rule to balance quality and delivery speed."
 
-11. **Why should we hire you?**
-
-- **Answer:** Highlight fit, past performance, and readiness.
-- **Example:** "I understand Microsoft’s systems and expectations, having delivered production-ready code during my internship. My skills in system design and eagerness to learn make me a strong fit for the team."
-
-12. Tell me about a difficult situation at work. How did you handle it?
-
 ### **Work Experience and Skills**
-
-13. **Walk me through your resume.**
-
-- **Answer:** Brief overview of education, internships, and major projects.
-- **Example:** "I’m currently at LPU. I’ve interned at CipherSchools managing operations, authored 120+ DSA questions at LeetCode, and built production-level full-stack applications. At Microsoft, I contributed to backend service optimization."
 
 14. **What was your biggest achievement in your previous job?**
 
-- **Answer:** Pick a measurable and impactful result.
-- **Example:** "At Microsoft, I reduced service response latency by 25% through optimized API integration and caching, which improved internal tool performance."
+**Answer:** "I was able to rewrite the legacy code of the project from a JavaScript class component into a functional component with TypeScript in 4 months."
 
-15. **Describe a challenging situation and how you handled it.**
+15. **Describe a challenging (difficult) situation and how you handled it.**
 
-- **Answer:** Use STAR format.
-- **Example:** "I was blocked by incomplete documentation. I reached out to engineers, reverse-engineered API behavior, validated it with peers, and wrote clear internal documentation for future use."
-
----
+**Answer:** "The most difficult task for me was implementing a text editor. When I first started working at ITMO, I was the only developer and I needed to build it from scratch. The hardest part was figuring out how to do it and how to extend it with features like bold, italics, superscript, subscript, tooltips, and hyperlinks."
 
 16. **What tools and software do you use daily?**
 
