@@ -45,15 +45,3 @@ We can use break with mark outerLoop
 3. How `break` is it different from `continue`?
 
 `continue` — skip one iteration while break — stop the whole loop.
-
-4. Is it possible to modify an array `while` iterating over it in a loop for?
-
-We can modify the array while iterating, but to safely remove elements, we need to use a reverse for loop.
-
-5. Which cycle is faster - `for` or `while`?
-
-They are the same in performance
-
-6. What is the difference between `while` and `do...while`?
-
-Do...while must be executed at least once, and it doesn't matter if the conditions are correct or not, whereas while may not be executed if the conditions are not suitable.
