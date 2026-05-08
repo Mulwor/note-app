@@ -10,7 +10,7 @@ In JavaScript, there are 8 data types, divided (разделен) into primitive
 <details>
 <summary>What is the difference between primitive and reference types?</summary>
 
-Primitive types are stored by value, while objects are stored by reference.
+Primitives are stored by value, while reference types are stored by reference.
 
 </details>
 
