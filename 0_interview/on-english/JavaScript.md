@@ -234,13 +234,6 @@ We can call hasOwnProperty() inside the loop.
 </details>
 
 <details>
-<summary>What is the difference between for...in and Object.keys()?</summary>
-
-Object.keys() shows only the object's own properties, while for...in goes through all keys, including prototype chain
-
-</details>
-
-<details>
 <summary>What is difference between `for...in` and `for...of`?</summary>
 
 for...in - go through the keys/properties of objects, including inherited ones while for...of go through the values of array.

@@ -21,5 +21,7 @@
 - [Деструктиризации и оператор spread](https://it-incubator.io/prosobesim/react-frontend/roadmap?s=E72159&skill=js-es6%2Fcommon%2Fdefault%2Fdestructuring-spread-operator)
 - [Метод hasOwn() вместо hasOwnProperty](https://it-incubator.io/prosobesim/react-frontend/roadmap?s=E72159&skill=js-es6%2Fcommon%2Fdefault%2Fobject-hasown)
 - [Типы функции](https://it-incubator.io/prosobesim/react-frontend/roadmap?s=E72159&skill=js-es5%2Ffunctions%2Fcommon%2Ftypes-of-functions)
-- [Определение this](https://it-incubator.io/prosobesim/react-frontend/roadmap?s=E72159&skill=js-es5%2Ffunctions%2Fexecution-context%2Fthis-definition)
+- [Стрелочный функции и обычные функции](https://it-incubator.io/prosobesim/react-frontend/roadmap?s=E72159&skill=js-es6%2Fcommon%2Fdefault%2Farrow-functions-vs-plain)
+- [Самовызывающиеся функции IIFF](https://it-incubator.io/prosobesim/react-frontend/roadmap?s=E72159&skill=js-es5%2Ffunctions%2Fcommon%2Fimmediately-invoked-function-expressions)
+- [Определение this](https://it-incubator.io/prosobesim/react-frontend/roadmap?s=E72159&skill=js-es5%2Ffunctions%2Fexecution-context%2Fthis-definition)\
 - [Способы привязки this](https://it-incubator.io/prosobesim/react-frontend/roadmap?s=E72159&skill=js-es5%2Ffunctions%2Fexecution-context%2Fways-to-bind-this)
