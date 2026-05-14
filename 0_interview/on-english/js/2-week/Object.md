@@ -1,16 +1,9 @@
 <h3 align="center">Object</h3>
 
 <details>
-<summary>What's object?</summary>
+<summary>What's object and how we can create it?</summary>
 
-An object is a collection of key-value pairs (properties). Keys are strings or symbols, values can be any data type.
-
-</details>
-
-<details>
-<summary>What methods of creating objects do you know? </summary>
-
-We can create an object using curly braces {} (object literal), new Object(), or Object.create().
+An object is a collection of key-value pairs (properties). Keys are strings or symbols, values can be any data type. We can create an object using curly braces {} (object literal), new Object(), or Object.create().
 
 </details>
 

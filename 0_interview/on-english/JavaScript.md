@@ -318,14 +318,7 @@ slice(-1) returns a new array with the last element, while at(-1) returns the el
 <details>
 <summary>What's object?</summary>
 
-An object is a collection of key-value pairs (properties). Keys are strings or symbols, values can be any data type.
-
-</details>
-
-<details>
-<summary>What methods of creating objects do you know? </summary>
-
-We can create an object using curly braces {} (object literal), new Object(), or Object.create().
+An object is a collection of key-value pairs (properties). Keys are strings or symbols, values can be any data type. We can create an object using curly braces {} (object literal), new Object(), or Object.create().
 
 </details>
 
@@ -334,12 +327,30 @@ We can create an object using curly braces {} (object literal), new Object(), or
 
 There is almost no difference. Both create an empty object, but curly braces {} are preferred because they're simpler and cleaner.
 
+They do the same thing - they create a new object.
+
 </details>
 
 <details>
 <summary>How do I add a new property to an object? </summary>
 
-We can use dot notation (obj.key = value), bracket notation (obj['key'] = value), spread operator to create a new object ({ ...obj, newKey: value }), or Object.assign() (Object.assign(obj, { key: value })).
+We can use dot notation, bracket notation, spread operator to create a new object, or Object.assign() that modify original object
+
+```js
+const person = { name: "John", age: 30 };
+
+// ! Dot notation...
+person.city = "New York";
+
+// ! Bracket notation...
+person["city"] = "New York";
+
+// ! Spread operator...
+const updatedPerson = { ...person, city: "New York" };
+
+// ! Object.assign
+Object.assign(person, { city: "New York" });
+```
 
 </details>
 
@@ -347,6 +358,10 @@ We can use dot notation (obj.key = value), bracket notation (obj['key'] = value)
 <summary>Tell me what to do method keys, values, entries and from entries</summary>
 
 `keys(obj)` returns an array of keys; `values(obj)` returns an array of values. `entries()` returns an array of [key, value] pairs. `fromEntries()` does the opposite — builds an object from an array of pairs.
+
+=> How to get all keys of an object?
+
+We can use Object.keys(obj) — it returns the object's own properties.
 
 => How to filter object properties?
 
@@ -361,13 +376,6 @@ const filtered = Object.fromEntries(
 
 console.log(filtered);
 ```
-
-</details>
-
-<details>
-<summary>How to get all keys of an object?</summary>
-
-We can use Object.keys(obj) — it returns the object's own properties.
 
 </details>
 
@@ -388,7 +396,7 @@ We can use `Object.keys(obj).length === 0` (strict equality on zero)
 <details>
 <summary>Is the key order guaranteed?</summary>
 
-In modern ES2015+ — yes, it's guaranteed. Numeric keys come first in ascending order, then string keys in insertion order (в порядке добавление).
+I suppose so. Numeric keys come first in ascending order, then string keys in insertion order (в порядке добавление).
 
 </details>
 
@@ -419,6 +427,24 @@ const obj = Object.fromEntries(map); // { a: 1, b: 2 }
 
 `Dot notation` only works with valid identifier names while `bracket notation` works with any property name - dynamic keys, special characters, or numeric keys.
 
+```js
+const obj = {
+  'user-age': 25,
+  'full name': 'Bob Smith',
+  '123number': 999
+};
+
+// !  Ошибка или синтаксически неверно:
+console.log(obj.user-age);   // вычитание, а не свойство
+console.log(obj.full name);  // ошибка
+console.log(obj.123number);  // ошибка
+
+// ! Правильно:
+console.log(obj['user-age']);   // 25
+console.log(obj['full name']);  // 'Bob Smith'
+console.log(obj['123number']);  // 999
+```
+
 </details>
 
 <details>
@@ -443,7 +469,7 @@ Yes, it returns false for non-configurable properties like Math.PI.
 <details>
 <summary>How to check if a property exists? / Как проверить наличие свойства? </summary>
 
-We can use `in` that check own properties and entire prototype chain or hasOwnProperty() that checks only the object's own properties
+We can use `in` that check own properties and entire prototype chain or `hasOwnProperty()` that checks only the object's own properties
 
 </details>
 
@@ -455,11 +481,13 @@ Undefined
 </details>
 
 <details>
-<summary>How to add a method to an object after creation</summary>
+<summary>How to add a method to an object after creation?</summary>
 
 Just assign a function to a property using dot or bracket notation.
 
 </details>
+
+---
 
 <details>
 <summary>What's optional chaining?</summary>
