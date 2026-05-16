@@ -487,12 +487,10 @@ Just assign a function to a property using dot or bracket notation.
 
 </details>
 
----
-
 <details>
 <summary>What's optional chaining?</summary>
 
-Optional chaining `?.` is an operator that allows you to safely access nested object properties and check value on null/undefined.
+Optional chaining `?.` is a way to access safely nested object properties. And it check value on null/undefined.
 
 </details>
 
@@ -525,16 +523,25 @@ We need to use `callback?.()`, it will run if callback exists.
 </details>
 
 <details>
-<summary> Why can't I copy an object with the = operator?</summary>
+<summary>How to copy object?</summary>
 
-Because = (equal sign) copies the reference, not the object itself. Objects are reference types.
+If we need shallow copy then we use `spread operator` or `Object.assign`. If we speak about deep copy - `JSON.parse(JSON.stringify(obj))`amd`structuredClone()`
 
 </details>
 
 <details>
-<summary>What is the difference between {} and new Object()? </summary>
+<summary>Does spread make a deep copy?</summary>
 
-There is almost no difference. Both create an empty object, but curly braces {} are preferred because they're simpler and cleaner.
+No, spread makes a shallow copy, not a deep copy. If we need a deep copy we can use
+
+1. `JSON.parse(JSON.stringify(obj))`
+2. `structuredClone()`.
+</details>
+
+<details>
+<summary> Why can't I copy an object with the = operator?</summary>
+
+Because = (equal sign) copies the reference, not the object itself. Objects are reference types.
 
 </details>
 
@@ -553,16 +560,16 @@ It creates an object with no prototype. It’s a clean dictionary without inheri
 </details>
 
 <details>
-<summary>What is destructuring? And how to set default value</summary>
+<summary>What is destructuring `[diːˈstrʌk.tʃər.ɪŋ]`? And how to set default value</summary>
 
-Destructuring is a special syntax that allows you to unpack values from arrays and objects into individual variables. If speak about default value we just need to use equal sign and write default value
+Destructuring is a way to unpack values from arrays and objects into individual variables. If speak about default value we just need to use equal sign and write default value
 
 </details>
 
 <details>
 <summary>How is spread different from rest?</summary>
 
-`Spread` ... expands an array or object into its elements. `Rest` ... collects multiple elements into an array or object.
+`Spread` ... expands (расширяет) an array or object into its elements. `Rest` ... collects multiple elements into an array or object.
 
 </details>
 
@@ -577,22 +584,6 @@ If we speak about array we can use , (empty comma) but if we speak object we can
 <summary>Is it possible to destructure a string?</summary>
 
 Yes, because string is iterables
-
-</details>
-
-<details>
-<summary>Does spread make a deep copy?</summary>
-
-No, spread makes a shallow copy, not a deep copy. If we need a deep copy we can use
-
-1. `JSON.parse(JSON.stringify(obj))`
-2. `structuredClone()`.
-</details>
-
-<details>
-<summary>How to copy object?</summary>
-
-If we need shallow copy then we use `spread operator` or `Object.assign`. If we speak about deep copy - `JSON.parse(JSON.stringify(obj))`amd`structuredClone()`
 
 </details>
 
