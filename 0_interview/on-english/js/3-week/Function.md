@@ -11,6 +11,7 @@
 - Is it possible to use Function Declaration inside if?
 - Что возвращает функция без return?
 - Why are Named Function Expressions needed?
+-  Как передаются параметры в функцию: по ссылке или по значению?
 
 ### Стрелочный функции и обычные функции
 

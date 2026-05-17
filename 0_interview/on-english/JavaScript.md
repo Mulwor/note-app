@@ -296,8 +296,6 @@ We can use break with mark outerLoop
 
 </details>
 
-<h3 align="center">Methods</h3>
-
 <details>
 <summary>What is the at() method and when did it appear?</summary>
 
