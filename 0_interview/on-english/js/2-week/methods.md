@@ -10,7 +10,7 @@ An array is an ordered collection of elements indexed from zero, with special ar
 <details>
 <summary>What is an array index?</summary>
 
-An array index is a number that identifies the position of an element in an array.
+It is a number that identifies the position of an element in an array.
 
 </details>
 
@@ -68,28 +68,34 @@ If we need deep copy we can use: `structuredClone(arr)` or `JSON.parse and strin
 </details>
 
 <details>
-<summary>Tell me about methods - map and foreach and what's difference</summary>
+<summary>Tell me about methods - map() and foreach() and what's difference</summary>
 
 They both iterate over the array, but map() returns a new array, forEach() returns undefined. Use map() for transformation, forEach() for side effects.
 
 </details>
 
 <details>
-<summary>Tell me about - filter, reduce, reverse, join</summary>
+<summary>Tell me about methods - filter(), reduce(), reverse(), join()</summary>
 
 `.filter()` goes through the array and returns only the elements that pass the condition.;
+
 `.join()` - combine all elements of an array into a string.;
+
 `.reverse()` - reverses the original array in place - mutation;
+
 `.reduce()` - accumulates all array elements into a single value.";
 
 </details>
 
 <details>
-<summary>Tell me about methods pop(), push(), shift(), unshift()</summary>
+<summary>Tell me about methods - pop(), push(), shift(), unshift()</summary>
 
 `push()` - add element to the end;
+
 `pop()` - removes last element;
+
 `unshift()`- add element to the beginning;
+
 `shift()` - removes first element;
 
 And they are all mutation
@@ -106,14 +112,20 @@ Faster are push() and pop() because they don't move elements — they just add o
 <details>
 <summary>What's different between slice and splice?</summary>
 
-splice() changes the original array (add, remove, replace), while slice() returns a new array without modifying the original.
+`splice()` changes the original array (add, remove, replace), while slice() returns a new array without modifying the original.
 
 </details>
 
-<details>
-<summary>Tell me about: every, some, find?</summary>
+---
 
-`every()` checks if all elements pass, `some()` checks if any pass, `find()` returns the first matching element.
+<details>
+<summary>Tell me about methods -  every, some, find?</summary>
+
+`every()` checks if all elements pass;
+
+`some()` checks if any pass;
+
+`find()` returns the first matching element;
 
 </details>
 
