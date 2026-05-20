@@ -1,53 +1,37 @@
-- [Типы функции](https://it-incubator.io/prosobesim/react-frontend/roadmap?s=E72159&skill=js-es5%2Ffunctions%2Fcommon%2Ftypes-of-functions)
-- [Стрелочный функции и обычные функции](https://it-incubator.io/prosobesim/react-frontend/roadmap?s=E72159&skill=js-es6%2Fcommon%2Fdefault%2Farrow-functions-vs-plain)
-- [Самовызывающиеся функции IIFF](https://it-incubator.io/prosobesim/react-frontend/roadmap?s=E72159&skill=js-es5%2Ffunctions%2Fcommon%2Fimmediately-invoked-function-expressions)
-- [Определение this](https://it-incubator.io/prosobesim/react-frontend/roadmap?s=E72159&skill=js-es5%2Ffunctions%2Fexecution-context%2Fthis-definition)\
-- [Способы привязки this](https://it-incubator.io/prosobesim/react-frontend/roadmap?s=E72159&skill=js-es5%2Ffunctions%2Fexecution-context%2Fways-to-bind-this)
+- What are the ways to declare functions in JS?
 
-### Типы функции
+There are 5 main ways to declare functions in JavaScript: function declaration; function expression; arrow function; with function constructor - when we write new Function() but it has problem with security and when we create function inside class method or object method
 
-- Какие способы объявления функций есть в JS?
 - What is the difference between Function Declaration and Function Expression?
-- Is it possible to use Function Declaration inside if?
-- Что возвращает функция без return?
-- Why are Named Function Expressions needed?
--  Как передаются параметры в функцию: по ссылке или по значению?
 
-### Стрелочный функции и обычные функции
+`Function declaration` is fully hoisted — we can call it before definition. `Function expression` is not hoisted — we can only call it after the assignment line. However, if we declare a `function expression` with var, the variable is hoisted with undefined, but the function is not hoisted.
 
-- What difference between function declaration and arrow function? / В чем отличие между обычной функцией и стрелочной?
-- What happens if you call an arrow function with new? / Что произойдёт, если вызвать стрелочную функцию с new?
-- What is equal to this in the arrow function? / Чему равен this в стрелочной функции?
-- Is it possible to change thisan arrow function via call/apply/bind? => Можно ли изменить this стрелочной функции через call/apply/bind?
-- Why aren't arrow functions suitable for object methods? / Почему стрелочные функции не подходят для методов объекта?
-- How to get all arguments in an arrow function? / Как получить все аргументы в стрелочной функции? Есть ли arguments в стрелочных функциях?
-- Когда лучше не использовать стрелочные функции?
-- Можно ли использовать await в стрелочной функции?
+- What does a function without `return`?
 
-### Самовызывающиеся функции IIFF
+Undefined, but only in constructor return this by default
 
-- What's IIFE and why we is it needed?
-- Why are there parentheses around a function? / Почему нужны скобки вокруг функции?
-- How to pass arguments to IIFE? / Как передать аргументы в IIFE?
-- Is IIFE still relevant in modern JavaScript? / Актуален ли IIFE в современном JavaScript?
+- Why use named function expressions?
 
-### Что такое чистая функция
+Named Function Expressions (NFE) are useful for debugging, recursion, and avoiding confusion in stack traces.
 
----
+- How parameters are passed: by value or by reference?
 
-### Определение this
+Primitives are passed by value, while objects are passed by reference
 
-- 229. Что такое контекст выполнения функции (this)?
-- How is the value of this determined?
-- What happens to this when context is lost?
-- How to save context when lost?
-- What is the difference between this in strict and non-strict modes?
+- What difference between function declaration and arrow function?
 
-### Способы привязки this
+1. Syntax;
+2. Function declarations are fully hoisted. Arrow functions are not hoisted
+3. `Function declarations` have dynamic `this` — depending on where we call it, that's what this will refer to. `Arrow functions` have lexical `this` — defined during declaration.
+4. In function declaration can use arguments, but in arrow functions do not have an argument - `instead, you can use the spread operator`
+5. Function declaration can be called with the new constructor, but arrow functions cannot. If we try to use the arrow function as a constructor, we get an error.
 
-- What is the difference between call and apply?
-- What does bind return?
-- Is it possible to rebind a function created using bind?
-- How to use Math.max on array?
+- What happens if you call an arrow function with new?
 
----
+It throws a TypeError. Arrow functions cannot be used as constructors.
+
+- What is equal to this in the arrow function?
+
+Arrow functions don't have their own this. They inherit this from the surrounding (parent) scope where they are defined (lexical this).
+
+- When is it better not to use arrow functions?
