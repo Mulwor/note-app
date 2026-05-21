@@ -13,7 +13,7 @@ Scope defines where variables are accessible. JavaScript has 3 main types of sco
 </details>
 
 <details>
-<summary>- What are the rules for naming variables and functions?</summary>
+<summary>What are the rules for naming variables and functions?</summary>
 
 For naming variables, we should use Latin letters and make them meaningful — like age, surname. We can use digits but not at the beginning (they can be in the middle or at the end). We can also use underscore - `_` and dollar sign `$`.
 
@@ -120,6 +120,8 @@ Lexical scope means that a function's access to variables is determined by where
 
 </details>
 
+---
+
 <details>
 <summary>What's function?</summary>
 
@@ -214,6 +216,8 @@ In non-strict mode: `this = window`; in strict mode: `this = undefined`
 this becomes undefined (in strict mode) or window (in non-strict mode)
 
 </details>
+
+---
 
 <details>
 <summary>What is equal to this in the arrow function?</summary>
