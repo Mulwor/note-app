@@ -3,13 +3,13 @@
 <details>
 <summary>Tell me about scopes in JavaScript and how many is it?</summary>
 
-Scope defines where variables are accessible. JavaScript has 3 main types of scope:
+Scope defines where variables are accessible. In javaScript has 3 main types of scope:
 
-1. `Global scope` - Variables declared outside any function are accessible everywhere.
+1. `Global scope` - Variables declared outside any function or block scopes and they are accessible everywhere.
 
 2. `Function scope` - Variables declared with var inside a function are accessible only inside that function.
 
-3. `Block scope (ES6)` - Variables declared with let or const inside { } (if, for, while, etc.) are accessible only inside that block.
+3. `Block scope (ES6)` - Variables declared with let or const inside `{} (if, for, while, etc.)` are accessible only inside that block.
 </details>
 
 <details>
