@@ -3,7 +3,7 @@
 <details>
 <summary>Tell me about scopes in JavaScript and how many is it?</summary>
 
-Scope defines where variables are accessible. In javaScript has 3 main types of scope:
+Scope defines where a variable is available. In javaScript has 3 main types of scope:
 
 1. `Global scope` - Variables declared outside any function or block scopes and they are accessible everywhere.
 
@@ -91,10 +91,14 @@ let has block scope and creates a new i for each iteration
 
 </details>
 
+---
+
 <details>
 <summary>What's closure and give some examples</summary>
 
-Closure is the ability of a function to remember variables around itself and have access to these variables wherever and whenever it is called. It's useful when we want private variables or memoization, event handlers
+Closure is the ability of a function to remember variables around itself and have access to these variables wherever and whenever it is called.
+
+It's useful when we want private variables or memoization, event handlers
 
 ```js
 function outer() {
@@ -112,15 +116,6 @@ closureFunction();
 ```
 
 </details>
-
-<details>
-<summary>What's lexical scope?</summary>
-
-Lexical scope means that a function's access to variables is determined by where the function is defined in the code, not where it is called.
-
-</details>
-
----
 
 <details>
 <summary>What's function?</summary>
@@ -151,18 +146,13 @@ Undefined, but only in constructor return this by default
 </details>
 
 <details>
-<summary>Why use named function expressions?</summary>
-
-Named Function Expressions (NFE) are useful for debugging, recursion, and avoiding confusion in stack traces.
-
-</details>
-
-<details>
 <summary>How parameters are passed: by value or by reference?</summary>
 
 Primitives are passed by value, while objects are passed by reference
 
 </details>
+
+---
 
 <details>
 <summary>What difference between function declaration and arrow function?</summary>
@@ -288,3 +278,5 @@ We can use spread operator inside Math.max() or Math.max.apply(null, array)
 Pure function doesn't have side effects (console.log(), manipulation with DOM, event on click and another) and return same outputs every time when we called it
 
 </details>
+
+What else can I say? - Что я могу еще сказать
