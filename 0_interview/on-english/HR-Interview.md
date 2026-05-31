@@ -37,7 +37,7 @@
 
 ### **Work Experience and Skills**
 
-14. **What was your biggest achievement in your previous job?**
+14. **What was your biggest achievement in your previous job?** or **Could you tell me about your achievements?**
 
 **Answer:** "I was able to rewrite the legacy code of the project from a JavaScript class component into a functional component with TypeScript in 4 months."
 
@@ -57,11 +57,11 @@
 
 **Answer** - Now I'm more focused on development. I think in 2–3 years I'll either aim for a CTO role or learn backend development in other languages.
 
-19. **Why do you want to leave your current job?**
+19. **Why do you want to leave your current job?** or **Why are you looking for a new opportunity?**
 
 **Answer** - I was laid off because the company's revenue dropped significantly. As a result, 50% of the staff was reduced.
 
-20. **What do you know about our company?**
+20. **What do you know about our company?** or **Do you know anything about us?**
 
 **Answer** - I know EPAM is a global software engineering company. You're behind The Rolling Scopes School, which I respect. A friend of mine has worked there for 4+ years and speaks highly of the company. I also know you work with enterprise clients across finance, healthcare, and tech. I'd love to learn more from you about your current tech stack for backend teams.
 
@@ -79,9 +79,17 @@
 
 **Example** - We rarely have any conflicts at work over the code, but if we did (или if we had them), I am open to criticism and the guys and I would come to a common agreement
 
+23. Could you describe your an ideal boss/team?
+
+IN PROGRESS
+
 24. **Describe your ideal work environment.**
 
 **Answer** - My ideal work environment includes coffee in the morning and working from home on rainy days
+
+25. How do you manage multiple deadlines or priorities?
+
+IN PROGRESS
 
 25. **How do you prioritize (расставляете приоритеты) tasks?**
 
@@ -95,7 +103,15 @@
 
 **Answer:** - I try to relax and not panic. I take one big task, break it down into smaller ones, and solve them one by one.
 
-28. **Do you prefer working in a team or alone?**
+28. How do you handle disagreements with teammates?
+
+IN PROGRESS
+
+29. How do you approach a new task from the moment you see it?
+
+IN PROGRESS
+
+30. **Do you prefer working in a team or alone?**
 
 **Answer:** "It doesn't matter to me, I can work either in a team or alone."
 

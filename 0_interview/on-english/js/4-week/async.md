@@ -99,20 +99,31 @@ async function getMainActorProfileFromMovie(id) {
 
 ---
 
-What's async in JS? What types of asynchronous operations do you know?
-What's new with ES6 for asynchrony?
+1. What's async in JS?
 
-<h3 align="center">Callback</h3>
+First of all, we need to understand that JS is single-threaded, but with the help of the browser we can make requests to the server or set timers without blocking the main thread.
 
-How can we avoid callback hell?
+2. What types of asynchronous operations do you know?
 
-<h3 align="center">Promise</h3>
+Callbacks, promises, async/await
 
-What's promise?
-How does the promise chain work?
-How can I cancel(отменить) a promise?
+3. What's new with ES6 for asynchrony?
 
-What promise methods do you know?
+Before ES6, we used callbacks (Callback Hell). ES6 added Promises — a cleaner way to handle async code with .then() and .catch(). And later in ES7 added Async...await
+
+4. What's callback hell? How can we avoid callback hell?
+
+Callback hell is when you have many nested callbacks inside each other, making code hard to read, debug, and maintain.
+
+To avoid callback hell, we can use Promise with .then() or .catch(), or use async/await which is a cleaner syntax.
+
+5. What's promise?
+
+6. How does the promise chain work?
+
+7. How can I cancel(отменить) a promise?
+
+8. What promise methods do you know?
 
 - all() -
 - allSettled() -
