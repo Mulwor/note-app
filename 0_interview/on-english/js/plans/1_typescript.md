@@ -59,3 +59,8 @@
 10. What's infer
 
 11. What's difference between keyof / typeof in TS
+
+---
+
+What else can I say? - Что я могу еще сказать
+Only works - будет работать
