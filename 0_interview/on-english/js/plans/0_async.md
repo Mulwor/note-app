@@ -88,6 +88,8 @@ MacroTasks include: setTimeout, setInterval, events (DOM events, I/O).
 
 </details>
 
+---
+
 <details>
 <summary>What's prototype in JS? And how does work prototype chain</summary>
 
