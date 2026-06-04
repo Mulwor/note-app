@@ -1,3 +1,5 @@
+<h3 align="center">Typescript</h3>
+
 <details>
 <summary>Tell me about typeScript, what is it and why we need to use it?</summary>
 
@@ -20,100 +22,199 @@
 </details>
 
 <details>
-<summary>What is the difference between 'any', 'unknown', and 'never'?</summary>
+<summary>Let's list the main types that have moved from js to ts </summary>
 
-- any: disables type checking, avoid in production code
-- unknown: type-safe 'any', requires type checking before use
-- never: represents values that never occur (unreachable code, exhaustive checks) • unknown forces you to narrow type before using it - never useful for exhaustive switch cases and error handling
-
----
-
-Помимо основных 3 примитивных типов - `string`, `number`, `boolean`. Есть также
-
-- `Any` - говорим TS, что тип может быть любым. Словно мы пишем на голом JS, он небезопасный, так как в процессе работы с данным типом к нему присвоится любой другой тип
-
-- `unknown` - похож на тип any, но он более безопасный, мы в начале проверяем через typeof какой тип мы ожидаем, а уже внутри делаем условия. П.С. Тип может быть любой
-
-- `void` - означает, что у функция нет возвращаемого значения.
-
-- `never` - означает, что функция никогда не завершится. Используем когда хотим выбросить ошибку и с бесконечным циклом
+There are string, number and boolean;
 
 </details>
 
 <details>
-<summary>What's difference between union (I) type and intersection (&) type</summary>
+<summary>What is the difference between 'any', 'unknown', 'void', 'never'?</summary>
 
-Если говорить про union тип - `I`, то мы говорим, что тип может быть одним из перечисляемых. Например либо строка либо число, но если данного типа нет, то выбрасывается ошибка ТС
+`any` - we tell our compiler that our type can be anything (number, boolean, etc.). It's like writing pure JavaScript — no type checking.
+`unknown` - similar to any, but safer. Because we need to check with help if, or switch case our type,
 
-```js
-type StringOrNumber = string | number;
+`void` — means the function does not return a value (returns undefined).
+`never` — means the function never completes. Used for functions that always throw an error or have an infinite loop.
 
-let value: StringOrNumber;
-value = "Привет";
-value = 42;
-value = true;               // Ошибка: boolean не входит в string | number
-```
+</details>
 
-В то время у Intersection - `&` когда все поля в интерфейсах должны быть обязательными к заполнению. Если пропустим какой-то тип, то выбросит ошибку, что данное поля нет например в объекте
+<details>
+<summary>What's difference between union (|) type and intersection (&) type</summary>
+
+Union type => `|` => the value can be one of the types. For example: string or number
+Intersection type => `&` => means all fields from all types are required. For example, we have name and surname, and we should write both values.
+
+</details>
+
+<details>
+<summary>What is enum?</summary>
+
+`Enum` is a way to give names to constants. It's numeric by default and starts with 0, but we can change the numeric value. Mostly it's used for statuses like `pending, error, or success`, or in roles like `Admin, User, Guest`, or HTTP methods — `GET, POST, PUT, DELETE`. An alternative to enum is the union type.
+
+</details>
+
+<details>
+<summary>What's difference between enum and const enum?</summary>
+
+A regular enum is compiled into a JavaScript object. A const enum is removed during compilation - its values are inlined directly into the code.
+
+</details>
+
+<details>
+<summary>What's typeguard?</summary>
+
+A Type Guard is a check that helps TypeScript narrow down a type. Examples: typeof, instanceof, in
+
+</details>
+
+<details>
+<summary>What's difference between keyof / typeof in TS</summary>
+
+keyof gets the keys of a type (as a union of strings).
+typeof gets the type of a value (from a variable).
 
 ```ts
-interface Person {
-  name: string;
-}
-interface Employee {
-  company: string;
-}
-type EmployeePerson = Person & Employee;
+const user = { name: "John", age: 30 };
 
-const john: EmployeePerson = { name: "John", company: "Tech Corp" };
-
-// ОШИБКА - отсутствует поле 'company'
-const invalidPerson: EmployeePerson = { name: "John" };
+type UserType = typeof user; // { name: string; age: number; }
+type UserKeys = keyof User; // 'name' | 'age'
 ```
 
 </details>
 
----
+<details>
+<summary>What's cartage/tuple (кортеж)? </summary>
 
-2. What is enum?
+A tuple is an array with a fixed length where each element can have a different type.
 
-- Named set of constants
-- Makes code more readable than magic strings/numbers
-- Two types: numeric enum (default, starts at 0) and string enum
-- Example: enum Status { Pending = 'PENDING', Success = 'SUCCESS' }
-- Modern alternative: union types with 'as const'
+```ts
+let user: [string, number, boolean] = ["John", 30, true];
 
-=> What difference between enum and const enum?
+user[0] = "Alice"; // ✅ строка
+user[1] = 25; // ✅ число
+user[2] = false; // ✅ булеан
 
-4. What is <T>?
+user[3] = "extra"; // ошибка
+```
 
-- Generic type parameter creates reusable type-safe code
-- Type is determined when used, not when defined
-- Like function parameters, but for types
-  • Example: function identity<T>(value: T): T { return value; } • Used extensively in React: useState<T>, Array<T>, Promise<T>
+</details>
 
-=> `What does T extends never mean?`
+<details>
+<summary>How do I create an array with different data types?</summary>
 
-5. What are utility types? Name and explain a few.
+We can use a tuple/cartage or union type
 
-- Built-in TypeScript helpers for type transformations
-  • Pick<T, K>: Select specific properties from type
-  • Omit<T, K>: Exclude specific properties from type
-  • Partial<T>: Make all properties optional, Required<T>: make all required
-  • Record<K, T>: Create object type with specific keys, ReturnType<T>: extract return type • Example: type UserUpdate = Partial<Pick<User, 'name' | 'email'>>
+</details>
 
-7. What's difference between union (I) type and intersection (&) type
+<details>
+<summary>What are utility types? Name and explain a few.</summary>
 
-8. What's TypeGuard?
+Utility types are built-in types that help to manipulate types in some way. For example:
 
-9. What's generic?
+1. Partial<T> — makes all fields in a type optional
+2. Required<T> — makes all fields in a type mandatory
+3. Readonly<T> — creates a type whose property values cannot be changed
+4. Pick<T, K> — selects only the properties we need
+5. Omit<T, K> — excludes (deletes) the properties we don't need
+6. Extract<T, U> — takes items from a union type that match the condition
+7. Exclude<T, U> — takes items from a union type that do not match the condition
 
-10. What's infer
+Difference: Pick and Omit work with interfaces and object types, while Extract and Exclude work with union types.
 
-=> Как достать тип аргумента функции через infer?
+8. Record<K, T> — creates an object type with certain keys and values: Record<Keys, Type>
+9. NonNullable<T> — removes null and undefined from the type
 
-11. What's difference between keyof / typeof in TS
+</details>
 
-Overload function (перегрузка функций)
+<details>
+<summary>What's generic?</summary>
 
-What's cartage
+Generic is a way to write code that works with any type but still remembers that type and checks it.
+
+</details>
+
+<details>
+<summary>How do I set the default type in a generic?</summary>
+
+We can write T = (equal) and write default value
+
+</details>
+
+<details>
+<summary>How are generics better than using any?</summary>
+
+Generic is more safe because it checks types, while any doesn't check.
+
+</details>
+
+<details>
+<summary>What is <T>, extends and infer?</summary>
+
+<T> is a type parameter;
+`extends` means constraint;
+
+For example, T extends number means our type can only be numbers or subtypes of number. If we try to use a string, it will throw an error.
+
+</details>
+
+<details>
+<summary>What does `T extends never` mean?</summary>
+
+It checks if our type is assignable to never or not. If yes, it returns true.
+
+</details>
+
+<details>
+<summary>How can I restrict a generic key to a different type (keyof)?</summary>
+
+We can use `T extends keyof U`, where U is a type that takes a key.
+
+</details>
+
+<details>
+<summary>What is infer?</summary>
+
+Infer means extract and capture a type from inside another type. For example when we want to take type from Promise, or array, or take return type function
+
+```ts
+type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
+type ArrayItem<T> = T extends (infer U)[] ? U : never;
+type ReturnType<T> = T extends (...args: any[]) => infer R ? R : never;
+```
+
+</details>
+
+<details>
+<summary>How do I get the type of the function argument through infer?</summary>
+
+We can use `(...args: infer P) => any`
+
+</details>
+
+<details>
+<summary>What are utility types? Name and explain a few.</summary>
+
+Utility types are built-in types that help to manipulate types in some way. For example:
+
+1. Partial<T> — makes all fields in a type optional
+2. Required<T> — makes all fields in a type mandatory
+3. Readonly<T> — creates a type whose property values cannot be changed
+4. Pick<T, K> — selects only the properties we need
+5. Omit<T, K> — excludes (deletes) the properties we don't need
+6. Extract<T, U> — takes items from a union type that match the condition
+7. Exclude<T, U> — takes items from a union type that do not match the condition
+
+Difference: Pick and Omit work with interfaces and object types, while Extract and Exclude work with union types.
+
+8. Record<K, T> — creates an object type with certain keys and values: Record<Keys, Type>
+9. NonNullable<T> — removes null and undefined from the type
+
+</details>
+
+<details>
+<summary>What is overload function?</summary>
+
+Function overloading allows you to define multiple ways to call the same function — with different parameter types or counts.
+
+</details>
