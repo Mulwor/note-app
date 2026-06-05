@@ -59,8 +59,6 @@ AbortController lets you cancel a fetch request. AbortSignal is a flag passed to
 
 </details>
 
----
-
 <details>
 <summary>What's async await?</summary>
 
