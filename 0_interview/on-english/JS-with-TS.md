@@ -1141,6 +1141,8 @@ Prototype is a property of the constructor function, but **proto** is a link to 
 
 ## Typescript
 
+### DAY_01
+
 <details>
 <summary>Tell me about typeScript, what is it and why we need to use it?</summary>
 
@@ -1198,7 +1200,7 @@ Intersection type => `&` => means all fields from all types are required. For ex
 <details>
 <summary>What's difference between enum and const enum?</summary>
 
-A regular enum is compiled into a JavaScript object. A const enum is removed during compilation - its values are inlined directly into the code.
+A regular enum is compiled into a JavaScript object. A const enum is removed during compilation - its values are put directly in the code
 
 </details>
 
@@ -1227,7 +1229,7 @@ type UserKeys = keyof User; // 'name' | 'age'
 <details>
 <summary>What's cartage/tuple (кортеж)? </summary>
 
-A tuple is an array with a fixed length where each element can have a different type.
+A tuple is a fixed-length array where each element can have a different type.
 
 ```ts
 let user: [string, number, boolean] = ["John", 30, true];
@@ -1247,6 +1249,8 @@ user[3] = "extra"; // ошибка
 We can use a tuple/cartage or union type
 
 </details>
+
+### DAY_03
 
 <details>
 <summary>What are utility types? Name and explain a few.</summary>
@@ -1305,6 +1309,8 @@ For example, T extends number means our type can only be numbers or subtypes of 
 It checks if our type is assignable to never or not. If yes, it returns true.
 
 </details>
+
+### DAY_04
 
 <details>
 <summary>How can I restrict a generic key to a different type (keyof)?</summary>
