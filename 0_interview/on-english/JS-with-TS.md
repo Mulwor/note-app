@@ -1141,8 +1141,6 @@ Prototype is a property of the constructor function, but **proto** is a link to 
 
 ## Typescript
 
-### DAY_01
-
 <details>
 <summary>Tell me about typeScript, what is it and why we need to use it?</summary>
 
@@ -1257,13 +1255,13 @@ We can use a tuple/cartage or union type
 
 Utility types are built-in types that help to manipulate types in some way. For example:
 
-1. Partial<T> — makes all fields in a type optional
-2. Required<T> — makes all fields in a type mandatory
-3. Readonly<T> — creates a type whose property values cannot be changed
-4. Pick<T, K> — selects only the properties we need
-5. Omit<T, K> — excludes (deletes) the properties we don't need
-6. Extract<T, U> — takes items from a union type that match the condition
-7. Exclude<T, U> — takes items from a union type that do not match the condition
+1. Partial<T> — makes all fields optional
+2. Required<T> — makes all fields required
+3. Readonly<T> — makes all fields read‑only, we can't manipulate
+4. Pick<T, K> — selects only needed properties 
+5. Omit<T, K> — remove unneeded properties
+6. Extract<T, U> — takes items that match the condition
+7. Exclude<T, U> — takes items that do not match the condition
 
 Difference: Pick and Omit work with interfaces and object types, while Extract and Exclude work with union types.
 
