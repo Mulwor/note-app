@@ -1248,8 +1248,6 @@ We can use a tuple/cartage or union type
 
 </details>
 
-### DAY_03
-
 <details>
 <summary>What are utility types? Name and explain a few.</summary>
 
@@ -1258,7 +1256,7 @@ Utility types are built-in types that help to manipulate types in some way. For 
 1. Partial<T> — makes all fields optional
 2. Required<T> — makes all fields required
 3. Readonly<T> — makes all fields read‑only, we can't manipulate
-4. Pick<T, K> — selects only needed properties 
+4. Pick<T, K> — selects only needed properties
 5. Omit<T, K> — remove unneeded properties
 6. Extract<T, U> — takes items that match the condition
 7. Exclude<T, U> — takes items that do not match the condition
@@ -1292,10 +1290,10 @@ Generic is more safe because it checks types, while any doesn't check.
 </details>
 
 <details>
-<summary>What is <T>, extends and infer?</summary>
+<summary>What is <T>, extends?</summary>
 
 <T> is a type parameter;
-`extends` means constraint;
+`extends` defines the type restriction;
 
 For example, T extends number means our type can only be numbers or subtypes of number. If we try to use a string, it will throw an error.
 
@@ -1308,10 +1306,8 @@ It checks if our type is assignable to never or not. If yes, it returns true.
 
 </details>
 
-### DAY_04
-
 <details>
-<summary>How can I restrict a generic key to a different type (keyof)?</summary>
+<summary>How can I restrict (ограничить) a generic key to a different type (keyof)?</summary>
 
 We can use `T extends keyof U`, where U is a type that takes a key.
 
@@ -1320,7 +1316,7 @@ We can use `T extends keyof U`, where U is a type that takes a key.
 <details>
 <summary>What is infer?</summary>
 
-Infer means extract and capture a type from inside another type. For example when we want to take type from Promise, or array, or take return type function
+Infer means extract and capture (извлечение и захват) a type from inside another type. For example when we want to take type from Promise, or array, or take return type function
 
 ```ts
 type UnwrapPromise<T> = T extends Promise<infer U> ? U : T;
@@ -1337,29 +1333,4 @@ We can use `(...args: infer P) => any`
 
 </details>
 
-<details>
-<summary>What are utility types? Name and explain a few.</summary>
-
-Utility types are built-in types that help to manipulate types in some way. For example:
-
-1. Partial<T> — makes all fields in a type optional
-2. Required<T> — makes all fields in a type mandatory
-3. Readonly<T> — creates a type whose property values cannot be changed
-4. Pick<T, K> — selects only the properties we need
-5. Omit<T, K> — excludes (deletes) the properties we don't need
-6. Extract<T, U> — takes items from a union type that match the condition
-7. Exclude<T, U> — takes items from a union type that do not match the condition
-
-Difference: Pick and Omit work with interfaces and object types, while Extract and Exclude work with union types.
-
-8. Record<K, T> — creates an object type with certain keys and values: Record<Keys, Type>
-9. NonNullable<T> — removes null and undefined from the type
-
-</details>
-
-<details>
-<summary>What is overload function?</summary>
-
-Function overloading allows you to define multiple ways to call the same function — with different parameter types or counts.
-
-</details>
+## React
