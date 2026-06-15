@@ -2,7 +2,7 @@
 
 <h3 align="center">Basic</h3>
 
-1. What's react?
+1. What's react? Tell me about advantages/disadvantages
 2. What's JSX?
 3. What's component?
 4. What is difference between functional and class component?
@@ -49,7 +49,7 @@
 <h3 align="center">Another</h3>
 
 1. Tell me about virtual dom, reconciliation algorithm of virtual dom
-   
+
 JS representation of real DOM • React compares old and new virtual DOM, only updates changed nodes
 
 2. What's pure function
@@ -60,5 +60,5 @@ JS representation of real DOM • React compares old and new virtual DOM, only u
 7. Почему в Dev-режиме эффекты срабатывают дважды
 8. how to implement Debouncing in react?
 9. what is portals?
-10. what is react fiber? 
+10. what is react fiber?
 11. what is useTransitions?

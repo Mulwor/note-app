@@ -105,6 +105,8 @@ When we want to check if a value is either null or undefined. We can use value =
 
 We can check that the value is not strictly equal to null and not strictly equal to undefined.
 
+`value !== null && value !== undefined`
+
 </details>
 
 </details>
@@ -114,8 +116,10 @@ We can check that the value is not strictly equal to null and not strictly equal
 
 A logical operation returns a boolean value (true or false). We have 3 main logical operators: AND (&&), OR (||), and NOT (!).
 
-• AND (&&) — it searches for the first falsy value and returns it. If it doesn't find any, it returns the last value.
-• OR (||) — it searches for the first truthy value and returns it. If it doesn't find any, it returns the last value.
+• AND (&&) — it searches for the first falsy value and returns it. If it doesn't find any, it returns the last value;
+
+• OR (||) — it searches for the first truthy value and returns it. If it doesn't find any, it returns the last value;
+
 • NOT (!) — it inverts the value: true becomes false, false becomes true.
 
 </details>
