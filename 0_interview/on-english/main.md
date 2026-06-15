@@ -491,6 +491,8 @@ Just assign a function to a property using dot or bracket notation.
 
 </details>
 
+---
+
 <details>
 <summary>What's optional chaining?</summary>
 
