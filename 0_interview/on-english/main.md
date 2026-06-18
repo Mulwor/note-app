@@ -491,8 +491,6 @@ Just assign a function to a property using dot or bracket notation.
 
 </details>
 
----
-
 <details>
 <summary>What's optional chaining?</summary>
 
@@ -873,6 +871,8 @@ First of all we need to understand that var has function scope. When we use var 
 let has block scope and creates a new i for each iteration
 
 </details>
+
+---
 
 <details>
 <summary>What's closure and give some examples</summary>
