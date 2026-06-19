@@ -872,8 +872,6 @@ let has block scope and creates a new i for each iteration
 
 </details>
 
----
-
 <details>
 <summary>What's closure and give some examples</summary>
 
@@ -1048,7 +1046,7 @@ Pure function doesn't have side effects (console.log(), manipulation with DOM, e
 <details>
 <summary>What's async in JS?</summary>
 
-First of all, we need to understand that JS is single-threaded language, but with the help of the browser we can make requests to the server or set timers without blocking the main thread.
+First of all, we need to understand that JS is single-threaded (which means it goes through the code and executes line by line) language, but with the help of the browser we can make requests to the server or set timers without blocking the main thread.
 
 </details>
 

@@ -37,6 +37,8 @@
 12. When is cleanup performed in useEffect? - Когда выполняется очистка (cleanup) в useEffect?
 13. What happens when mounting, updating, and unmounting? - Что происходит при монтировании, обновлении и размонтировании?
 14. What is high order component (HOC)?
+    What are Higher-Order Components (HOCs) and how do they differ from hooks?
+    Explain the concept of Higher-Order Components (HOCs) in React and their purpose.
 15. Can you provide some building high order component?
 16. How do you create a custom hook?
 17. What's different between useEffect vs useLayoutEffect?
@@ -46,11 +48,19 @@
 20. What is useReducer?
 21. What are Refs in React? And what is useRef for (Для чего нужен useRef?)?
 
+=> Explain the concept of refs in React and how they are used to directly access DOM elements.
+
+22. Explain the concept of forward refs (forwardRef) in React and their use cases.
+
+How would you manage global state across multiple components without Redux?
+
 <h3 align="center">Another</h3>
 
 1. Tell me about virtual dom, reconciliation algorithm of virtual dom
 
-JS representation of real DOM • React compares old and new virtual DOM, only updates changed nodes
+JS representation of real DOM \• React compares old and new virtual DOM, only updates changed nodes
+
+Explain the concept of reconciliation in React and how it optimizes re-rendering.
 
 2. What's pure function
 3. Как создать Context?
@@ -61,4 +71,43 @@ JS representation of real DOM • React compares old and new virtual DOM, only u
 8. how to implement Debouncing in react?
 9. what is portals?
 10. what is react fiber?
+
+How does React Fiber enhance rendering performance?
+
 11. what is useTransitions?
+
+How do you optimize React re-rendering — besides using React.memo()?
+
+---
+
+A React form is re-rendering on every keystroke — how do you optimize it?
+
+Your React app bundle has grown too large, causing slow load times. Describe how you’d analyze and reduce it.
+
+You need to integrate a third-party API with strict rate limits — how would you design your system?
+
+How would you implement real-time notifications efficiently for thousands of connected clients?
+
+// Discuss the state management library you've used
+// (Redux, Context API, etc.) and your reasons for choosing it.
+
+// Describe how you would handle unexpected JavaScript errors and display a user-friendly error message
+// instead of the default browser error screen.
+
+//List and potentially elaborate on optimization techniques for
+// web applications from a developer's perspective
+
+// What is SOLID principle
+
+Mention popular design patterns that you're aware off
+
+//Mention if you've used performance testing libraries like WebPageTest,
+//Lighthouse, or similar tools.
+
+// Discuss the concept of creating custom data types in TypeScript
+
+Explain how does browser understands JSX/JS
+
+Write a logic to count the max number of repeating characters in a string
+
+Write a logic to move all 0's to the end in an array
