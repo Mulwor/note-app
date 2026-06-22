@@ -1,6 +1,9 @@
 ### HTML (HyperText Markup Language)
 
-1. What is HTML and describe the basic structure of an HTML page?
+<details>
+<summary>What is HTML and describe the basic structure of an HTML page?</summary>
+
+What is HTML and describe the basic structure of an HTML page?
 
 HTML is a markup language for creating web pages that are displayed in a browser. HTML consists of:
 
@@ -8,36 +11,61 @@ HTML is a markup language for creating web pages that are displayed in a browser
 - The `<head>` contains metadata about the document – the page title, links to fonts and stylesheets, scripts, and meta tags like viewport, description, charset, etc.
 - `<body>` — contains (содержит) all the markup (разметку) of the HTML document. This markup is what gets displayed (отображается) in the browser.
 
-2. Do HTML elements have their own default specific styles? /
+</details>
+
+<details>
+<summary>Do HTML elements have their own default specific styles?</summary>
 
 Yes, every HTML element comes with default browser styles. For instance, <h1> is bold and larger, <p> has margins, <em> is italic. However, it is worth noting that font sizes and other default styles may vary across browsers. To avoid inconsistencies, developers often use either reset.css or normalize.css.
 
-3. What is an inline style? Can it be overridden?
+</details>
+
+<details>
+<summary>What is an inline style? Can it be overridden?</summary>
 
 An inline style is a style inside the style attribute. It has high specificity and can only be overridden using !important in CSS
 
-4. What is semantics? What semantic tags do you know?
+</details>
+
+<details>
+<summary>What is semantics? What semantic tags do you know?</summary>
 
 Semantic HTML means using the right elements for their intended purpose or meaning. It helps browsers and search engines analyze and understand the structure and content of our web application. It also improves accessibility. For example, when we use <strong>, screen readers put emphasis on this tag.
 
-5. What is the difference between the tags `strong` and `em` vs `b` and `i`?
+</details>
+
+<details>
+<summary>What is the difference between the tags strong and em vs b and i?</summary>
 
 Tags: `strong` and `b` (bold) – make text bold.
 Tags: `em` (emphasis) and `i` (italic) – make text italic.
 
 "The main difference is that <strong> and <em> are semantic tags, while <b> and <i> are not. When a screen reader reads <strong> or <em>, it places a slight emphasis or accent on them, whereas <b> and <i> are just visual styling."
 
-6. How do you semantically correctly markup a navigation menu?
+</details>
+
+<details>
+<summary>How do you semantically correctly markup a navigation menu?</summary>
 
 Using `nav > ul > li > a`.
 
-7. How can you hide an element in the markup without using CSS or JS?
+</details>
+
+<details>
+<summary>How can you hide an element in the markup without using CSS or JS?</summary>
 
 We can use the global hidden attribute. However, the element will not be rendered visually and will be hidden from screen readers as well.
 
-8. Which tag should be used to markup a button?
+</details>
+
+<details>
+<summary>Which tag should be used to markup a button?</summary>
 
 We can use a semantic tag — <button>. Alternatively, <input type="button"> or <input type="submit"> can create button-like controls, such as sending a request.
+
+</details>
+
+---
 
 9. Types of lists in HTML?
 

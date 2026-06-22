@@ -10,3 +10,5 @@
 8. What's slice?
 9. What's different between redux and context api?
 10. How does redux toolkit works under the hooks in general?
+
+Discuss the state management library you've used (Redux, Context API, etc.) and your reasons for choosing it.
