@@ -30,7 +30,7 @@ An inline style is a style inside the style attribute. It has high specificity a
 <details>
 <summary>What is semantics? What semantic tags do you know?</summary>
 
-Semantic HTML means using the right elements for their intended purpose or meaning. It helps browsers and search engines analyze and understand the structure and content of our web application. It also improves accessibility. For example, when we use <strong>, screen readers put emphasis on this tag.
+Semantic HTML means using the right elements for their intended purpose or meaning. It helps browsers and search engines analyze and understand the structure and content of our web application. It also improves accessibility. For example, when we use `<strong>`, screen readers put emphasis on this tag.
 
 </details>
 
@@ -40,7 +40,7 @@ Semantic HTML means using the right elements for their intended purpose or meani
 Tags: `strong` and `b` (bold) – make text bold.
 Tags: `em` (emphasis) and `i` (italic) – make text italic.
 
-"The main difference is that <strong> and <em> are semantic tags, while <b> and <i> are not. When a screen reader reads <strong> or <em>, it places a slight emphasis or accent on them, whereas <b> and <i> are just visual styling."
+"The main difference is that `<strong>` and `<em>` are semantic tags, while `<b> and <i>` are not. When a screen reader reads `<strong>`or`<em>`, it places a slight emphasis or accent on them, whereas `<b> and <i>` are just visual styling."
 
 </details>
 
@@ -65,51 +65,68 @@ We can use a semantic tag — <button>. Alternatively, <input type="button"> or 
 
 </details>
 
----
-
-9. Types of lists in HTML?
+<details>
+<summary>Types of lists in HTML?</summary>
 
 There are 3 types of lists in HTML: <ul> (unordered list), <ol> (ordered list), and <dl> (definition list).
 
-10. What are the tags tr, th, td used for?
+</details>
+
+<details>
+<summary>What are the tags tr, th, td used for?</summary>
 
 The <tr>, <th>, and <td> tags are used to create HTML tables:
 
 <tr> — table row (строка таблицы)
 <th> — table header (ячейка-заголовок)
 <td> — table data (обычная ячейка с данными)
+</details>
 
-11. Which tag uses the alt attribute and why is it needed?
+<details>
+<summary>Which tag uses the alt attribute and why is it needed?</summary>
 
 Alt is used in the <img> tag. It shows text if the image doesn't load, and screen readers read it and also it is needed for validation
 
-<details>
-<summary>HTML (HyperText Markup Language)</summary>
+</details>
 
-<details><summary>Why is it considered good practice to place the link tag for CSS styles inside the head tag, and to put the script tag for JS just before the closing body tag?</summary>
+<details>
+<summary>Why is it considered good practice to place the link tag for CSS styles inside the head tag, and to put the script tag for JS just before the closing body tag?</summary>
+
 The link tag inside the site's header is specified in the HTML specification. If the stylesheet is in the head, the page loads faster.
 
 HTML and CSS are loaded first on the initial page load, and they should be placed in the header. After everything is loaded, JavaScript is used. If we put JS at the very beginning, it will block the rendering of the HTML. Placing scripts at the bottom allows the browser to first parse and display all the HTML to the user, and then add logic to it.
 
-</details><details> <summary>Difference between `script`, `script async`, and `script defer`? (Asynchronous and deferred)</summary>
+</details>
+
+<details>
+<summary>Difference between `script`, `script async`, and `script defer` (Asynchronous and deferred) ? </summary>
+
 Typically, browsers load script synchronously while parsing the document. Therefore, it is common to add scripts at the end of the document, before </body>, so they do not slow down page loading. However, using the defer and async attributes, we can explicitly control the order of loading and execution of scripts.
 
-<script async src="..."> => the script executes in parallel with reading the HTML document. It will not wait for the web page to load and display. It is good for independent scripts, such as counters and ads, where the order of execution does not matter.
+`<script async src="...">` => the script executes in parallel with reading the HTML document. It will not wait for the web page to load and display. It is good for independent scripts, such as counters and ads, where the order of execution does not matter.
 
-<script defer src="..."> – tells the browser that the script should be executed after the HTML has been fully loaded.
+`<script defer src="...">` – tells the browser that the script should be executed after the HTML has been fully loaded.
 
 In practice, defer is used for scripts that need access to the entire DOM tree or when their execution order is important.
 
-Additional question: If there are several consecutive scripts with the async attribute, will their loading and execution order be preserved? What about defer?
+</details>
 
-</details><details> <summary>What are data attributes used for?</summary>
+<details>
+<summary> If there are several consecutive scripts with the async attribute, will their loading and execution order be preserved? What about defer?</summary>
+
+</details>
+
+<details>
+<summary>What are data attributes used for?</summary>
+
 They appeared in HTML5 and allow storing additional information directly inside HTML tags. For example: data-size. Also, using a specific syntax, they can be easily styled: [data-age="46"] {}
 
-<img src='./assets/html/data-attribute.png' alt='Data attributes' /></details><details> <summary>What is the datalist element used for?</summary>
+<img src='./assets/html/data-attribute.png' alt='Data attributes' />What is the datalist element used for?
+
 It is used to create a dropdown list that can be selected while typing in a text field. The datalist element with an id attribute must exactly match the list attribute of an input element.
 
-<img src='./assets/html/datalist.png' alt="Datalist">
-html
+```html
+<img src="./assets/html/datalist.png" alt="Datalist" />html
 <label for="select-animal">Who is the strongest animal?:</label>
 <input list="animals" id="select-animal" placeholder="type here... " />
 
@@ -119,7 +136,13 @@ html
   <option value="Zebra"></option>
   <option value="Lion"></option>
 </datalist>
-</details><details> <summary>Types of `input` elements in HTML? (List them and describe their features)</summary>
+```
+
+</details>
+
+<details>
+<summary>Types of `input` elements in HTML? (List them and describe their features)</summary>
+
 The input element is necessary for communication with users; it is designed to receive entered data. It has a type attribute.
 
 input type = "text" – for entering letters, numbers, and special characters.
@@ -131,4 +154,3 @@ input type = "checkbox" / radio – replaces the input field with special elemen
 input type = "date", month, day, datetime-local – intended for entering date and time.
 
 </details>
-```
