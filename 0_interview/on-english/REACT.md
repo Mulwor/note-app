@@ -4,53 +4,131 @@
 
 <details>
 <summary>What's react? Tell me about advantages/disadvantages</summary>
+
+It is an open-source JavaScript library developed by Facebook, for building user interfaces especially for single-page applications
+
+Its features include:
+
+- Components (we can write once and use anywhere);
+- JSX;
+- Hooks;
+- Use virtual DOM instead of the real one (only rerender what changed);
+- Not bad ecosystem - we have a lot of libraries that work with React"
+
 </details>
 
 <details>
 <summary>What's JSX? Explain how does browser understands JSX/JS</summary>
+
+JSX is a syntax extension for JavaScript that looks like HTML. Browsers don't understand it directly we must transpiled by Babel. I would also add that under the hood, JSX uses `createElement`, which is what actually transpiles into JS.
+
 </details>
 
 <details>
-<summary>What's component?</summary>
+<summary>* What's component?</summary>
+
+We can write once, and use everywhere. Easy to update and debugging.
+
+</details>
+
+<details>
+<summary>What's life cycle components? Что такое жизненный цикл компонента?</summary>
+
+We have 3 phases: mounting (when the component appears in the DOM), updating (when we update props or state), and unmounting (when the component is removed from the DOM).
+
+for example
+
+```ts
+useEffect(() => {}, []) → mounting
+useEffect(() => {}, [deps]) → updating (when deps change)
+useEffect(() => { return () => {} }, []) → unmounting (cleanup)
+```
+
 </details>
 
 <details>
 <summary>What is difference between controlled and uncontrolled component?</summary>
+
+For example, we have an input field — we can choose to control it or not. If we want to control our state, we can use the useState hook and write an onChange function. But when we don't want to control it, then the DOM manages it itself and has its own value.
+
+If we control component we can get value using state.value but if don't we need to create ref and call ref.current.value
+
 </details>
 
 <details>
 <summary>What are React keys and why are they important? It's good use Id or not, and if we don't have id, how our program start work</summary>
+
+Keys are a special attribute that help identify which items in a list have changed, been added, or removed. We need to use a unique key from the data. If we try to use index, we can get reordering problems.
+
 </details>
 
 <details>
 <summary>What's difference between state/props?</summary>
+
+Props are data passed from a parent component to a child, while state lives inside a component — we can change it using setState
+
 </details>
 
 <details>
-<summary>What happens if you change props directly? -  Что произойдет, если изменить props напрямую?</summary>
-</details>
+<summary>What happens if you change props directly (Что произойдет, если изменить props напрямую?)? or Is it possible to change props inside a component? (Можно ли изменять props внутри компонента)?</summary>
 
-<details>
-<summary>Is it possible to change props inside a component? - Можно ли изменять props внутри компонента?</summary>
+It will ignore it, and can show a warning or throw an error. If we want to change the value, we need to use a callback and pass the new value to the parent.
+
 </details>
 
 <details>
 <summary>What is prop drilling and how to avoid it?</summary>
+
+Prop drilling is when we pass props from a parent component down through several child components — even if some of them don't use that prop.
+
+To avoid it:
+
+- Use Context API (built-in React)
+- Use state managers like Redux, MobX, Zustand, or Effector
+
 </details>
 
 <details>
-<summary>What are children props?</summary>
+<summary>* What are children props?</summary>
+
+Children is a special prop that lets you pass content between the opening and closing t2ags of a component.
+
 </details>
 
 <details>
 <summary>Styling Techniques in React</summary>
+
+...
+
 </details>
 
-1. What is difference between functional and class component?
-2. What's life cycle components? Что такое жизненный цикл компонента?
-3. How do you increase performance in React?
-4. What's different Client Side Rendering vs. Server Side Rendering
-5. What's error boundary?
+<details>
+<summary> How do you increase performance in React?</summary>
+
+...
+
+</details>
+
+<details>
+<summary>What is difference between functional and class component?</summary>
+
+...
+
+</details>
+
+<details>
+<summary>What's different Client Side Rendering vs. Server Side Rendering</summary>
+
+...
+
+</details>
+
+<details>
+<summary> What's error boundary?</summary>
+
+...
+
+</details>
 
 <h3 align="center">Hooks</h3>
 
