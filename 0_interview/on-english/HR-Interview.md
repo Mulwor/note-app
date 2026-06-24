@@ -8,11 +8,19 @@
 
 3. What kind of projects have you worked on?
 
+We have many projects, but the main ones are:
+
+A platform for booking villas, hotels, and luxury apartments across Indonesia.
+
+An internal CRM system where our employees can view all the necessary user information — check‑in and check‑out dates, length of stay, contact details, room status (clean, dirty, under maintenance, etc.), as well as sales analytics, such as which room types are the most profitable or sell the best.
+
 4. **How did you get into software development**
 
 5. What are you currently working on?
 
 6. Why are you looking for a new job?
+
+My contract is over
 
 7. Have you worked in a team? What was your team size?
 
