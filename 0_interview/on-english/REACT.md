@@ -18,6 +18,13 @@ Its features include:
 </details>
 
 <details>
+<summary>Styling Techniques in React</summary>
+
+We can use style inside jsx, pure css, css modules, SASS/SCSS, CSS-in-JS, tailwind or MUI, and design and another libraries
+
+</details>
+
+<details>
 <summary>What's JSX? Explain how does browser understands JSX/JS</summary>
 
 JSX is a syntax extension for JavaScript that looks like HTML. Browsers don't understand it directly we must transpiled by Babel. I would also add that under the hood, JSX uses `createElement`, which is what actually transpiles into JS.
@@ -96,28 +103,25 @@ Children is a special prop that lets you pass content between the opening and cl
 </details>
 
 <details>
-<summary>Styling Techniques in React</summary>
-
-...
-
-</details>
-
-<details>
 <summary> How do you increase performance in React?</summary>
 
-...
+We can use hooks like `useCallback` and `useMemo`, we can use virtualization for long lists, we can remove unused libraries or replace them with lighter alternatives. We can also configure Webpack to split code into chunks and serve static assets (like images) from a CDN.
 
 </details>
 
 <details>
 <summary>What is difference between functional and class component?</summary>
 
-...
+1. Different syntax.
+2. In class components, lifecycle methods are componentDidMount, componentDidUpdate, componentWillUnmount. In functional components, we use useEffect.
+3. Functional components support hooks and we can also create custom hooks.
+4. Functional components are smaller and shorter.
+5. In functional components, there's no this, so it's easier to use. In class components, we need to bind methods.
 
 </details>
 
 <details>
-<summary>What's different Client Side Rendering vs. Server Side Rendering</summary>
+<summary>* What's different Client Side Rendering vs. Server Side Rendering</summary>
 
 ...
 
@@ -126,41 +130,153 @@ Children is a special prop that lets you pass content between the opening and cl
 <details>
 <summary> What's error boundary?</summary>
 
-...
+It catches error in components and show some page instead of crashing into the whole page.
 
 </details>
 
 <h3 align="center">Hooks</h3>
 
-1. What are hooks for? Which hooks do you know?
-2. Is it possible to call a hook inside a condition or loop?
-3. Why doesn't setState update the data instantly (asynchrony)? - Почему setState не обновляет данные мгновенно (асинхронность)?
-4. Where is the component's state stored? - Где хранится состояние компонента?
-5. How `useEffect` hook works?
-6. What are the three ways to use useEffect?
-   No dependency array: runs after every render • Empty array []: runs once on mount, cleanup on unmount • With dependencies [count]: runs when dependencies change • Always include cleanup function for subscriptions/listeners • Runs AFTER render (asynchronous), not during
-7. How we handle with life cycle methods in functional components?
-8. If you do not have any props in dependency how does we hook work? - componentDidMount
-9. If you have some props in dependency how we will work in this case? - componentDidUpdate
-10. How can handle componentWillUnmount?
-11. How can I cancel the request when unmounting a component? - Как отменить запрос при размонтировании компонента?
-12. When is cleanup performed in useEffect? - Когда выполняется очистка (cleanup) в useEffect?
-13. What happens when mounting, updating, and unmounting? - Что происходит при монтировании, обновлении и размонтировании?
-14. What is high order component (HOC)?
-    What are Higher-Order Components (HOCs) and how do they differ from hooks?
-    Explain the concept of Higher-Order Components (HOCs) in React and their purpose.
-15. Can you provide some building high order component?
-16. How do you create a custom hook?
-17. What's different between useEffect vs useLayoutEffect?
-18. What is the difference between useMemo and useCallback?
-    • useMemo returns memoized VALUE, useCallback returns memoized FUNCTION
-19. When can memoization (memo, useMemo) be harmful?
-20. What is useReducer?
-21. What are Refs in React? And what is useRef for (Для чего нужен useRef?)?
+<details>
+<summary>What are hooks for? Which hooks do you know?</summary>
+
+...
+
+</details>
+
+<details>
+<summary>Is it possible to call a hook inside a condition or loop?</summary>
+
+...
+
+</details>
+
+<details>
+<summary>Why doesn't setState update the data instantly (asynchrony)?</summary>
+
+Почему setState не обновляет данные мгновенно (асинхронность)?
+
+</details>
+
+<details>
+<summary>Where is the component's state stored? - Где хранится состояние компонента?</summary>
+
+...
+
+</details>
+
+<details>
+<summary>How `useEffect` hook works?</summary>
+
+...
+
+</details>
+
+<details>
+<summary>What are the three ways to use useEffect?</summary>
+
+No dependency array: runs after every render • Empty array []: runs once on mount, cleanup on unmount • With dependencies [count]: runs when dependencies change • Always include cleanup function for subscriptions/listeners • Runs AFTER render (asynchronous), not during
+
+</details>
+
+<details>
+<summary>How we handle with life cycle methods in functional components?</summary>
+
+- How we handle with life cycle methods in functional components? => componentDidMount
+- If you have some props in dependency how we will work in this case? => componentDidUpdate
+
+</details>
+
+<details>
+<summary>If you have some props in dependency how we will work in this case?</summary>
+
+...
+
+</details>
+
+<details>
+<summary>How we can handle componentWillUnmount?</summary>
+
+We can write a return callback inside useEffect to cancel requests, remove event listeners, or clear timers
+
+</details>
+
+<details>
+<summary>How can I cancel the request when unmounting a component? - Как отменить запрос при размонтировании компонента?</summary>
+
+We can use AbortController to cancel the request itself, or we can use a flag like isMounted with true value and change it to false in the cleanup function.
+
+</details>
+
+<details>
+<summary>When is cleanup performed in useEffect? - Когда выполняется очистка (cleanup) в useEffect?</summary>
+
+Cleanup runs before unmount component. For example - when we change our page; clean up timers; cancel requests.
+
+</details>
+
+<details>
+<summary>What happens when mounting, updating, and unmounting?</summary>
+
+We have 3 phases: mounting (when the component appears in the DOM), updating (when we update props or state), and unmounting (when the component is removed from the DOM).
+
+for example
+
+```ts
+useEffect(() => {}, []) → mounting
+useEffect(() => {}, [deps]) → updating (when deps change)
+useEffect(() => { return () => {} }, []) → unmounting (cleanup)
+```
+
+</details>
+
+<details>
+<summary> What's different between useEffect vs useLayoutEffect?</summary>
+ 
+1. useEffect works asynchronously, while useLayoutEffect works synchronously.
+2. useEffect does not block our website, while useLayoutEffect does block it.
+3. useEffect works after our website is loaded, but useLayoutEffect works before it is loaded.
+
+I use useLayoutEffect when I want to work with animations that solve the problem of flickering.
+
+</details>
+
+<details>
+<summary>What is the difference between useMemo and useCallback?</summary>
+
+useMemo returns memoized `value`, useCallback returns memoized `function`
+
+</details>
+
+<details>
+<summary>What is high order component (HOC) and how do they differ from hooks?</summary>
+
+...
+
+</details>
+
+<details>
+<summary>Explain the concept of Higher-Order Components (HOCs) in React and their purpose.</summary>
+
+...
+
+</details>
+
+<details>
+<summary>Can you provide some building high order component?</summary>
+</details>
+
+<details>
+<summary>When can memoization (memo, useMemo) be harmful?</summary>
+
+</details>
+
+1. How do you create a custom hook?
+2. What is useReducer?
+3. What are Refs in React? And what is useRef for (Для чего нужен useRef?)?
 
 => Explain the concept of refs in React and how they are used to directly access DOM elements.
 
-22. Explain the concept of forward refs (forwardRef) in React and their use cases.
+4. Explain the concept of forward refs (forwardRef) in React and their use cases.
 
 How would you manage global state across multiple components without Redux?
 
