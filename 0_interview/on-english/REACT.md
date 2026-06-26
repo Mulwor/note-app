@@ -32,9 +32,9 @@ JSX is a syntax extension for JavaScript that looks like HTML. Browsers don't un
 </details>
 
 <details>
-<summary>* What's component?</summary>
+<summary>What's component?</summary>
 
-We can write once, and use everywhere. Easy to update and debugging.
+A component is a function or class that returns JSX. We can use it anywhere in our project. A component combines JavaScript and HTML. It takes props as input and can have its own state
 
 </details>
 
@@ -96,9 +96,9 @@ To avoid it:
 </details>
 
 <details>
-<summary>* What are children props?</summary>
+<summary>What are children props?</summary>
 
-Children is a special prop that lets you pass content between the opening and closing t2ags of a component.
+Children is a special prop that lets you pass content between the opening and closing tags of a component.
 
 </details>
 
@@ -121,13 +121,6 @@ We can use hooks like `useCallback` and `useMemo`, we can use virtualization for
 </details>
 
 <details>
-<summary>* What's different Client Side Rendering vs. Server Side Rendering</summary>
-
-...
-
-</details>
-
-<details>
 <summary> What's error boundary?</summary>
 
 It catches error in components and show some page instead of crashing into the whole page.
@@ -137,7 +130,7 @@ It catches error in components and show some page instead of crashing into the w
 <h3 align="center">Hooks</h3>
 
 <details>
-<summary>What are hooks for? Which hooks do you know?</summary>
+<summary>* What are hooks for? Which hooks do you know?</summary>
 
 ...
 
@@ -146,57 +139,52 @@ It catches error in components and show some page instead of crashing into the w
 <details>
 <summary>Is it possible to call a hook inside a condition or loop?</summary>
 
-...
+We can only use hooks at the top level of the component, not inside loops, conditions, or nested functions. If we use hooks inside a loop, our component can work incorrectly — for example, two useState calls could conflict and cause bugs on the page.
 
 </details>
 
 <details>
-<summary>Why doesn't setState update the data instantly (asynchrony)?</summary>
+<summary>* Why doesn't setState update the data instantly (asynchrony)?</summary>
 
 Почему setState не обновляет данные мгновенно (асинхронность)?
 
 </details>
 
 <details>
-<summary>Where is the component's state stored? - Где хранится состояние компонента?</summary>
+<summary>* Where is the component's state stored? - Где хранится состояние компонента?</summary>
 
 ...
 
 </details>
 
 <details>
-<summary>How `useEffect` hook works?</summary>
+<summary>How `useEffect` hook works? / What are the three ways to use useEffect?</summary>
 
-...
+useEffect runs after the page is painted. There are 3 cases:
 
-</details>
+- No dependency array — runs on every render.
+- Empty array [] — runs only once after mount.
+- With dependencies — runs on mount and when dependencies change.
 
-<details>
-<summary>What are the three ways to use useEffect?</summary>
-
-No dependency array: runs after every render • Empty array []: runs once on mount, cleanup on unmount • With dependencies [count]: runs when dependencies change • Always include cleanup function for subscriptions/listeners • Runs AFTER render (asynchronous), not during
+We can also return a cleanup function to clear timers, cancel requests, or remove event listeners
 
 </details>
 
 <details>
 <summary>How we handle with life cycle methods in functional components?</summary>
 
-- How we handle with life cycle methods in functional components? => componentDidMount
-- If you have some props in dependency how we will work in this case? => componentDidUpdate
+We can use the useEffect hook to imitate lifecycle methods. For example:
+
+- If we need `componentDidMount`, we write useEffect with an `empty dependency array`.
+- If we need `componentDidUpdate`, we write useEffect with `props/state` in the dependency array.
+- If we need `componentWillUnmount`, we write useEffect and inside it we return a cleanup function.
 
 </details>
 
 <details>
 <summary>If you have some props in dependency how we will work in this case?</summary>
 
-...
-
-</details>
-
-<details>
-<summary>How we can handle componentWillUnmount?</summary>
-
-We can write a return callback inside useEffect to cancel requests, remove event listeners, or clear timers
+It works like componentDidUpdate - when props or state change, the effect runs.
 
 </details>
 
@@ -248,35 +236,60 @@ useMemo returns memoized `value`, useCallback returns memoized `function`
 </details>
 
 <details>
-<summary>What is high order component (HOC) and how do they differ from hooks?</summary>
+<summary>* What is high order component (HOC) and how do they differ from hooks?</summary>
 
 ...
 
 </details>
 
 <details>
-<summary>Explain the concept of Higher-Order Components (HOCs) in React and their purpose.</summary>
+<summary>* Explain the concept of Higher-Order Components (HOCs) in React and their purpose.</summary>
 
 ...
 
 </details>
 
 <details>
-<summary>Can you provide some building high order component?</summary>
+<summary>* Can you provide some building high order component?</summary>
+
+...
+
 </details>
 
 <details>
-<summary>When can memoization (memo, useMemo) be harmful?</summary>
+<summary>* When can memoization (memo, useMemo) be harmful?</summary>
+
+...
 
 </details>
 
-1. How do you create a custom hook?
-2. What is useReducer?
-3. What are Refs in React? And what is useRef for (Для чего нужен useRef?)?
+<details>
+<summary>* How do you create a custom hook? </summary>
 
-=> Explain the concept of refs in React and how they are used to directly access DOM elements.
+</details>
 
-4. Explain the concept of forward refs (forwardRef) in React and their use cases.
+<details>
+<summary>* What is useReducer? </summary>
+
+</details>
+
+<details>
+<summary>* What are Refs in React? And what is useRef for (Для чего нужен useRef?)? </summary>
+
+</details>
+
+<details>
+<summary>* Explain the concept of refs in React and how they are used to directly access DOM elements.</summary>
+</details>
+
+<details>
+<summary>* Explain the concept of forward refs (forwardRef) in React and their use cases</summary>
+
+</details>
+
+<details>
+<summary>* what is useTransitions?</summary>
+</details>
 
 How would you manage global state across multiple components without Redux?
 
@@ -296,11 +309,8 @@ Explain the concept of reconciliation in React and how it optimizes re-rendering
 7. Почему в Dev-режиме эффекты срабатывают дважды
 8. how to implement Debouncing in react?
 9. what is portals?
-10. what is react fiber?
-
-How does React Fiber enhance rendering performance?
-
-11. what is useTransitions?
+10. what is react fiber and how does React Fiber enhance rendering performance?
+11. What's different Client Side Rendering vs. Server Side Rendering
 
 ---
 
