@@ -56,11 +56,19 @@ useEffect(() => { return () => {} }, []) → unmounting (cleanup)
 <details>
 <summary>What is difference between controlled and uncontrolled component?</summary>
 
-For example, we have an input field — we can choose to control it or not. If we want to control our state, we can use the useState hook and write an onChange function. But when we don't want to control it, then the DOM manages it itself and has its own value.
+For example, we have an input field, and we can choose whether to make it controlled or uncontrolled.
 
-If we control component we can get value using state.value but if don't we need to create ref and call ref.current.value
+If we want to control the state, we use the useState hook and write onChange function to update it. Event target value
+
+If we don't want to control it, the DOM manages the value itself (DOM сам управляет значение)
+
+To get the value from a controlled component, we just write => event.target.value. For an uncontrolled one, we need to create a ref and access ref.current.value
 
 </details>
+
+---
+
+To the evenings
 
 <details>
 <summary>What are React keys and why are they important? It's good use Id or not, and if we don't have id, how our program start work</summary>
