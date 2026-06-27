@@ -138,9 +138,17 @@ It catches error in components and show some page instead of crashing into the w
 <h3 align="center">Hooks</h3>
 
 <details>
-<summary>* What are hooks for? Which hooks do you know?</summary>
+<summary>What are hooks for? Which hooks do you know?</summary>
 
-...
+Hooks appeared in React 16.8 as an alternative to manage state and lifecycle methods in functional components.
+
+1. useState to manage state
+2. useEffect for side effects(fetch request, timers, manipulation with dom)
+3. useMemo memoized value
+4. useCallback memoized functions
+5. useContext to solve the problem of props drilling
+6. useRef - reference Dom elements.
+7. useLayoutEffect - it is analog of useEffect but it synchrony hook and work before paint our components
 
 </details>
 
@@ -152,16 +160,9 @@ We can only use hooks at the top level of the component, not inside loops, condi
 </details>
 
 <details>
-<summary>* Why doesn't setState update the data instantly (asynchrony)?</summary>
+<summary>Why doesn't setState update the data instantly (asynchrony)?</summary>
 
-Почему setState не обновляет данные мгновенно (асинхронность)?
-
-</details>
-
-<details>
-<summary>* Where is the component's state stored? - Где хранится состояние компонента?</summary>
-
-...
+setState is asynchronous because React batches multiple state updates together and applies them in a single re-render for better performance. This also ensures consistency — all components see the same state within one render cycle.
 
 </details>
 
@@ -296,7 +297,10 @@ useMemo returns memoized `value`, useCallback returns memoized `function`
 </details>
 
 <details>
-<summary>* what is useTransitions?</summary>
+<summary>What is useTransitions?</summary>
+
+`useTransition` is a hook that mark state updates as lower priority. This helps to create a more responsive UI - for example, when searching, the interface is not blocked, and using the isPending flag, we can show a loading indicator while the heavy update is in progress.
+
 </details>
 
 How would you manage global state across multiple components without Redux?
@@ -318,7 +322,8 @@ Explain the concept of reconciliation in React and how it optimizes re-rendering
 8. how to implement Debouncing in react?
 9. what is portals?
 10. what is react fiber and how does React Fiber enhance rendering performance?
-11. What's different Client Side Rendering vs. Server Side Rendering
+11. Where is the component's state stored? - Где хранится состояние компонента?
+12. What's different Client Side Rendering vs. Server Side Rendering
 
 ---
 
