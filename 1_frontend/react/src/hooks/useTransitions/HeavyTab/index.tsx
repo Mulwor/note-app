@@ -6,9 +6,7 @@ export const UseTransitionHook_02 = () => {
   const [activeTab, setActiveTab] = useState('Главная');
 
   const handleTabClick = (tab) => {
-    startTransition(() => {
-      setActiveTab(tab);
-    });
+    startTransition(() => setActiveTab(tab));
   };
 
   return (

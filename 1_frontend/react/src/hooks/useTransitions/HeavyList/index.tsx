@@ -11,9 +11,7 @@ export const UseTransitionHook_01 = () => {
     setQuery(e.target.value);
 
     // Не срочное — тяжёлый рендер откладывается
-    startTransition(() => {
-      setDeferredQuery(e.target.value);
-    });
+    startTransition(() =>  setDeferredQuery(e.target.value));
   };
 
   return (
