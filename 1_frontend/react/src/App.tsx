@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import './App.css'
-import { UseTransitionHook } from './hooks/useTransitions'
+import { useState } from 'react';
+import './App.css';
+import { GroupOfBatching } from './batching/Example';
 
 function App() {
   return (
     <>
-      <UseTransitionHook />
+      <GroupOfBatching />
     </>
   )
 }
