@@ -1,5 +1,6 @@
 ### Redux (toolkit)
 
+0. How would you manage global state across multiple components without Redux?
 1. What is redux and why dy we need redux?
 2. Tell me about principles of redux?
 3. How redux works or what are action, store, reducers

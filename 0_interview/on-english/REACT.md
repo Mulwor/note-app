@@ -66,10 +66,6 @@ To get the value from a controlled component, we just write => event.target.valu
 
 </details>
 
----
-
-To the evenings
-
 <details>
 <summary>What are React keys and why are they important? It's good use Id or not, and if we don't have id, how our program start work</summary>
 
@@ -88,6 +84,8 @@ Props are data passed from a parent component to a child, while state lives insi
 <summary>What happens if you change props directly (Что произойдет, если изменить props напрямую?)? or Is it possible to change props inside a component? (Можно ли изменять props внутри компонента)?</summary>
 
 It will ignore it, and can show a warning or throw an error. If we want to change the value, we need to use a callback and pass the new value to the parent.
+
+previous value
 
 </details>
 
@@ -131,7 +129,7 @@ We can use hooks like `useCallback` and `useMemo`, we can use virtualization for
 <details>
 <summary> What's error boundary?</summary>
 
-It catches error in components and show some page instead of crashing into the whole page.
+It's it the only class component that use in our project and catches error in components and show some page instead of crashing into the whole page.
 
 </details>
 
@@ -160,7 +158,7 @@ We can only use hooks at the top level of the component, not inside loops, condi
 </details>
 
 <details>
-<summary>Why doesn't setState update the data instantly (asynchrony)?</summary>
+<summary>** Why doesn't setState update the data instantly (asynchrony)?</summary>
 
 setState is asynchronous because React batches multiple state updates together and applies them in a single re-render for better performance. This also ensures consistency — all components see the same state within one render cycle.
 
@@ -245,54 +243,57 @@ useMemo returns memoized `value`, useCallback returns memoized `function`
 </details>
 
 <details>
-<summary>* What is high order component (HOC) and how do they differ from hooks?</summary>
+<summary>Explain the concept of Higher-Order Components (HOCs) in React and their purpose.</summary>
 
-...
+A Higher-Order Component (HOC) is a pattern where a function takes a component and returns a new enhanced component. Its purpose is to reuse [riːˈjuːs] logic across multiple components — like authentication, logging, or data fetching.
 
-</details>
+Перевод
 
-<details>
-<summary>* Explain the concept of Higher-Order Components (HOCs) in React and their purpose.</summary>
-
-...
+Its purpose is to reuse [riːˈjuːs] logic across multiple components - Его цель повторно исп логику в нескольких компонентах
 
 </details>
 
 <details>
-<summary>* Can you provide some building high order component?</summary>
+<summary>What is high order component (HOC) and how do they differ from hooks?</summary>
 
-...
+A Higher-Order Component (HOC) is a pattern where a function takes an existing component and returns a new, enhanced [энхенсд] component. For example, memo prevents re-rendering if props haven't changed, or withAuth adds authentication logic.
 
-</details>
-
-<details>
-<summary>* When can memoization (memo, useMemo) be harmful?</summary>
-
-...
+HOCs wrap components, hooks inject logic inside them.
 
 </details>
 
 <details>
-<summary>* How do you create a custom hook? </summary>
+<summary>Can you provide some building high order component?</summary>
+
+- withAuth for authentication,
+- withPagination
+- withMemoization
+- withLogger for logging,
+- withLoader for loading
+- React.memo - prevents re-rendering if props haven't changed (shallow comparison).
 
 </details>
 
 <details>
-<summary>* What is useReducer? </summary>
+<summary>When can memoization (memo, useMemo) be harmful?</summary>
+
+For of all we need to wrap useMemo, memo, useCallback for cache heavy operation. If we wrap everything, it add memory and comprasion overhead, which can actually harm performance
+
+</details>
+
+---
+
+<details>
+<summary>What are Refs in React? And what is useRef for (Для чего нужен useRef?) / Explain the concept of refs in React and how they are used to directly access DOM elements? </summary>
+
+Refs are a way to access DOM nodes (elements) - for example, when we want to focus on an input, or by clicking on an input date we can show a calendar. We can also store previous values and compare them later.
 
 </details>
 
 <details>
-<summary>* What are Refs in React? And what is useRef for (Для чего нужен useRef?)? </summary>
+<summary>Explain the concept of forward refs (forwardRef) in React and their use cases</summary>
 
-</details>
-
-<details>
-<summary>* Explain the concept of refs in React and how they are used to directly access DOM elements.</summary>
-</details>
-
-<details>
-<summary>* Explain the concept of forward refs (forwardRef) in React and their use cases</summary>
+forwardRef is a utility that lets pass a ref from a parent component to a child component. It's used when we need to access a DOM element inside a child component - for example, to focus an input, measure a node, or trigger animations.
 
 </details>
 
@@ -303,29 +304,80 @@ useMemo returns memoized `value`, useCallback returns memoized `function`
 
 </details>
 
-How would you manage global state across multiple components without Redux?
+<details>
+<summary>How to create context?</summary>
+
+First of all, we need to create a context with `createContext()`. Then we need to go to the App component and wrap it with a Provider. If we want to access the value, we need to use useContext in the child component.
+
+</details>
+
+<details>
+<summary>How can I avoid unnecessary re-renders when using Context?</summary>
+
+1. We can split context into smaller contexts
+2. We can use React.memo for child components
+3. We can use useMemo to memoize the provider value and prevent unnecessary updates
+4. We can use state management libraries like Zustand or Redux that optimize re-renders
+
+</details>
 
 <h3 align="center">Another</h3>
 
-1. Tell me about virtual dom, reconciliation algorithm of virtual dom
+<details>
+<summary>Tell me about virtual dom, reconciliation algorithm of virtual dom</summary>
 
-JS representation of real DOM \• React compares old and new virtual DOM, only updates changed nodes
+Virtual DOM is a lightweight copy of the real DOM. When state changes, React updates the virtual DOM, compares it with the previous version, finds the differences, and applies only those changes to the real DOM. This process is called reconciliation.
 
-Explain the concept of reconciliation in React and how it optimizes re-rendering.
+</details>
 
-2. What's pure function
-3. Как создать Context?
-4. Как избежать лишних ререндеров при использовании Context?
-5. What is react Batching?
-6. Что такое observable?
-7. Почему в Dev-режиме эффекты срабатывают дважды
-8. how to implement Debouncing in react?
-9. what is portals?
-10. what is react fiber and how does React Fiber enhance rendering performance?
-11. Where is the component's state stored? - Где хранится состояние компонента?
-12. What's different Client Side Rendering vs. Server Side Rendering
+<details>
+<summary>What's pure function</summary>
 
----
+Pure function is a function without side effects (manipulate with dom, request api, console.log, timers) and return same outputs every time when we called it
+
+</details>
+
+<details>
+<summary>What is react Batching?</summary>
+
+Batching collects multiple setState calls and triggers a single re-render instead of many. This improves performance and results in fewer DOM updates.
+
+</details>
+
+<details>
+<summary>Why do the effects work twice in Dev mode?</summary>
+
+Because Strict Mode is turned on. It helps catch side‑effect bugs and warns about legacy lifecycle methods like componentWillMount or componentWillReceiveProps.
+
+</details>
+
+<details>
+<summary>What is portals?</summary>
+
+Portals help render a component's content outside the normal DOM hierarchy. For example, when we need to create modals, dropdowns, popups, or tooltips, we can use portals. The main benefit is that we don't have to rely on CSS tricks — like z-index or overflow: hidden.
+
+</details>
+
+<details>
+<summary>* What is react fiber and how does React Fiber enhance rendering performance?</summary>
+
+...
+
+</details>
+
+<details>
+<summary>* Where is the component's state stored? - Где хранится состояние компонента?</summary>
+
+...
+
+</details>
+
+<details>
+<summary>* What's different Client Side Rendering vs. Server Side Rendering</summary>
+
+...
+
+</details>
 
 <h3 align="center">Different scenarios</h3>
 
@@ -392,3 +444,4 @@ I can also limit retries (e.g., 3 attempts) and show a user-friendly message wit
 
 Write a logic to count the max number of repeating characters in a string
 Write a logic to move all 0's to the end in an array
+how to implement Debouncing in react?
