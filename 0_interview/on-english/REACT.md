@@ -281,8 +281,6 @@ For of all we need to wrap useMemo, memo, useCallback for cache heavy operation.
 
 </details>
 
----
-
 <details>
 <summary>What are Refs in React? And what is useRef for (Для чего нужен useRef?) / Explain the concept of refs in React and how they are used to directly access DOM elements? </summary>
 
@@ -351,6 +349,8 @@ Because Strict Mode is turned on. It helps catch side‑effect bugs and warns ab
 
 </details>
 
+---
+
 <details>
 <summary>What is portals?</summary>
 
@@ -366,16 +366,26 @@ Portals help render a component's content outside the normal DOM hierarchy. For 
 </details>
 
 <details>
-<summary>* Where is the component's state stored? - Где хранится состояние компонента?</summary>
+<summary>Where is the component's state stored? - Где хранится состояние компонента?</summary>
 
-...
+State can be managed using useState, useContext, useRef, or state managers like Redux and Zustand.
+
+If speaking about hooks, they are stored inside React's fiber tree.
+
+If speaking about state managers, they are in a global store outside React.
 
 </details>
 
 <details>
-<summary>* What's different Client Side Rendering vs. Server Side Rendering</summary>
+<summary>What's different Client Side Rendering vs. Server Side Rendering</summary>
 
-...
+1.  SSR builds the page on the server and sends full HTML to the browser. CSR sends an empty HTML shell with JavaScript, and the browser builds the page on the client side.
+
+2.  Bundle Size — SSR is smaller because the server handles some logic and doesn't send all JavaScript to the client.
+
+3.  SEO — SSR has better SEO than CSR.
+
+4.  SSR is used for e‑commerce, crypto, blogs, news. CSR is used for CRM, dashboards, where we don't need to manipulate data every second.
 
 </details>
 
