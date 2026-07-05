@@ -1,3 +1,10 @@
+<details>
+<summary> Why doesn't setState update the data instantly (asynchrony)?</summary>
+
+setState is asynchronous because React batches multiple state updates together and applies them in a single re-render for better performance. This also ensures consistency — all components see the same state within one render cycle.
+
+</details>
+
 ### Redux (toolkit)
 
 0. How would you manage global state across multiple components without Redux?
