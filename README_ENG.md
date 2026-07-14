@@ -23,8 +23,6 @@ I have both a strong and a weak side. If I get an interesting and unusual task, 
 
 </details>
 
----
-
 <details>
 <summary>What was your biggest achievement in your previous job?** or **Could you tell me about your achievements?</summary>
 
