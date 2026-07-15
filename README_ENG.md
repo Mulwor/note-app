@@ -1,3 +1,16 @@
+Navigation:
+
+- [HR_Interview](#hr-interview)
+- [HTML](#html)
+- [CSS](#css)
+- [JavaScript](#js)
+- [TypeScript](#ts)
+- [React](#react)
+- [Redux](#redux)
+- [HTTP](#http)
+
+<a id="hr-interview"></a>
+
 ## HR_INTERVIEW
 
 <details>
@@ -151,9 +164,15 @@ I created a bot that notifies me about every library update that I use. If I nee
 - How many people will be involved (будут участвовать) in the project?
 - How many interview rounds will there be, and what will they include?
 
+<a id="html"></a>
+
+<a id="css"></a>
+
 ## HTML and CSS
 
 IN PROGRESS
+
+<a id="js"></a>
 
 ## JAVASCRIPT
 
@@ -1300,6 +1319,8 @@ Prototype is a property of the constructor function, but **proto** is a link to 
 
 </details>
 
+<a id="ts"></a>
+
 ## TYPESCRIPT
 
 <details>
@@ -1493,6 +1514,8 @@ type ReturnType<T> = T extends (...args: any[]) => infer R ? R : never;
 We can use `(...args: infer P) => any`
 
 </details>
+
+<a id="react"></a>
 
 ## REACT
 
@@ -1943,6 +1966,8 @@ I'd use try/catch to understand the problem, or add AbortController with signal 
 I can also limit retries (e.g., 3 attempts) and show a user-friendly message with react-toastify, like "Please wait a couple of minutes".
 
 </details>
+
+<a id="redux"></a>
 
 ## REDUX
 
