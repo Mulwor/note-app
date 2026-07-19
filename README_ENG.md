@@ -163,6 +163,7 @@ I created a bot that notifies me about every library update that I use. If I nee
 
 - How many people will be involved (будут участвовать) in the project?
 - How many interview rounds will there be, and what will they include?
+- What projects is the team working on right now?
 
 <a id="html"></a>
 
