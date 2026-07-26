@@ -7,18 +7,13 @@ setState is asynchronous because React batches multiple state updates together a
 
 ### Redux (toolkit)
 
-1. How redux works or what are action, store, reducers
-2. How do you access and update redux state inside React-component? What does it do useSelector and useDispatch
-3. What's middlewares?
-4. What's slice?
-5. How does redux toolkit works under the hooks in general?
-
-Discuss the state management library you've used (Redux, Context API, etc.) and your reasons for choosing it.
+1. How does redux toolkit works under the hooks in general? / How redux works or what are action, store, reducers?
+2. What's middlewares?
 
 ---
 
 <details>
-<summary>What's different between redux and context api?</summary>
+<summary>What's different between redux and context api? / Discuss the state management library you've used (Redux, Context API, etc.) and your reasons for choosing it.</summary>
 
 1. Redux is a library, while Context API is built into React.
 2. Context API is used for small/medium apps, while Redux is used for big projects.
@@ -61,4 +56,22 @@ If speak about multiple reducer - we can use combineReducers, that take reducers
 
 No, we can't. We need to return new state using spread operator or we need to use Object.assign()
 
+</details>
+
+<details>
+<summary>What's slice?</summary>
+
+It's a special Redux feature that helps to combine reducers, actions, and selectors in one place. It has a name, initialState, and reducers. We can write different actions in different places, or use slices.
+
+</details>
+
+<details>
+<summary>How do you access and update redux state inside React-component?</summary>
+
+If we need to update we need to use useDispatch, it returns the dispatch function, which we call with an action; If we need to access state then we need to use useSelector.
+
+</details>
+
+<details>
+<summary>What's middlewares?</summary>
 </details>
