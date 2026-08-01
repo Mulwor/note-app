@@ -1,1 +1,1 @@
-What is SOLID principle
+What is SOLID principle?
