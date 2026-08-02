@@ -17,11 +17,24 @@ Navigation:
 <details>
 <summary>Tell me about yourself.</summary>
 
-My name is Ali Adigezalli. I specialize in frontend development with experience more 6 years old, and I also studied backend with Node.js (Nest.js) on my own. Speaking of projects, I’ve worked on several — a visual website builder, similar to Tilda or Craftum, where users can build pages by adding blocks without coding. I also created with a design team a corporate UI kit inside ITMO.
+Hello, my name is Ali Adigezalli, and I'm a front-end developer with over 5 years of experience.
 
-At Farsight Management I worked on a booking platform for villas, hotels, and luxury apartments in Indonesia, Bali, and other countries. Another project there was a CRM where our employees can view all the necessary client info — check-in and check-out dates, length of stay, contact details, room status (clean, dirty, under maintenance, etc.), as well as sales analytics.
+I currently work at Farsight Management, where I work on two main projects:
 
-My name is Ali Adigezalli,
+- the first one is a booking platform for reserving hotels and villas in Indonesia and Bali,
+- and the second one is an internal platform for the staff, where information about the user is stored — their full name, their contact information, when they check in and check out, the status of the hotel room, and we also have analytics where we can find out which rooms are booked more often and which are booked less often
+
+As for my personal contribution, I can highlight two key achievements.
+
+- I completely rewrote the old legacy booking platform using a more modern version of React. The previous version was really slow and had problems with UI responsiveness. After the update, monthly website traffic jumped from just 3–5 visits to 300. That's what the analysts say.
+- For the internal platform, I built a calendar system from scratch with two views: linear and monthly. Rooms are listed vertically, and check-in and check-out dates run horizontally. This made managing bookings far more visual and intuitive.
+
+Before that, I worked at ITMO University, and the most interesting projects are:
+
+- A visual website builder, where users could assemble pages from ready-made blocks like header, footer, img, section and other blocks, and then edit them. I implemented a text editor with extended formatting options: bold, italic, hyperlinks, tooltips, as well as superscript and subscript text.
+- I created a corporate UI kit together with the design team that supports a consistent style across different projects.
+
+А второй проект - создание вместе с командой дизайнеров корпоративный ui-кит, чтобы поддерживать единый интерфейс во всех других проектах внутри ИТМО
 
 </details>
 
