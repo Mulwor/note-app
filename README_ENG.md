@@ -34,8 +34,6 @@ Before that, I worked at ITMO University, and the most interesting projects are:
 - A visual website builder, where users could assemble pages from ready-made blocks like header, footer, img, section and other blocks, and then edit them. I implemented a text editor with extended formatting options: bold, italic, hyperlinks, tooltips, as well as superscript and subscript text.
 - I created a corporate UI kit together with the design team that supports a consistent style across different projects.
 
-А второй проект - создание вместе с командой дизайнеров корпоративный ui-кит, чтобы поддерживать единый интерфейс во всех других проектах внутри ИТМО
-
 </details>
 
 <details>
