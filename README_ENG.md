@@ -12,7 +12,7 @@ Navigation:
 
 <a id="hr-interview"></a>
 
-## HR_INTERVIEW
+## HR-Interview
 
 <details>
 <summary>Tell me about yourself.</summary>
@@ -181,9 +181,182 @@ I created a bot that notifies me about every library update that I use. If I nee
 
 <a id="html"></a>
 
+## HTML (HyperText Markup Language)
+
+<details>
+<summary>What is HTML and describe the basic structure of an HTML page?</summary>
+
+HTML is a markup language for creating web pages that are displayed in a browser. HTML consists of:
+
+- `<!DOCTYPE html>` — this declares (означает) that we are using the latest version, HTML5.
+- The `<head>` contains metadata about the document – the page title, links to fonts and stylesheets, scripts, and meta tags like viewport, description, charset, etc.
+- `<body>` — contains (содержит) all the markup (разметку) of the HTML document. This markup is what gets displayed (отображается) in the browser.
+
+</details>
+
+<details>
+<summary>Do HTML elements have their own default specific styles?</summary>
+
+Yes, every HTML element comes with default browser styles. For instance, `<h1>` is bold and larger, `<p>` has margins, `<em>` is italic. However, it is worth noting that font sizes and other default styles may vary across browsers. To avoid inconsistencies, developers often use either reset.css or normalize.css.
+
+</details>
+
+<details>
+<summary>What is an inline style? Can it be overridden?</summary>
+
+An inline style is a style inside the style attribute. It has high specificity and can only be overridden using !important in CSS
+
+</details>
+
+<details>
+<summary>What is semantics? What semantic tags do you know?</summary>
+
+Semantic HTML means using the right elements for their intended purpose or meaning. It helps browsers and search engines analyze and understand the structure and content of our web application. It also improves accessibility. For example, when we use `<strong>`, screen readers put emphasis on this tag.
+
+</details>
+
+<details>
+<summary>What is the difference between the tags: `strong and em` vs `b and i`?</summary>
+
+Tags: `strong` and `b` (bold) – make text bold.
+Tags: `em` (emphasis) and `i` (italic) – make text italic.
+
+"The main difference is that `<strong>` and `<em>` are semantic tags, while `<b> and <i>` are not. When a screen reader reads `<strong>`or`<em>`, it places a slight emphasis or accent on them, whereas `<b> and <i>` are just visual styling."
+
+</details>
+
+<details>
+<summary>How do you semantically correctly markup a navigation menu?</summary>
+
+Using `nav > ul > li > a`.
+
+</details>
+
+<details>
+<summary>How can you hide an element in the markup without using CSS or JS?</summary>
+
+We can use the global hidden attribute. However, the element will not be rendered visually and will be hidden from screen readers as well.
+
+</details>
+
+<details>
+<summary>Which tag should be used to markup a button?</summary>
+
+We can use a semantic tag — `<button>`. Alternatively, `<input type="button"> or <input type="submit">` can create button-like controls, such as sending a request.
+
+</details>
+
+<details>
+<summary>Types of lists in HTML?</summary>
+
+There are 3 types of lists in HTML: `<ul>` (unordered list), `<ol>` (ordered list), and `<dl>` (definition list).
+
+</details>
+
+<details>
+<summary>What are the tags tr, th, td used for?</summary>
+
+The `<tr>, <th>, and <td>` tags are used to create HTML tables:
+
+`<tr>` — table row (строка таблицы)
+`<th>` — table header (ячейка-заголовок)
+`<td>` — table data (обычная ячейка с данными)
+
+</details>
+
+<details>
+<summary>Which tag uses the alt attribute and why is it needed?</summary>
+
+Alt is used in the <img> tag. It shows text if the image doesn't load, and screen readers read it and also it is needed for validation
+
+</details>
+
+<details>
+<summary>Why is it considered good practice to place the link tag for CSS styles inside the head tag, and to put the script tag for JS just before the closing body tag?</summary>
+
+The link tag inside the site's header is specified in the HTML specification. If the stylesheet is in the head, the page loads faster.
+
+Script loaded synchronously
+
+HTML and CSS are loaded first on the initial page load, and they should be placed in the header. After everything is loaded, JavaScript is used. If we put JS at the very beginning, it will block the rendering of the HTML. Placing scripts at the bottom allows the browser to first parse and display all the HTML to the user, and then add logic to it.
+
+</details>
+
+<details>
+<summary>Difference between `script`, `script async`, and `script defer`? </summary>
+
+A regular script loads synchronously, so we need to put it before the closing `</body>` tag so our page doesn't block. If we put it before closing `</head>`, some parts of our UI can be blocked.
+
+But if we use defer, it loads in the background and runs after all the HTML and CSS are loaded.
+
+If we speak about async, it loads asynchronously — it doesn't wait for the order, so we usually use it for ads, bots, or other things that don't depend on our main content.
+
+</details>
+
+<details>
+<summary> If there are several consecutive scripts with the async attribute, will their loading and execution order be preserved? What about defer?</summary>
+
+async doesn't save the order, while defer saves the order.
+
+</details>
+
+<details>
+<summary>What are data attributes used for?</summary>
+
+They appeared in HTML5 and allow storing additional information directly inside HTML tags. For example: data-size. Also, using a specific syntax, they can be easily styled: [data-age="46"] {}
+
+```js
+<ul>
+  <li data-price="40" data-weight="45">
+    Pizza
+  </li>
+  <li data-price="20" data-weight="50">
+    Hamburger
+  </li>
+  <li data-price="50" data-weight="70">
+    Pasta
+  </li>
+</ul>;
+
+const products = document.querySelectorAll("li");
+products.forEach((product) => {
+  console.log(product.dataset.price); // [40, 20, 50]
+  console.log(product.dataset.weight); // [45, 50, 70]
+});
+```
+
+</details>
+
+<details>
+<summary>What is the datalist element used for?</summary>
+
+It is used to create a dropdown list that can be selected while typing in a text field. The datalist element with an id attribute must exactly match the list attribute of an input element.
+
+```html
+<img src="./assets/html/datalist.png" alt="Datalist" />html
+<label for="select-animal">Who is the strongest animal?:</label>
+<input list="animals" id="select-animal" placeholder="type here... " />
+
+<datalist id="animals">
+  <option value="Elephant"></option>
+  <option value="Tiger"></option>
+  <option value="Zebra"></option>
+  <option value="Lion"></option>
+</datalist>
+```
+
+</details>
+
+<details>
+<summary>Types of `input` elements in HTML? (List them and describe their features)</summary>
+
+The input element is necessary for communication with users; it is designed to receive entered data. It has a type attribute. Input type = 'text', 'password', 'number', 'email', 'button', 'checkbox/radiobutton', 'date'
+
+</details>
+
 <a id="css"></a>
 
-## HTML and CSS
+## CSS
 
 IN PROGRESS
 
@@ -1992,8 +2165,6 @@ I can also limit retries (e.g., 3 attempts) and show a user-friendly message wit
 setState is asynchronous because React batches multiple state updates together and applies them in a single re-render for better performance. This also ensures consistency — all components see the same state within one render cycle.
 
 </details>
-
-### Redux (toolkit)
 
 <details>
 <summary>How does redux toolkit works under the hoods in general?</summary>
