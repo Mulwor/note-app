@@ -171,7 +171,7 @@ Another one is `fixed` - when we want to fixed some element and when we scroll, 
 
 Another one is `sticky` - it looks like fixed but it save its position to the top of the viewport only inside its parent container
 
-Another one is `absolute` - removes the element from the normal flow and positions it relative to the nearest positioned parents, but if don't have parent it moves to the browser window.
+Another one is `absolute` - removes the element from the normal flow. It moves relative to the nearest positioned parent, If there is no positioned parent, it goes to the browser window.
 
 </details>
 
