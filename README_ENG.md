@@ -788,7 +788,7 @@ A loop is a way to repeat a block of code until it's time to stop. We have diffe
 <details>
 <summary>Why is `for...in` not recommended for arrays?</summary>
 
-Because it goes through all properties, including prototype chain. And returns strings
+Because it goes through all properties, including prototype chain. And returns index
 
 </details>
 
