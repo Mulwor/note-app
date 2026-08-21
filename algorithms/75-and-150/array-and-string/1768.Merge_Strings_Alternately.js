@@ -10,19 +10,6 @@
 // ? Third-example: Input: word1 = "abcd", word2 = "pq" ===> "apbqcd"
 
 // ! ==================================== Первый способ ==========================================
-
-var mergeAlternately = function(word1, word2) {
-  let maxstr = Math.max(word1.length, word2.length);
-  let result = "";
-
-  for (let i = 0; i < maxstr; i++ ) {
-    if (i < word1.length) result += word1[i];
-    if (i < word2.length) result += word2[i];
-  }
-
-  return result
-};
-
 var mergeAlternately = function(word1, word2) {
   let maxLength = Math.max(word1.length, word2.length);    // O(1)
 
@@ -36,7 +23,32 @@ var mergeAlternately = function(word1, word2) {
   return str
 };
 
+var mergeAlternately = function(word1, word2) {
+  const maxLength = Math.max(word1.length, word2.length);
+  let output = [];
+  
+  for(let i = 0; i < maxLength; i++){
+    if(word1[i]) output.push(word1[i])
+    if(word2[i]) output.push(word2[i])
+  }
+  
+  return output.join('')  
+};
+
 // ! ==================================== Второй способ ==========================================
+var mergeAlternately = function(word1, word2) {
+  let maxstr = Math.max(word1.length, word2.length);
+  let result = "";
+
+  for (let i = 0; i < maxstr; i++ ) {
+    if (i < word1.length) result += word1[i];
+    if (i < word2.length) result += word2[i];
+  }
+
+  return result
+};
+
+// ! ==================================== Третий способ ==========================================
 
 var mergeAlternately = function(word1, word2) {
   let result = [];                                            // O(1)
@@ -49,3 +61,25 @@ var mergeAlternately = function(word1, word2) {
 
   return result.filter((el) => el !== undefined).join("")     // O(n)
 };
+
+
+// ! ==================================== Четвертый способ ==========================================
+// ? Two pointers
+var mergeAlternately = function(word1, word2) {
+    let result = "";
+
+    let i = 0;
+    let j = 0;
+
+    while (i < word1.length || j < word2.length) {
+      if(i < word1.length){
+        result += word1[i];
+        i++;
+      }
+      if(j < word2.length){
+        result += word2[j];
+        j++;
+      }
+    }
+    return result;
+}

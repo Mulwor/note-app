@@ -6,35 +6,20 @@
 // ? Input: nums1 = [1,2,2,1], nums2 = [2,2] ========> Output: [2]
 // ? Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4] ========> Output: [9,4]
 
-// * Мое решение (не самая лучшая практика)
 var intersection = function(nums1, nums2) {
-  const map = new Map();
-  const set = new Set();
-  const result = []
+  let set = new Set(nums1);
+  let filterSet = new Set()
 
-  const findMaxLength = nums1.length > nums2.length ? nums1.length : nums2.length 
-
-  for (let i = 0; i < findMaxLength; i++) {
-    map.set(i, nums1[i])
-  }
-  
-  for (let i = 0; i < findMaxLength; i++) {
-    for (let amount of map.values()) {
-      if (nums2[i] === amount) {
-        set.add(nums2[i])
-      }                                     
+  for (let element of nums2){
+    if (set.has(element)) {
+      filterSet.add(element)
     }
   }
 
-  for (let value of set) {
-    result.push(value)
-  }
-
-  return result
+  return [...filterSet]
 };
 
-
-// * Первое решение
+// ! ==========================================================
 var intersection = function (nums1, nums2) {
   let set1 = new Set(nums1);
   let set2 = new Set(nums2);
@@ -50,7 +35,7 @@ var intersection = function (nums1, nums2) {
 };
 
 
-// * Второе решение
+// ! ==========================================================
 var intersection = function(nums1, nums2) {
   let result = [];
   
@@ -66,7 +51,8 @@ var intersection = function(nums1, nums2) {
   return [...new Set(result)]  
 };
 
-// * Третье решение
+
+// ! ==========================================================
 var intersection = function (nums1, nums2) {
   let set = new Set();
 
@@ -79,7 +65,8 @@ var intersection = function (nums1, nums2) {
   return Array.from(set);
 };
 
-// * Четвертое решение решение
+
+// ! ==========================================================
 var intersection = function (nums1, nums2) {
   const set = new Set(nums1);
   

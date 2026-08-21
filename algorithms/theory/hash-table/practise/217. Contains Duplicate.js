@@ -6,20 +6,14 @@
 // ? Input: nums = [1,2,3,1] ====> Output: true
 // ? Input: nums = [1,2,3,4] ====> Output: false
 
-// ! Решение, но не по условию
+// ===================================================
 var containsDuplicate = function(nums) {
-  const set = new Set();
-
-  for (let i = 0; i < nums.length; i++) {
-    set.add(nums[i])
-  }
+  let set = new Set(nums);
 
   return set.size !== nums.length
-
-  // * return new Set(nums).size !== nums.length;
 };
 
-// ! Первое решение
+// ===================================================
 var containsDuplicate = function (nums) {
   const set = new Set();
 
@@ -34,7 +28,7 @@ var containsDuplicate = function (nums) {
   return false;
 };
 
-// ! Второе решение
+// ===================================================
 var containsDuplicate =(nums)=> {
   let numCount = {};
  
@@ -48,3 +42,20 @@ var containsDuplicate =(nums)=> {
  
   return false;
 };    
+
+// ====================================================
+var containsDuplicate = function(nums) {
+    let map = new Map();
+
+    for (let i = 0; i < nums.length; i++) {
+        let getValueMap = map.get(nums[i]) || 0;
+
+        if (getValueMap > 0) {
+            return true;
+        }
+
+        map.set(nums[i], getValueMap + 1);
+    }
+
+    return false;
+};
