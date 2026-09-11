@@ -9,11 +9,9 @@ INSTRUCTIONS = '''
 
 PROMPT_TEMPLATE = '''
   QUESTION: {question}
-
   CONTEXT: {context}
 '''.strip()
 
-# Создание класса, который будет содержать зависимости класса
 class RAGBase:
   def __init__(
     self, 
@@ -22,14 +20,14 @@ class RAGBase:
     course = 'llm-zoomcamp',
     prompt_template = PROMPT_TEMPLATE,
     instructions = INSTRUCTIONS,
-    model='gpt-5.4-mini'
-  ):
-    self.index = index,
-    self.llm_client = llm_client,
-    self.course = course,
-    self.prompt_template = prompt_template,
-    self.instructions = instructions,
-    self.model = model,
+    model = 'gpt-5.4-mini'
+):
+    self.index = index
+    self.llm_client = llm_client
+    self.course = course
+    self.prompt_template = prompt_template
+    self.instructions = instructions
+    self.model = model
 
   def search(self, query, num_results = 5): 
     boost_dict = {'question': 2.0, 'section': 0.5 }
@@ -42,7 +40,7 @@ class RAGBase:
       num_results = num_results,
     )
 
-  def build_context(search_results):
+  def build_context(self, search_results):
     lines = []
 
     for doc in search_results:

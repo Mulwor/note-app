@@ -5,3 +5,13 @@
 5. Что такое токенизация в ЛЛМ
 6. Объясните BPE (Byte Pair Encoding)
 7. Объясните WordPiece and SentencePiece.
+
+---
+
+Как работает RAG-система
+Когда стоит делать файн-тюнинг модели
+Что вызывает галлюцинации LLM
+
+Наш чатбот дает ненадежные ответы - как бы ты это отладил?
+
+https://roasted.cv/ru/interview/ai-engineer/junior
