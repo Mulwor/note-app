@@ -11,3 +11,6 @@
 
 - [Roadmap по AI-Engineering from Baraa](https://candle-gosling-511.notion.site/AI-Engineering-Roadmap-By-Data-With-Baraa-29734b251f12804f94a2c5ffaeee8620)
 - [Классический roadmap](https://roadmap.sh/ai-engineer)
+
+Скрипт для подключения uv: 
+$env:Path += ";C:\Users\mulwo\AppData\Local\Python\pythoncore-3.14-64\Scripts"
