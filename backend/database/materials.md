@@ -1,0 +1,3 @@
+[Разбираем SQL на примере PostgreSQL — SELECT, JOIN, GROUP, HAVING, Coalesce и др.](https://www.youtube.com/watch?v=WpojDncIWOw&list=LL)
+
+[SQL - Formatter](https://codebeautify.org/sqlformatter)
