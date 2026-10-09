@@ -21,7 +21,10 @@ ORDER BY  name
 -- Полученную колонку назовите order_info.
 -- Пример вывода: Заказ № 65 создан 2022-09-01
 SELECT
-  CONCAT('Заказ ', '№ ', order_id, ' создан ', creation_time::DATE) as order_info
+  CONCAT(
+    'Заказ ', '№ ', order_id, 
+    ' создан ', creation_time::DATE
+  ) as order_info
 FROM orders
 LIMIT 200
 
@@ -78,20 +81,3 @@ ORDER BY
  new_price desc,
  product_id 
 
-
--- ! =============================================================
-
--- Задание №13 - Повысьте цену всех товаров на 5%, только теперь к колонке с новой ценой примените функцию ROUND. 
--- Выведите id и наименования товаров, их старую цену, а также новую цену с округлением. Новую цену округлите до 
--- одного знака после запятой, но тип данных не меняйте. Результат отсортируйте сначала по убыванию новой цены, 
--- затем по возрастанию id товара.
--- Поля в результирующей таблице: product_id, name, old_price, new_price
-SELECT 
-  product_id,
-  name,
-  price as old_price,
-  ROUND(price * 1.05, 1) as new_price
-FROM products
-ORDER BY 
- new_price desc,
- product_id 
