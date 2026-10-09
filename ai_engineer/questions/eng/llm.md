@@ -1,8 +1,5 @@
 ## LLM Fundamentals
 
-
-
-
 - What are foundation models, and how have they changed AI engineering?
 - What is a Large Language Model (LLM), and how does it work?
 - Inside ChatGPT: What Happens After You Hit Enter?

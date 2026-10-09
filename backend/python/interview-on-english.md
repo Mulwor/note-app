@@ -4,6 +4,4 @@ Input - is a built-in Python function that stops your program to get user input.
 
 Data types - t
 
-Курс
-
-https://github.com/DataTalksClub/ai-dev-tools-zoomcamp
+Курсmp
