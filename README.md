@@ -1,6 +1,7 @@
 # Вопросы с собеседование
 
 - [Python]()
+  - [Задачи с собеседование на python](./questions/python_output.md)
 - [Fast-api]()
 - [Data-base]()
 - [AI-engineer]()
