@@ -162,3 +162,51 @@ def retry(func):
     raise Exception(f'Function {func.__name__} failed after {max_retries} attempts.')
   return wrapper
 ```
+
+8. Что будет напечатано в результате выполнения следующего кода?
+
+```python
+import sys
+arr_1 = []
+arr_2 = arr_1
+print(sys.getrefcount(arr_1))
+```
+
+Разъяснения:
+
+getrefcount - сколько ссылок ссылается на данный объект
+arr_2 = arr_1 - не глубокое копирование
+
+Ответ: 2
+
+9. Что будет напечатано в результате выполнения следующего кода?
+
+```python
+class Variable:
+  def __init__(self, name, value):
+    self._name = name
+    self._value = value
+
+  @property
+  def value(self):
+    print(self._name, 'GET', self._value)
+    return self._value
+
+  @value.setter
+  def value(self, value):
+    print(self._name, 'SET', self._value)
+    self._value = value
+
+var_1 = Variable('var_1', 'val_1')
+var_2 = Variable('var_2', 'val_2')
+var_1.value, var_2.value = var_2.value, var_1.value
+```
+
+- property - влияет на то, что при каждой инициализации name, value, то у нас будет отображаться  print(self._name, 'GET', self._value)
+- @value.setter - при каждом переопределении, то у нас будет отображаться     print(self._name, 'SET', self._value)
+
+Ответ:
+var_2 GET val_2
+var_1 GET val_1
+var_1 SET val_1
+var_2 SET val_2
