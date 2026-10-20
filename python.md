@@ -708,9 +708,9 @@ class MyClass:
 </details>
 
 <details>
-<summary>Чем отличается метод __init__ от метода __new__?
+<summary>Чем отличается метод __init__ от метода __new__?</summary>
 
-New возвращает экземпляр класса и срабатывает после new</summary>
+New возвращает экземпляр класса и срабатывает после new
 </details>
 
 <details>
