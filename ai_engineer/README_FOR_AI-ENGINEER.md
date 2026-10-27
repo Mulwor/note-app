@@ -36,3 +36,10 @@ $env:Path += ";C:\Users\mulwo\AppData\Local\Python\pythoncore-3.14-64\Scripts"
 - [AI engineering - 2](https://www.tryexponent.com/blog/ai-engineer-interview-questions)
 
 https://www.figma.com/board/WItGKrmgklcYc1SylxZ2EA/%D0%9F%D0%BE%D0%BB%D0%BD%D1%8B%D0%B9-Python-Roadmap-2026?node-id=34-5623
+
+[Курс по ланграфу](https://github.com/emarco177/langchain-course)
+
+Лучшие работы:
+- https://courses.datatalks.club/llm-zoomcamp-2026/leaderboard
+- https://github.com/iocariz/llm-zoomcamp-2026/tree/main
+
