@@ -10,7 +10,7 @@ https://github.com/Devinterview-io/sql-interview-questions
 - Чем primary key (первичный ключ) отличается от foreignKey
 - Что такое ACID св-в и как PG их обеспечивает?
 - Что такое механизм MVCC и зачем он нужен?
-- Что такое vacuum? 
+- Что такое vacuum, analyz? 
 - Можно ли в postgres добавить планировщик задач?
 
 Через pg_cron можно
@@ -22,4 +22,8 @@ https://github.com/Devinterview-io/sql-interview-questions
 - В чем разница между explain vs explain analyze?
 - Зачем нужен pg_hba.cong? 
 - Какие виды Join'ов есть в SQL
-- Пример запроса (среднее количество заходов) и
+
+
+Источники:
+
+https://www.youtube.com/playlist?list=PLqAk2mIiDakkhP7ooRfS9BBfYfIzHa688
