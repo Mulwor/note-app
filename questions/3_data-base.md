@@ -27,3 +27,8 @@ https://github.com/Devinterview-io/sql-interview-questions
 Источники:
 
 https://www.youtube.com/playlist?list=PLqAk2mIiDakkhP7ooRfS9BBfYfIzHa688
+
+---
+
+[Часть №1](https://www.youtube.com/watch?v=rTSODCT4mKw)
+

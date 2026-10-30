@@ -1,3 +1,9 @@
+В качестве материала были использованы следующие ресурсы: 100 вопросов с собеседований Python 
+- [часть №1](https://www.youtube.com/watch?v=zKkuWq0vIPE);
+- [часть №2](https://www.youtube.com/watch?v=ojtQ9GsJPbQ); 
+- сам [материал](https://uproger.com/bolee-100-voprosov-s-sobesedovaniya-python-razbor-realnyh-voprosov/)
+
+
 - 38. Какие пространства имен существуют в python?
 - 56. [Опишите процесс компиляции в python.](https://www.youtube.com/watch?v=f-jFxO2Kzlo)
 - 63. Что такое wheels и eggs? В чём разница?
