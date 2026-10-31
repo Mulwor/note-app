@@ -3,9 +3,13 @@ https://github.com/Devinterview-io/sql-interview-questions
 [Источник](https://www.youtube.com/watch?v=dbBHgI5Sg1A)
 
 - Что такое индексы в БД и для чего нужны.
+- Какие виды индексов существует в postgreSQL и зачем они нужны?
+
+https://easyoffer.ru/python-developer/question/chto-takoe-indeks-v-bd
+
+
 - В чем преимущества нереляционной БД.
 - Что такое транзакции и св-ва транзакции. Как можно изолировать транзакцию
-- Какие виды индексов существует в postgreSQL и зачем они нужны?
 - Всегда-ли postgres используют ваши индексы?
 - Чем primary key (первичный ключ) отличается от foreignKey
 - Что такое ACID св-в и как PG их обеспечивает?
@@ -27,8 +31,3 @@ https://github.com/Devinterview-io/sql-interview-questions
 Источники:
 
 https://www.youtube.com/playlist?list=PLqAk2mIiDakkhP7ooRfS9BBfYfIzHa688
-
----
-
-[Часть №1](https://www.youtube.com/watch?v=rTSODCT4mKw)
-
