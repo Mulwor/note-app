@@ -82,9 +82,11 @@ ORDER BY order_size
 -- ? соответственно order_size и orders_count. Результат отсортируйте по возрастанию размера заказа.
 -- ? Поля в результирующей таблице: order_size, orders_count
 
-
-
--- ! Задача № 11.1
--- ? Когда решите эту задачу, вернитесь к одной из предыдущих и подумайте, могли бы мы ещё 
--- ? каким-то способом сделать так, чтобы в результат не попала группа с NULL значениями. 
--- ? Можете самостоятельно написать ещё один запрос и попробовать сдать его в качестве альтер.решения.
+SELECT array_length(product_ids, 1) as order_size,
+       count(order_id) as orders_count
+FROM   orders
+WHERE TO_CHAR(creation_time, 'Dy') NOT IN ('Sat', 'Sun')
+  -- TO_CHAR(creation_time, 'ID') IN ('1', '2', '3', '4', '5')
+GROUP BY order_size 
+HAVING count(order_id) > 2000
+ORDER BY order_size
