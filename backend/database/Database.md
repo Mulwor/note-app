@@ -103,6 +103,7 @@ noSQL (нереляционные базы данных) работают по �
   -  Если значение = NULL, то заменит на второе значение. 
   -  Если значение != NULL, то вернет первое значение.  
 - [`ARRAY_LENGTH(array, integer)`]() - возвращает длину указанного (одного) массива, где первый аргумент - массив, а второй integer - измерения. [Пример](./tasks/03_data-aggregation/array-length.sql)
+- [`NOW()`](https://www.postgresqltutorial.com/postgresql-date-functions/postgresql-now/) - получаем текущую дату
 
 Функции также можно комбинировать:  
 - `UPPER(LEFT('karpov.courses', 6))` - в начале выполнится LEFT, затем UPPER. 
