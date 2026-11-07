@@ -71,4 +71,115 @@ LIMIT 1000
 -- ? прежней цены в колонке price, затем по возрастанию id товара.
 -- ? Поля в результирующей таблице: product_id, name, price, new_price
 
-SELECT product_id, name, price FROM products ORDER BY name ASC
+SELECT 
+  product_id, name, price,
+  CASE
+    -- 15% скидка
+    WHEN price >= (SELECT ROUND(AVG(price), 2) FROM products) + 50
+    THEN ROUND(price * 0.85, 2)
+    -- 10% скидка
+    WHEN price <= (SELECT ROUND(AVG(price), 2) FROM products) - 50
+    THEN ROUND(price * 0.90, 2)
+    ELSE price
+  END AS new_price
+FROM products
+ORDER BY price desc, product_id
+
+-- * 
+
+WITH 
+  avg_price AS (
+    SELECT ROUND(AVG(price), 2) as price
+    FROM   products
+  )
+
+SELECT product_id, name, price,
+  CASE 
+    WHEN price >= (SELECT * FROM avg_price) + 50 THEN price * 0.85 
+    WHEN price <= (SELECT * FROM avg_price) - 50 THEN price * 0.9 
+    ELSE price 
+    END AS new_price
+FROM   products
+ORDER BY price desc, product_id
+
+
+-- ! =============================================================================
+-- * Задача №10 
+-- ? Выясните, есть ли в таблице courier_actions такие заказы, которые были 
+-- ? приняты курьерами, но не были созданы пользователями. Посчитайте количество
+-- ? таких заказов.
+
+-- ? Колонку и поле с числом заказов назовите orders_count.
+
+SELECT  
+  COUNT(action = 'accept_order') - COUNT(action = 'deliver_order') as orders_count
+FROM courier_actions
+
+
+SELECT COUNT(distinct order_id) as orders_count
+FROM   courier_actions
+WHERE  action = 'accept_order' AND order_id NOT IN (SELECT order_id FROM user_actions)
+
+
+
+-- ! =============================================================================
+-- * Задача №11
+-- ? Выясните, есть ли в таблице user_actions такие заказы, которые были приняты
+-- ? курьерами, но не были доставлены пользователям: у заказа нет записи с 
+-- ? действием 'deliver_order' в таблице courier_actions. Посчитайте уникальное
+-- ? количество таких заказов: используйте count(distinct order_id).
+-- ? Колонку и поле с числом заказов назовите orders_count.
+
+SELECT COUNT(DISTINCT order_id) AS orders_count
+FROM user_actions
+WHERE action = 'accept_order'
+  AND order_id NOT IN (
+    SELECT order_id
+    FROM courier_actions
+    WHERE action = 'deliver_order'
+  );
+
+
+-- ! =============================================================================
+-- * Задача №12
+-- ? Определите количество отменённых заказов в таблице courier_actions и 
+-- ? выясните, есть ли в этой таблице такие заказы, которые были отменены 
+-- ? пользователями, но при этом всё равно были доставлены. Посчитайте кол-во 
+-- ? таких заказов.
+
+-- ? Колонку с отменёнными заказами назовите orders_canceled. Колонку с 
+-- ? отменёнными, но доставленными заказами назовите orders_canceled_and_delivered. 
+
+SELECT 
+  COUNT(DISTINCT order_id) AS orders_count,
+  COUNT(distinct order_id) FILTER (WHERE action = 'deliver_order') as orders_canceled_and_de
+FROM courier_actions
+WHERE order_id IN (SELECT order_id
+                    FROM   user_actions
+                    WHERE  action = 'cancel_order')
+
+
+-- ! =============================================================================
+-- * Задача №13
+-- ? По таблицам courier_actions и user_actions снова определите число 
+-- ? недоставленных заказов и среди них посчитайте кол-во отменённых заказов и 
+-- ? кол-во заказов, которые не были отменены (и соответственно, пока ещё не 
+-- ? были доставлены).
+
+-- ? Колонку с недоставленными заказами назовите orders_undelivered, 
+-- ? Колонку с отменёнными заказами назовите orders_canceled, 
+-- ? Колонку с заказами «в пути» назовите orders_in_process.
+
+SELECT 
+  COUNT(distinct order_id) as orders_undelivered,
+  COUNT(order_id) filter (WHERE action = 'cancel_order') as orders_canceled,
+  COUNT(distinct order_id) - COUNT(order_id) FILTER (WHERE action = 'cancel_order') as orders_in_process
+FROM   user_actions
+WHERE  order_id in (
+  SELECT order_id FROM courier_actions
+  WHERE  order_id not in (
+    SELECT order_id FROM   courier_actions
+    WHERE  action = 'deliver_order'
+  )
+)
+

@@ -4,5 +4,5 @@
 [PostgreSQL String Functions](https://neon.com/postgresql/string-functions)
 [Преобразование типов данных через CAST](https://neon.com/postgresql/tutorial/cast)
 
-[Курс по sql](https://lab.karpov.courses/learning/152/module/1762/lesson/17927/54325/256094/)
+[Курс по sql](https://lab.karpov.courses/learning/152/module/1762/lesson/17928/53213/257133/)
 [Необходимый форматер для запуска команд](https://redash.public.karpov.courses/queries/135319/source)
