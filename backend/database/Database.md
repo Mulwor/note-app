@@ -2,6 +2,7 @@
 - [Виды баз данных](#type-db)
 - [SQL - Реляционные базы данные](#sql-db)
 - [Разбор командной запросов SQL](#command-sql)
+- [Материалы](materials)
 
 ---
 
@@ -119,3 +120,10 @@ noSQL (нереляционные базы данных) работают по �
 - [Арифметические](https://www.postgresql.org/docs/9.3/functions-math.html) - +, -, /, *, %, ^.
 - [Логические]() => AND, OR, NOT
 - [Округления](https://neon.com/postgresql/math-functions/round) - round(value, number) округление в ближайшую сторону, где первым принимаем число а вторым округлить до скольки знаков после запятой
+
+<a id="materials"></a>
+
+
+- [SQL - Formatter](https://codebeautify.org/sqlformatter)
+- [Курс по sql](https://lab.karpov.courses/learning/152/module/1762/lesson/17928/53213/257133/)
+- [Необходимый форматер для запуска команд по курсу SQL](https://redash.public.karpov.courses/queries/135319/source)
