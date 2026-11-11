@@ -4,22 +4,15 @@
 <details>
 <summary>Tell me about yourself.</summary>
 
-Hello, my name is Ali Adigezalli, and I'm a front-end developer with over 5 years of experience.
+HI, my name is Ali Adigezalli, and I'm a senior fullstack developer (write on Python and Typescript) with over 6 years of experience. 
 
-I currently work at Farsight Management, where I work on two main projects:
+Now, I work at Farsight Management and we have 3 projects:
 
-- the first one is a booking platform for reserving hotels and villas in Indonesia and Bali,
-- and the second one is an internal platform for the staff, where information about the user is stored — their full name, their contact information, when they check in and check out, the status of the hotel room, and we also have analytics where we can find out which rooms are booked more often and which are booked less often
+- the first one is a booking platform for reserving hotels and villas in Indonesia and Bali;
+- the second one is a platform related to guests and rooms - when a person books a room, we see all information about him - full name, when check-in /check-out dates, which room and another things - and we can interact; also, inside this platform, sales of certain rooms, hotel occupancy, and various financial reports for weeks, month, and year are shown.
+- And we are also integrating AI agents into our platform. For example, we don’t search for a guest in a table; we simply write their full name and get complete information about their stay.
 
-As for my personal contribution, I can highlight two key achievements.
-
-- I completely rewrote the old legacy booking platform using a more modern version of React. The previous version was really slow and had problems with UI responsiveness. After the update, monthly website traffic jumped from just 3–5 visits to 300. That's what the analysts say.
-- For the internal platform, I built a calendar system from scratch with two views: linear and monthly. Rooms are listed vertically, and check-in and check-out dates run horizontally. This made managing bookings far more visual and intuitive.
-
-Before that, I worked at ITMO University, and the most interesting projects are:
-
-- A visual website builder, where users could assemble pages from ready-made blocks like header, footer, img, section and other blocks, and then edit them. I implemented a text editor with extended formatting options: bold, italic, hyperlinks, tooltips, as well as superscript and subscript text.
-- I created a corporate UI kit together with the design team that supports a consistent style across different projects.
+Before that, I worked at Jimdo, where I developed a visual website builder that lets users create a website using different blocks, and I also created a corporate UI kit.
 
 </details>
 
